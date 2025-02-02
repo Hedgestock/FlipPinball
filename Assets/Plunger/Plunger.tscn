@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7wrp1hb3227q"]
+
+[ext_resource type="Script" path="res://Assets/Plunger/Plunger.cs" id="1_bv4d5"]
+
+[sub_resource type="Gradient" id="Gradient_nwsm5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5dea6"]
+gradient = SubResource("Gradient_nwsm5")
+width = 16
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_4ivpu"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yngwk"]
+gradient = SubResource("Gradient_4ivpu")
+width = 16
+fill_to = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhcf"]
+size = Vector2(20, 3)
+
+[node name="Plunger" type="Node2D" node_paths=PackedStringArray("PlungerProgress", "DetectionZone")]
+script = ExtResource("1_bv4d5")
+PlungerProgress = NodePath("PlungerProgress")
+DetectionZone = NodePath("Area2D")
+
+[node name="PlungerProgress" type="TextureProgressBar" parent="."]
+offset_left = -8.0
+offset_top = 32.0
+offset_right = 8.0
+offset_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 50.0
+fill_mode = 2
+texture_under = SubResource("GradientTexture2D_5dea6")
+texture_progress = SubResource("GradientTexture2D_yngwk")
+tint_under = Color(0.61, 0.61, 0.61, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 31.5)
+shape = SubResource("RectangleShape2D_ahhcf")

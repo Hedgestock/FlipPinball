@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6lxuqoyg1314"]
+
+[ext_resource type="Script" path="res://Assets/Scorer/Spitter/Spitter.cs" id="1_qmuv0"]
+[ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Art/LightOn.png" id="2_ru64s"]
+[ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Art/LightOff.png" id="3_iv5mq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ht0s7"]
+
+[node name="Spitter" type="Node2D" node_paths=PackedStringArray("SpitDelay", "SpitDirection", "Light")]
+script = ExtResource("1_qmuv0")
+SpitDelay = NodePath("SpitDelay")
+SpitDirection = NodePath("RayCast2D")
+Light = NodePath("Sprite2D")
+LightOn = ExtResource("2_ru64s")
+LightOff = ExtResource("3_iv5mq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ru64s")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ht0s7")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 20)
+collision_mask = 0
+
+[node name="SpitDelay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEnter"]
+[connection signal="timeout" from="SpitDelay" to="." method="SpitBall"]
