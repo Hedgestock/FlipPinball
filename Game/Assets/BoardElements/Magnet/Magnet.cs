@@ -70,6 +70,7 @@ public partial class Magnet : Node2D
         IsOn = false;
         foreach (Ball ball in MagnetZone.GetOverlappingBodies().Where(b => b is Ball))
         {
+            ball.LinearDamp = 0;
             Vector2 ejection = Vector2.Left.Rotated((float)GD.RandRange(0, MathF.PI)) * EjectionStrength;
             ball.LinearVelocity = ejection;
         }

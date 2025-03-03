@@ -5,7 +5,7 @@ public abstract partial class Scorer : Node2D
 {
 
     [Signal]
-    public delegate void ScoringEventHandler();
+    public delegate void ChangedStateEventHandler();
 
     //[Flags]
     //public enum Attributes
@@ -27,7 +27,8 @@ public abstract partial class Scorer : Node2D
     //public abstract Attributes Kind { get; }
 
     [Export]
-    public int Value = 200;
+    public int BaseValue = 200;
+    public virtual int Value { get { return BaseValue; } }
 
     [Export]
     protected Sprite2D Light;
@@ -43,6 +44,7 @@ public abstract partial class Scorer : Node2D
         set
         {
             SetOnValue(value);
+            EmitSignal(SignalName.ChangedState);
         }
     }
 

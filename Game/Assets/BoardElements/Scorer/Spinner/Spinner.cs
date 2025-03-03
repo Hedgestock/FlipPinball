@@ -38,9 +38,6 @@ public partial class Spinner : Scorer
             _iterations = 1;
             _initialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 50;
             _lastSpinSpeed = _initialSpinSpeed;
-            GD.Print($"{Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()}");
-
-            GD.Print($"{ball.LinearVelocity.Angle()} {Vector2.Down.Rotated(Rotation).Angle()}");
         }
     }
 }

@@ -30,5 +30,6 @@ texture = ExtResource("2_8wcb1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 60.0
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="SetOnValue" binds= [true]]

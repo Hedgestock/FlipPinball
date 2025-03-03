@@ -6,7 +6,6 @@
 [node name="RoundTarget" groups=["Round"] instance=ExtResource("1_dadnd")]
 script = ExtResource("1_tom2i")
 Strength = 500
-Value = 50
 
 [node name="Timer" parent="." index="1"]
 wait_time = 45.0

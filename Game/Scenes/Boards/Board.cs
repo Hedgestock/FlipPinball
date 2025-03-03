@@ -82,12 +82,9 @@ public partial class Board : Node2D
     {
         Array<CharacterBody2D> paddles = left ? PaddlesLeft : PaddlesRight;
 
-        GD.Print("test ,", paddles.Count);
-
         foreach (var paddle in paddles)
         {
             paddle.Rotation = (float)Mathf.RotateToward(paddle.Rotation, angle, delta * PaddleSpeed);
-            GD.Print(angle);
         }
     }
 

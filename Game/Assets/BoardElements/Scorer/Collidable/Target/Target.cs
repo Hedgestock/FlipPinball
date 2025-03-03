@@ -7,7 +7,7 @@ public partial class Target : Collidable
     protected StaticBody2D TargetElement;
 
     [Export]
-    Timer ResetDelay;
+    protected Timer ResetDelay;
 
     public override void CollideWithBall(Ball ball)
     {

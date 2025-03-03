@@ -3,6 +3,12 @@ using System;
 using System.Collections.Generic;
 public partial class Bumper : Collidable
 {
+    public int Level = 1;
+
+    public override int Value
+    {
+        get { return BaseValue * Level; }
+    }
     public override void CollideWithBall(Ball ball)
     {
         if (!IsOn) return;

@@ -1,7 +1,6 @@
-[gd_scene load_steps=47 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=49 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/ScorerGroup.cs" id="2_7b8xf"]
 [ext_resource type="PackedScene" uid="uid://dr0mugi8okm00" path="res://Game/Assets/Ball/Ball.tscn" id="2_qvs32"]
 [ext_resource type="Texture2D" uid="uid://b6x313mirbl7c" path="res://Game/Scenes/Boards/TestLab/Template.jpg" id="3_ijggr"]
 [ext_resource type="PackedScene" uid="uid://1jrg7mxwi5so" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Round/RoundTarget.tscn" id="4_2d0ue"]
@@ -11,7 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://ckk4x5dhl1c0w" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.tscn" id="6_awf70"]
 [ext_resource type="PackedScene" uid="uid://tm0n8wum3wb6" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.tscn" id="8_8xkpc"]
 [ext_resource type="PackedScene" uid="uid://cl5k1huk7mxl1" path="res://Game/Assets/BoardElements/Scorer/RolloverSwitch/RolloverSwitch.tscn" id="9_u8226"]
+[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/BumperGroup.cs" id="10_idji8"]
+[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/RolloverSwitch/RolloverSwitchGroup.cs" id="11_l3xt2"]
 [ext_resource type="PackedScene" uid="uid://b2n7ugga7yovq" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Drop/DropTarget.tscn" id="12_rupeo"]
+[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/TargetGroup.cs" id="13_2palb"]
 [ext_resource type="PackedScene" uid="uid://c6lxuqoyg1314" path="res://Game/Assets/BoardElements/Scorer/Spitter/Spitter.tscn" id="13_ctosm"]
 [ext_resource type="PackedScene" uid="uid://clvc7nom5cigw" path="res://Game/Assets/BoardElements/Scorer/Spinner/Spinner.tscn" id="14_aoae7"]
 [ext_resource type="PackedScene" uid="uid://ccj786gqjcjn0" path="res://Game/Assets/BoardElements/LayerChange/LayerChange.tscn" id="14_d61wx"]
@@ -101,10 +103,12 @@ b = Vector2(0, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttt3n"]
 size = Vector2(60, 20)
 
-[node name="Board" type="Node2D" node_paths=PackedStringArray("EntryBumpers", "EntryRollovers", "Plunger", "PaddlesLeft", "PaddlesRight")]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("EntryBumpers", "EntryRollovers", "LabBumpers", "LabRollovers", "Plunger", "PaddlesLeft", "PaddlesRight")]
 script = ExtResource("1_mse42")
 EntryBumpers = NodePath("Layer1/EntryBumpers")
 EntryRollovers = NodePath("Layer1/EntryRollovers")
+LabBumpers = NodePath("Layer2/LabBumpers")
+LabRollovers = NodePath("Layer2/LabRollovers")
 Ball = ExtResource("2_qvs32")
 Plunger = NodePath("Layer1/Plunger")
 PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
@@ -347,7 +351,7 @@ rotation = -1.21649
 
 [node name="EntryBumpers" type="Node2D" parent="Layer1"]
 position = Vector2(313, 314)
-script = ExtResource("2_7b8xf")
+script = ExtResource("10_idji8")
 
 [node name="Bumper1" parent="Layer1/EntryBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(45, -38)
@@ -360,7 +364,7 @@ position = Vector2(-7, 66)
 
 [node name="EntryRollovers" type="Node2D" parent="Layer1"]
 position = Vector2(314, 143)
-script = ExtResource("2_7b8xf")
+script = ExtResource("11_l3xt2")
 
 [node name="Rollover1" parent="Layer1/EntryRollovers" instance=ExtResource("9_u8226")]
 position = Vector2(-42, 45)
@@ -373,69 +377,51 @@ position = Vector2(41, 45)
 
 [node name="LeftTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(83.155, 341.639)
-script = ExtResource("2_7b8xf")
+script = ExtResource("13_2palb")
 
 [node name="RoundTarget1" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(16.845, 26.361)
 
 [node name="StaticBody2D" parent="Layer1/LeftTargetGroup/RoundTarget1" index="0"]
-rotation = -2.01337
-
-[node name="Timer" parent="Layer1/LeftTargetGroup/RoundTarget1" index="1"]
-wait_time = 1.0
+rotation = -1.9243
 
 [node name="RoundTarget2" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(12.845, 1.36099)
 
 [node name="StaticBody2D" parent="Layer1/LeftTargetGroup/RoundTarget2" index="0"]
-rotation = -1.62525
-
-[node name="Timer" parent="Layer1/LeftTargetGroup/RoundTarget2" index="1"]
-wait_time = 1.0
+rotation = -1.6328
 
 [node name="RoundTarget3" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(13.845, -24.639)
 
 [node name="StaticBody2D" parent="Layer1/LeftTargetGroup/RoundTarget3" index="0"]
-rotation = -1.50334
-
-[node name="Timer" parent="Layer1/LeftTargetGroup/RoundTarget3" index="1"]
-wait_time = 1.0
+rotation = -1.49303
 
 [node name="RightTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(451, 280)
-script = ExtResource("2_7b8xf")
+script = ExtResource("13_2palb")
 
 [node name="RoundTarget1" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-18, -21)
 
 [node name="StaticBody2D" parent="Layer1/RightTargetGroup/RoundTarget1" index="0"]
-rotation = 1.13107
-
-[node name="Timer" parent="Layer1/RightTargetGroup/RoundTarget1" index="1"]
-wait_time = 1.0
+rotation = 1.18771
 
 [node name="RoundTarget2" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-8, 3)
 
 [node name="StaticBody2D" parent="Layer1/RightTargetGroup/RoundTarget2" index="0"]
-rotation = 1.3128
-
-[node name="Timer" parent="Layer1/RightTargetGroup/RoundTarget2" index="1"]
-wait_time = 1.0
+rotation = 1.30824
 
 [node name="RoundTarget3" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-5, 29)
 
 [node name="StaticBody2D" parent="Layer1/RightTargetGroup/RoundTarget3" index="0"]
-rotation = -4.77241
-
-[node name="Timer" parent="Layer1/RightTargetGroup/RoundTarget3" index="1"]
-wait_time = 1.0
+rotation = 1.46987
 
 [node name="TopBumperTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(113, 112)
-script = ExtResource("2_7b8xf")
+script = ExtResource("10_idji8")
 
 [node name="RoundTarget1" parent="Layer1/TopBumperTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-57, 14)
@@ -443,17 +429,11 @@ position = Vector2(-57, 14)
 [node name="StaticBody2D" parent="Layer1/TopBumperTargetGroup/RoundTarget1" index="0"]
 rotation = -1.82952
 
-[node name="Timer" parent="Layer1/TopBumperTargetGroup/RoundTarget1" index="1"]
-wait_time = 30.0
-
 [node name="RoundTarget2" parent="Layer1/TopBumperTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-31, -50)
 
 [node name="StaticBody2D" parent="Layer1/TopBumperTargetGroup/RoundTarget2" index="0"]
 rotation = -0.531384
-
-[node name="Timer" parent="Layer1/TopBumperTargetGroup/RoundTarget2" index="1"]
-wait_time = 30.0
 
 [node name="RoundTarget3" parent="Layer1/TopBumperTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(49, -33)
@@ -461,12 +441,9 @@ position = Vector2(49, -33)
 [node name="StaticBody2D" parent="Layer1/TopBumperTargetGroup/RoundTarget3" index="0"]
 rotation = 0.981847
 
-[node name="Timer" parent="Layer1/TopBumperTargetGroup/RoundTarget3" index="1"]
-wait_time = 30.0
-
 [node name="TopTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(219, 194)
-script = ExtResource("2_7b8xf")
+script = ExtResource("13_2palb")
 
 [node name="DropTarget1" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-16, 21)
@@ -488,7 +465,7 @@ rotation = -0.567232
 
 [node name="BottomTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(298, 408)
-script = ExtResource("2_7b8xf")
+script = ExtResource("13_2palb")
 
 [node name="DropTarget1" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-24, 2)
@@ -510,7 +487,7 @@ rotation = 0.349066
 
 [node name="TunnelTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(472, 567)
-script = ExtResource("2_7b8xf")
+script = ExtResource("13_2palb")
 
 [node name="DropTarget1" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-15, -15)
@@ -535,9 +512,6 @@ position = Vector2(421, 426)
 
 [node name="StaticBody2D" parent="Layer1/TunnelRoundTarget" index="0"]
 rotation = 0.587729
-
-[node name="Timer" parent="Layer1/TunnelRoundTarget" index="1"]
-wait_time = 1.0
 
 [node name="RightOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(512, 821)
@@ -606,7 +580,7 @@ position = Vector2(-45, 0)
 
 [node name="MissionTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(136, 659)
-script = ExtResource("2_7b8xf")
+script = ExtResource("13_2palb")
 
 [node name="RoundTarget1" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(0, -25)
@@ -616,6 +590,7 @@ rotation = -1.5708
 
 [node name="Timer" parent="Layer1/MissionTargetGroup/RoundTarget1" index="1"]
 wait_time = 1.0
+one_shot = false
 
 [node name="RoundTarget2" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 
@@ -624,6 +599,7 @@ rotation = -1.5708
 
 [node name="Timer" parent="Layer1/MissionTargetGroup/RoundTarget2" index="1"]
 wait_time = 1.0
+one_shot = false
 
 [node name="RoundTarget3" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(0, 25)
@@ -633,6 +609,7 @@ rotation = -1.5708
 
 [node name="Timer" parent="Layer1/MissionTargetGroup/RoundTarget3" index="1"]
 wait_time = 1.0
+one_shot = false
 
 [node name="Rollover" parent="Layer1" instance=ExtResource("15_8n0qj")]
 position = Vector2(136, 258)
@@ -659,7 +636,7 @@ collision_mask = 2
 
 [node name="LabBoundaries" type="CollisionPolygon2D" parent="Layer2/Walls"]
 position = Vector2(103, 471)
-polygon = PackedVector2Array(32, 405, -103, 405, -103, -97, 117, -96, 160, 88, 157, 89, 141, 52, 114, 7, 97, -16, 84, -30, 70, -41, 56, -50, 39, -57, 22, -62, 3, -63, -14, -62, -34, -56, -54, -46, -69, -34, -81, -17, -89, 2, -91, 16, -91.5008, 116.659, -81, 127, -81, 168, -92, 177, -92, 217, -88, 225, -61, 243, -45, 255, -36, 270, -32, 287, -32, 320, -27, 328, -21, 332, -12, 332, -6, 327, -2, 320, -2, 272, 1, 255, 5, 244, 11, 237, 17, 229, 19, 220, 19, 198, 5, 189, 5, 147, 20, 139, 21, 82, 8, 65, -13, 53, -25, 48, -36, 37, -45, 26, -51, 7, -51, -5, -48, -14, -43, -22, -36, -28, -24, -34, -14, -37, -2, -39, 7, -38, 17, -35, 27, -30, 37, -23, 46, -14, 55, -2, 62, 8, 78, 43, 89, 68, 100, 107, 95, 108, 84, 63, 75, 45, 33, 85)
+polygon = PackedVector2Array(32, 405, -103, 405, -103, -97, 117, -96, 160, 88, 157, 89, 141, 52, 114, 7, 97, -16, 84, -30, 70, -41, 56, -50, 39, -57, 22, -62, 3, -63, -14, -62, -34, -56, -54, -46, -69, -34, -81, -17, -89, 2, -91, 16, -91.5008, 116.659, -81, 131, -81, 165, -92, 177, -92, 217, -88, 225, -61, 243, -45, 255, -36, 270, -32, 287, -32, 320, -27, 328, -21, 332, -12, 332, -6, 327, -2, 320, -2, 272, 1, 255, 5, 244, 11, 237, 17, 229, 19, 220, 19, 198, 5, 185, 5, 151, 20, 139, 21, 82, 8, 65, -13, 53, -25, 48, -36, 37, -45, 26, -51, 7, -51, -5, -48, -14, -43, -22, -36, -28, -24, -34, -14, -37, -2, -39, 7, -38, 17, -35, 27, -30, 37, -23, 46, -14, 55, -2, 62, 8, 78, 43, 89, 68, 100, 107, 95, 108, 84, 63, 75, 45, 33, 85)
 
 [node name="LeftLabSplitter" type="CollisionShape2D" parent="Layer2/Walls"]
 position = Vector2(47, 540)
@@ -677,7 +654,7 @@ one_way_collision = true
 
 [node name="LabRollovers" type="Node2D" parent="Layer2"]
 position = Vector2(70, 550)
-script = ExtResource("2_7b8xf")
+script = ExtResource("11_l3xt2")
 
 [node name="Rollover1" parent="Layer2/LabRollovers" instance=ExtResource("9_u8226")]
 position = Vector2(-41, 16)
@@ -714,33 +691,39 @@ collision_mask = 2
 
 [node name="LabBumpers" type="Node2D" parent="Layer2"]
 position = Vector2(71, 634)
-script = ExtResource("2_7b8xf")
+script = ExtResource("10_idji8")
 
 [node name="Bumper1" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(37, 5)
+TriggerSpeed = 30
 Strength = 500
 HitsOverheat = 5
 MSToOverheat = 2000
 
 [node name="StaticBody2D" parent="Layer2/LabBumpers/Bumper1" index="0"]
+scale = Vector2(0.85, 0.85)
 collision_layer = 2
 
 [node name="Bumper2" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-50, -15)
+TriggerSpeed = 30
 Strength = 500
 HitsOverheat = 5
 MSToOverheat = 2000
 
 [node name="StaticBody2D" parent="Layer2/LabBumpers/Bumper2" index="0"]
+scale = Vector2(0.85, 0.85)
 collision_layer = 2
 
 [node name="Bumper3" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-15, 42)
+TriggerSpeed = 30
 Strength = 500
 HitsOverheat = 5
 MSToOverheat = 2000
 
 [node name="StaticBody2D" parent="Layer2/LabBumpers/Bumper3" index="0"]
+scale = Vector2(0.85, 0.85)
 collision_layer = 2
 
 [node name="LayerDrop" parent="Layer2" instance=ExtResource("15_uh8xy")]

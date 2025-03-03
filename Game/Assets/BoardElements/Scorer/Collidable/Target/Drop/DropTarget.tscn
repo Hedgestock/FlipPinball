@@ -9,15 +9,12 @@ bounce = 0.5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djpf2"]
 size = Vector2(5, 20)
 
-[node name="DropTarget" instance=ExtResource("1_4c8g5")]
+[node name="DropTarget" groups=["Square"] instance=ExtResource("1_4c8g5")]
 script = ExtResource("2_fmo3h")
 Strength = 250
-Value = 100
 
 [node name="StaticBody2D" parent="." index="0"]
 physics_material_override = SubResource("PhysicsMaterial_2k1vx")
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
 shape = SubResource("RectangleShape2D_djpf2")
-
-[node name="Timer" parent="." index="1" groups=["Square", "Targets"]]
