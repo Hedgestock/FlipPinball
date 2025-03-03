@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfnn6iuv460e"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
+[ext_resource type="PackedScene" uid="uid://1uf453kusqfd" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="3_vxydm"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("Score")]
+script = ExtResource("1_ems3e")
+Score = NodePath("MainContainer/PanelContainer/Label")
+
+[node name="MainContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MainContainer/PanelContainer"]
+layout_mode = 2
+text = "Score"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(600, 1080)
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="MainContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(600, 1080)
+render_target_update_mode = 4
+
+[node name="Board" parent="MainContainer/SubViewportContainer/SubViewport" instance=ExtResource("3_vxydm")]
+
+[node name="PanelContainer2" type="PanelContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MainContainer/PanelContainer2"]
+layout_mode = 2
+text = "Status
+"

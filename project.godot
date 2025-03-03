@@ -11,20 +11,19 @@ config_version=5
 [application]
 
 config/name="FlipPinball"
-run/main_scene="res://Scenes/Game/Game.tscn"
+run/main_scene="res://Game/Scenes/Game/Game.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-ScoreManager="*res://Scripts/ScoreManager/ScoreManager.cs"
+ScoreManager="*res://Game/Scripts/ScoreManager/ScoreManager.cs"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -40,6 +39,11 @@ Rollover=""
 KickBack=""
 Targets=""
 Square=""
+
+[gui]
+
+theme/custom="res://Game/Themes/MainTheme.tres"
+theme/custom_font="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf"
 
 [input]
 
@@ -82,8 +86,9 @@ rendering/root_node_auto_translate=false
 [physics]
 
 2d/run_on_separate_thread=true
-common/physics_ticks_per_second=120
-2d/default_linear_damp=0.0
+common/physics_ticks_per_second=240
+common/max_physics_steps_per_frame=16
+common/physics_interpolation=true
 
 [rendering]
 

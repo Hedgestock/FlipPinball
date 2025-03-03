@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://rbcr7e4wg3cr"]
+
+[ext_resource type="Script" path="res://Game/Assets/BoardElements/LayerDrop/LayerDrop.cs" id="1_jdjdk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2c0px"]
+radius = 2.0
+
+[node name="LayerDrop" type="Node2D"]
+script = ExtResource("1_jdjdk")
+LayerFrom = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2c0px")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="OnDropBodyEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="OnDropBodyExited"]
