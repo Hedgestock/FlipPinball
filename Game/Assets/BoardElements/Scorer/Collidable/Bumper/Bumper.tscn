@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckk4x5dhl1c0w"]
+[gd_scene load_steps=6 format=3 uid="uid://ckk4x5dhl1c0w"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.cs" id="1_euw7q"]
 [ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Art/LightOn.png" id="2_n3ixj"]
 [ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Art/LightOff.png" id="3_soyuh"]
+[ext_resource type="AudioStream" uid="uid://c78sjolqfakrn" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.wav" id="4_svyrr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cu2rr"]
 radius = 20.0
@@ -12,6 +13,7 @@ script = ExtResource("1_euw7q")
 Light = NodePath("Sprite2D")
 LightOn = ExtResource("2_n3ixj")
 LightOff = ExtResource("3_soyuh")
+ScoreSFX = ExtResource("4_svyrr")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0

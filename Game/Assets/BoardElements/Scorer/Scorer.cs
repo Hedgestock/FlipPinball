@@ -4,6 +4,8 @@ using System;
 public abstract partial class Scorer : Node2D
 {
 
+
+
     [Signal]
     public delegate void ChangedStateEventHandler();
 
@@ -37,6 +39,11 @@ public abstract partial class Scorer : Node2D
     [Export]
     protected Texture2D LightOff;
 
+    [Export]
+    AudioStream ScoreSFX;
+
+    //protected AudioStreamPlayer ScoreSoundPlayer = new AudioStreamPlayer();
+
     protected bool _isOn = true;
     public bool IsOn
     {
@@ -51,6 +58,10 @@ public abstract partial class Scorer : Node2D
     public override void _Ready()
     {
         base._Ready();
+        //ScoreSoundPlayer.Bus = "BoardElements";
+        //ScoreSoundPlayer.Stream = ScoreSFX;
+        //ScoreSoundPlayer.MaxPolyphony = 2;
+        //AddChild(ScoreSoundPlayer);
     }
 
     protected void Score()
@@ -60,6 +71,7 @@ public abstract partial class Scorer : Node2D
         ScoreBubble bubble = GD.Load<PackedScene>("res://Game/Assets/ScoreBubble/ScoreBubble.tscn").Instantiate<ScoreBubble>();
         bubble.Text = ScoreManager.Score(Value).ToString("+0;-#");
         AddChild(bubble);
+        //ScoreSoundPlayer.Play();
     }
 
     protected virtual void SetOnValue(bool value)

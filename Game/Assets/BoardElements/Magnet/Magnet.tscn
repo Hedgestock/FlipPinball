@@ -20,12 +20,14 @@ MagnetEnd = NodePath("Timer")
 shape = SubResource("CircleShape2D_ydyob")
 
 [node name="MagnetZone" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetZone"]
 shape = SubResource("CircleShape2D_lbojl")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
 
 [connection signal="body_entered" from="EffectZone" to="." method="OnEffectZoneBodyEnter"]
 [connection signal="body_exited" from="EffectZone" to="." method="OnEffectZoneBodyExit"]

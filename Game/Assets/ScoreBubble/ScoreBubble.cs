@@ -7,7 +7,7 @@ public partial class ScoreBubble : Label
     {
         base._Ready();
         Tween tween = GetTree().CreateTween();
-        tween.TweenProperty(this, "position", Position + Vector2.Up * 20, 1.0f)
+        tween.TweenProperty(this, "position", Position + Vector2.Up * 20, .5f)
             .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
         tween.TweenCallback(Callable.From(QueueFree));
     }

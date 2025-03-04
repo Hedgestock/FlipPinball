@@ -1,18 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://clvc7nom5cigw"]
+[gd_scene load_steps=6 format=3 uid="uid://clvc7nom5cigw"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Spinner/Spinner.cs" id="1_p8fa6"]
 [ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Art/LightOn.png" id="2_8dch7"]
 [ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Art/LightOff.png" id="2_lybmo"]
+[ext_resource type="AudioStream" uid="uid://da0ppe1ufp02w" path="res://Game/Assets/BoardElements/Scorer/Spinner/Spinner.wav" id="4_i2vto"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioksq"]
 size = Vector2(60, 20)
 
 [node name="Spinner" type="Node2D" node_paths=PackedStringArray("Light")]
 script = ExtResource("1_p8fa6")
-Value = 10
+BaseValue = 10
 Light = NodePath("Sprite2D")
 LightOn = ExtResource("2_lybmo")
 LightOff = ExtResource("2_8dch7")
+ScoreSFX = ExtResource("4_i2vto")
 
 [node name="Area2D" type="Area2D" parent="."]
 

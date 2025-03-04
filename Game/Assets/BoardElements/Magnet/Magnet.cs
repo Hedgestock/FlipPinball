@@ -19,7 +19,7 @@ public partial class Magnet : Node2D
     [Export]
     int EjectionStrength = 2000;
 
-    public bool IsOn = true;
+    public bool IsOn = false;
 
     public override void _Ready()
     {

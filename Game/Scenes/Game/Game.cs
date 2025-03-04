@@ -7,17 +7,23 @@ public partial class Game : Node
 
     [Export]
     private Label Score;
+
+    [Export]
+    PackedScene ScoreBubbleScene;
     public override void _Ready()
     {
         GetTree().Root.SizeChanged += OnScreenResize;
-        ScoreManager.Instance.Connect(ScoreManager.SignalName.Scoring, new Callable(this, MethodName.UpdateScore));
-        //ScoreManager.Instance.Scoring +=UpdateScore; Apparently I should be able to do that
+        ScoreManager.Instance.Scoring += UpdateScore;
         base._Ready();
     }
 
     private void UpdateScore(long totalScoreValue, int currentlyScoring)
     {
-        Score.Text = $"Score : {totalScoreValue}, {currentlyScoring}";
+        PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
+        scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
+        scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
+        AddChild(scoreBubble);
+        Score.Text = $"Score : {totalScoreValue}";
     }
 
     private void OnScreenResize()

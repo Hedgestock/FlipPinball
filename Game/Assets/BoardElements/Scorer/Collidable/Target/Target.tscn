@@ -14,6 +14,7 @@ TargetElement = NodePath("StaticBody2D")
 ResetDelay = NodePath("Timer")
 TriggerSpeed = 0
 Strength = 700
+BaseValue = 70
 Light = NodePath("StaticBody2D/Sprite2D")
 LightOn = ExtResource("2_8wcb1")
 LightOff = ExtResource("3_r8fir")

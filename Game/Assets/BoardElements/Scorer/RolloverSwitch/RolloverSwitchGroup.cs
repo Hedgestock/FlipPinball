@@ -19,6 +19,8 @@ public partial class RolloverSwitchGroup : Node2D
     public void RotateStatus(int direction)
     {
         bool[] statuses = Switches.Select(s => s.IsOn).ToArray();
+        //We do that to avoid triggering the "AllOn" Event by accident
+        Switches.ForEach(s => s.IsOn = false);
 
         foreach (var (rswitch, i) in Switches.Select((rswitch, i) => (rswitch, i)))
         {

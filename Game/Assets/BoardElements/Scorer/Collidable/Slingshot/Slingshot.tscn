@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://tm0n8wum3wb6"]
+[gd_scene load_steps=6 format=3 uid="uid://tm0n8wum3wb6"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.cs" id="1_lrqkg"]
 [ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Art/LightOn.png" id="2_5n07y"]
 [ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Art/LightOff.png" id="3_kjful"]
+[ext_resource type="AudioStream" uid="uid://dodqps03wacfl" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.wav" id="4_ivnra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2mox"]
 size = Vector2(130, 15)
@@ -14,6 +15,7 @@ TriggerSpeed = 20
 Light = NodePath("Sprite2D")
 LightOn = ExtResource("2_5n07y")
 LightOff = ExtResource("3_kjful")
+ScoreSFX = ExtResource("4_ivnra")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

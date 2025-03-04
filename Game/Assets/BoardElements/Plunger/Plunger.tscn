@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7wrp1hb3227q"]
+[gd_scene load_steps=9 format=3 uid="uid://c7wrp1hb3227q"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Plunger/Plunger.cs" id="1_bv4d5"]
+[ext_resource type="AudioStream" uid="uid://cnrra38ygjr8w" path="res://Game/Assets/BoardElements/Plunger/Plunger.wav" id="2_a28wm"]
+[ext_resource type="AudioStream" uid="uid://82f7sddkqsy2" path="res://Game/Assets/BoardElements/Plunger/PlungerWindUp.wav" id="3_mxsw7"]
 
 [sub_resource type="Gradient" id="Gradient_nwsm5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -21,10 +23,12 @@ fill_to = Vector2(0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhcf"]
 size = Vector2(20, 3)
 
-[node name="Plunger" type="Node2D" node_paths=PackedStringArray("PlungerProgress", "DetectionZone")]
+[node name="Plunger" type="Node2D" node_paths=PackedStringArray("PlungerProgress", "DetectionZone", "ReleaseSoundPlayer", "WindUpSoundPlayer")]
 script = ExtResource("1_bv4d5")
 PlungerProgress = NodePath("PlungerProgress")
 DetectionZone = NodePath("Area2D")
+ReleaseSoundPlayer = NodePath("Release")
+WindUpSoundPlayer = NodePath("WindUp")
 
 [node name="PlungerProgress" type="TextureProgressBar" parent="."]
 offset_left = -8.0
@@ -44,3 +48,11 @@ tint_under = Color(0.61, 0.61, 0.61, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 31.5)
 shape = SubResource("RectangleShape2D_ahhcf")
+
+[node name="Release" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_a28wm")
+bus = &"BoardElements"
+
+[node name="WindUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mxsw7")
+bus = &"BoardElements"

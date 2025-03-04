@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6lxuqoyg1314"]
+[gd_scene load_steps=7 format=3 uid="uid://c6lxuqoyg1314"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Spitter/Spitter.cs" id="1_qmuv0"]
 [ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Art/LightOn.png" id="2_ru64s"]
 [ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Art/LightOff.png" id="3_iv5mq"]
+[ext_resource type="AudioStream" uid="uid://cedb8fv60wq20" path="res://Game/Assets/BoardElements/Scorer/Spitter/Spitter.wav" id="4_mhvfs"]
+[ext_resource type="AudioStream" uid="uid://bfp1hjeodrpm2" path="res://Game/Assets/BoardElements/Scorer/Spitter/SpitterIn.wav" id="5_uojt7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ht0s7"]
 
-[node name="Spitter" type="Node2D" node_paths=PackedStringArray("SpitDelay", "SpitDirection", "Light")]
+[node name="Spitter" type="Node2D" node_paths=PackedStringArray("SpitDelay", "SpitDirection", "EntrySoundPlayer", "Light")]
 script = ExtResource("1_qmuv0")
 SpitDelay = NodePath("SpitDelay")
 SpitDirection = NodePath("RayCast2D")
-Value = 100
+EntrySoundPlayer = NodePath("AudioStreamPlayer")
+BaseValue = 300
 Light = NodePath("Sprite2D")
 LightOn = ExtResource("2_ru64s")
 LightOff = ExtResource("3_iv5mq")
+ScoreSFX = ExtResource("4_mhvfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ru64s")
@@ -29,6 +33,9 @@ collision_mask = 0
 
 [node name="SpitDelay" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_uojt7")
 
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEnter"]
 [connection signal="timeout" from="SpitDelay" to="." method="SpitBall"]

@@ -9,6 +9,8 @@ public partial class Spitter : Scorer
     Timer SpitDelay;
     [Export]
     RayCast2D SpitDirection;
+    [Export]
+    AudioStreamPlayer EntrySoundPlayer;
 
     Ball StoredBall;
 
@@ -23,7 +25,7 @@ public partial class Spitter : Scorer
         StoredBall.SetDeferred(RigidBody2D.PropertyName.Freeze, true);
         SpitDelay.Start();
         IsOn = false;
-
+        EntrySoundPlayer.Play();
     }
 
     private void SpitBall()
@@ -37,5 +39,6 @@ public partial class Spitter : Scorer
         StoredBall.LinearVelocity = (SpitDirection.TargetPosition - SpitDirection.Position).Normalized() * Strength;
         StoredBall = null;
         IsOn = true;
+        Score();
     }
 }

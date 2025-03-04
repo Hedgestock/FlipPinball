@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://1jrg7mxwi5so"]
+[gd_scene load_steps=4 format=3 uid="uid://1jrg7mxwi5so"]
 
 [ext_resource type="PackedScene" uid="uid://b8083u3uwi53p" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Target.tscn" id="1_dadnd"]
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Round/RoundTarget.cs" id="1_tom2i"]
+[ext_resource type="AudioStream" uid="uid://cwhniy47lduu4" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Round/RoundTargetDown.wav" id="3_8g0ij"]
 
 [node name="RoundTarget" groups=["Round"] instance=ExtResource("1_dadnd")]
 script = ExtResource("1_tom2i")
 Strength = 500
+BaseValue = 50
+ScoreSFX = ExtResource("3_8g0ij")
 
 [node name="Timer" parent="." index="1"]
 wait_time = 45.0

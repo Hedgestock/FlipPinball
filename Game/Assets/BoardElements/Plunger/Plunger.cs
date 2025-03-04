@@ -8,10 +8,13 @@ public partial class Plunger : Node2D
 
     [Export]
     TextureProgressBar PlungerProgress;
-
     [Export]
     Area2D DetectionZone;
 
+    [Export]
+    AudioStreamPlayer ReleaseSoundPlayer;
+    [Export]
+    AudioStreamPlayer WindUpSoundPlayer;
     public override void _Ready()
     {
         base._Ready();
@@ -29,8 +32,14 @@ public partial class Plunger : Node2D
 
     public override void _Input(InputEvent @event)
     {
+        if (@event.IsActionPressed("plunger"))
+        {
+
+            WindUpSoundPlayer.Play();
+        }
         if (@event.IsActionReleased("plunger"))
         {
+
             ReleasePlunger();
         }
     }
@@ -48,5 +57,7 @@ public partial class Plunger : Node2D
             ball.LinearVelocity = Vector2.Up * (int)PlungerProgress.Value;
         }
         PlungerProgress.Value = 0;
+        WindUpSoundPlayer.Stop();
+        ReleaseSoundPlayer.Play();
     }
 }

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2n7ugga7yovq"]
+[gd_scene load_steps=6 format=3 uid="uid://b2n7ugga7yovq"]
 
 [ext_resource type="PackedScene" uid="uid://b8083u3uwi53p" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Target.tscn" id="1_4c8g5"]
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Drop/DropTarget.cs" id="2_fmo3h"]
+[ext_resource type="AudioStream" uid="uid://clrfdv6dsvvfj" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Drop/DropTargetDown.wav" id="3_7nryl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2k1vx"]
 bounce = 0.5
@@ -12,6 +13,7 @@ size = Vector2(5, 20)
 [node name="DropTarget" groups=["Square"] instance=ExtResource("1_4c8g5")]
 script = ExtResource("2_fmo3h")
 Strength = 250
+ScoreSFX = ExtResource("3_7nryl")
 
 [node name="StaticBody2D" parent="." index="0"]
 physics_material_override = SubResource("PhysicsMaterial_2k1vx")

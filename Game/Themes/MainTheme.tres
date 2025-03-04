@@ -5,3 +5,5 @@
 [resource]
 default_font = ExtResource("1_6bbnb")
 default_font_size = 64
+ScoreBubble/base_type = &"Label"
+ScoreBubble/constants/outline_size = 10

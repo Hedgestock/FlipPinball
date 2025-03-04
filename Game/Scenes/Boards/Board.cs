@@ -13,9 +13,9 @@ public partial class Board : Node2D
     [Export]
     Node2D Plunger;
     [Export]
-    public Array<CharacterBody2D> PaddlesLeft = new Array<CharacterBody2D>();
+    public Array<Paddle> PaddlesLeft = new Array<Paddle>();
     [Export]
-    public Array<CharacterBody2D> PaddlesRight = new Array<CharacterBody2D>();
+    public Array<Paddle> PaddlesRight = new Array<Paddle>();
 
     private List<RigidBody2D> LiveBalls = new List<RigidBody2D>();
 
@@ -80,7 +80,7 @@ public partial class Board : Node2D
 
     private void RotatePaddle(double delta, double angle, bool left)
     {
-        Array<CharacterBody2D> paddles = left ? PaddlesLeft : PaddlesRight;
+        Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
 
         foreach (var paddle in paddles)
         {
@@ -88,7 +88,13 @@ public partial class Board : Node2D
         }
     }
 
-    protected virtual void PaddleAdditionnalBehaviour(bool left) { }
+    protected virtual void PaddleAdditionnalBehaviour(bool left) {
+        Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
+        foreach (var paddle in paddles)
+        {
+            paddle.SoundPlayer.Play();
+        }
+    }
 
     private void OnEnterDrain(Node2D body, bool oob)
     {
