@@ -1,13 +1,16 @@
-[gd_scene load_steps=51 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=54 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="PackedScene" uid="uid://dr0mugi8okm00" path="res://Game/Assets/Ball/Ball.tscn" id="2_qvs32"]
 [ext_resource type="Texture2D" uid="uid://b6x313mirbl7c" path="res://Game/Scenes/Boards/TestLab/Template.jpg" id="3_ijggr"]
 [ext_resource type="PackedScene" uid="uid://1jrg7mxwi5so" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Round/RoundTarget.tscn" id="4_2d0ue"]
 [ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="4_6e6jg"]
+[ext_resource type="PackedScene" uid="uid://b0hvd58lc5xru" path="res://Game/Assets/BoardElements/ExceptionGate/ExceptionGate.tscn" id="4_djsxl"]
 [ext_resource type="PackedScene" uid="uid://bxgbd1q0e6fpk" path="res://Game/Assets/BoardElements/KickBack/KickBack.tscn" id="5_cw1tt"]
 [ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="5_dxs6n"]
+[ext_resource type="PackedScene" uid="uid://cn74ne78k7kod" path="res://Game/Assets/BoardElements/Scorer/SkillShot/SkillShot.tscn" id="6_3fbbc"]
 [ext_resource type="PackedScene" uid="uid://ckk4x5dhl1c0w" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.tscn" id="6_awf70"]
+[ext_resource type="PackedScene" uid="uid://641jx1x1js2s" path="res://Game/Assets/BoardElements/Scorer/SkillShot/SkillShotZone.tscn" id="7_rbrd7"]
 [ext_resource type="PackedScene" uid="uid://tm0n8wum3wb6" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.tscn" id="8_8xkpc"]
 [ext_resource type="PackedScene" uid="uid://cl5k1huk7mxl1" path="res://Game/Assets/BoardElements/Scorer/RolloverSwitch/RolloverSwitch.tscn" id="9_u8226"]
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/BumperGroup.cs" id="10_idji8"]
@@ -51,10 +54,10 @@ b = Vector2(147, 103)
 b = Vector2(105, 74)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kqonf"]
-b = Vector2(-93, 46)
+b = Vector2(-50, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ty7a"]
-size = Vector2(50, 10)
+size = Vector2(58.5, 10)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_id00n"]
 b = Vector2(0, 100)
@@ -72,7 +75,7 @@ b = Vector2(0, 38)
 b = Vector2(0, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j12jh"]
-size = Vector2(353, 20)
+size = Vector2(316.5, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5xdy"]
 size = Vector2(66.7713, 20)
@@ -83,11 +86,11 @@ size = Vector2(97.8131, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nafru"]
 size = Vector2(118.081, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wat3t"]
-size = Vector2(60, 15)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ub0f"]
+size = Vector2(80, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysu80"]
-size = Vector2(45, 15)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy6bf"]
+size = Vector2(60, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5xv0"]
 size = Vector2(160, 20)
@@ -107,11 +110,10 @@ b = Vector2(0, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttt3n"]
 size = Vector2(60, 20)
 
-[node name="Board" type="Node2D" node_paths=PackedStringArray("EntryBumpers", "EntryRollovers", "LabBumpers", "LabRollovers", "Plunger", "PaddlesLeft", "PaddlesRight")]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("EntryRollovers", "LabRollovers", "Plunger", "PaddlesLeft", "PaddlesRight")]
+position = Vector2(1, 0)
 script = ExtResource("1_mse42")
-EntryBumpers = NodePath("Layer1/EntryBumpers")
 EntryRollovers = NodePath("Layer1/EntryRollovers")
-LabBumpers = NodePath("Layer2/LabBumpers")
 LabRollovers = NodePath("Layer2/LabRollovers")
 Ball = ExtResource("2_qvs32")
 Plunger = NodePath("Layer1/Plunger")
@@ -165,6 +167,8 @@ shape = SubResource("WorldBoundaryShape2D_hjnel")
 [node name="Layer1" type="Node2D" parent="."]
 
 [node name="Walls" type="StaticBody2D" parent="Layer1"]
+collision_layer = 2
+collision_mask = 0
 
 [node name="AboveLeftPaddle" type="CollisionShape2D" parent="Layer1/Walls"]
 position = Vector2(77, 851)
@@ -174,6 +178,15 @@ shape = SubResource("SegmentShape2D_rjk18")
 position = Vector2(496, 880)
 scale = Vector2(-1, 1)
 shape = SubResource("SegmentShape2D_jjm4o")
+
+[node name="LeftSlingshot" type="CollisionPolygon2D" parent="Layer1/Walls"]
+position = Vector2(157, 774)
+polygon = PackedVector2Array(4, -4, -3, 1, -3, 91, 46, 127, 54, 127, 59, 120, 29, 71, 12, -2)
+
+[node name="RightSlingshot" type="CollisionPolygon2D" parent="Layer1/Walls"]
+position = Vector2(457, 774)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(4, -4, -3, 1, -3, 91, 46, 127, 54, 127, 59, 120, 29, 71, 12, -2)
 
 [node name="DownLeftCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(0, 891)
@@ -185,7 +198,7 @@ polygon = PackedVector2Array(22, 139, 139, 48, 139, 77, 169, 77, 170, -184, 182,
 
 [node name="TopRightCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(600, 0)
-polygon = PackedVector2Array(0, 0, 0, 972, -22, 972, -24, 278, -43, 209, -70, 159, -100, 127, -158, 89, -216, 64, -277, 56, -277, 0)
+polygon = PackedVector2Array(0, 0, 0, 972, -22, 972, -24, 278, -43, 209, -70, 159, -99, 126, -157, 85, -216, 62, -277, 56, -277, 0)
 
 [node name="TopLeftCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 polygon = PackedVector2Array(0, 0, 324, 0, 324, 56, 290, 57, 244, 66, 200, 83, 185, 89, 175, 94, 169, 92, 165, 82, 155, 69, 143, 60, 128, 54, 113, 52, 98, 54, 82, 61, 70, 70, 61, 82, 55, 96, 53, 113, 56, 128, 61, 143, 69, 153, 84, 164, 90, 171, 92, 184, 84, 193, 70, 217, 54, 256, 43, 310, 42, 345, 44, 390, 31, 756, 32, 885, 0, 885)
@@ -197,7 +210,7 @@ one_way_collision = true
 one_way_collision_margin = 10.0
 
 [node name="PlungerOneWayOut" type="CollisionShape2D" parent="Layer1/Walls"]
-position = Vector2(538, 685.5)
+position = Vector2(538, 681.25)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_4ty7a")
 one_way_collision = true
@@ -228,7 +241,7 @@ shape = SubResource("SegmentShape2D_wo7ct")
 
 [node name="UnderRamp" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(83, 298)
-polygon = PackedVector2Array(-2, -10, 8, -10, 15, 2, 12, 37, 14, 67, 26, 85, 45, 97, 77, 127, 116, 134, 122, 143, 123, 154, 67, 205, 52, 205, 44, 194, 2, 93, -6, 67, -9, 39, -9, 1)
+polygon = PackedVector2Array(-2, -10, 8, -10, 15, 2, 12, 37, 14, 67, 26, 85, 45, 96, 78, 124, 117, 133, 122, 143, 123, 154, 67, 205, 52, 205, 44, 194, 2, 93, -6, 67, -9, 39, -9, 1)
 
 [node name="UnderReturn" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(96, 648)
@@ -236,10 +249,10 @@ polygon = PackedVector2Array(40, -45, 40, 56, 31, 67, 15, 77, 1, 79, -14, 73, -2
 
 [node name="AroundTunnel" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(402, 111)
-polygon = PackedVector2Array(0, 0, -30, 36, -30, 76, -20.9188, 83.5677, -7, 67, 12, 83, 1, 98, 25, 133, 42, 173, 46, 211, 44, 228, 39, 249, 36, 286, 16, 299, 11, 310, 27, 321, 58, 282, 78, 236, 83, 202, 79, 170, 70, 136, 50, 102, 15, 63, 4, 48, 10, 38, 20, 32, 30, 32, 43, 42, 79, 81, 95, 108, 107, 141, 115, 173, 118, 217, 113, 267, 104, 301, 56, 413, 56, 506, 61, 509, 76, 496, 92, 508, 86, 527, 86, 573, 96, 573, 96, 534, 134, 200, 129, 151, 110, 100, 83, 54, 56, 24, 25, 0)
+polygon = PackedVector2Array(0, 0, -30, 36, -30, 76, -20.9188, 83.5677, -7, 67, 12, 83, 1, 98, 25, 133, 42, 173, 46, 211, 44, 228, 40, 248, 36, 282, 15, 302, 11, 310, 27, 321, 58, 282, 78, 236, 83, 202, 79, 170, 70, 136, 50, 102, 15, 63, 4, 48, 10, 38, 20, 32, 30, 32, 43, 42, 79, 81, 95, 108, 107, 141, 115, 173, 118, 217, 113, 267, 104, 301, 56, 413, 56, 506, 61, 509, 76, 496, 92, 508, 86, 527, 86, 573, 96, 573, 96, 534, 141, 201, 131, 150, 113, 97, 85, 51, 56, 23, 25, 0)
 
 [node name="LeftWallPlungerLane" type="CollisionShape2D" parent="Layer1/Walls"]
-position = Vector2(526, 487.5)
+position = Vector2(538, 469.75)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_j12jh")
 one_way_collision = true
@@ -275,40 +288,71 @@ one_way_collision = true
 position = Vector2(219, 530)
 polygon = PackedVector2Array(-29, 2, -27, 9, -16, 48, -21, 49, -33, 0)
 
+[node name="ExceptionGate" parent="Layer1" instance=ExtResource("4_djsxl")]
+position = Vector2(520, 629)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer1/ExceptionGate"]
+polygon = PackedVector2Array(-22, 9, -20, -10, 23, -10, 23, 28, 13, 28, 13, 9)
+
 [node name="UnderRampSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
-position = Vector2(157, 432)
+position = Vector2(162, 417)
 Strength = 700
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
+[node name="Hitbox" parent="Layer1/UnderRampSlingshot" index="0"]
+rotation = 0.471239
 
-[node name="CollisionPolygon2D2" parent="Layer1/UnderRampSlingshot/StaticBody2D" index="0"]
-polygon = PackedVector2Array(-12, 40, 59, 77, 20, 70)
-
-[node name="Area2D" parent="Layer1/UnderRampSlingshot" index="1"]
-position = Vector2(8, -18)
-rotation = 0.476879
-
-[node name="CollisionShape2D" parent="Layer1/UnderRampSlingshot/Area2D" index="0"]
-shape = SubResource("RectangleShape2D_wat3t")
+[node name="CollisionShape2D" parent="Layer1/UnderRampSlingshot/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_7ub0f")
 
 [node name="TunnelSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
-position = Vector2(444, 383)
+position = Vector2(434, 388)
 Strength = 700
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
+[node name="Hitbox" parent="Layer1/TunnelSlingshot" index="0"]
+rotation = -1.13446
 
-[node name="CollisionPolygon2D2" parent="Layer1/TunnelSlingshot/StaticBody2D" index="0"]
-polygon = PackedVector2Array(-9, 104, 14, 54, 11, 91)
-
-[node name="Area2D" parent="Layer1/TunnelSlingshot" index="1"]
-position = Vector2(-15, 2)
-rotation = -1.13536
-
-[node name="CollisionShape2D" parent="Layer1/TunnelSlingshot/Area2D" index="0"]
-shape = SubResource("RectangleShape2D_ysu80")
+[node name="CollisionShape2D" parent="Layer1/TunnelSlingshot/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_yy6bf")
 
 [node name="Plunger" parent="Layer1" instance=ExtResource("4_6e6jg")]
 position = Vector2(562, 936)
+
+[node name="SkillShot" parent="Layer1" instance=ExtResource("6_3fbbc")]
+position = Vector2(562, 685)
+
+[node name="Validation" parent="Layer1/SkillShot" index="0"]
+position = Vector2(-33, 0)
+
+[node name="Cancellation" parent="Layer1/SkillShot" index="1"]
+position = Vector2(-174, -591)
+rotation = 1.5708
+
+[node name="Scorer" parent="Layer1/SkillShot" index="2"]
+position = Vector2(-73, 16)
+
+[node name="SkillShotZone" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
+position = Vector2(-3, 5)
+
+[node name="SkillShotZone2" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
+position = Vector2(-6, -123)
+Multiplier = 3
+
+[node name="SkillShotZone3" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
+position = Vector2(-6, -249)
+Multiplier = 7
+
+[node name="SkillShotZone4" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
+position = Vector2(-6, -377)
+Multiplier = 4
+
+[node name="SkillShotZone5" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
+position = Vector2(-26, -473)
+rotation = -0.469494
+Multiplier = 2
+
+[node name="SkillShotZone6" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
+position = Vector2(-85, -557)
+rotation = -0.887486
 
 [node name="PaddleLeftMain" parent="Layer1" instance=ExtResource("5_dxs6n")]
 position = Vector2(222, 963)
@@ -333,43 +377,32 @@ rotation = 0.643096
 [node name="PlungerSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(519, 605)
 Strength = 1500
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="RayCast2D" parent="Layer1/PlungerSpitter" index="2"]
+[node name="RayCast2D" parent="Layer1/PlungerSpitter" index="1"]
 target_position = Vector2(8, -55)
 
 [node name="Drain" type="Area2D" parent="Layer1"]
 position = Vector2(308, 1072)
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layer1/Drain"]
 shape = SubResource("RectangleShape2D_o5xv0")
 
 [node name="BumperTop" parent="Layer1" instance=ExtResource("6_awf70")]
 position = Vector2(113, 112)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="LeftSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
-position = Vector2(175, 852)
-LightOn = null
-LightOff = null
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
+position = Vector2(188, 835)
 
+[node name="Hitbox" parent="Layer1/LeftSlingshot" index="0"]
+rotation = 1.20428
 
 [node name="RightSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
-position = Vector2(439, 852)
-LightOn = null
-LightOff = null
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
+position = Vector2(426, 835)
 
-
-[node name="StaticBody2D" parent="Layer1/RightSlingshot" index="0"]
-scale = Vector2(-1, 1)
-
-[node name="Area2D" parent="Layer1/RightSlingshot" index="1"]
-position = Vector2(-17, -17)
-rotation = -1.21649
+[node name="Hitbox" parent="Layer1/RightSlingshot" index="0"]
+rotation = -1.20428
 
 [node name="EntryBumpers" type="Node2D" parent="Layer1"]
 position = Vector2(313, 314)
@@ -378,37 +411,25 @@ LevelUpSFX = ExtResource("11_nbq5k")
 
 [node name="Bumper1" parent="Layer1/EntryBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(45, -38)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="Bumper2" parent="Layer1/EntryBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-45, -15)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="Bumper3" parent="Layer1/EntryBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-7, 66)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="EntryRollovers" type="Node2D" parent="Layer1"]
 position = Vector2(314, 143)
 script = ExtResource("11_l3xt2")
 
 [node name="Rollover1" parent="Layer1/EntryRollovers" instance=ExtResource("9_u8226")]
-position = Vector2(-42, 45)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
+position = Vector2(-42, 24)
 
 [node name="Rollover2" parent="Layer1/EntryRollovers" instance=ExtResource("9_u8226")]
-position = Vector2(0, 45)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
+position = Vector2(0, 24)
 
 [node name="Rollover3" parent="Layer1/EntryRollovers" instance=ExtResource("9_u8226")]
-position = Vector2(41, 45)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
+position = Vector2(41, 24)
 
 [node name="LeftTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(83.155, 341.639)
@@ -416,30 +437,21 @@ script = ExtResource("13_2palb")
 
 [node name="RoundTarget1" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(16.845, 26.361)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/LeftTargetGroup/RoundTarget1" index="0"]
-rotation = -1.9243
+[node name="Hitbox" parent="Layer1/LeftTargetGroup/RoundTarget1" index="0"]
+rotation = -1.8719
 
 [node name="RoundTarget2" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(12.845, 1.36099)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/LeftTargetGroup/RoundTarget2" index="0"]
-rotation = -1.6328
+[node name="Hitbox" parent="Layer1/LeftTargetGroup/RoundTarget2" index="0"]
+rotation = 4.62974
 
 [node name="RoundTarget3" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(13.845, -24.639)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/LeftTargetGroup/RoundTarget3" index="0"]
-rotation = -1.49303
+[node name="Hitbox" parent="Layer1/LeftTargetGroup/RoundTarget3" index="0"]
+rotation = -1.46875
 
 [node name="RightTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(451, 280)
@@ -447,30 +459,21 @@ script = ExtResource("13_2palb")
 
 [node name="RoundTarget1" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-18, -21)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/RightTargetGroup/RoundTarget1" index="0"]
-rotation = 1.18771
+[node name="Hitbox" parent="Layer1/RightTargetGroup/RoundTarget1" index="0"]
+rotation = 1.18101
 
 [node name="RoundTarget2" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-8, 3)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/RightTargetGroup/RoundTarget2" index="0"]
-rotation = 1.30824
+[node name="Hitbox" parent="Layer1/RightTargetGroup/RoundTarget2" index="0"]
+rotation = 1.26397
 
 [node name="RoundTarget3" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-5, 29)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/RightTargetGroup/RoundTarget3" index="0"]
-rotation = 1.46987
+[node name="Hitbox" parent="Layer1/RightTargetGroup/RoundTarget3" index="0"]
+rotation = 1.48246
 
 [node name="TopBumperTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(113, 112)
@@ -478,30 +481,21 @@ script = ExtResource("10_idji8")
 
 [node name="RoundTarget1" parent="Layer1/TopBumperTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-57, 14)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TopBumperTargetGroup/RoundTarget1" index="0"]
-rotation = -1.82952
+[node name="Hitbox" parent="Layer1/TopBumperTargetGroup/RoundTarget1" index="0"]
+rotation = -1.84858
 
 [node name="RoundTarget2" parent="Layer1/TopBumperTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-31, -50)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TopBumperTargetGroup/RoundTarget2" index="0"]
-rotation = -0.531384
+[node name="Hitbox" parent="Layer1/TopBumperTargetGroup/RoundTarget2" index="0"]
+rotation = -0.54957
 
 [node name="RoundTarget3" parent="Layer1/TopBumperTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(49, -33)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TopBumperTargetGroup/RoundTarget3" index="0"]
-rotation = 0.981847
+[node name="Hitbox" parent="Layer1/TopBumperTargetGroup/RoundTarget3" index="0"]
+rotation = 0.914059
 
 [node name="TopTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(219, 194)
@@ -509,30 +503,21 @@ script = ExtResource("13_2palb")
 
 [node name="DropTarget1" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-16, 21)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TopTargetGroup/DropTarget1" index="0"]
-rotation = -0.567232
+[node name="Hitbox" parent="Layer1/TopTargetGroup/DropTarget1" index="0"]
+rotation = -0.570422
 
 [node name="DropTarget2" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(3, 9)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TopTargetGroup/DropTarget2" index="0"]
-rotation = -0.567232
+[node name="Hitbox" parent="Layer1/TopTargetGroup/DropTarget2" index="0"]
+rotation = -0.570422
 
 [node name="DropTarget3" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(22, -3)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TopTargetGroup/DropTarget3" index="0"]
-rotation = -0.567232
+[node name="Hitbox" parent="Layer1/TopTargetGroup/DropTarget3" index="0"]
+rotation = -0.570422
 
 [node name="BottomTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(298, 408)
@@ -540,30 +525,21 @@ script = ExtResource("13_2palb")
 
 [node name="DropTarget1" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-24, 2)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/BottomTargetGroup/DropTarget1" index="0"]
-rotation = 0.349066
+[node name="Hitbox" parent="Layer1/BottomTargetGroup/DropTarget1" index="0"]
+rotation = 0.338306
 
 [node name="DropTarget2" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-2, 10)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/BottomTargetGroup/DropTarget2" index="0"]
-rotation = 0.349066
+[node name="Hitbox" parent="Layer1/BottomTargetGroup/DropTarget2" index="0"]
+rotation = 0.338306
 
 [node name="DropTarget3" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(20, 18)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/BottomTargetGroup/DropTarget3" index="0"]
-rotation = 0.349066
+[node name="Hitbox" parent="Layer1/BottomTargetGroup/DropTarget3" index="0"]
+rotation = 0.338306
 
 [node name="TunnelTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(472, 567)
@@ -571,128 +547,83 @@ script = ExtResource("13_2palb")
 
 [node name="DropTarget1" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-15, -15)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TunnelTargetGroup/DropTarget1" index="0"]
+[node name="Hitbox" parent="Layer1/TunnelTargetGroup/DropTarget1" index="0"]
 rotation = 1.5708
 
 [node name="DropTarget2" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-15, 10)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TunnelTargetGroup/DropTarget2" index="0"]
+[node name="Hitbox" parent="Layer1/TunnelTargetGroup/DropTarget2" index="0"]
 rotation = 1.5708
 
 [node name="DropTarget3" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-15, 35)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TunnelTargetGroup/DropTarget3" index="0"]
+[node name="Hitbox" parent="Layer1/TunnelTargetGroup/DropTarget3" index="0"]
 rotation = 1.5708
 
 [node name="TunnelRoundTarget" parent="Layer1" instance=ExtResource("4_2d0ue")]
 position = Vector2(421, 426)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/TunnelRoundTarget" index="0"]
-rotation = 0.587729
+[node name="Hitbox" parent="Layer1/TunnelRoundTarget" index="0"]
+rotation = 0.580763
 
 [node name="RightOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(512, 821)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="RightInLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(473, 820)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="LeftInLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(139, 820)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="LeftReturnLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(98, 820)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
-
-[node name="Sprite2D" parent="Layer1/LeftReturnLaneRollover" index="2"]
-position = Vector2(0, 25)
 
 [node name="LeftOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(54, 820)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="UnderRampSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(180, 503)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="RayCast2D" parent="Layer1/UnderRampSpitter" index="2"]
+[node name="RayCast2D" parent="Layer1/UnderRampSpitter" index="1"]
 target_position = Vector2(15, -15)
 
 [node name="TunnelSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(427, 163)
 Strength = 1500
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="RayCast2D" parent="Layer1/TunnelSpitter" index="2"]
+[node name="RayCast2D" parent="Layer1/TunnelSpitter" index="1"]
 target_position = Vector2(22, 18)
 
 [node name="BottomTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(480, 622)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="RayCast2D" parent="Layer1/BottomTeleport" index="2"]
+[node name="RayCast2D" parent="Layer1/BottomTeleport" index="1"]
 target_position = Vector2(-20, 25)
 
 [node name="MiddleTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(398, 195)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="RayCast2D" parent="Layer1/MiddleTeleport" index="2"]
+[node name="RayCast2D" parent="Layer1/MiddleTeleport" index="1"]
 target_position = Vector2(-22, 23)
 
 [node name="TopTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(204, 150)
 Strength = 1500
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="RayCast2D" parent="Layer1/TopTeleport" index="2"]
+[node name="RayCast2D" parent="Layer1/TopTeleport" index="1"]
 target_position = Vector2(-71, -93)
 
 [node name="TunnelSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
 position = Vector2(471, 421)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="Area2D" parent="Layer1/TunnelSpinner" index="0"]
 rotation = 0.436332
 
-[node name="Sprite2D" parent="Layer1/TunnelSpinner" index="1"]
-position = Vector2(39, 17)
-
 [node name="LeftSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
 position = Vector2(57, 338)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
-
-[node name="Sprite2D" parent="Layer1/LeftSpinner" index="1"]
-position = Vector2(-45, 0)
 
 [node name="MissionTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(136, 659)
@@ -700,34 +631,23 @@ script = ExtResource("13_2palb")
 
 [node name="RoundTarget1" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(0, -25)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/MissionTargetGroup/RoundTarget1" index="0"]
+[node name="Hitbox" parent="Layer1/MissionTargetGroup/RoundTarget1" index="0"]
 rotation = -1.5708
 
 [node name="RoundTarget2" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/MissionTargetGroup/RoundTarget2" index="0"]
+[node name="Hitbox" parent="Layer1/MissionTargetGroup/RoundTarget2" index="0"]
 rotation = -1.5708
 
 [node name="RoundTarget3" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(0, 25)
-BaseValue = 200
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
 
-
-[node name="StaticBody2D" parent="Layer1/MissionTargetGroup/RoundTarget3" index="0"]
+[node name="Hitbox" parent="Layer1/MissionTargetGroup/RoundTarget3" index="0"]
 rotation = -1.5708
 
 [node name="Rollover" parent="Layer1" instance=ExtResource("15_8n0qj")]
 position = Vector2(136, 258)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
 
 [node name="Magnet" parent="Layer1" instance=ExtResource("16_2wkew")]
 position = Vector2(308, 749)
@@ -746,8 +666,8 @@ shape = SubResource("RectangleShape2D_03766")
 [node name="Layer2" type="Node2D" parent="."]
 
 [node name="Walls" type="StaticBody2D" parent="Layer2"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 0
 
 [node name="LabBoundaries" type="CollisionPolygon2D" parent="Layer2/Walls"]
 position = Vector2(103, 471)
@@ -768,47 +688,35 @@ shape = SubResource("RectangleShape2D_ttt3n")
 one_way_collision = true
 
 [node name="LabRollovers" type="Node2D" parent="Layer2"]
-position = Vector2(70, 550)
+position = Vector2(67, 543)
 script = ExtResource("11_l3xt2")
 
 [node name="Rollover1" parent="Layer2/LabRollovers" instance=ExtResource("9_u8226")]
-position = Vector2(-41, 16)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
+position = Vector2(-38, 9)
 
+[node name="NorthZone" parent="Layer2/LabRollovers/Rollover1" index="1"]
+collision_mask = 4
 
-[node name="NorthZone" parent="Layer2/LabRollovers/Rollover1" index="0"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="SouthZone" parent="Layer2/LabRollovers/Rollover1" index="1"]
-collision_layer = 2
-collision_mask = 2
+[node name="SouthZone" parent="Layer2/LabRollovers/Rollover1" index="2"]
+collision_mask = 4
 
 [node name="Rollover2" parent="Layer2/LabRollovers" instance=ExtResource("9_u8226")]
-position = Vector2(-4, 29)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
+position = Vector2(0, 24)
 
+[node name="NorthZone" parent="Layer2/LabRollovers/Rollover2" index="1"]
+collision_mask = 4
 
-[node name="NorthZone" parent="Layer2/LabRollovers/Rollover2" index="0"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="SouthZone" parent="Layer2/LabRollovers/Rollover2" index="1"]
-collision_layer = 2
-collision_mask = 2
+[node name="SouthZone" parent="Layer2/LabRollovers/Rollover2" index="2"]
+collision_mask = 4
 
 [node name="Rollover3" parent="Layer2/LabRollovers" instance=ExtResource("9_u8226")]
-position = Vector2(35, 41)
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
+position = Vector2(38, 38)
 
+[node name="NorthZone" parent="Layer2/LabRollovers/Rollover3" index="1"]
+collision_mask = 4
 
-[node name="NorthZone" parent="Layer2/LabRollovers/Rollover3" index="0"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="SouthZone" parent="Layer2/LabRollovers/Rollover3" index="1"]
-collision_layer = 2
-collision_mask = 2
+[node name="SouthZone" parent="Layer2/LabRollovers/Rollover3" index="2"]
+collision_mask = 4
 
 [node name="LabBumpers" type="Node2D" parent="Layer2"]
 position = Vector2(71, 634)
@@ -817,61 +725,86 @@ LevelUpSFX = ExtResource("11_nbq5k")
 
 [node name="Bumper1" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(37, 5)
-TriggerSpeed = 30
 Strength = 500
+
+[node name="Hitbox" parent="Layer2/LabBumpers/Bumper1" index="0"]
+scale = Vector2(0.9, 0.9)
+collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
-
-[node name="StaticBody2D" parent="Layer2/LabBumpers/Bumper1" index="0"]
-scale = Vector2(0.85, 0.85)
-collision_layer = 2
 
 [node name="Bumper2" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-50, -15)
-TriggerSpeed = 30
 Strength = 500
+
+[node name="Hitbox" parent="Layer2/LabBumpers/Bumper2" index="0"]
+scale = Vector2(0.9, 0.9)
+collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
-
-[node name="StaticBody2D" parent="Layer2/LabBumpers/Bumper2" index="0"]
-scale = Vector2(0.85, 0.85)
-collision_layer = 2
 
 [node name="Bumper3" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-15, 42)
-TriggerSpeed = 30
 Strength = 500
+
+[node name="Hitbox" parent="Layer2/LabBumpers/Bumper3" index="0"]
+scale = Vector2(0.9, 0.9)
+collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
-ScoreSFX = Object(AudioStreamPlayer2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"stream":null,"volume_db":0.0,"pitch_scale":1.0,"autoplay":false,"stream_paused":false,"max_distance":2000.0,"attenuation":1.0,"max_polyphony":1,"panning_strength":1.0,"bus":&"Master","area_mask":1,"playback_type":0,"script":null)
-
-
-[node name="StaticBody2D" parent="Layer2/LabBumpers/Bumper3" index="0"]
-scale = Vector2(0.85, 0.85)
-collision_layer = 2
 
 [node name="LayerDrop" parent="Layer2" instance=ExtResource("15_uh8xy")]
 position = Vector2(87, 793)
 
 [node name="Area2D" parent="Layer2/LayerDrop" index="0"]
-collision_layer = 2
-collision_mask = 2
+collision_mask = 4
 
 [connection signal="body_entered" from="Boundaries" to="." method="OnEnterDrain" binds= [true]]
+[connection signal="KickingBall" from="Layer1/RightKickBack" to="Layer1/ExceptionGate" method="AddException"]
+[connection signal="SpittingBall" from="Layer1/PlungerSpitter" to="Layer1/ExceptionGate" method="RemoveException"]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="OnEnterDrain" binds= [false]]
+[connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryBumpers" method="LevelUp"]
+[connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryRollovers/Rollover1" method="Toggle"]
+[connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryRollovers/Rollover2" method="Toggle"]
+[connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryRollovers/Rollover3" method="Toggle"]
+[connection signal="Hit" from="Layer1/LeftTargetGroup/RoundTarget1/Hitbox" to="Layer1/LeftTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/LeftTargetGroup/RoundTarget2/Hitbox" to="Layer1/LeftTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/LeftTargetGroup/RoundTarget3/Hitbox" to="Layer1/LeftTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/RightTargetGroup/RoundTarget1/Hitbox" to="Layer1/RightTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/RightTargetGroup/RoundTarget2/Hitbox" to="Layer1/RightTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/RightTargetGroup/RoundTarget3/Hitbox" to="Layer1/RightTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TopBumperTargetGroup/RoundTarget1/Hitbox" to="Layer1/TopBumperTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TopBumperTargetGroup/RoundTarget2/Hitbox" to="Layer1/TopBumperTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TopBumperTargetGroup/RoundTarget3/Hitbox" to="Layer1/TopBumperTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TopTargetGroup/DropTarget1/Hitbox" to="Layer1/TopTargetGroup/DropTarget1/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TopTargetGroup/DropTarget2/Hitbox" to="Layer1/TopTargetGroup/DropTarget2/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TopTargetGroup/DropTarget3/Hitbox" to="Layer1/TopTargetGroup/DropTarget3/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/BottomTargetGroup/DropTarget1/Hitbox" to="Layer1/BottomTargetGroup/DropTarget1/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/BottomTargetGroup/DropTarget2/Hitbox" to="Layer1/BottomTargetGroup/DropTarget2/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/BottomTargetGroup/DropTarget3/Hitbox" to="Layer1/BottomTargetGroup/DropTarget3/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TunnelTargetGroup/DropTarget1/Hitbox" to="Layer1/TunnelTargetGroup/DropTarget1/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TunnelTargetGroup/DropTarget2/Hitbox" to="Layer1/TunnelTargetGroup/DropTarget2/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TunnelTargetGroup/DropTarget3/Hitbox" to="Layer1/TunnelTargetGroup/DropTarget3/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/TunnelRoundTarget/Hitbox" to="Layer1/TunnelRoundTarget/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/MissionTargetGroup/RoundTarget1/Hitbox" to="Layer1/MissionTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/MissionTargetGroup/RoundTarget2/Hitbox" to="Layer1/MissionTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
+[connection signal="Hit" from="Layer1/MissionTargetGroup/RoundTarget3/Hitbox" to="Layer1/MissionTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
+[connection signal="AllOn" from="Layer2/LabRollovers" to="Layer2/LabRollovers/Rollover1" method="Toggle"]
+[connection signal="AllOn" from="Layer2/LabRollovers" to="Layer2/LabRollovers/Rollover2" method="Toggle"]
+[connection signal="AllOn" from="Layer2/LabRollovers" to="Layer2/LabRollovers/Rollover3" method="Toggle"]
+[connection signal="AllOn" from="Layer2/LabRollovers" to="Layer2/LabBumpers" method="LevelUp"]
 
 [editable path="Layer1/UnderRampSlingshot"]
 [editable path="Layer1/TunnelSlingshot"]
+[editable path="Layer1/SkillShot"]
 [editable path="Layer1/RightKickBack"]
 [editable path="Layer1/LeftKickBack"]
 [editable path="Layer1/PlungerSpitter"]
+[editable path="Layer1/LeftSlingshot"]
 [editable path="Layer1/RightSlingshot"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget1"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget2"]
+[editable path="Layer1/LeftTargetGroup/RoundTarget2/Hitbox"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget3"]
 [editable path="Layer1/RightTargetGroup/RoundTarget1"]
 [editable path="Layer1/RightTargetGroup/RoundTarget2"]

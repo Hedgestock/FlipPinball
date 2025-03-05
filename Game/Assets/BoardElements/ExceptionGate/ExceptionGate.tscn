@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0hvd58lc5xru"]
+
+[ext_resource type="Script" path="res://Game/Assets/BoardElements/ExceptionGate/ExceptionGate.cs" id="1_m1lg0"]
+
+[node name="ExceptionGate" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_m1lg0")

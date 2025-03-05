@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxi7chpix50wp"]
+[gd_scene load_steps=4 format=3 uid="uid://dxi7chpix50wp"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Rollover/Rollover.cs" id="1_hm3li"]
+[ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="2_17vhc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dpfvq"]
 
@@ -8,8 +9,12 @@
 script = ExtResource("1_hm3li")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_dpfvq")
 
-[connection signal="body_entered" from="Area2D" to="." method="OnAreaBodyEnter"]
+[node name="Scorer" parent="." instance=ExtResource("2_17vhc")]
+
+[connection signal="body_entered" from="Area2D" to="Scorer" method="Score" unbinds=1]

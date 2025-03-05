@@ -11,7 +11,9 @@ public partial class Paddle : CharacterBody2D
 
     private void Unstuck(Node2D body)
     {
-        if (!(body is Ball)) return;
-        (body as Ball).LinearVelocity += Vector2.Down;
+        if (body is Ball ball)
+        {
+            ball.LinearVelocity += Vector2.Down;
+        }
     }
 }

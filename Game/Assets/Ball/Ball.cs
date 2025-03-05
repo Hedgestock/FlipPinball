@@ -13,7 +13,7 @@ public partial class Ball : RigidBody2D
     {
         base._Ready();
         LastPosition = GlobalPosition;
-        Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray(); ;
+        Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -31,6 +31,6 @@ public partial class Ball : RigidBody2D
 
     public void OnCollision(Node body)
     {
-        if (body.GetParent() is Collidable) (body.GetParent() as Collidable).CollideWithBall(this);
+        if (body is Hitbox hitbox) hitbox.CollideWithBall(this);
     }
 }

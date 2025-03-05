@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
-[ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
+[ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
 [ext_resource type="PackedScene" uid="uid://1uf453kusqfd" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="3_vxydm"]
 
 [node name="Game" type="Node" node_paths=PackedStringArray("MainContainer", "Score")]

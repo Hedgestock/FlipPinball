@@ -10,7 +10,8 @@ size = Vector2(20, 30)
 
 [node name="LayerChange" type="Node2D" node_paths=PackedStringArray("Gate1", "Gate2")]
 script = ExtResource("1_f7kq0")
-Layer2 = 1
+Layer1 = 2
+Layer2 = 3
 Gate1 = NodePath("Gate1")
 Gate2 = NodePath("Gate2")
 
@@ -18,7 +19,6 @@ Gate2 = NodePath("Gate2")
 position = Vector2(10, -5)
 collision_layer = 0
 collision_mask = 0
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gate2"]
 shape = SubResource("RectangleShape2D_t5e6v")

@@ -15,11 +15,15 @@ MagnetZone = NodePath("MagnetZone")
 MagnetEnd = NodePath("Timer")
 
 [node name="EffectZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EffectZone"]
 shape = SubResource("CircleShape2D_ydyob")
 
 [node name="MagnetZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetZone"]

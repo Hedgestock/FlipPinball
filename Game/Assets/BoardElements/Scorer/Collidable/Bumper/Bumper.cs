@@ -1,26 +1,61 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-public partial class Bumper : Collidable
+public partial class Bumper : Node2D
 {
-    public int Level = 1;
+    [Signal]
+    public delegate void BumpEventHandler(int level);
 
-    public override int Value
+    [Export]
+    Sprite2D Sprite;
+
+    [Export]
+    uint Strength = 1000;
+
+    int Level = 1;
+
+    public bool LevelUp()
     {
-        get { return BaseValue * Level; }
+        if (Level >= 5) return false;
+
+        Level++;
+
+        switch (Level)
+        {
+            default:
+                Sprite.Modulate = Colors.White;
+                break;
+            case 2:
+                Sprite.Modulate = Colors.ForestGreen;
+                break;
+            case 3:
+                Sprite.Modulate = Colors.MediumBlue;
+                break;
+            case 4:
+                Sprite.Modulate = Colors.Red;
+                break;
+            case 5:
+                Sprite.Modulate = Colors.Black;
+                break;
+        }
+
+        return true;
     }
-    public override void CollideWithBall(Ball ball)
-    {
-        if (!IsOn) return;
-        base.CollideWithBall(ball);
 
+    void BumpBall(Ball ball)
+    {
         Vector2 direction = (ball.GlobalPosition - this.GlobalPosition).Normalized();
 
-        // Here we estimate the force of the impact by projecting the speed of the ball on the direction vector
-        // It might not work that well if the ball hits almost tangentially to the bumper but it should be good enough
-        if ((ball.LinearVelocity.Dot(direction) * direction).Length() < TriggerSpeed) return;
         ball.LinearVelocity += direction * Strength;
 
-        Score();
+        Tween tween = GetTree().CreateTween();
+        tween.TweenProperty(Sprite, "scale", Vector2.One * 1.2f, .05)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Elastic);
+        tween.TweenProperty(Sprite, "scale", Vector2.One, .05)
+           .SetEase(Tween.EaseType.In)
+           .SetTrans(Tween.TransitionType.Elastic);
+
+        EmitSignal(SignalName.Bump, Level);
     }
 }

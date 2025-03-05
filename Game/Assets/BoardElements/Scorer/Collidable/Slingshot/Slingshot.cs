@@ -1,24 +1,19 @@
 using Godot;
 using System;
 
-public partial class Slingshot : Collidable
+public partial class Slingshot : Node2D
 {
     [Export]
-    Area2D Rubber;
+    private uint Strength = 1000;
+    [Export]
+    Hitbox Hitbox;
 
-
-    public override void CollideWithBall(Ball ball)
+    public void BumpBall(Ball ball)
     {
-        if (!IsOn || !Rubber.OverlapsBody(ball)) return;
-        base.CollideWithBall(ball);
+        //if (!IsOn) return;
 
-        Vector2 direction = Vector2.Up.Rotated(Rubber.GlobalRotation);
+        Vector2 direction = Vector2.Up.Rotated(Hitbox.GlobalRotation);
 
-        // Here we estimate the force of the impact by projecting the speed of the ball on the direction vector
-        // It might not work that well if the ball hits almost tangentially to the bumper but it should be good enough
-        if ((ball.LinearVelocity.Dot(direction) * direction).Length() < TriggerSpeed) return;
         ball.LinearVelocity += direction * Strength;
-
-        Score();
     }
 }

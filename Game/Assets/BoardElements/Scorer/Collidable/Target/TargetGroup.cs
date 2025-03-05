@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 public partial class TargetGroup : Node2D
@@ -15,13 +14,13 @@ public partial class TargetGroup : Node2D
     {
         base._Ready();
         Targets = GetChildren().Where(c => c is Target).Cast<Target>().ToList();
-        Targets.ForEach(s => s.ChangedState += CheckGroupStatus);
+        Targets.ForEach(s => s.GetNode<OnOffLight>("Hitbox/OnOffLight").Toggled += (on) => { if (!on) CheckGroupStatus(); });
     }
 
     private void CheckGroupStatus()
     {
         foreach (var target in Targets)
-            if (target.IsOn) return;
+            if (target.GetNode<OnOffLight>("Hitbox/OnOffLight").IsOn) return;
 
         EmitSignal(SignalName.AllOff);
     }

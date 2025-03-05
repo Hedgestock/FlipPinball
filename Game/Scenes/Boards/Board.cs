@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System;
 using System.Collections.Generic;
 
 public partial class Board : Node2D
@@ -35,6 +36,10 @@ public partial class Board : Node2D
         {
             PaddleAdditionnalBehaviour(false);
         }
+        if (@event.IsActionPressed("tilt"))
+        {
+            Tilt();
+        }
 
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
@@ -43,11 +48,22 @@ public partial class Board : Node2D
             {
                 LaunchPos = @eventMouseButton.Position;
             }
-            if (@event.IsActionReleased("screen_tap"))
+            else if (@event.IsActionReleased("screen_tap"))
             {
                 RigidBody2D ball = Ball.Instantiate<RigidBody2D>();
                 ball.Position = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
+                LiveBalls.Add(ball);
+                AddChild(ball);
+            }
+            else
+            {
+                RigidBody2D ball = Ball.Instantiate<RigidBody2D>();
+                ball.Position = @eventMouseButton.Position;
+                ball.SetCollisionLayerValue(3, true);
+                ball.SetCollisionMaskValue(3, true);
+                ball.SetCollisionLayerValue(2, false);
+                ball.SetCollisionMaskValue(2, false);
                 LiveBalls.Add(ball);
                 AddChild(ball);
             }
@@ -88,7 +104,8 @@ public partial class Board : Node2D
         }
     }
 
-    protected virtual void PaddleAdditionnalBehaviour(bool left) {
+    protected virtual void PaddleAdditionnalBehaviour(bool left)
+    {
         Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
         foreach (var paddle in paddles)
         {
@@ -98,12 +115,16 @@ public partial class Board : Node2D
 
     private void OnEnterDrain(Node2D body, bool oob)
     {
-        GD.Print($"draining {body.GetType()}");
         if (!(body is Ball)) return;
-        GD.Print($"OOB: {oob}");
 
         if (oob) { GD.PrintErr($"Ball {body} OOB"); }
         LiveBalls.Remove(body as Ball);
         body.QueueFree();
+    }
+
+    private void Tilt()
+    {
+        Vector2 tiltDirection = Vector2.Up.Rotated((float)GD.RandRange(0, 2 * MathF.PI)) * 70;
+        LiveBalls.ForEach(b => b.LinearVelocity += tiltDirection);
     }
 }

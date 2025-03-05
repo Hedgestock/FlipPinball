@@ -1,25 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckk4x5dhl1c0w"]
+[gd_scene load_steps=8 format=3 uid="uid://ckk4x5dhl1c0w"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.cs" id="1_euw7q"]
-[ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Art/LightOn.png" id="2_n3ixj"]
-[ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Art/LightOff.png" id="3_soyuh"]
+[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/BoardElements/Scorer/Collidable/Hitbox.tscn" id="2_f5amf"]
+[ext_resource type="Texture2D" uid="uid://dblu7c57f74om" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.png" id="2_lf46c"]
+[ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_6ygmk"]
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="4_1k431"]
 [ext_resource type="AudioStream" uid="uid://c78sjolqfakrn" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.wav" id="4_svyrr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cu2rr"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qmtc5"]
 radius = 20.0
 
-[node name="Bumper" type="Node2D" node_paths=PackedStringArray("Light") groups=["Bumpers", "Round"]]
+[node name="Bumper" type="Node2D" node_paths=PackedStringArray("Sprite") groups=["Bumpers", "Round"]]
 script = ExtResource("1_euw7q")
-Light = NodePath("Sprite2D")
-LightOn = ExtResource("2_n3ixj")
-LightOff = ExtResource("3_soyuh")
-ScoreSFX = ExtResource("4_svyrr")
+Sprite = NodePath("Hitbox/Sprite2D")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_mask = 0
+[node name="Hitbox" parent="." instance=ExtResource("2_f5amf")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("CircleShape2D_cu2rr")
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
+texture = ExtResource("2_lf46c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_n3ixj")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_qmtc5")
+
+[node name="Scorer" parent="." instance=ExtResource("3_6ygmk")]
+
+[node name="OnOffLight" parent="." instance=ExtResource("4_1k431")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_svyrr")
+
+[connection signal="Bump" from="." to="Scorer" method="Score"]
+[connection signal="Hit" from="Hitbox" to="." method="BumpBall"]
+[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=1]
+[connection signal="Overheat" from="Hitbox" to="OnOffLight" method="TurnOff"]
+[connection signal="OverheatEnd" from="Hitbox" to="OnOffLight" method="TurnOn"]

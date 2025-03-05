@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxgbd1q0e6fpk"]
+[gd_scene load_steps=5 format=3 uid="uid://bxgbd1q0e6fpk"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/KickBack/KickBack.cs" id="1_2hlfo"]
+[ext_resource type="AudioStream" uid="uid://cj07vcni84f8p" path="res://Game/Assets/BoardElements/KickBack/Collision.wav" id="2_ji2d3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0c4mb"]
 b = Vector2(50, 0)
@@ -16,6 +17,8 @@ Delay = NodePath("Timer")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-15, 5)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-3, 3)
@@ -23,6 +26,8 @@ shape = SubResource("SegmentShape2D_0c4mb")
 one_way_collision = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 31.5)
@@ -31,5 +36,10 @@ shape = SubResource("RectangleShape2D_ahhcf")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ji2d3")
+
+[connection signal="KickingBall" from="." to="AudioStreamPlayer" method="play" unbinds=1]
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
 [connection signal="timeout" from="Timer" to="." method="KickBall"]
+[connection signal="timeout" from="Timer" to="AudioStreamPlayer" method="play"]

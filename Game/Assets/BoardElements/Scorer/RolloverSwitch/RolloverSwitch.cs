@@ -1,41 +1,39 @@
 using Godot;
 using System;
 
-public partial class RolloverSwitch : Scorer
+public partial class RolloverSwitch : Node2D
 {
+    [Signal]
+    public delegate void ToggledEventHandler(bool IsOn);
+
     [Export]
     Area2D NorthZone;
     [Export]
     Area2D SouthZone;
-
-    public override void _Ready()
-    {
-        base._Ready();
-        IsOn = false;
-    }
+    [Export]
+    OnOffLight OnOffLight;
 
     void OnNorthZoneEnter(Node2D body)
     {
-        if (!(body is Ball)) return;
         if (SouthZone.OverlapsBody(body))
         {
+            GD.Print(body.Name);
             Toggle();
         }
     }
 
     void OnSouthZoneEnter(Node2D body)
     {
-        if (!(body is Ball)) return;
         if (NorthZone.OverlapsBody(body))
         {
+            GD.Print(body);
             Toggle();
         }
     }
 
     private void Toggle()
     {
-        IsOn = !IsOn;
-
-        Score();
+        OnOffLight.IsOn = !OnOffLight.IsOn;
+        EmitSignal(SignalName.Toggled, OnOffLight.IsOn);
     }
 }

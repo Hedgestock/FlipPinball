@@ -17,13 +17,14 @@ public partial class LayerChange : Node2D
     public override void _Ready()
     {
         base._Ready();
-        Gate1.CollisionLayer = (uint)(1 << Layer1 | 1 << Layer2);
-        Gate1.CollisionMask = Gate1.CollisionLayer;
-        Gate2.CollisionLayer = Gate1.CollisionLayer;
-        Gate2.CollisionMask = Gate1.CollisionLayer;
+        Gate1.SetCollisionMaskValue(Layer1, true);
+        Gate1.SetCollisionMaskValue(Layer2, true);
+        Gate2.SetCollisionMaskValue(Layer1, true);
+        Gate2.SetCollisionMaskValue(Layer2, true);
+
     }
 
-    void OnBodyEnterGate1 (Node2D body)
+    void OnBodyEnterGate1(Node2D body)
     {
         ChangeLayer(body, Layer1, true, Gate2);
     }
@@ -45,12 +46,11 @@ public partial class LayerChange : Node2D
 
     void ChangeLayer(Node2D body, int layer, bool active, Area2D otherGate)
     {
-        if (!(body is Ball)) return;
-        Ball ball = (Ball)body;
-        if (otherGate.OverlapsBody(ball))
+        if (body is Ball ball && otherGate.OverlapsBody(ball))
         {
-            ball.SetCollisionLayerValue(1 << layer, active);
-            ball.SetCollisionMaskValue(1 << layer, active);
+            ball.SetCollisionLayerValue(layer, active);
+            ball.SetCollisionMaskValue(layer, active);
+            GD.Print(ball.CollisionLayer);
         }
     }
 }

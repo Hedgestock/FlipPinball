@@ -1,8 +1,15 @@
 using Godot;
 using System;
+using System.Linq;
 
-public partial class Spitter : Scorer
+public partial class Spitter : Node2D
 {
+    [Signal]
+    public delegate void SwallowingBallEventHandler(Ball ball);
+
+    [Signal]
+    public delegate void SpittingBallEventHandler(Ball ball);
+
     [Export]
     uint Strength = 1000;
     [Export]
@@ -10,35 +17,34 @@ public partial class Spitter : Scorer
     [Export]
     RayCast2D SpitDirection;
     [Export]
-    AudioStreamPlayer EntrySoundPlayer;
+    Area2D DetectionZone;
 
-    Ball StoredBall;
 
     private void OnBodyEnter(Node2D body)
     {
-        if (!IsOn || !(body is Ball)) return;
-        StoredBall = (Ball)body;
-        Tween tween = GetTree().CreateTween();
-        tween.TweenProperty(StoredBall, "global_position", GlobalPosition, .5f)
-            .SetEase(Tween.EaseType.Out)
-            .SetTrans(Tween.TransitionType.Elastic);
-        StoredBall.SetDeferred(RigidBody2D.PropertyName.Freeze, true);
-        SpitDelay.Start();
-        IsOn = false;
-        EntrySoundPlayer.Play();
+        //if (!IsOn || !(body is Ball)) return;
+        if (body is Ball ball)
+        {
+            Tween tween = GetTree().CreateTween();
+            tween.TweenProperty(ball, "global_position", GlobalPosition, .5f)
+                .SetEase(Tween.EaseType.Out)
+                .SetTrans(Tween.TransitionType.Elastic);
+            ball.SetDeferred(RigidBody2D.PropertyName.Freeze, true);
+            SpitDelay.Start();
+            //IsOn = false;
+            EmitSignal(SignalName.SwallowingBall, ball);
+        }
     }
 
     private void SpitBall()
     {
-        if (StoredBall == null)
+        foreach (RigidBody2D ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
-            GD.PrintErr($"Spitter {this} tried to spit while empty");
-            return;
+            ball.SetDeferred(RigidBody2D.PropertyName.Freeze, false);
+            ball.LinearVelocity = (SpitDirection.TargetPosition - SpitDirection.Position).Normalized() * Strength;
+
+            EmitSignal(SignalName.SpittingBall, ball);
         }
-        StoredBall.SetDeferred(RigidBody2D.PropertyName.Freeze, false);
-        StoredBall.LinearVelocity = (SpitDirection.TargetPosition - SpitDirection.Position).Normalized() * Strength;
-        StoredBall = null;
-        IsOn = true;
-        Score();
+        //IsOn = true;
     }
 }

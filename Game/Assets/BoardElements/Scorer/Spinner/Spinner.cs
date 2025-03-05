@@ -1,8 +1,11 @@
 using Godot;
 using System;
 
-public partial class Spinner : Scorer
+public partial class Spinner : Node2D
 {
+    [Signal]
+    public delegate void CompleteRotationEventHandler();
+
     private double _initialSpinSpeed = 0;
     private double _lastSpinSpeed = 0;
     private double _iterations = -1;
@@ -20,7 +23,7 @@ public partial class Spinner : Scorer
         {
             for (int i = 0; i < numberOfTurns; i++)
             {
-                Score();
+                EmitSignal(SignalName.CompleteRotation);
             }
             _lastSpinSpeed = currentSpinSpeed;
         }

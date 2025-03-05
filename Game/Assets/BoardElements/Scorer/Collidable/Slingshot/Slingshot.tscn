@@ -1,35 +1,27 @@
 [gd_scene load_steps=6 format=3 uid="uid://tm0n8wum3wb6"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.cs" id="1_lrqkg"]
-[ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Art/LightOn.png" id="2_5n07y"]
-[ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Art/LightOff.png" id="3_kjful"]
-[ext_resource type="AudioStream" uid="uid://dodqps03wacfl" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.wav" id="4_ivnra"]
+[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/BoardElements/Scorer/Collidable/Hitbox.tscn" id="2_2pgt5"]
+[ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_dtu0p"]
+[ext_resource type="AudioStream" uid="uid://dodqps03wacfl" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.wav" id="4_isjs3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2mox"]
-size = Vector2(130, 15)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3ii1"]
+size = Vector2(130, 10)
 
-[node name="Slingshot" type="Node2D" node_paths=PackedStringArray("Rubber", "Light") groups=["Slingshots"]]
+[node name="Slingshot" type="Node2D" node_paths=PackedStringArray("Hitbox") groups=["Slingshots"]]
 script = ExtResource("1_lrqkg")
-Rubber = NodePath("Area2D")
-TriggerSpeed = 20
-Light = NodePath("Sprite2D")
-LightOn = ExtResource("2_5n07y")
-LightOff = ExtResource("3_kjful")
-ScoreSFX = ExtResource("4_ivnra")
+Hitbox = NodePath("Hitbox")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Hitbox" parent="." instance=ExtResource("2_2pgt5")]
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(-17, -77)
-polygon = PackedVector2Array(4, -4, -3, 1, -3, 91, 46, 127, 54, 127, 56, 121, 11, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_x3ii1")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(17, -17)
-rotation = 1.21721
+[node name="Scorer" parent="." instance=ExtResource("3_dtu0p")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -3.66414)
-shape = SubResource("RectangleShape2D_u2mox")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_isjs3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_5n07y")
+[connection signal="Hit" from="Hitbox" to="." method="BumpBall"]
+[connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=1]
+[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=1]

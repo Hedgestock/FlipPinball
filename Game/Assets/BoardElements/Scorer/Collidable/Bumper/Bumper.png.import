@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bol7jc3wx7k3b"
-path="res://.godot/imported/LightOff.png-df1acb2c8c83eb06cc30e726abb5d80a.ctex"
+uid="uid://dblu7c57f74om"
+path="res://.godot/imported/Bumper.png-8e945aea5081e582e55e29c278802dce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Art/LightOff.png"
-dest_files=["res://.godot/imported/LightOff.png-df1acb2c8c83eb06cc30e726abb5d80a.ctex"]
+source_file="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.png"
+dest_files=["res://.godot/imported/Bumper.png-8e945aea5081e582e55e29c278802dce.ctex"]
 
 [params]
 

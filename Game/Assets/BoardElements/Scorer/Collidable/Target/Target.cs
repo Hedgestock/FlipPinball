@@ -1,30 +1,24 @@
 using Godot;
 using System;
 
-public partial class Target : Collidable
+public partial class Target : Node2D
 {
+
     [Export]
-    protected StaticBody2D TargetElement;
+    uint Strength = 500;
+
+    [Export]
+    Hitbox Hitbox;
 
     [Export]
     protected Timer ResetDelay;
 
-    public override void CollideWithBall(Ball ball)
+    public void BumpBall(Ball ball)
     {
-        if (!IsOn) return;
-        base.CollideWithBall(ball);
+        Vector2 direction = Vector2.Down.Rotated(Hitbox.GlobalRotation);
 
-        Score();
+        ball.LinearVelocity += direction * Strength;
 
-        IsOn = !IsOn;
-    }
-
-    protected override void SetOnValue(bool value)
-    {
-        base.SetOnValue(value);
-        if (value)
-            ResetDelay.Stop();
-        else
-            ResetDelay.Start();
+        ResetDelay.Start();
     }
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhrymsnilktss"
-path="res://.godot/imported/LightOn.png-0e3c57e3cefc8b49f462ca037773ca99.ctex"
+uid="uid://jx2q1n7q158j"
+path="res://.godot/imported/RoundTarget.png-2aa45c03ab38d843cae8248e7be50413.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Art/LightOn.png"
-dest_files=["res://.godot/imported/LightOn.png-0e3c57e3cefc8b49f462ca037773ca99.ctex"]
+source_file="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Round/RoundTarget.png"
+dest_files=["res://.godot/imported/RoundTarget.png-2aa45c03ab38d843cae8248e7be50413.ctex"]
 
 [params]
 
