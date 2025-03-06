@@ -6,12 +6,17 @@ public partial class RolloverSwitch : Node2D
     [Signal]
     public delegate void ToggledEventHandler(bool IsOn);
 
+    [Signal]
+    public delegate void LanePassedEventHandler(bool IsOn);
+
     [Export]
     Area2D NorthZone;
     [Export]
     Area2D SouthZone;
     [Export]
     OnOffLight OnOffLight;
+    [Export]
+    bool SelfActivated = true;
 
     void OnNorthZoneEnter(Node2D body)
     {
@@ -29,8 +34,14 @@ public partial class RolloverSwitch : Node2D
         }
     }
 
-    private void Toggle()
+    void LanePass()
     {
+
+    }
+
+    void Toggle()
+    {
+        if (!SelfActivated && !OnOffLight.IsOn) return;
         OnOffLight.IsOn = !OnOffLight.IsOn;
         EmitSignal(SignalName.Toggled, OnOffLight.IsOn);
     }

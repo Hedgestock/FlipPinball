@@ -43,8 +43,8 @@ public partial class Spinner : Node2D
         if (body is Ball ball)
         {
             Iterations = 0;
-            InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 100;
-            LastSpinSpeed = InitialSpinSpeed - 0.7;
+            InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 200;
+            LastSpinSpeed = InitialSpinSpeed;
         }
     }
 

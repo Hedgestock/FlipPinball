@@ -24,7 +24,6 @@ public partial class TestLab : Board
 
 
     #region Modes
-
     [Export]
     Leveler SpinnersLevel;
     void ModesHandler(int level, bool up = false)
@@ -43,7 +42,5 @@ public partial class TestLab : Board
                 break;
         }
     }
-
-
     #endregion
 }

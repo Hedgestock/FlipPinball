@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://c6lxuqoyg1314" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.tscn" id="13_ctosm"]
 [ext_resource type="PackedScene" uid="uid://clvc7nom5cigw" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.tscn" id="14_aoae7"]
 [ext_resource type="PackedScene" uid="uid://ccj786gqjcjn0" path="res://Game/Assets/BoardElements/LayerChange/LayerChange.tscn" id="14_d61wx"]
-[ext_resource type="PackedScene" uid="uid://dxi7chpix50wp" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.tscn" id="15_8n0qj"]
 [ext_resource type="PackedScene" uid="uid://rbcr7e4wg3cr" path="res://Game/Assets/BoardElements/LayerDrop/LayerDrop.tscn" id="15_uh8xy"]
 [ext_resource type="PackedScene" uid="uid://dwc6ituqxs0yg" path="res://Game/Assets/BoardElements/Magnet/Magnet.tscn" id="16_2wkew"]
 [ext_resource type="PackedScene" uid="uid://0vf85v2k3lmd" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.tscn" id="18_8qgjt"]
@@ -95,6 +94,8 @@ size = Vector2(60, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5xv0"]
 size = Vector2(160, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dpfvq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eia0n"]
 size = Vector2(20, 30)
@@ -580,6 +581,9 @@ TriggerSpeed = 0
 [node name="Spinners" parent="Layer1" instance=ExtResource("18_8qgjt")]
 MaxLevel = 1
 
+[node name="AudioStreamPlayer" parent="Layer1/Spinners" index="0"]
+bus = &"Master"
+
 [node name="TunnelSpinner" parent="Layer1/Spinners" instance=ExtResource("14_aoae7")]
 position = Vector2(471, 421)
 
@@ -646,15 +650,20 @@ position = Vector2(512, 821)
 
 [node name="RightInLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(473, 820)
+SelfActivated = false
+
+[node name="Scorer" parent="Layer1/RightInLaneRollover" index="3"]
+Value = 25000
 
 [node name="LeftInLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(139, 820)
+SelfActivated = false
+
+[node name="Scorer" parent="Layer1/LeftInLaneRollover" index="3"]
+Value = 25000
 
 [node name="LeftReturnLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(98, 820)
-
-[node name="AudioStreamPlayer" parent="Layer1/LeftReturnLaneRollover" index="5"]
-bus = &"Master"
 
 [node name="LeftOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(54, 820)
@@ -767,8 +776,13 @@ position = Vector2(136, 684)
 rotation = -1.5708
 TriggerSpeed = 0
 
-[node name="Rollover" parent="Layer1" instance=ExtResource("15_8n0qj")]
-position = Vector2(136, 258)
+[node name="TopRollover" type="Area2D" parent="Layer1"]
+position = Vector2(138, 259)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layer1/TopRollover"]
+shape = SubResource("CircleShape2D_dpfvq")
 
 [node name="LayerChange1to2" parent="." instance=ExtResource("14_d61wx")]
 position = Vector2(205, 585)
@@ -818,9 +832,6 @@ collision_mask = 4
 [node name="SouthZone" parent="Layer2/Lab/Rollover1" index="2"]
 collision_mask = 4
 
-[node name="AudioStreamPlayer" parent="Layer2/Lab/Rollover1" index="5"]
-bus = &"Master"
-
 [node name="Rollover2" parent="Layer2/Lab" instance=ExtResource("9_u8226")]
 position = Vector2(68, 568)
 
@@ -830,9 +841,6 @@ collision_mask = 4
 [node name="SouthZone" parent="Layer2/Lab/Rollover2" index="2"]
 collision_mask = 4
 
-[node name="AudioStreamPlayer" parent="Layer2/Lab/Rollover2" index="5"]
-bus = &"Master"
-
 [node name="Rollover3" parent="Layer2/Lab" instance=ExtResource("9_u8226")]
 position = Vector2(106, 582)
 
@@ -841,9 +849,6 @@ collision_mask = 4
 
 [node name="SouthZone" parent="Layer2/Lab/Rollover3" index="2"]
 collision_mask = 4
-
-[node name="AudioStreamPlayer" parent="Layer2/Lab/Rollover3" index="5"]
-bus = &"Master"
 
 [node name="Bumper1" parent="Layer2/Lab" instance=ExtResource("6_awf70")]
 position = Vector2(103, 646)
@@ -948,6 +953,8 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/MissionTargetGroup/RoundTarget1/ResetDelay" to="Layer1/MissionTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/MissionTargetGroup/RoundTarget2/ResetDelay" to="Layer1/MissionTargetGroup/RoundTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/MissionTargetGroup/RoundTarget3/ResetDelay" to="Layer1/MissionTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="body_entered" from="Layer1/TopRollover" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
+[connection signal="body_entered" from="Layer1/TopRollover" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab" method="SetAllOff"]
 [connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
@@ -989,6 +996,8 @@ collision_mask = 4
 [editable path="Layer1/Modes/TunnelTargetGroup/DropTarget2"]
 [editable path="Layer1/Modes/TunnelTargetGroup/DropTarget3"]
 [editable path="Layer1/TunnelRoundTarget"]
+[editable path="Layer1/RightInLaneRollover"]
+[editable path="Layer1/LeftInLaneRollover"]
 [editable path="Layer1/LeftReturnLaneRollover"]
 [editable path="Layer1/UnderRampSpitter"]
 [editable path="Layer1/Tunnel"]

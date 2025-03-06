@@ -38,14 +38,13 @@ position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_flb67")
 
 [node name="Scorer" parent="." instance=ExtResource("2_6dibq")]
-Value = 20
+Value = 500
 
 [node name="OnOffLight" parent="." instance=ExtResource("3_43wvr")]
 position = Vector2(0, -25)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3evls")
-bus = &"BoardElements"
 
 [connection signal="Toggled" from="." to="Scorer" method="Score" unbinds=1]
 [connection signal="Toggled" from="." to="AudioStreamPlayer" method="play" unbinds=1]

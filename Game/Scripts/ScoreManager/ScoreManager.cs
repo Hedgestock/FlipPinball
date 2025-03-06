@@ -24,12 +24,16 @@ public partial class ScoreManager : Node
         ScoreValue = 0;
     }
 
-    public static int Score(int baseScore)
-    {
-        int adjustedScore = baseScore;
-        ScoreValue += adjustedScore;
-        _instance.EmitSignal(SignalName.Scoring, ScoreValue, adjustedScore);
-        return adjustedScore;
+    public static int FieldMultiplier = 1;
 
+    public static int FieldScore(int score)
+    {
+        return Score(score * FieldMultiplier);
+    }
+
+    public static int Score(int score)
+    {
+        _instance.EmitSignal(SignalName.Scoring, ScoreValue, score);
+        return score;
     }
 }

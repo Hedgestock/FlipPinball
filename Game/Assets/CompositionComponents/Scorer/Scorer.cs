@@ -36,7 +36,7 @@ public partial class Scorer : Node2D
     private void Score(int multiplier)
     {
         ScoreBubble bubble = ScoreBubbleScene.Instantiate<ScoreBubble>();
-        bubble.Text = ScoreManager.Score(Value * multiplier).ToString("+0;-#");
+        bubble.Text = ScoreManager.FieldScore(Value * multiplier).ToString("+0;-#");
         AddChild(bubble);
     }
 }

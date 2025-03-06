@@ -45,7 +45,7 @@ stream = ExtResource("2_ji2d3")
 bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("3_54quy")]
-Strength = 1500
+Strength = 2000
 
 [connection signal="KickingBall" from="." to="Pusher" method="Push"]
 [connection signal="KickingBall" from="." to="OnOffLight" method="TurnOff" unbinds=2]
