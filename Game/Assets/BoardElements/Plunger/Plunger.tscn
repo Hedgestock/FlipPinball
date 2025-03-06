@@ -53,6 +53,8 @@ shape = SubResource("RectangleShape2D_ahhcf")
 
 [node name="Release" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_a28wm")
+bus = &"BoardElements"
 
 [node name="WindUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_mxsw7")
+bus = &"BoardElements"

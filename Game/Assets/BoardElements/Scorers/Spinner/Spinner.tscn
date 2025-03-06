@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://clvc7nom5cigw"]
+
+[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.cs" id="1_p8fa6"]
+[ext_resource type="AudioStream" uid="uid://da0ppe1ufp02w" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.wav" id="3_0t70i"]
+[ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_3mptj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioksq"]
+size = Vector2(60, 20)
+
+[node name="Spinner" type="Node2D"]
+script = ExtResource("1_p8fa6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ioksq")
+
+[node name="Scorer" parent="." instance=ExtResource("3_3mptj")]
+Value = 10
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0t70i")
+bus = &"BoardElements"
+
+[connection signal="CompleteRotation" from="." to="Scorer" method="Score"]
+[connection signal="CompleteRotation" from="." to="AudioStreamPlayer" method="play"]
+[connection signal="body_entered" from="Area2D" to="." method="OnSpinnerBodyEnter"]

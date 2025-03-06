@@ -6,7 +6,7 @@
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_egv42")
-TriggerSpeed = 20
+TriggerSpeed = 150
 HitsOverheat = 10
 MSToOverheat = 1200
 OverheatDuration = 1.0

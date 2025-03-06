@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\assets\\ball\\ball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\assets\\ball\\ball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\scenes\\boards\\testlab\\boardelements\\tunnel\\tunnel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\scenes\\boards\\testlab\\boardelements\\tunnel\\tunnel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\assets\\boardelements\\scorer\\collidable\\hitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\assets\\boardelements\\scorer\\collidable\\hitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\assets\\compositioncomponents\\onofflight\\onofflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\assets\\compositioncomponents\\onofflight\\onofflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\assets\\boardelements\\scorer\\collidable\\slingshot\\slingshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\assets\\boardelements\\scorer\\collidable\\slingshot\\slingshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\assets\\compositioncomponents\\leveler\\leveler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\assets\\compositioncomponents\\leveler\\leveler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\scenes\\boards\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\scenes\\boards\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\scenes\\boards\\testlab\\testlab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\scenes\\boards\\testlab\\testlab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\assets\\boardelements\\scorer\\rolloverswitch\\rolloverswitchgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\assets\\boardelements\\scorer\\rolloverswitch\\rolloverswitchgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|c:\\users\\hedgestock\\documents\\git\\flippinball\\game\\assets\\boardelements\\scorers\\collidables\\target\\targetgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D007E9C-3571-4DAE-9A0D-956B64E5DA88}|FlipPinball.csproj|solutionrelative:game\\assets\\boardelements\\scorers\\collidables\\target\\targetgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,83 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Ball.cs",
-              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\Ball\\Ball.cs",
-              "RelativeDocumentMoniker": "Game\\Assets\\Ball\\Ball.cs",
-              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\Ball\\Ball.cs",
-              "RelativeToolTip": "Game\\Assets\\Ball\\Ball.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBgAAAAJAAAA",
+              "DocumentIndex": 2,
+              "Title": "Leveler.cs",
+              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\CompositionComponents\\Leveler\\Leveler.cs",
+              "RelativeDocumentMoniker": "Game\\Assets\\CompositionComponents\\Leveler\\Leveler.cs",
+              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\CompositionComponents\\Leveler\\Leveler.cs",
+              "RelativeToolTip": "Game\\Assets\\CompositionComponents\\Leveler\\Leveler.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABwAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T03:54:20.046Z",
+              "WhenOpened": "2025-03-06T07:54:37.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Tunnel.cs",
+              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Scenes\\Boards\\TestLab\\BoardElements\\Tunnel\\Tunnel.cs",
+              "RelativeDocumentMoniker": "Game\\Scenes\\Boards\\TestLab\\BoardElements\\Tunnel\\Tunnel.cs",
+              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Scenes\\Boards\\TestLab\\BoardElements\\Tunnel\\Tunnel.cs",
+              "RelativeToolTip": "Game\\Scenes\\Boards\\TestLab\\BoardElements\\Tunnel\\Tunnel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T07:52:34.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Hitbox.cs",
-              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorer\\Collidable\\Hitbox.cs",
-              "RelativeDocumentMoniker": "Game\\Assets\\BoardElements\\Scorer\\Collidable\\Hitbox.cs",
-              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorer\\Collidable\\Hitbox.cs",
-              "RelativeToolTip": "Game\\Assets\\BoardElements\\Scorer\\Collidable\\Hitbox.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Title": "OnOffLight.cs",
+              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\CompositionComponents\\OnOffLight\\OnOffLight.cs",
+              "RelativeDocumentMoniker": "Game\\Assets\\CompositionComponents\\OnOffLight\\OnOffLight.cs",
+              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\CompositionComponents\\OnOffLight\\OnOffLight.cs",
+              "RelativeToolTip": "Game\\Assets\\CompositionComponents\\OnOffLight\\OnOffLight.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAzwCUAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T03:54:02.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Slingshot.cs",
-              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorer\\Collidable\\Slingshot\\Slingshot.cs",
-              "RelativeDocumentMoniker": "Game\\Assets\\BoardElements\\Scorer\\Collidable\\Slingshot\\Slingshot.cs",
-              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorer\\Collidable\\Slingshot\\Slingshot.cs",
-              "RelativeToolTip": "Game\\Assets\\BoardElements\\Scorer\\Collidable\\Slingshot\\Slingshot.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T03:51:38.76Z",
+              "WhenOpened": "2025-03-06T07:51:48.379Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Board.cs",
-              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Scenes\\Boards\\Board.cs",
-              "RelativeDocumentMoniker": "Game\\Scenes\\Boards\\Board.cs",
-              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Scenes\\Boards\\Board.cs",
-              "RelativeToolTip": "Game\\Scenes\\Boards\\Board.cs",
-              "ViewState": "AQIAAGwAAAAAAAAAAAAswH4AAABcAAAA",
+              "Title": "TargetGroup.cs",
+              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorers\\Collidables\\Target\\TargetGroup.cs",
+              "RelativeDocumentMoniker": "Game\\Assets\\BoardElements\\Scorers\\Collidables\\Target\\TargetGroup.cs",
+              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorers\\Collidables\\Target\\TargetGroup.cs",
+              "RelativeToolTip": "Game\\Assets\\BoardElements\\Scorers\\Collidables\\Target\\TargetGroup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T05:10:19.638Z",
+              "WhenOpened": "2025-03-06T07:39:18.897Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TestLab.cs",
-              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Scenes\\Boards\\TestLab\\TestLab.cs",
-              "RelativeDocumentMoniker": "Game\\Scenes\\Boards\\TestLab\\TestLab.cs",
-              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Scenes\\Boards\\TestLab\\TestLab.cs",
-              "RelativeToolTip": "Game\\Scenes\\Boards\\TestLab\\TestLab.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T05:06:03.408Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RolloverSwitchGroup.cs",
-              "DocumentMoniker": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorer\\RolloverSwitch\\RolloverSwitchGroup.cs",
-              "RelativeDocumentMoniker": "Game\\Assets\\BoardElements\\Scorer\\RolloverSwitch\\RolloverSwitchGroup.cs",
-              "ToolTip": "C:\\Users\\Hedgestock\\Documents\\Git\\FlipPinball\\Game\\Assets\\BoardElements\\Scorer\\RolloverSwitch\\RolloverSwitchGroup.cs",
-              "RelativeToolTip": "Game\\Assets\\BoardElements\\Scorer\\RolloverSwitch\\RolloverSwitchGroup.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBoAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T05:02:26.127Z"
             }
           ]
         }

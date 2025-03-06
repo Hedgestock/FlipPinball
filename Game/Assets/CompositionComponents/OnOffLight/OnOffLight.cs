@@ -25,9 +25,10 @@ public partial class OnOffLight : Sprite2D
         get { return _isOn; }
         set
         {
-            _isOn = value;
             if (value) Texture = On;
             else Texture = Off;
+            if (_isOn == value) return;
+            _isOn = value;
             EmitSignal(SignalName.Toggled, value);
         }
     }

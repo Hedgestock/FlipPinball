@@ -50,7 +50,6 @@ public partial class LayerChange : Node2D
         {
             ball.SetCollisionLayerValue(layer, active);
             ball.SetCollisionMaskValue(layer, active);
-            GD.Print(ball.CollisionLayer);
         }
     }
 }

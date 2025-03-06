@@ -27,7 +27,6 @@ public partial class Ball : RigidBody2D
         {
             LastCollisionNormal = collisionInfo.GetNormal();
         }
-        //GD.Print(LinearVelocity);
         Vector2[] tmp = new Vector2[Trail.Points.Length];
         tmp[0] = Vector2.Zero;
         for (int i = 1; i < Trail.Points.Length; i++)

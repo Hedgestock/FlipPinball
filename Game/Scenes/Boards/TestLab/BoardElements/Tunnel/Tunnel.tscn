@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c08sduvfpdlky"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/BoardElements/Tunnel/Tunnel.cs" id="1_686j3"]
+[ext_resource type="PackedScene" uid="uid://0vf85v2k3lmd" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.tscn" id="2_1tbbw"]
+[ext_resource type="PackedScene" uid="uid://c6lxuqoyg1314" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.tscn" id="2_sbgmd"]
+[ext_resource type="AudioStream" uid="uid://cyphfp7ph37j6" path="res://Game/Scenes/Boards/TestLab/BoardElements/Tunnel/TunnelUp.wav" id="4_qhki4"]
+
+[node name="Tunnel" type="Node2D" node_paths=PackedStringArray("Leveler")]
+script = ExtResource("1_686j3")
+Leveler = NodePath("Leveler")
+
+[node name="TunnelSpitter" parent="." instance=ExtResource("2_sbgmd")]
+Strength = 1500
+
+[node name="RayCast2D" parent="TunnelSpitter" index="1"]
+target_position = Vector2(22, 18)
+
+[node name="SpitDelay" parent="TunnelSpitter" index="2"]
+wait_time = 2.0
+
+[node name="Leveler" parent="." instance=ExtResource("2_1tbbw")]
+
+[node name="AudioStreamPlayer" parent="Leveler" index="0"]
+stream = ExtResource("4_qhki4")
+
+[editable path="TunnelSpitter"]
+[editable path="Leveler"]
