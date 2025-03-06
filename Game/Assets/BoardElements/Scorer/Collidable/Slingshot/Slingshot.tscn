@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://tm0n8wum3wb6"]
+[gd_scene load_steps=7 format=3 uid="uid://tm0n8wum3wb6"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.cs" id="1_lrqkg"]
-[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/BoardElements/Scorer/Collidable/Hitbox.tscn" id="2_2pgt5"]
+[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.tscn" id="2_2pgt5"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_dtu0p"]
 [ext_resource type="AudioStream" uid="uid://dodqps03wacfl" path="res://Game/Assets/BoardElements/Scorer/Collidable/Slingshot/Slingshot.wav" id="4_isjs3"]
+[ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="5_q8d7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3ii1"]
 size = Vector2(130, 10)
 
-[node name="Slingshot" type="Node2D" node_paths=PackedStringArray("Hitbox") groups=["Slingshots"]]
+[node name="Slingshot" type="Node2D" groups=["Slingshots"]]
 script = ExtResource("1_lrqkg")
-Hitbox = NodePath("Hitbox")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_2pgt5")]
 
@@ -22,6 +22,8 @@ shape = SubResource("RectangleShape2D_x3ii1")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_isjs3")
 
-[connection signal="Hit" from="Hitbox" to="." method="BumpBall"]
-[connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=1]
-[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=1]
+[node name="Pusher" parent="." instance=ExtResource("5_q8d7r")]
+
+[connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
+[connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]

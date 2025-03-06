@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxgbd1q0e6fpk"]
+[gd_scene load_steps=6 format=3 uid="uid://bxgbd1q0e6fpk"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/KickBack/KickBack.cs" id="1_2hlfo"]
 [ext_resource type="AudioStream" uid="uid://cj07vcni84f8p" path="res://Game/Assets/BoardElements/KickBack/Collision.wav" id="2_ji2d3"]
+[ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="3_54quy"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0c4mb"]
 b = Vector2(50, 0)
@@ -39,7 +40,11 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ji2d3")
 
-[connection signal="KickingBall" from="." to="AudioStreamPlayer" method="play" unbinds=1]
+[node name="Pusher" parent="." instance=ExtResource("3_54quy")]
+Strength = 2000
+
+[connection signal="KickingBall" from="." to="Pusher" method="Push"]
+[connection signal="KickingBall" from="." to="AudioStreamPlayer" method="play" unbinds=2]
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
 [connection signal="timeout" from="Timer" to="." method="KickBall"]
 [connection signal="timeout" from="Timer" to="AudioStreamPlayer" method="play"]

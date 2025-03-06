@@ -4,13 +4,10 @@ using System.Collections.Generic;
 public partial class Bumper : Node2D
 {
     [Signal]
-    public delegate void BumpEventHandler(int level);
+    public delegate void BumpingEventHandler(int level);
 
     [Export]
     Sprite2D Sprite;
-
-    [Export]
-    uint Strength = 1000;
 
     int Level = 1;
 
@@ -42,12 +39,8 @@ public partial class Bumper : Node2D
         return true;
     }
 
-    void BumpBall(Ball ball)
+    void Bump()
     {
-        Vector2 direction = (ball.GlobalPosition - this.GlobalPosition).Normalized();
-
-        ball.LinearVelocity += direction * Strength;
-
         Tween tween = GetTree().CreateTween();
         tween.TweenProperty(Sprite, "scale", Vector2.One * 1.2f, .05)
             .SetEase(Tween.EaseType.Out)
@@ -56,6 +49,6 @@ public partial class Bumper : Node2D
            .SetEase(Tween.EaseType.In)
            .SetTrans(Tween.TransitionType.Elastic);
 
-        EmitSignal(SignalName.Bump, Level);
+        EmitSignal(SignalName.Bumping, Level);
     }
 }

@@ -1,18 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8083u3uwi53p"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Target/Target.cs" id="1_lrac0"]
-[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/BoardElements/Scorer/Collidable/Hitbox.tscn" id="2_8lukt"]
+[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.tscn" id="2_8lukt"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="3_avehg"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_f5lic"]
+[ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="5_s16b8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mlm1"]
 radius = 3.0
 height = 20.0
 
-[node name="Target" type="Node2D" node_paths=PackedStringArray("Hitbox", "ResetDelay") groups=["Targets"]]
-script = ExtResource("1_lrac0")
-Hitbox = NodePath("Hitbox")
-ResetDelay = NodePath("Timer")
+[node name="Target" type="Node2D" groups=["Targets"]]
 
 [node name="Hitbox" parent="." instance=ExtResource("2_8lukt")]
 TriggerSpeed = 0
@@ -29,15 +26,19 @@ position = Vector2(0, 15)
 [node name="Scorer" parent="." instance=ExtResource("3_f5lic")]
 Value = 50
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ResetDelay" type="Timer" parent="."]
 wait_time = 45.0
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[connection signal="Hit" from="Hitbox" to="." method="BumpBall"]
-[connection signal="Hit" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOff" unbinds=1]
-[connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=1]
-[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=1]
+[node name="Pusher" parent="." instance=ExtResource("5_s16b8")]
+Strength = 500
+
+[connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
+[connection signal="Hit" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOff" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="ResetDelay" method="start" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]
 [connection signal="Toggled" from="Hitbox/OnOffLight" to="Hitbox" method="Activate"]
-[connection signal="timeout" from="Timer" to="Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="timeout" from="ResetDelay" to="Hitbox/OnOffLight" method="TurnOn"]

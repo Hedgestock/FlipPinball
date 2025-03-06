@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DropTarget : Target
+public partial class DropTarget : Node2D
 {
     //protected override void SetOnValue(bool value)
     //{

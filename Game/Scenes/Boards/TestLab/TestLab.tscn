@@ -296,7 +296,6 @@ polygon = PackedVector2Array(-22, 9, -20, -10, 23, -10, 23, 34, 13, 34, 13, 9)
 
 [node name="UnderRampSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(162, 417)
-Strength = 700
 
 [node name="Hitbox" parent="Layer1/UnderRampSlingshot" index="0"]
 rotation = 0.471239
@@ -306,7 +305,6 @@ shape = SubResource("RectangleShape2D_7ub0f")
 
 [node name="TunnelSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(434, 388)
-Strength = 700
 
 [node name="Hitbox" parent="Layer1/TunnelSlingshot" index="0"]
 rotation = -1.13446
@@ -726,7 +724,6 @@ LevelUpSFX = ExtResource("11_nbq5k")
 [node name="Bumper1" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(31, 5)
 scale = Vector2(0.8, 0.8)
-Strength = 500
 
 [node name="Hitbox" parent="Layer2/LabBumpers/Bumper1" index="0"]
 collision_layer = 4
@@ -736,7 +733,6 @@ MSToOverheat = 2000
 [node name="Bumper2" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-44, -8)
 scale = Vector2(0.8, 0.8)
-Strength = 500
 
 [node name="Hitbox" parent="Layer2/LabBumpers/Bumper2" index="0"]
 collision_layer = 4
@@ -746,7 +742,6 @@ MSToOverheat = 2000
 [node name="Bumper3" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-15, 42)
 scale = Vector2(0.8, 0.8)
-Strength = 500
 
 [node name="Hitbox" parent="Layer2/LabBumpers/Bumper3" index="0"]
 scale = Vector2(0.9, 0.9)
@@ -761,35 +756,13 @@ position = Vector2(87, 793)
 collision_mask = 4
 
 [connection signal="body_entered" from="Boundaries" to="." method="OnEnterDrain" binds= [true]]
-[connection signal="KickingBall" from="Layer1/RightKickBack" to="Layer1/ExceptionGate" method="AddException"]
+[connection signal="KickingBall" from="Layer1/RightKickBack" to="Layer1/ExceptionGate" method="AddException" unbinds=1]
 [connection signal="SpittingBall" from="Layer1/PlungerSpitter" to="Layer1/ExceptionGate" method="RemoveException"]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="OnEnterDrain" binds= [false]]
 [connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryBumpers" method="LevelUp"]
 [connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryRollovers/Rollover1" method="Toggle"]
 [connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryRollovers/Rollover2" method="Toggle"]
 [connection signal="AllOn" from="Layer1/EntryRollovers" to="Layer1/EntryRollovers/Rollover3" method="Toggle"]
-[connection signal="Hit" from="Layer1/LeftTargetGroup/RoundTarget1/Hitbox" to="Layer1/LeftTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/LeftTargetGroup/RoundTarget2/Hitbox" to="Layer1/LeftTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/LeftTargetGroup/RoundTarget3/Hitbox" to="Layer1/LeftTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/RightTargetGroup/RoundTarget1/Hitbox" to="Layer1/RightTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/RightTargetGroup/RoundTarget2/Hitbox" to="Layer1/RightTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/RightTargetGroup/RoundTarget3/Hitbox" to="Layer1/RightTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TopBumperTargetGroup/RoundTarget1/Hitbox" to="Layer1/TopBumperTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TopBumperTargetGroup/RoundTarget2/Hitbox" to="Layer1/TopBumperTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TopBumperTargetGroup/RoundTarget3/Hitbox" to="Layer1/TopBumperTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TopTargetGroup/DropTarget1/Hitbox" to="Layer1/TopTargetGroup/DropTarget1/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TopTargetGroup/DropTarget2/Hitbox" to="Layer1/TopTargetGroup/DropTarget2/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TopTargetGroup/DropTarget3/Hitbox" to="Layer1/TopTargetGroup/DropTarget3/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/BottomTargetGroup/DropTarget1/Hitbox" to="Layer1/BottomTargetGroup/DropTarget1/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/BottomTargetGroup/DropTarget2/Hitbox" to="Layer1/BottomTargetGroup/DropTarget2/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/BottomTargetGroup/DropTarget3/Hitbox" to="Layer1/BottomTargetGroup/DropTarget3/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TunnelTargetGroup/DropTarget1/Hitbox" to="Layer1/TunnelTargetGroup/DropTarget1/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TunnelTargetGroup/DropTarget2/Hitbox" to="Layer1/TunnelTargetGroup/DropTarget2/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TunnelTargetGroup/DropTarget3/Hitbox" to="Layer1/TunnelTargetGroup/DropTarget3/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/TunnelRoundTarget/Hitbox" to="Layer1/TunnelRoundTarget/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/MissionTargetGroup/RoundTarget1/Hitbox" to="Layer1/MissionTargetGroup/RoundTarget1/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/MissionTargetGroup/RoundTarget2/Hitbox" to="Layer1/MissionTargetGroup/RoundTarget2/Timer" method="start" unbinds=1]
-[connection signal="Hit" from="Layer1/MissionTargetGroup/RoundTarget3/Hitbox" to="Layer1/MissionTargetGroup/RoundTarget3/Timer" method="start" unbinds=1]
 [connection signal="AllOn" from="Layer2/LabRollovers" to="Layer2/LabRollovers/Rollover1" method="Toggle"]
 [connection signal="AllOn" from="Layer2/LabRollovers" to="Layer2/LabRollovers/Rollover2" method="Toggle"]
 [connection signal="AllOn" from="Layer2/LabRollovers" to="Layer2/LabRollovers/Rollover3" method="Toggle"]

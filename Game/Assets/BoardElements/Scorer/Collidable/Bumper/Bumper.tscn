@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckk4x5dhl1c0w"]
+[gd_scene load_steps=9 format=3 uid="uid://ckk4x5dhl1c0w"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.cs" id="1_euw7q"]
-[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/BoardElements/Scorer/Collidable/Hitbox.tscn" id="2_f5amf"]
+[ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.tscn" id="2_f5amf"]
 [ext_resource type="Texture2D" uid="uid://dblu7c57f74om" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.png" id="2_lf46c"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_6ygmk"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="4_1k431"]
 [ext_resource type="AudioStream" uid="uid://c78sjolqfakrn" path="res://Game/Assets/BoardElements/Scorer/Collidable/Bumper/Bumper.wav" id="4_svyrr"]
+[ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="7_i7vyf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qmtc5"]
 radius = 20.0
@@ -29,8 +30,11 @@ shape = SubResource("CircleShape2D_qmtc5")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_svyrr")
 
-[connection signal="Bump" from="." to="Scorer" method="Score"]
-[connection signal="Hit" from="Hitbox" to="." method="BumpBall"]
-[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=1]
+[node name="Pusher" parent="." instance=ExtResource("7_i7vyf")]
+
+[connection signal="Bumping" from="." to="Scorer" method="Score"]
+[connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
+[connection signal="Hit" from="Hitbox" to="." method="Bump" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]
 [connection signal="Overheat" from="Hitbox" to="OnOffLight" method="TurnOff"]
 [connection signal="OverheatEnd" from="Hitbox" to="OnOffLight" method="TurnOn"]
