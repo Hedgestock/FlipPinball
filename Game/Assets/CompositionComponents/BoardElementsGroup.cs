@@ -37,7 +37,7 @@ public partial class BoardElementsGroup : Node
         }
     }
 
-    private void CheckGroupStatus()
+    void CheckGroupStatus()
     {
         bool firstStatus = (Nodes[0].FindChild("OnOffLight") as OnOffLight).IsOn;
         foreach (var node in Nodes)
@@ -47,5 +47,17 @@ public partial class BoardElementsGroup : Node
             EmitSignal(SignalName.AllOn);
         else
             EmitSignal(SignalName.AllOff);
+    }
+
+    void SetAllOn()
+    {
+        foreach (var node in Nodes)
+            (node.FindChild("OnOffLight") as OnOffLight).TurnOn();
+    }
+
+    void SetAllOff()
+    {
+        foreach (var node in Nodes)
+            (node.FindChild("OnOffLight") as OnOffLight).TurnOff();
     }
 }

@@ -25,4 +25,4 @@ shape = SubResource("RectangleShape2D_jxtee")
 stream = ExtResource("3_7nryl")
 
 [node name="Pusher" parent="." index="4"]
-script = null
+Strength = 250

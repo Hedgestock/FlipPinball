@@ -13,6 +13,7 @@ height = 20.0
 
 [node name="Hitbox" parent="." instance=ExtResource("2_8lukt")]
 TriggerSpeed = 25
+ReverseActivity = true
 
 [node name="OnOffLight" parent="Hitbox" instance=ExtResource("3_avehg")]
 position = Vector2(0, 15)
@@ -29,7 +30,6 @@ wait_time = 45.0
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("5_s16b8")]
 Strength = 500

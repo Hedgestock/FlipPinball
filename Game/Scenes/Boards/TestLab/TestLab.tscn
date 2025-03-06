@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=53 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="PackedScene" uid="uid://dr0mugi8okm00" path="res://Game/Assets/Ball/Ball.tscn" id="2_qvs32"]
@@ -20,9 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://dxi7chpix50wp" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.tscn" id="15_8n0qj"]
 [ext_resource type="PackedScene" uid="uid://rbcr7e4wg3cr" path="res://Game/Assets/BoardElements/LayerDrop/LayerDrop.tscn" id="15_uh8xy"]
 [ext_resource type="PackedScene" uid="uid://dwc6ituqxs0yg" path="res://Game/Assets/BoardElements/Magnet/Magnet.tscn" id="16_2wkew"]
-[ext_resource type="PackedScene" uid="uid://0vf85v2k3lmd" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.tscn" id="17_xm6kj"]
 [ext_resource type="Script" path="res://Game/Assets/CompositionComponents/BoardElementsGroup.cs" id="18_pasr8"]
-[ext_resource type="PackedScene" uid="uid://c08sduvfpdlky" path="res://Game/Assets/CompositionComponents/DecayingLightsHandler/DecayingLightsHandler.tscn" id="19_8g6kt"]
+[ext_resource type="PackedScene" uid="uid://c08sduvfpdlky" path="res://Game/Assets/CompositionComponents/Leveler/DecayingLeveler.tscn" id="19_8g6kt"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="21_63yue"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
@@ -303,6 +302,9 @@ rotation = 0.471239
 [node name="CollisionShape2D" parent="Layer1/UnderRampSlingshot/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_7ub0f")
 
+[node name="AudioStreamPlayer" parent="Layer1/UnderRampSlingshot" index="2"]
+bus = &"Master"
+
 [node name="TunnelSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(434, 388)
 
@@ -311,6 +313,9 @@ rotation = -1.13446
 
 [node name="CollisionShape2D" parent="Layer1/TunnelSlingshot/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_yy6bf")
+
+[node name="AudioStreamPlayer" parent="Layer1/TunnelSlingshot" index="2"]
+bus = &"Master"
 
 [node name="Plunger" parent="Layer1" instance=ExtResource("4_6e6jg")]
 position = Vector2(562, 936)
@@ -366,6 +371,12 @@ Strength = 1500
 [node name="RayCast2D" parent="Layer1/PlungerSpitter" index="1"]
 target_position = Vector2(8, -55)
 
+[node name="SpitterInSoundPlayer" parent="Layer1/PlungerSpitter" index="3"]
+bus = &"Master"
+
+[node name="SpitterOutSoundPlayer" parent="Layer1/PlungerSpitter" index="4"]
+bus = &"Master"
+
 [node name="Drain" type="Area2D" parent="Layer1"]
 position = Vector2(308, 1072)
 collision_layer = 255
@@ -382,26 +393,17 @@ position = Vector2(55, 113)
 [node name="Hitbox" parent="Layer1/BumperTopTargetGroup/RoundTarget1" index="0"]
 rotation = -1.6055
 
-[node name="AudioStreamPlayer" parent="Layer1/BumperTopTargetGroup/RoundTarget1" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget2" parent="Layer1/BumperTopTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(91, 58)
 
 [node name="Hitbox" parent="Layer1/BumperTopTargetGroup/RoundTarget2" index="0"]
 rotation = -0.383126
 
-[node name="AudioStreamPlayer" parent="Layer1/BumperTopTargetGroup/RoundTarget2" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget3" parent="Layer1/BumperTopTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(156, 72)
 
 [node name="Hitbox" parent="Layer1/BumperTopTargetGroup/RoundTarget3" index="0"]
 rotation = 0.79256
-
-[node name="AudioStreamPlayer" parent="Layer1/BumperTopTargetGroup/RoundTarget3" index="3"]
-bus = &"Master"
 
 [node name="BumperTop" parent="Layer1" instance=ExtResource("6_awf70")]
 position = Vector2(113, 112)
@@ -412,11 +414,17 @@ position = Vector2(188, 835)
 [node name="Hitbox" parent="Layer1/LeftSlingshot" index="0"]
 rotation = 1.20428
 
+[node name="AudioStreamPlayer" parent="Layer1/LeftSlingshot" index="2"]
+bus = &"Master"
+
 [node name="RightSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(426, 835)
 
 [node name="Hitbox" parent="Layer1/RightSlingshot" index="0"]
 rotation = -1.20428
+
+[node name="AudioStreamPlayer" parent="Layer1/RightSlingshot" index="2"]
+bus = &"Master"
 
 [node name="Entry" type="Node" parent="Layer1"]
 script = ExtResource("18_pasr8")
@@ -440,7 +448,7 @@ position = Vector2(266, 285)
 [node name="Bumper3" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
 position = Vector2(307.04, 385.234)
 
-[node name="Leveler" parent="Layer1/Entry" instance=ExtResource("17_xm6kj")]
+[node name="DecayingLeveler" parent="Layer1/Entry" instance=ExtResource("19_8g6kt")]
 
 [node name="LeftTargetGroup" type="Node" parent="Layer1"]
 script = ExtResource("18_pasr8")
@@ -453,9 +461,6 @@ position = Vector2(101, 370)
 rotation = -1.8719
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/LeftTargetGroup/RoundTarget1" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget2" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(97, 345)
 
@@ -463,18 +468,12 @@ position = Vector2(97, 345)
 rotation = 4.62974
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/LeftTargetGroup/RoundTarget2" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget3" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(98, 319)
 
 [node name="Hitbox" parent="Layer1/LeftTargetGroup/RoundTarget3" index="0"]
 rotation = -1.46875
 TriggerSpeed = 0
-
-[node name="AudioStreamPlayer" parent="Layer1/LeftTargetGroup/RoundTarget3" index="3"]
-bus = &"Master"
 
 [node name="LeftKickBack" parent="Layer1" instance=ExtResource("5_cw1tt")]
 position = Vector2(49, 936)
@@ -485,6 +484,9 @@ rotation = 0.643096
 
 [node name="OnOffLight" parent="Layer1/LeftKickBack" index="2"]
 position = Vector2(7, -67)
+
+[node name="AudioStreamPlayer" parent="Layer1/LeftKickBack" index="4"]
+bus = &"Master"
 
 [node name="RightTargetGroup" type="Node" parent="Layer1"]
 script = ExtResource("18_pasr8")
@@ -497,9 +499,6 @@ position = Vector2(434, 261)
 rotation = 1.16211
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/RightTargetGroup/RoundTarget1" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget2" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(444, 285)
 
@@ -507,18 +506,12 @@ position = Vector2(444, 285)
 rotation = 1.31917
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/RightTargetGroup/RoundTarget2" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget3" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(447, 310)
 
 [node name="Hitbox" parent="Layer1/RightTargetGroup/RoundTarget3" index="0"]
 rotation = 1.47486
 TriggerSpeed = 0
-
-[node name="AudioStreamPlayer" parent="Layer1/RightTargetGroup/RoundTarget3" index="3"]
-bus = &"Master"
 
 [node name="RightKickBack" parent="Layer1" instance=ExtResource("5_cw1tt")]
 position = Vector2(515, 936)
@@ -529,6 +522,9 @@ rotation = -0.661365
 [node name="OnOffLight" parent="Layer1/RightKickBack" index="2"]
 position = Vector2(-4, -30)
 
+[node name="AudioStreamPlayer" parent="Layer1/RightKickBack" index="4"]
+bus = &"Master"
+
 [node name="TopTargetGroup" type="Node" parent="Layer1"]
 
 [node name="DropTarget1" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
@@ -538,18 +534,12 @@ position = Vector2(204, 214)
 rotation = -0.570422
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/TopTargetGroup/DropTarget1" index="3"]
-bus = &"Master"
-
 [node name="DropTarget2" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(223, 202)
 
 [node name="Hitbox" parent="Layer1/TopTargetGroup/DropTarget2" index="0"]
 rotation = -0.570422
 TriggerSpeed = 0
-
-[node name="AudioStreamPlayer" parent="Layer1/TopTargetGroup/DropTarget2" index="3"]
-bus = &"Master"
 
 [node name="DropTarget3" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(242, 190)
@@ -561,9 +551,6 @@ TriggerSpeed = 0
 [node name="OnOffLight" parent="Layer1/TopTargetGroup/DropTarget3/Hitbox" index="0"]
 scale = Vector2(1.00965, 1.00357)
 
-[node name="AudioStreamPlayer" parent="Layer1/TopTargetGroup/DropTarget3" index="3"]
-bus = &"Master"
-
 [node name="BottomTargetGroup" type="Node" parent="Layer1"]
 
 [node name="DropTarget1" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
@@ -573,18 +560,12 @@ position = Vector2(274, 411)
 rotation = 0.338306
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/BottomTargetGroup/DropTarget1" index="3"]
-bus = &"Master"
-
 [node name="DropTarget2" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(296, 419)
 
 [node name="Hitbox" parent="Layer1/BottomTargetGroup/DropTarget2" index="0"]
 rotation = 0.338306
 TriggerSpeed = 0
-
-[node name="AudioStreamPlayer" parent="Layer1/BottomTargetGroup/DropTarget2" index="3"]
-bus = &"Master"
 
 [node name="DropTarget3" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(318, 427)
@@ -593,12 +574,11 @@ position = Vector2(318, 427)
 rotation = 0.338306
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/BottomTargetGroup/DropTarget3" index="3"]
-bus = &"Master"
-
 [node name="Spinners" parent="Layer1" instance=ExtResource("19_8g6kt")]
 
 [node name="TunnelTargetGroup" type="Node" parent="Layer1/Spinners"]
+script = ExtResource("18_pasr8")
+Group = "Targets"
 
 [node name="DropTarget1" parent="Layer1/Spinners/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(457, 553)
@@ -607,18 +587,12 @@ position = Vector2(457, 553)
 rotation = 1.5708
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/Spinners/TunnelTargetGroup/DropTarget1" index="3"]
-bus = &"Master"
-
 [node name="DropTarget2" parent="Layer1/Spinners/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(457, 578)
 
 [node name="Hitbox" parent="Layer1/Spinners/TunnelTargetGroup/DropTarget2" index="0"]
 rotation = 1.5708
 TriggerSpeed = 0
-
-[node name="AudioStreamPlayer" parent="Layer1/Spinners/TunnelTargetGroup/DropTarget2" index="3"]
-bus = &"Master"
 
 [node name="DropTarget3" parent="Layer1/Spinners/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(457, 603)
@@ -627,17 +601,20 @@ position = Vector2(457, 603)
 rotation = 1.5708
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/Spinners/TunnelTargetGroup/DropTarget3" index="3"]
-bus = &"Master"
-
 [node name="TunnelSpinner" parent="Layer1/Spinners" instance=ExtResource("14_aoae7")]
 position = Vector2(471, 421)
 
 [node name="Area2D" parent="Layer1/Spinners/TunnelSpinner" index="0"]
 rotation = 0.436332
 
+[node name="AudioStreamPlayer" parent="Layer1/Spinners/TunnelSpinner" index="2"]
+bus = &"Master"
+
 [node name="LeftSpinner" parent="Layer1/Spinners" instance=ExtResource("14_aoae7")]
 position = Vector2(57, 338)
+
+[node name="AudioStreamPlayer" parent="Layer1/Spinners/LeftSpinner" index="2"]
+bus = &"Master"
 
 [node name="OnOffLight1" parent="Layer1/Spinners" instance=ExtResource("21_63yue")]
 position = Vector2(434, 629)
@@ -658,9 +635,6 @@ position = Vector2(421, 426)
 rotation = 0.580763
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/TunnelRoundTarget" index="3"]
-bus = &"Master"
-
 [node name="RightOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(512, 821)
 
@@ -673,6 +647,9 @@ position = Vector2(139, 820)
 [node name="LeftReturnLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(98, 820)
 
+[node name="AudioStreamPlayer" parent="Layer1/LeftReturnLaneRollover" index="5"]
+bus = &"Master"
+
 [node name="LeftOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(54, 820)
 
@@ -681,6 +658,12 @@ position = Vector2(180, 503)
 
 [node name="RayCast2D" parent="Layer1/UnderRampSpitter" index="1"]
 target_position = Vector2(15, -15)
+
+[node name="SpitterInSoundPlayer" parent="Layer1/UnderRampSpitter" index="3"]
+bus = &"Master"
+
+[node name="SpitterOutSoundPlayer" parent="Layer1/UnderRampSpitter" index="4"]
+bus = &"Master"
 
 [node name="Tunnel" parent="Layer1" instance=ExtResource("19_8g6kt")]
 
@@ -693,6 +676,12 @@ target_position = Vector2(22, 18)
 
 [node name="SpitDelay" parent="Layer1/Tunnel/TunnelSpitter" index="2"]
 wait_time = 2.0
+
+[node name="SpitterInSoundPlayer" parent="Layer1/Tunnel/TunnelSpitter" index="3"]
+bus = &"Master"
+
+[node name="SpitterOutSoundPlayer" parent="Layer1/Tunnel/TunnelSpitter" index="4"]
+bus = &"Master"
 
 [node name="OnOffLight1" parent="Layer1/Tunnel" instance=ExtResource("21_63yue")]
 position = Vector2(521, 383)
@@ -715,11 +704,23 @@ position = Vector2(480, 622)
 [node name="RayCast2D" parent="Layer1/BottomTeleport" index="1"]
 target_position = Vector2(-20, 25)
 
+[node name="SpitterInSoundPlayer" parent="Layer1/BottomTeleport" index="3"]
+bus = &"Master"
+
+[node name="SpitterOutSoundPlayer" parent="Layer1/BottomTeleport" index="4"]
+bus = &"Master"
+
 [node name="MiddleTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(398, 195)
 
 [node name="RayCast2D" parent="Layer1/MiddleTeleport" index="1"]
 target_position = Vector2(-234, 222)
+
+[node name="SpitterInSoundPlayer" parent="Layer1/MiddleTeleport" index="3"]
+bus = &"Master"
+
+[node name="SpitterOutSoundPlayer" parent="Layer1/MiddleTeleport" index="4"]
+bus = &"Master"
 
 [node name="TopTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(204, 150)
@@ -727,6 +728,12 @@ Strength = 1500
 
 [node name="RayCast2D" parent="Layer1/TopTeleport" index="1"]
 target_position = Vector2(-71, -93)
+
+[node name="SpitterInSoundPlayer" parent="Layer1/TopTeleport" index="3"]
+bus = &"Master"
+
+[node name="SpitterOutSoundPlayer" parent="Layer1/TopTeleport" index="4"]
+bus = &"Master"
 
 [node name="MissionTargetGroup" type="Node" parent="Layer1"]
 
@@ -737,9 +744,6 @@ position = Vector2(136, 634)
 rotation = -1.5708
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/MissionTargetGroup/RoundTarget1" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget2" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(136, 659)
 
@@ -747,18 +751,12 @@ position = Vector2(136, 659)
 rotation = -1.5708
 TriggerSpeed = 0
 
-[node name="AudioStreamPlayer" parent="Layer1/MissionTargetGroup/RoundTarget2" index="3"]
-bus = &"Master"
-
 [node name="RoundTarget3" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(136, 684)
 
 [node name="Hitbox" parent="Layer1/MissionTargetGroup/RoundTarget3" index="0"]
 rotation = -1.5708
 TriggerSpeed = 0
-
-[node name="AudioStreamPlayer" parent="Layer1/MissionTargetGroup/RoundTarget3" index="3"]
-bus = &"Master"
 
 [node name="Rollover" parent="Layer1" instance=ExtResource("15_8n0qj")]
 position = Vector2(136, 258)
@@ -811,6 +809,9 @@ collision_mask = 4
 [node name="SouthZone" parent="Layer2/Lab/Rollover1" index="2"]
 collision_mask = 4
 
+[node name="AudioStreamPlayer" parent="Layer2/Lab/Rollover1" index="5"]
+bus = &"Master"
+
 [node name="Rollover2" parent="Layer2/Lab" instance=ExtResource("9_u8226")]
 position = Vector2(68, 568)
 
@@ -819,6 +820,9 @@ collision_mask = 4
 
 [node name="SouthZone" parent="Layer2/Lab/Rollover2" index="2"]
 collision_mask = 4
+
+[node name="AudioStreamPlayer" parent="Layer2/Lab/Rollover2" index="5"]
+bus = &"Master"
 
 [node name="Rollover3" parent="Layer2/Lab" instance=ExtResource("9_u8226")]
 position = Vector2(106, 582)
@@ -829,6 +833,9 @@ collision_mask = 4
 [node name="SouthZone" parent="Layer2/Lab/Rollover3" index="2"]
 collision_mask = 4
 
+[node name="AudioStreamPlayer" parent="Layer2/Lab/Rollover3" index="5"]
+bus = &"Master"
+
 [node name="Bumper1" parent="Layer2/Lab" instance=ExtResource("6_awf70")]
 position = Vector2(103, 646)
 scale = Vector2(0.8, 0.8)
@@ -837,6 +844,9 @@ scale = Vector2(0.8, 0.8)
 collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
+
+[node name="AudioStreamPlayer" parent="Layer2/Lab/Bumper1" index="3"]
+bus = &"Master"
 
 [node name="Pusher" parent="Layer2/Lab/Bumper1" index="4"]
 Strength = 500
@@ -849,6 +859,9 @@ scale = Vector2(0.8, 0.8)
 collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
+
+[node name="AudioStreamPlayer" parent="Layer2/Lab/Bumper2" index="3"]
+bus = &"Master"
 
 [node name="Pusher" parent="Layer2/Lab/Bumper2" index="4"]
 Strength = 500
@@ -863,10 +876,13 @@ collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
 
+[node name="AudioStreamPlayer" parent="Layer2/Lab/Bumper3" index="3"]
+bus = &"Master"
+
 [node name="Pusher" parent="Layer2/Lab/Bumper3" index="4"]
 Strength = 500
 
-[node name="Leveler" parent="Layer2/Lab" instance=ExtResource("17_xm6kj")]
+[node name="DecayingLeveler" parent="Layer2/Lab" instance=ExtResource("19_8g6kt")]
 
 [node name="LayerDrop" parent="Layer2" instance=ExtResource("15_uh8xy")]
 position = Vector2(87, 793)
@@ -880,18 +896,18 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/BumperTopTargetGroup/RoundTarget1/ResetDelay" to="Layer1/BumperTopTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BumperTopTargetGroup/RoundTarget2/ResetDelay" to="Layer1/BumperTopTargetGroup/RoundTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BumperTopTargetGroup/RoundTarget3/ResetDelay" to="Layer1/BumperTopTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
-[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Rollover1" method="Toggle"]
-[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Rollover2" method="Toggle"]
-[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Rollover3" method="Toggle"]
-[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Leveler" method="LevelUp"]
-[connection signal="OnLevelUp" from="Layer1/Entry/Leveler" to="Layer1/BumperTop" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer1/Entry/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer1/Entry/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer1/Entry/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
+[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/DecayingLeveler/Leveler" method="LevelUp"]
+[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/BumperTop" method="SetLevel"]
+[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
+[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
+[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
+[connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack" method="Open"]
 [connection signal="timeout" from="Layer1/LeftTargetGroup/RoundTarget1/ResetDelay" to="Layer1/LeftTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/LeftTargetGroup/RoundTarget2/ResetDelay" to="Layer1/LeftTargetGroup/RoundTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/LeftTargetGroup/RoundTarget3/ResetDelay" to="Layer1/LeftTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightKickBack" method="Open"]
 [connection signal="timeout" from="Layer1/RightTargetGroup/RoundTarget1/ResetDelay" to="Layer1/RightTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/RightTargetGroup/RoundTarget2/ResetDelay" to="Layer1/RightTargetGroup/RoundTarget2/Hitbox/OnOffLight" method="TurnOn"]
@@ -903,22 +919,25 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/BottomTargetGroup/DropTarget1/ResetDelay" to="Layer1/BottomTargetGroup/DropTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BottomTargetGroup/DropTarget2/ResetDelay" to="Layer1/BottomTargetGroup/DropTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BottomTargetGroup/DropTarget3/ResetDelay" to="Layer1/BottomTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="LevelSet" from="Layer1/Spinners" to="Layer1/Spinners/TunnelSpinner" method="SetLevel"]
+[connection signal="LevelSet" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner" method="SetLevel"]
+[connection signal="AllOn" from="Layer1/Spinners/TunnelTargetGroup" to="Layer1/Spinners/Leveler" method="LevelUp"]
+[connection signal="AllOn" from="Layer1/Spinners/TunnelTargetGroup" to="Layer1/Spinners/TunnelTargetGroup" method="SetAllOff"]
 [connection signal="timeout" from="Layer1/Spinners/TunnelTargetGroup/DropTarget1/ResetDelay" to="Layer1/Spinners/TunnelTargetGroup/DropTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/Spinners/TunnelTargetGroup/DropTarget2/ResetDelay" to="Layer1/Spinners/TunnelTargetGroup/DropTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/Spinners/TunnelTargetGroup/DropTarget3/ResetDelay" to="Layer1/Spinners/TunnelTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/TunnelRoundTarget/ResetDelay" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Tunnel/Leveler" method="MinimizeLevel"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Magnet" method="TurnOn"]
 [connection signal="SwallowingBall" from="Layer1/Tunnel/TunnelSpitter" to="Layer1/Tunnel/Leveler" method="LevelUp" unbinds=1]
 [connection signal="timeout" from="Layer1/MissionTargetGroup/RoundTarget1/ResetDelay" to="Layer1/MissionTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/MissionTargetGroup/RoundTarget2/ResetDelay" to="Layer1/MissionTargetGroup/RoundTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/MissionTargetGroup/RoundTarget3/ResetDelay" to="Layer1/MissionTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
-[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/Rollover1" method="Toggle"]
-[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/Rollover2" method="Toggle"]
-[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/Rollover3" method="Toggle"]
-[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/Leveler" method="LevelUp"]
-[connection signal="OnLevelUp" from="Layer2/Lab/Leveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer2/Lab/Leveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer2/Lab/Leveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
+[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab" method="SetAllOff"]
+[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/DecayingLeveler/Leveler" method="LevelUp"]
+[connection signal="LevelSet" from="Layer2/Lab/DecayingLeveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
+[connection signal="LevelSet" from="Layer2/Lab/DecayingLeveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
+[connection signal="LevelSet" from="Layer2/Lab/DecayingLeveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
 
 [editable path="Layer1/UnderRampSlingshot"]
 [editable path="Layer1/TunnelSlingshot"]
@@ -929,6 +948,8 @@ collision_mask = 4
 [editable path="Layer1/BumperTopTargetGroup/RoundTarget3"]
 [editable path="Layer1/LeftSlingshot"]
 [editable path="Layer1/RightSlingshot"]
+[editable path="Layer1/Entry/DecayingLeveler"]
+[editable path="Layer1/Entry/DecayingLeveler/Leveler"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget1"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget2"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget2/Hitbox"]
@@ -944,6 +965,8 @@ collision_mask = 4
 [editable path="Layer1/BottomTargetGroup/DropTarget1"]
 [editable path="Layer1/BottomTargetGroup/DropTarget2"]
 [editable path="Layer1/BottomTargetGroup/DropTarget3"]
+[editable path="Layer1/Spinners"]
+[editable path="Layer1/Spinners/Leveler"]
 [editable path="Layer1/Spinners/TunnelTargetGroup/DropTarget1"]
 [editable path="Layer1/Spinners/TunnelTargetGroup/DropTarget2"]
 [editable path="Layer1/Spinners/TunnelTargetGroup/DropTarget3"]
@@ -968,4 +991,6 @@ collision_mask = 4
 [editable path="Layer2/Lab/Bumper1"]
 [editable path="Layer2/Lab/Bumper2"]
 [editable path="Layer2/Lab/Bumper3"]
+[editable path="Layer2/Lab/DecayingLeveler"]
+[editable path="Layer2/Lab/DecayingLeveler/Leveler"]
 [editable path="Layer2/LayerDrop"]

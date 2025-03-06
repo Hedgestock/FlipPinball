@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class DecayingLightsHandler : Node
+public partial class DecayingLeveler : Node
 {
+    [Signal]
+    public delegate void LevelSetEventHandler(int level);
+
     [Export]
     Leveler Leveler;
 
@@ -14,6 +17,7 @@ public partial class DecayingLightsHandler : Node
     {
         base._Ready();
         Lights = GetChildren().Where(c => c is OnOffLight).Cast<OnOffLight>().ToList();
+        if (Lights.Count == 0) return;
         Leveler.MaxLevel = Lights.Count;
         Leveler.MinLevel = 0;
         Leveler.CurrentLevel = 0;
@@ -21,6 +25,7 @@ public partial class DecayingLightsHandler : Node
 
     private void SetLevel(int level)
     {
+        EmitSignal(SignalName.LevelSet, level);
         for (int i = 0; i < Lights.Count; i++)
         {
             Lights[i].IsOn = i < level;

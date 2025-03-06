@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cyphfp7ph37j6"
-path="res://.godot/imported/TunnelUp.wav-cf2f3805a47c56973f3bf862639a41a1.sample"
+path="res://.godot/imported/TunnelUp.wav-1779fbdace08cf52027a87ebebf11d7d.sample"
 
 [deps]
 
-source_file="res://Game/Assets/CompositionComponents/DecayingLightsHandler/TunnelUp.wav"
-dest_files=["res://.godot/imported/TunnelUp.wav-cf2f3805a47c56973f3bf862639a41a1.sample"]
+source_file="res://Game/Scenes/Boards/TestLab/TunnelUp.wav"
+dest_files=["res://.godot/imported/TunnelUp.wav-1779fbdace08cf52027a87ebebf11d7d.sample"]
 
 [params]
 
