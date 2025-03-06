@@ -31,14 +31,13 @@ public partial class Hitbox : StaticBody2D
 
     Queue<DateTime> LastHits = new Queue<DateTime>();
 
-    public virtual void CollideWithBall(Ball ball)
+    public virtual void CollideWithBall(Ball ball, Vector2 ballVelocity, Vector2 collisionNormal)
     {
         if (!_isActive) return;
-        Vector2 direction = (ball.GlobalPosition - this.GlobalPosition).Normalized();
 
-        // Here we estimate the force of the impact by projecting the speed of the ball on the direction vector
-        // It might not work that well if the ball hits almost tangentially to the bumper but it should be good enough
-        if ((ball.LinearVelocity.Dot(direction) * direction).Length() < TriggerSpeed) return;
+        // Here we estimate the force of the impact by projecting the speed of the ball
+        // on the normal of the collided shape (which should be the hitbox itself) at point of impact.
+        if ((ball.LinearVelocity.Dot(collisionNormal) * collisionNormal).Length() < TriggerSpeed) return;
 
         AddHit();
         EmitSignal(SignalName.Hit, ball);

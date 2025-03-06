@@ -249,7 +249,7 @@ polygon = PackedVector2Array(40, -45, 40, 56, 31, 67, 15, 77, 1, 79, -14, 73, -2
 
 [node name="AroundTunnel" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(402, 111)
-polygon = PackedVector2Array(0, 0, -30, 36, -30, 76, -20.9188, 83.5677, -7, 67, 12, 83, 1, 98, 25, 133, 42, 173, 46, 211, 44, 228, 40, 248, 36, 282, 15, 302, 11, 310, 27, 321, 58, 282, 78, 236, 83, 202, 79, 170, 70, 136, 50, 102, 15, 63, 4, 48, 10, 38, 20, 32, 30, 32, 43, 42, 79, 81, 95, 108, 107, 141, 115, 173, 118, 217, 113, 267, 104, 301, 56, 413, 56, 506, 61, 509, 76, 496, 92, 508, 86, 527, 86, 573, 96, 573, 96, 534, 141, 201, 131, 150, 113, 97, 85, 51, 56, 23, 25, 0)
+polygon = PackedVector2Array(0, 0, -30, 36, -30, 76, -20.9188, 83.5677, -7, 67, 12, 83, 1, 98, 25, 133, 42, 173, 46, 211, 44, 228, 40, 248, 36, 282, 15, 302, 11, 310, 27, 321, 58, 282, 78, 236, 83, 202, 79, 170, 70, 136, 50, 102, 15, 63, 4, 48, 10, 38, 20, 32, 30, 32, 43, 42, 79, 81, 95, 108, 107, 141, 115, 173, 118, 217, 113, 267, 104, 301, 56, 413, 56, 506, 61, 509, 76, 496, 92, 508, 86, 527, 86, 569, 96, 569, 96, 534, 141, 201, 131, 150, 113, 97, 85, 51, 56, 23, 25, 0)
 
 [node name="LeftWallPlungerLane" type="CollisionShape2D" parent="Layer1/Walls"]
 position = Vector2(538, 469.75)
@@ -292,7 +292,7 @@ polygon = PackedVector2Array(-29, 2, -27, 9, -16, 48, -21, 49, -33, 0)
 position = Vector2(520, 629)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer1/ExceptionGate"]
-polygon = PackedVector2Array(-22, 9, -20, -10, 23, -10, 23, 28, 13, 28, 13, 9)
+polygon = PackedVector2Array(-22, 9, -20, -10, 23, -10, 23, 34, 13, 34, 13, 9)
 
 [node name="UnderRampSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(162, 417)
@@ -671,7 +671,7 @@ collision_mask = 0
 
 [node name="LabBoundaries" type="CollisionPolygon2D" parent="Layer2/Walls"]
 position = Vector2(103, 471)
-polygon = PackedVector2Array(32, 405, -103, 405, -103, -97, 117, -96, 160, 88, 157, 89, 141, 52, 114, 7, 97, -16, 84, -30, 70, -41, 56, -50, 39, -57, 22, -62, 3, -63, -14, -62, -34, -56, -54, -46, -69, -34, -81, -17, -89, 2, -91, 16, -91.5008, 116.659, -81, 131, -81, 165, -92, 177, -92, 217, -88, 225, -61, 243, -45, 255, -36, 270, -32, 287, -32, 320, -27, 328, -21, 332, -12, 332, -6, 327, -2, 320, -2, 272, 1, 255, 5, 244, 11, 237, 17, 229, 19, 220, 19, 198, 5, 185, 5, 151, 20, 139, 21, 82, 8, 65, -13, 53, -25, 48, -36, 37, -45, 26, -51, 7, -51, -5, -48, -14, -43, -22, -36, -28, -24, -34, -14, -37, -2, -39, 7, -38, 17, -35, 27, -30, 37, -23, 46, -14, 55, -2, 62, 8, 78, 43, 89, 68, 100, 107, 95, 108, 84, 63, 75, 45, 33, 85)
+polygon = PackedVector2Array(32, 405, -103, 405, -103, -97, 117, -96, 160, 88, 157, 89, 141, 52, 114, 7, 97, -16, 84, -30, 70, -41, 56, -50, 39, -57, 22, -62, 3, -63, -14, -62, -34, -56, -54, -46, -69, -34, -81, -17, -89, 2, -91, 16, -92, 129, -76, 139, -76, 171, -92, 186, -92, 217, -88, 225, -61, 243, -45, 255, -36, 270, -32, 287, -32, 320, -27, 328, -21, 332, -12, 332, -6, 327, -2, 320, -2, 272, 1, 255, 5, 244, 11, 237, 17, 229, 19, 220, 19, 198, 1, 184, 1, 151, 20, 136, 21, 82, 8, 65, -13, 53, -25, 48, -36, 37, -45, 26, -51, 7, -51, -5, -48, -14, -43, -22, -36, -28, -24, -34, -14, -37, -2, -39, 7, -38, 17, -35, 27, -30, 37, -23, 46, -14, 55, -2, 62, 8, 78, 43, 89, 68, 100, 107, 95, 108, 84, 63, 75, 45, 33, 85)
 
 [node name="LeftLabSplitter" type="CollisionShape2D" parent="Layer2/Walls"]
 position = Vector2(47, 540)
@@ -724,27 +724,28 @@ script = ExtResource("10_idji8")
 LevelUpSFX = ExtResource("11_nbq5k")
 
 [node name="Bumper1" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
-position = Vector2(37, 5)
+position = Vector2(31, 5)
+scale = Vector2(0.8, 0.8)
 Strength = 500
 
 [node name="Hitbox" parent="Layer2/LabBumpers/Bumper1" index="0"]
-scale = Vector2(0.9, 0.9)
 collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
 
 [node name="Bumper2" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
-position = Vector2(-50, -15)
+position = Vector2(-44, -8)
+scale = Vector2(0.8, 0.8)
 Strength = 500
 
 [node name="Hitbox" parent="Layer2/LabBumpers/Bumper2" index="0"]
-scale = Vector2(0.9, 0.9)
 collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
 
 [node name="Bumper3" parent="Layer2/LabBumpers" instance=ExtResource("6_awf70")]
 position = Vector2(-15, 42)
+scale = Vector2(0.8, 0.8)
 Strength = 500
 
 [node name="Hitbox" parent="Layer2/LabBumpers/Bumper3" index="0"]

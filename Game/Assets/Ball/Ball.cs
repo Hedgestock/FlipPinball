@@ -8,6 +8,8 @@ public partial class Ball : RigidBody2D
     Line2D Trail;
 
     Vector2 LastPosition;
+    Vector2 LastVelocity;
+    Vector2 LastCollisionNormal;
 
     public override void _Ready()
     {
@@ -19,6 +21,13 @@ public partial class Ball : RigidBody2D
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+
+        var collisionInfo = MoveAndCollide(LinearVelocity * (float)delta, true);
+        if (collisionInfo != null)
+        {
+            LastCollisionNormal = collisionInfo.GetNormal();
+        }
+        //GD.Print(LinearVelocity);
         Vector2[] tmp = new Vector2[Trail.Points.Length];
         tmp[0] = Vector2.Zero;
         for (int i = 1; i < Trail.Points.Length; i++)
@@ -27,10 +36,11 @@ public partial class Ball : RigidBody2D
         }
         Trail.Points = tmp;
         LastPosition = GlobalPosition;
+        LastVelocity = LinearVelocity;
     }
 
     public void OnCollision(Node body)
     {
-        if (body is Hitbox hitbox) hitbox.CollideWithBall(this);
+        if (body is Hitbox hitbox) hitbox.CollideWithBall(this, LastVelocity, LastCollisionNormal);
     }
 }
