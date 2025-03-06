@@ -5,9 +5,6 @@ using System.Linq;
 
 public partial class DecayingLeveler : Node
 {
-    [Signal]
-    public delegate void LevelSetEventHandler(int level);
-
     [Export]
     Leveler Leveler;
 
@@ -23,9 +20,8 @@ public partial class DecayingLeveler : Node
         Leveler.CurrentLevel = 0;
     }
 
-    private void SetLevel(int level)
+    private void HandleLights(int level)
     {
-        EmitSignal(SignalName.LevelSet, level);
         for (int i = 0; i < Lights.Count; i++)
         {
             Lights[i].IsOn = i < level;

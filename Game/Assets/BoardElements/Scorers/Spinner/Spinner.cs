@@ -19,19 +19,20 @@ public partial class Spinner : Node2D
         if (Iterations < 0) return;
 
         Iterations += delta;
-        double currentSpinSpeed = InitialSpinSpeed * Math.Pow(0.3, Iterations);
+        double currentSpinSpeed = InitialSpinSpeed * Math.Pow(0.3, Iterations) - 0.7 ;
         int numberOfTurns = (int)(LastSpinSpeed - currentSpinSpeed);
-        if (numberOfTurns > 0)
+        if (numberOfTurns >= 1)
         {
-            GD.Print(currentSpinSpeed);
             for (int i = 0; i < numberOfTurns; i++)
             {
-                EmitSignal(SignalName.CompleteRotation, (Level * 5) + 1);
+                GD.Print($"NoT: {numberOfTurns,0:F4} CurrSpd: {currentSpinSpeed,0:F4} LastSpd: {LastSpinSpeed,0:F4} InitSpd: {InitialSpinSpeed,0:F4} Iter: {Iterations,0:F4} delta: {delta}");
+                EmitSignal(SignalName.CompleteRotation, (Level * 4) + 1);
             }
+
             LastSpinSpeed = currentSpinSpeed;
         }
 
-        if (currentSpinSpeed < 3)
+        if (currentSpinSpeed < 0)
         {
             Iterations = -1;
         }
@@ -41,9 +42,9 @@ public partial class Spinner : Node2D
     {
         if (body is Ball ball)
         {
-            Iterations = 1;
-            InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 40;
-            LastSpinSpeed = InitialSpinSpeed;
+            Iterations = 0;
+            InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 100;
+            LastSpinSpeed = InitialSpinSpeed - 0.7;
         }
     }
 

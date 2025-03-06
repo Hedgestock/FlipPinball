@@ -111,11 +111,12 @@ b = Vector2(0, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttt3n"]
 size = Vector2(60, 20)
 
-[node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "Plunger", "PaddlesLeft", "PaddlesRight")]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "SpinnersLevel", "Plunger", "PaddlesLeft", "PaddlesRight")]
 position = Vector2(1, 0)
 script = ExtResource("1_mse42")
 Entry = NodePath("Layer1/Entry")
 Lab = NodePath("Layer2/Lab")
+SpinnersLevel = NodePath("Layer1/Spinners")
 Ball = ExtResource("2_qvs32")
 Plunger = NodePath("Layer1/Plunger")
 PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
@@ -906,10 +907,10 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/BumperTopTargetGroup/RoundTarget3/ResetDelay" to="Layer1/BumperTopTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/DecayingLeveler/Leveler" method="LevelUp"]
-[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/BumperTop" method="SetLevel"]
-[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
-[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
-[connection signal="LevelSet" from="Layer1/Entry/DecayingLeveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/BumperTop" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack" method="Open"]
 [connection signal="timeout" from="Layer1/LeftTargetGroup/RoundTarget1/ResetDelay" to="Layer1/LeftTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
@@ -929,10 +930,12 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/BottomTargetGroup/DropTarget3/ResetDelay" to="Layer1/BottomTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="OnLevelChange" from="Layer1/Spinners" to="Layer1/Spinners/TunnelSpinner" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner" method="SetLevel"]
-[connection signal="OnLevelDown" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner/OnOffLight" method="TurnOff" unbinds=1]
 [connection signal="OnLevelDown" from="Layer1/Spinners" to="Layer1/Spinners/TunnelSpinner/OnOffLight" method="TurnOff" unbinds=1]
-[connection signal="OnLevelUp" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner/OnOffLight" method="TurnOn" unbinds=1]
+[connection signal="OnLevelDown" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner/OnOffLight" method="TurnOff" unbinds=1]
 [connection signal="OnLevelUp" from="Layer1/Spinners" to="Layer1/Spinners/TunnelSpinner/OnOffLight" method="TurnOn" unbinds=1]
+[connection signal="OnLevelUp" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner/OnOffLight" method="TurnOn" unbinds=1]
+[connection signal="OnLevelDown" from="Layer1/Modes/Leveler" to="." method="ModesHandler"]
+[connection signal="OnLevelUp" from="Layer1/Modes/Leveler" to="." method="ModesHandler" binds= [true]]
 [connection signal="AllOn" from="Layer1/Modes/TunnelTargetGroup" to="Layer1/Modes/Leveler" method="LevelUp"]
 [connection signal="AllOn" from="Layer1/Modes/TunnelTargetGroup" to="Layer1/Modes/TunnelTargetGroup" method="SetAllOff"]
 [connection signal="timeout" from="Layer1/Modes/TunnelTargetGroup/DropTarget1/ResetDelay" to="Layer1/Modes/TunnelTargetGroup/DropTarget1/Hitbox/OnOffLight" method="TurnOn"]
@@ -947,9 +950,9 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/MissionTargetGroup/RoundTarget3/ResetDelay" to="Layer1/MissionTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab" method="SetAllOff"]
 [connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/DecayingLeveler/Leveler" method="LevelUp"]
-[connection signal="LevelSet" from="Layer2/Lab/DecayingLeveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
-[connection signal="LevelSet" from="Layer2/Lab/DecayingLeveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
-[connection signal="LevelSet" from="Layer2/Lab/DecayingLeveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
 
 [editable path="Layer1/UnderRampSlingshot"]
 [editable path="Layer1/TunnelSlingshot"]

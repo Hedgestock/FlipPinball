@@ -27,7 +27,7 @@ public partial class TestLab : Board
 
     [Export]
     Leveler SpinnersLevel;
-    void ModesHandler(int level, bool up)
+    void ModesHandler(int level, bool up = false)
     {
         switch (level)
         {
