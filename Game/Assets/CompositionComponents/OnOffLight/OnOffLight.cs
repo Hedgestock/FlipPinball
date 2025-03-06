@@ -1,34 +1,18 @@
 using Godot;
 using System;
 
-public partial class OnOffLight : Sprite2D
+public partial class OnOffLight : AnimatedSprite2D
 {
     [Signal]
     public delegate void ToggledEventHandler(bool isOn);
 
-    [Export]
-    Texture2D On;
-    [Export]
-    Texture2D Off;
-
-    [Export]
-    private bool _isOn;
-
-    public override void _Ready()
-    {
-        base._Ready();
-        IsOn = _isOn;
-    }
-
     public bool IsOn
     {
-        get { return _isOn; }
+        get { return Animation == "on"; }
         set
         {
-            if (value) Texture = On;
-            else Texture = Off;
-            if (_isOn == value) return;
-            _isOn = value;
+            if (value) Animation = "on";
+            else Animation = "off";
             EmitSignal(SignalName.Toggled, value);
         }
     }
@@ -41,5 +25,10 @@ public partial class OnOffLight : Sprite2D
     public void TurnOff()
     {
         IsOn = false;
+    }
+
+    public void TurnBlinking()
+    {
+        Animation = "blinking";
     }
 }

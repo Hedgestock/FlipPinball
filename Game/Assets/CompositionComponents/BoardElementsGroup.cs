@@ -19,10 +19,7 @@ public partial class BoardElementsGroup : Node
     {
         base._Ready();
         Nodes = GetChildren().Where(c => c.IsInGroup(Group)).ToList();
-        Nodes.ForEach(s => (s.FindChild("OnOffLight") as OnOffLight).Toggled += (on) =>
-        {
-            if (on) CheckGroupStatus();
-        });
+        Nodes.ForEach(s => (s.FindChild("OnOffLight") as OnOffLight).Toggled += (on) => { if (on) CheckGroupStatus(); });
     }
 
     public void RotateStatus(int direction)
@@ -43,10 +40,12 @@ public partial class BoardElementsGroup : Node
         foreach (var node in Nodes)
             if ((node.FindChild("OnOffLight") as OnOffLight).IsOn != firstStatus) return;
 
+        // We call deferred here otherwise the on or off signal arrives before the triggerring signal
+        // in the cases where the group resets itself
         if (firstStatus)
-            EmitSignal(SignalName.AllOn);
+            CallDeferred(MethodName.EmitSignal, SignalName.AllOn);
         else
-            EmitSignal(SignalName.AllOff);
+            CallDeferred(MethodName.EmitSignal, SignalName.AllOff);
     }
 
     void SetAllOn()

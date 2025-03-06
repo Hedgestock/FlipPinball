@@ -6,7 +6,7 @@ public partial class Spinner : Node2D
     [Signal]
     public delegate void CompleteRotationEventHandler(int level);
 
-    int Level = 1;
+    int Level = 0;
 
     double InitialSpinSpeed = 0;
     double LastSpinSpeed = 0;
@@ -19,18 +19,19 @@ public partial class Spinner : Node2D
         if (Iterations < 0) return;
 
         Iterations += delta;
-        double currentSpinSpeed = InitialSpinSpeed * Math.Pow(0.6, Iterations);
+        double currentSpinSpeed = InitialSpinSpeed * Math.Pow(0.3, Iterations);
         int numberOfTurns = (int)(LastSpinSpeed - currentSpinSpeed);
         if (numberOfTurns > 0)
         {
+            GD.Print(currentSpinSpeed);
             for (int i = 0; i < numberOfTurns; i++)
             {
-                EmitSignal(SignalName.CompleteRotation, Level);
+                EmitSignal(SignalName.CompleteRotation, (Level * 5) + 1);
             }
             LastSpinSpeed = currentSpinSpeed;
         }
 
-        if (currentSpinSpeed < 1)
+        if (currentSpinSpeed < 3)
         {
             Iterations = -1;
         }
@@ -41,7 +42,7 @@ public partial class Spinner : Node2D
         if (body is Ball ball)
         {
             Iterations = 1;
-            InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 50;
+            InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 40;
             LastSpinSpeed = InitialSpinSpeed;
         }
     }

@@ -5,4 +5,5 @@
 
 [node name="Scorer" type="Node2D"]
 script = ExtResource("1_od0ul")
+Value = 1000
 ScoreBubbleScene = ExtResource("2_eqs5r")

@@ -5,8 +5,7 @@
 
 [node name="Leveler" type="Node"]
 script = ExtResource("1_a0556")
-MaxLevel = 5
-MinLevel = 1
+MaxLevel = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7t7tc")

@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b0gwa38cgxp22"]
+
+[ext_resource type="Texture2D" uid="uid://bauwptfvpx6ie" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOff.png" id="1_ku6g2"]
+[ext_resource type="Texture2D" uid="uid://bila18oxscqqk" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOn.png" id="2_uel2a"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ku6g2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uel2a")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ku6g2")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uel2a")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]

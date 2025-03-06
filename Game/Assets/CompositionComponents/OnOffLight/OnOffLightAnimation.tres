@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dete5i3mo25t2"]
+
+[ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOff.png" id="1_16lti"]
+[ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOn.png" id="2_7s4kk"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_16lti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7s4kk")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_16lti")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7s4kk")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]

@@ -38,8 +38,6 @@ public partial class Hitbox : StaticBody2D
     {
         if (!_isActive) return;
 
-        GD.Print(-ballVelocity.Dot(collisionNormal));
-
         // Here we estimate the force of the impact by projecting the speed of the ball
         // on the normal of the collided shape (which should be the hitbox itself) at point of impact.
         if (-ballVelocity.Dot(collisionNormal) < TriggerSpeed) return;

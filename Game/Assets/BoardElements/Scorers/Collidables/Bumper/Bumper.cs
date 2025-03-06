@@ -9,7 +9,7 @@ public partial class Bumper : Node2D
     [Export]
     Sprite2D Sprite;
 
-    int Level = 1;
+    int Level = 0;
 
     private void SetLevel(int value)
     {
@@ -19,16 +19,16 @@ public partial class Bumper : Node2D
             default:
                 Sprite.Modulate = Colors.White;
                 break;
-            case 2:
+            case 1:
                 Sprite.Modulate = Colors.ForestGreen;
                 break;
-            case 3:
+            case 2:
                 Sprite.Modulate = Colors.MediumBlue;
                 break;
-            case 4:
+            case 3:
                 Sprite.Modulate = Colors.Red;
                 break;
-            case 5:
+            case 4:
                 Sprite.Modulate = Colors.Black;
                 break;
         }
@@ -45,6 +45,6 @@ public partial class Bumper : Node2D
            .SetEase(Tween.EaseType.In)
            .SetTrans(Tween.TransitionType.Elastic);
 
-        EmitSignal(SignalName.Bumping, Level);
+        EmitSignal(SignalName.Bumping, Level + 1);
     }
 }

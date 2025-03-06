@@ -1,57 +1,81 @@
 using Godot;
 using System;
+using System.Reflection.Emit;
 
 public partial class Leveler : Node
 {
     [Signal]
     public delegate void OnLevelOverflowEventHandler();
+    [Signal]
+    public delegate void OnLevelUnderflowEventHandler();
 
     [Signal]
     public delegate void OnLevelUpEventHandler(int level);
     [Signal]
     public delegate void OnLevelDownEventHandler(int level);
 
+    [Signal]
+    public delegate void OnLevelChangeEventHandler(int level);
+
     [Export]
     public int MaxLevel;
     [Export]
     public int MinLevel;
 
-    public int CurrentLevel;
+    private int _currentLevel;
+    public int CurrentLevel
+    {
+        get { return _currentLevel; }
+        set
+        {
+            if (value == _currentLevel) return;
+            else if (value < MinLevel)
+            {
+                EmitSignal(SignalName.OnLevelUnderflow);
+                return;
+            }
+            else if (value > MaxLevel)
+            {
+                EmitSignal(SignalName.OnLevelOverflow);
+                return;
+            }
+            else if (value > _currentLevel)
+                EmitSignal(SignalName.OnLevelUp, value);
+            else
+                EmitSignal(SignalName.OnLevelDown, value);
+            EmitSignal(SignalName.OnLevelChange, value);
+            _currentLevel = value;
+        }
+    }
+
 
     public override void _Ready()
     {
         base._Ready();
-        CurrentLevel = MinLevel;
+        _currentLevel = MinLevel;
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
-        if (CurrentLevel >= MaxLevel)
-            EmitSignal(SignalName.OnLevelOverflow);
-        else
-            EmitSignal(SignalName.OnLevelUp, ++CurrentLevel);
+        CurrentLevel++;
     }
 
-    void LevelDown()
+    public void LevelDown()
     {
-        if (CurrentLevel <= MinLevel) return;
-        EmitSignal(SignalName.OnLevelDown, --CurrentLevel);
+        CurrentLevel--;
     }
 
-    void SetLevel(int level)
+    public void SetLevel(int level)
     {
-        if (level < MinLevel || level > MaxLevel || level == CurrentLevel) return;
-        if (level > CurrentLevel) EmitSignal(SignalName.OnLevelUp, level);
-        else EmitSignal(SignalName.OnLevelDown, level);
         CurrentLevel = level;
     }
 
-    void MaximizeLevel()
+    public void MaximizeLevel()
     {
         SetLevel(MaxLevel);
     }
 
-    void MinimizeLevel()
+    public void MinimizeLevel()
     {
         SetLevel(MinLevel);
     }
