@@ -1,18 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2n7ugga7yovq"]
+[gd_scene load_steps=7 format=3 uid="uid://b2n7ugga7yovq"]
 
 [ext_resource type="PackedScene" uid="uid://b8083u3uwi53p" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Target.tscn" id="1_4c8g5"]
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTarget.cs" id="2_fmo3h"]
 [ext_resource type="AudioStream" uid="uid://clrfdv6dsvvfj" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetDown.wav" id="3_7nryl"]
-[ext_resource type="Texture2D" uid="uid://bauwptfvpx6ie" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTarget.png" id="3_wkrr2"]
+[ext_resource type="Texture2D" uid="uid://bauwptfvpx6ie" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOff.png" id="3_7qjgx"]
+[ext_resource type="Texture2D" uid="uid://bila18oxscqqk" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOn.png" id="4_nqwi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtee"]
 size = Vector2(6, 20)
 
-[node name="DropTarget" groups=["Square"] instance=ExtResource("1_4c8g5")]
+[node name="DropTarget" groups=["ShapeSquare"] instance=ExtResource("1_4c8g5")]
 script = ExtResource("2_fmo3h")
 
-[node name="Sprite2D" parent="Hitbox" index="0"]
-texture = ExtResource("3_wkrr2")
+[node name="OnOffLight" parent="Hitbox" index="0"]
+position = Vector2(0, 0)
+texture = ExtResource("3_7qjgx")
+On = ExtResource("4_nqwi4")
+Off = ExtResource("3_7qjgx")
 
 [node name="CollisionShape2D" parent="Hitbox" index="1"]
 shape = SubResource("RectangleShape2D_jxtee")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxgbd1q0e6fpk"]
+[gd_scene load_steps=7 format=3 uid="uid://bxgbd1q0e6fpk"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/KickBack/KickBack.cs" id="1_2hlfo"]
 [ext_resource type="AudioStream" uid="uid://cj07vcni84f8p" path="res://Game/Assets/BoardElements/KickBack/Collision.wav" id="2_ji2d3"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="3_54quy"]
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="4_rpygy"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0c4mb"]
 b = Vector2(50, 0)
@@ -10,7 +11,7 @@ b = Vector2(50, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhcf"]
 size = Vector2(20, 3)
 
-[node name="KickBack" type="Node2D" node_paths=PackedStringArray("DetectionZone", "OneWayGate", "Delay") groups=["KickBack"]]
+[node name="KickBack" type="Node2D" node_paths=PackedStringArray("DetectionZone", "OneWayGate", "Delay") groups=["KickBacks"]]
 script = ExtResource("1_2hlfo")
 DetectionZone = NodePath("Area2D")
 OneWayGate = NodePath("StaticBody2D")
@@ -34,6 +35,8 @@ collision_mask = 2
 position = Vector2(0, 31.5)
 shape = SubResource("RectangleShape2D_ahhcf")
 
+[node name="OnOffLight" parent="." instance=ExtResource("4_rpygy")]
+
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
@@ -45,7 +48,9 @@ bus = &"BoardElements"
 Strength = 2000
 
 [connection signal="KickingBall" from="." to="Pusher" method="Push"]
+[connection signal="KickingBall" from="." to="OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="KickingBall" from="." to="AudioStreamPlayer" method="play" unbinds=2]
+[connection signal="Opening" from="." to="OnOffLight" method="TurnOn"]
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
 [connection signal="timeout" from="Timer" to="." method="KickBall"]
 [connection signal="timeout" from="Timer" to="AudioStreamPlayer" method="play"]

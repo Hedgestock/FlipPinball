@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ht0s7"]
 radius = 2.0
 
-[node name="Spitter" type="Node2D" node_paths=PackedStringArray("SpitDelay", "SpitDirection", "DetectionZone")]
+[node name="Spitter" type="Node2D" node_paths=PackedStringArray("SpitDelay", "SpitDirection", "DetectionZone") groups=["Spitters"]]
 script = ExtResource("1_qmuv0")
 SpitDelay = NodePath("SpitDelay")
 SpitDirection = NodePath("RayCast2D")

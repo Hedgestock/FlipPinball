@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bauwptfvpx6ie"
-path="res://.godot/imported/DropTarget.png-0e4faf0b0b70e9bcfb11d724b5f80c4b.ctex"
+uid="uid://bila18oxscqqk"
+path="res://.godot/imported/DropTargetOn.png-380c476be8c85768f657aac61acf1ba6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTarget.png"
-dest_files=["res://.godot/imported/DropTarget.png-0e4faf0b0b70e9bcfb11d724b5f80c4b.ctex"]
+source_file="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOn.png"
+dest_files=["res://.godot/imported/DropTargetOn.png-380c476be8c85768f657aac61acf1ba6.ctex"]
 
 [params]
 

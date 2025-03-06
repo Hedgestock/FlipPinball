@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioksq"]
 size = Vector2(60, 20)
 
-[node name="Spinner" type="Node2D"]
+[node name="Spinner" type="Node2D" groups=["ShapeSquare", "Spinners"]]
 script = ExtResource("1_p8fa6")
 
 [node name="Area2D" type="Area2D" parent="."]

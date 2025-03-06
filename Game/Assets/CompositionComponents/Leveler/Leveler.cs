@@ -16,25 +16,43 @@ public partial class Leveler : Node
     [Export]
     public int MinLevel;
 
-    public int Level;
+    public int CurrentLevel;
 
     public override void _Ready()
     {
         base._Ready();
-        Level = MinLevel;
+        CurrentLevel = MinLevel;
     }
 
-    private void LevelUp()
+    void LevelUp()
     {
-        if (Level >= MaxLevel)
+        if (CurrentLevel >= MaxLevel)
             EmitSignal(SignalName.OnLevelOverflow);
         else
-            EmitSignal(SignalName.OnLevelUp, ++Level);
+            EmitSignal(SignalName.OnLevelUp, ++CurrentLevel);
     }
 
-    private void LevelDown()
+    void LevelDown()
     {
-        if (Level <= MinLevel) return;
-        EmitSignal(SignalName.OnLevelDown, --Level);
+        if (CurrentLevel <= MinLevel) return;
+        EmitSignal(SignalName.OnLevelDown, --CurrentLevel);
+    }
+
+    void SetLevel(int level)
+    {
+        if (level < MinLevel || level > MaxLevel || level == CurrentLevel) return;
+        if (level > CurrentLevel) EmitSignal(SignalName.OnLevelUp, level);
+        else EmitSignal(SignalName.OnLevelDown, level);
+        CurrentLevel = level;
+    }
+
+    void MaximizeLevel()
+    {
+        SetLevel(MaxLevel);
+    }
+
+    void MinimizeLevel()
+    {
+        SetLevel(MinLevel);
     }
 }

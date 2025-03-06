@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c08sduvfpdlky"]
+
+[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/DecayingLightsHandler/DecayingLightsHandler.cs" id="1_686j3"]
+[ext_resource type="PackedScene" uid="uid://0vf85v2k3lmd" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.tscn" id="2_1tbbw"]
+[ext_resource type="AudioStream" uid="uid://cyphfp7ph37j6" path="res://Game/Assets/CompositionComponents/DecayingLightsHandler/TunnelUp.wav" id="4_qhki4"]
+
+[node name="DecayingLightsHandler" type="Node" node_paths=PackedStringArray("Leveler")]
+script = ExtResource("1_686j3")
+Leveler = NodePath("Leveler")
+
+[node name="Leveler" parent="." instance=ExtResource("2_1tbbw")]
+
+[node name="AudioStreamPlayer" parent="Leveler" index="0"]
+stream = ExtResource("4_qhki4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="OnLevelDown" from="Leveler" to="." method="SetLevel"]
+[connection signal="OnLevelDown" from="Leveler" to="Timer" method="start" unbinds=1]
+[connection signal="OnLevelUp" from="Leveler" to="." method="SetLevel"]
+[connection signal="OnLevelUp" from="Leveler" to="Timer" method="start" unbinds=1]
+[connection signal="timeout" from="Timer" to="Leveler" method="LevelDown"]
+
+[editable path="Leveler"]

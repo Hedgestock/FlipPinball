@@ -12,7 +12,7 @@ size = Vector2(14, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flb67"]
 size = Vector2(14, 18)
 
-[node name="RolloverSwitch" type="Node2D" node_paths=PackedStringArray("NorthZone", "SouthZone", "OnOffLight") groups=["Rollover"]]
+[node name="RolloverSwitch" type="Node2D" node_paths=PackedStringArray("NorthZone", "SouthZone", "OnOffLight") groups=["Rollovers"]]
 script = ExtResource("1_al2n7")
 NorthZone = NodePath("NorthZone")
 SouthZone = NodePath("SouthZone")
@@ -42,7 +42,6 @@ Value = 20
 
 [node name="OnOffLight" parent="." instance=ExtResource("3_43wvr")]
 position = Vector2(0, -25)
-_isOn = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3evls")

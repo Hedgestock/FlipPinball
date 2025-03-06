@@ -14,14 +14,12 @@ height = 20.0
 [node name="Hitbox" parent="." instance=ExtResource("2_8lukt")]
 TriggerSpeed = 25
 
-[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
+[node name="OnOffLight" parent="Hitbox" instance=ExtResource("3_avehg")]
+position = Vector2(0, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0mlm1")
-
-[node name="OnOffLight" parent="Hitbox" instance=ExtResource("3_avehg")]
-position = Vector2(0, 15)
 
 [node name="Scorer" parent="." instance=ExtResource("3_f5lic")]
 Value = 50
@@ -37,10 +35,10 @@ bus = &"BoardElements"
 Strength = 500
 
 [connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
-[connection signal="Hit" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOff" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOn" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="ResetDelay" method="start" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]
 [connection signal="Toggled" from="Hitbox/OnOffLight" to="Hitbox" method="Activate"]
 [connection signal="Toggled" from="Hitbox/OnOffLight" to="ResetDelay" method="stop" unbinds=1]
-[connection signal="timeout" from="ResetDelay" to="Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="timeout" from="ResetDelay" to="Hitbox/OnOffLight" method="TurnOff"]

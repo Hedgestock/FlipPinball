@@ -9,11 +9,11 @@ public partial class Bumper : Node2D
     [Export]
     Sprite2D Sprite;
 
-    private int _level = 1;
+    int Level = 1;
 
     private void SetLevel(int value)
     {
-        _level = value;
+        Level = value;
         switch (value)
         {
             default:
@@ -45,6 +45,6 @@ public partial class Bumper : Node2D
            .SetEase(Tween.EaseType.In)
            .SetTrans(Tween.TransitionType.Elastic);
 
-        EmitSignal(SignalName.Bumping, _level);
+        EmitSignal(SignalName.Bumping, Level);
     }
 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class Tunnel : Node2D
+public partial class DecayingLightsHandler : Node
 {
     [Export]
     Leveler Leveler;
@@ -16,11 +16,14 @@ public partial class Tunnel : Node2D
         Lights = GetChildren().Where(c => c is OnOffLight).Cast<OnOffLight>().ToList();
         Leveler.MaxLevel = Lights.Count;
         Leveler.MinLevel = 0;
-        Leveler.Level = 0;
+        Leveler.CurrentLevel = 0;
     }
 
     private void SetLevel(int level)
     {
-        Lights[level - 1].TurnOn();
+        for (int i = 0; i < Lights.Count; i++)
+        {
+            Lights[i].IsOn = i < level;
+        }
     }
 }

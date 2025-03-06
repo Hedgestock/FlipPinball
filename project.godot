@@ -34,11 +34,13 @@ project/assembly_name="FlipPinball"
 Balls=""
 Bumpers=""
 Slingshots=""
-Round=""
-Rollover=""
-KickBack=""
 Targets=""
-Square=""
+Rollovers=""
+KickBacks=""
+ShapeSquare=""
+ShapeRound=""
+Spinners=""
+Spitters=""
 
 [gui]
 

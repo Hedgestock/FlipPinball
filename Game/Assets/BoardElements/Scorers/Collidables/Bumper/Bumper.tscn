@@ -11,7 +11,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qmtc5"]
 radius = 20.0
 
-[node name="Bumper" type="Node2D" node_paths=PackedStringArray("Sprite") groups=["Bumpers", "Round"]]
+[node name="Bumper" type="Node2D" node_paths=PackedStringArray("Sprite") groups=["Bumpers", "ShapeRound"]]
 script = ExtResource("1_euw7q")
 Sprite = NodePath("Hitbox/Sprite2D")
 

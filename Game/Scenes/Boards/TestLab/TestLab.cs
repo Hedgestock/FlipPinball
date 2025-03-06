@@ -5,15 +5,15 @@ using System.Linq;
 public partial class TestLab : Board
 {
     [Export]
-    RolloverSwitchGroup EntryRollovers;
+    BoardElementsGroup Entry;
 
     [Export]
-    RolloverSwitchGroup LabRollovers;
+    BoardElementsGroup Lab;
 
     protected override void PaddleAdditionnalBehaviour(bool left)
     {
         base.PaddleAdditionnalBehaviour(left);
-        EntryRollovers.RotateStatus(left ? 1 : -1);
-        LabRollovers.RotateStatus(left ? 1 : -1);
+        Entry.RotateStatus(left ? 1 : -1);
+        Lab.RotateStatus(left ? 1 : -1);
     }
 }

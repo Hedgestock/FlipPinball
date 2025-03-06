@@ -5,7 +5,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dpfvq"]
 
-[node name="Rollover" type="Node2D"]
+[node name="Rollover" type="Node2D" groups=["Rollovers", "ShapeRound"]]
 script = ExtResource("1_hm3li")
 
 [node name="Area2D" type="Area2D" parent="."]
