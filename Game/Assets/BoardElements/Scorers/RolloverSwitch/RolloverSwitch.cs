@@ -4,10 +4,7 @@ using System;
 public partial class RolloverSwitch : Node2D
 {
     [Signal]
-    public delegate void ToggledEventHandler(bool IsOn);
-
-    [Signal]
-    public delegate void LanePassedEventHandler(bool IsOn);
+    public delegate void LanePassedEventHandler(int mult);
 
     [Export]
     Area2D NorthZone;
@@ -22,7 +19,7 @@ public partial class RolloverSwitch : Node2D
     {
         if (SouthZone.OverlapsBody(body))
         {
-            Toggle();
+            LanePass();
         }
     }
 
@@ -30,19 +27,14 @@ public partial class RolloverSwitch : Node2D
     {
         if (NorthZone.OverlapsBody(body))
         {
-            Toggle();
+            LanePass();
         }
     }
 
     void LanePass()
     {
-
-    }
-
-    void Toggle()
-    {
         if (!SelfActivated && !OnOffLight.IsOn) return;
         OnOffLight.IsOn = !OnOffLight.IsOn;
-        EmitSignal(SignalName.Toggled, OnOffLight.IsOn);
+        EmitSignal(SignalName.LanePassed, SelfActivated ? 1 : 5);
     }
 }

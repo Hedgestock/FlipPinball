@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.cs" id="2_g3lvu"]
 
 [node name="OnOffLight" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 0, 1)
 sprite_frames = ExtResource("1_twk08")
 animation = &"off"
 script = ExtResource("2_g3lvu")

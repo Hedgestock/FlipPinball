@@ -23,17 +23,18 @@ z_index = 2
 collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_k5bk0")
+can_sleep = false
 lock_rotation = true
 continuous_cd = 2
 contact_monitor = true
-max_contacts_reported = 5
+max_contacts_reported = 20
 linear_damp_mode = 1
 script = ExtResource("1_sowmc")
 Trail = NodePath("Trail")
 
 [node name="Trail" type="Line2D" parent="."]
 z_index = -1
-points = PackedVector2Array(0, 0, 0, 20)
+points = PackedVector2Array(0, 0, 20, 20)
 width = 20.0
 width_curve = SubResource("Curve_srid4")
 gradient = SubResource("Gradient_7h7m5")

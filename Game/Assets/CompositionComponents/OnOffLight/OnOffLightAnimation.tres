@@ -1,16 +1,16 @@
 [gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dete5i3mo25t2"]
 
-[ext_resource type="Texture2D" uid="uid://bol7jc3wx7k3b" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOff.png" id="1_16lti"]
-[ext_resource type="Texture2D" uid="uid://bhrymsnilktss" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOn.png" id="2_7s4kk"]
+[ext_resource type="Texture2D" uid="uid://im3gu5ubsh50" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOffGreyScale.png" id="1_0xpkl"]
+[ext_resource type="Texture2D" uid="uid://dkih32e0hbbu5" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOnGreyScale.png" id="2_4dohj"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_16lti")
+"texture": ExtResource("1_0xpkl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_7s4kk")
+"texture": ExtResource("2_4dohj")
 }],
 "loop": true,
 "name": &"blinking",
@@ -18,7 +18,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_16lti")
+"texture": ExtResource("1_0xpkl")
 }],
 "loop": true,
 "name": &"off",
@@ -26,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_7s4kk")
+"texture": ExtResource("2_4dohj")
 }],
 "loop": true,
 "name": &"on",

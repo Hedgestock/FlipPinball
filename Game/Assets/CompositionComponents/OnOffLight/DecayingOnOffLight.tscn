@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxb6w1wy4dxrp"]
+
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="1_alpac"]
+
+[node name="DecayingOnOffLight" instance=ExtResource("1_alpac")]
+
+[node name="OnTimer" type="Timer" parent="." index="0"]
+wait_time = 50.0
+one_shot = true
+
+[node name="BlinkingTimer" type="Timer" parent="." index="1"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="TurnedOff" from="." to="OnTimer" method="stop"]
+[connection signal="TurnedOff" from="." to="BlinkingTimer" method="stop"]
+[connection signal="TurnedOn" from="." to="OnTimer" method="start"]
+[connection signal="TurnedOn" from="." to="BlinkingTimer" method="stop"]
+[connection signal="timeout" from="OnTimer" to="." method="TurnBlinking"]
+[connection signal="timeout" from="OnTimer" to="BlinkingTimer" method="start"]
+[connection signal="timeout" from="BlinkingTimer" to="." method="TurnOff"]

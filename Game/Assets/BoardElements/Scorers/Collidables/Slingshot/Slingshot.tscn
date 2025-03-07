@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="5_q8d7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3ii1"]
-size = Vector2(130, 10)
+size = Vector2(120, 10)
 
 [node name="Slingshot" type="Node2D" groups=["Slingshots"]]
 script = ExtResource("1_lrqkg")
@@ -18,10 +18,10 @@ script = ExtResource("1_lrqkg")
 shape = SubResource("RectangleShape2D_x3ii1")
 
 [node name="Scorer" parent="." instance=ExtResource("3_dtu0p")]
+Value = 500
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_isjs3")
-bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("5_q8d7r")]
 

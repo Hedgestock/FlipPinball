@@ -65,7 +65,7 @@ public partial class Magnet : Node2D
     {
         if (body is Ball ball)
         {
-            ball.LinearDamp = 2.5f;
+            ball.LinearDamp = 2f;
         }
     }
 

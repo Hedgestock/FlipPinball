@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotZone.cs" id="1_h70cc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s15jt"]
-size = Vector2(40, 20)
+size = Vector2(30, 20)
 
 [node name="SkillShotZone" type="Area2D"]
 collision_layer = 2
@@ -16,8 +16,7 @@ Multiplier = 1
 shape = SubResource("RectangleShape2D_s15jt")
 
 [node name="OnOffLight" parent="." instance=ExtResource("1_85713")]
-position = Vector2(30, 0)
-_isOn = false
+position = Vector2(25, 0)
 
 [connection signal="BallEntered" from="." to="OnOffLight" method="TurnOn"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -38,7 +38,6 @@ position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_flb67")
 
 [node name="Scorer" parent="." instance=ExtResource("2_6dibq")]
-Value = 500
 
 [node name="OnOffLight" parent="." instance=ExtResource("3_43wvr")]
 position = Vector2(0, -25)
@@ -46,7 +45,7 @@ position = Vector2(0, -25)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3evls")
 
-[connection signal="Toggled" from="." to="Scorer" method="Score" unbinds=1]
-[connection signal="Toggled" from="." to="AudioStreamPlayer" method="play" unbinds=1]
+[connection signal="LanePassed" from="." to="Scorer" method="Score"]
+[connection signal="LanePassed" from="." to="AudioStreamPlayer" method="play" unbinds=1]
 [connection signal="body_entered" from="NorthZone" to="." method="OnNorthZoneEnter"]
 [connection signal="body_entered" from="SouthZone" to="." method="OnSouthZoneEnter"]

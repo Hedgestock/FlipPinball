@@ -15,6 +15,8 @@ public partial class SkillShot : Node2D
     Area2D CancellationZone;
     [Export]
     Area2D ValidationZone;
+    [Export]
+    Area2D InboundZone;
 
     List<SkillShotZone> Zones;
 
@@ -32,14 +34,14 @@ public partial class SkillShot : Node2D
 
     private void Cancellation(Node2D body)
     {
-        if (!(body is Ball)) return;
+        if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
         EmitSignal(SignalName.Cancel);
     }
 
     private void Validation(Node2D body)
     {
-        if (!(body is Ball)) return;
+        if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
         EmitSignal(SignalName.Validate, Multiplier);
     }
@@ -55,7 +57,6 @@ public partial class SkillShot : Node2D
         {
             z.GetNode<OnOffLight>("OnOffLight").TurnOff();
             z.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
-        }
-        );
+        });
     }
 }

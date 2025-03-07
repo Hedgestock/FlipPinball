@@ -14,6 +14,7 @@ script = ExtResource("2_fmo3h")
 [node name="OnOffLight" parent="Hitbox" index="0"]
 position = Vector2(0, 0)
 sprite_frames = ExtResource("3_apjk7")
+animation = &"on"
 
 [node name="CollisionShape2D" parent="Hitbox" index="1"]
 shape = SubResource("RectangleShape2D_jxtee")

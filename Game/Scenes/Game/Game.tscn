@@ -1,14 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene load_steps=5 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
 [ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
+[ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
 [ext_resource type="PackedScene" uid="uid://1uf453kusqfd" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="3_vxydm"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("MainContainer", "Score")]
+[node name="Game" type="Node" node_paths=PackedStringArray("MainContainer", "BallsList", "CurrentBallViewer", "Score", "History", "StatusBox", "GameTimerLabel")]
 script = ExtResource("1_ems3e")
 MainContainer = NodePath("MainContainer")
-Score = NodePath("MainContainer/PanelContainer/Label")
+BallsList = NodePath("MainContainer/PanelContainer2/Status/HFlowContainer")
+CurrentBallViewer = NodePath("MainContainer/PanelContainer2/Status/BallViewer")
+BallViewerScene = ExtResource("2_ttlp1")
+Score = NodePath("MainContainer/PanelContainer/VBoxContainer/ScoreLabel")
+History = NodePath("MainContainer/PanelContainer/VBoxContainer/ScrollContainer/History")
+StatusBox = NodePath("MainContainer/PanelContainer2/Status")
 ScoreBubbleScene = ExtResource("2_d708p")
+GameTimerLabel = NodePath("MainContainer/PanelContainer2/Status/GameTime")
 
 [node name="MainContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -25,9 +32,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MainContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/PanelContainer"]
 layout_mode = 2
-text = "Score"
+
+[node name="ScoreLabel" type="Label" parent="MainContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Score: 0"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="History" type="Label" parent="MainContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(600, 1080)
@@ -45,7 +64,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MainContainer/PanelContainer2"]
+[node name="Status" type="VBoxContainer" parent="MainContainer/PanelContainer2"]
 layout_mode = 2
-text = "Status
-"
+
+[node name="BallsLeft" type="Label" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+text = "Balls left"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+
+[node name="CurrentBall" type="Label" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+text = "Current ball"
+
+[node name="BallViewer" parent="MainContainer/PanelContainer2/Status" instance=ExtResource("2_ttlp1")]
+layout_mode = 2
+
+[node name="GameTime" type="Label" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+text = "Game time: 00:00"

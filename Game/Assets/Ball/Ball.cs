@@ -15,7 +15,14 @@ public partial class Ball : RigidBody2D
     {
         base._Ready();
         LastPosition = GlobalPosition;
-        Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray();
+        if (ProcessMode != ProcessModeEnum.Disabled)
+        {
+            Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray();
+        }
+        else
+        {
+            Trail.Points = [new(0, 0), new(20, 20)];
+        }
     }
 
     public override void _PhysicsProcess(double delta)

@@ -6,9 +6,6 @@ using System.Collections.Generic;
 public partial class Board : Node2D
 {
     [Export]
-    PackedScene Ball;
-
-    [Export]
     float PaddleSpeed = 25;
 
     [Export]
@@ -17,10 +14,26 @@ public partial class Board : Node2D
     public Array<Paddle> PaddlesLeft = new Array<Paddle>();
     [Export]
     public Array<Paddle> PaddlesRight = new Array<Paddle>();
+    [Export]
+    OnOffLight SaveBallLight;
 
-    private List<RigidBody2D> LiveBalls = new List<RigidBody2D>();
 
+    private List<Ball> LiveBalls = new List<Ball>();
+
+    private Ball LoadedBall = null;
+
+    // Debug code
     private Vector2 LaunchPos;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        GetTree().CreateTimer(1).Timeout += () =>
+        {
+            GameManager.SetGame();
+            LoadedBall = GameManager.GetNextBall();
+        };
+    }
 
     public override void _Input(InputEvent @event)
     {
@@ -50,20 +63,9 @@ public partial class Board : Node2D
             }
             else if (@event.IsActionReleased("screen_tap"))
             {
-                RigidBody2D ball = Ball.Instantiate<RigidBody2D>();
+                Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.Position = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
-                LiveBalls.Add(ball);
-                AddChild(ball);
-            }
-            else
-            {
-                RigidBody2D ball = Ball.Instantiate<RigidBody2D>();
-                ball.Position = @eventMouseButton.Position;
-                ball.SetCollisionLayerValue(3, true);
-                ball.SetCollisionMaskValue(3, true);
-                ball.SetCollisionLayerValue(2, false);
-                ball.SetCollisionMaskValue(2, false);
                 LiveBalls.Add(ball);
                 AddChild(ball);
             }
@@ -78,10 +80,14 @@ public partial class Board : Node2D
     private void LoadBall()
     {
         if (LiveBalls.Count != 0) return;
-        RigidBody2D ball = Ball.Instantiate<RigidBody2D>();
-        ball.Position = Plunger.Position;
-        LiveBalls.Add(ball);
-        AddChild(ball);
+        LoadedBall.Position = Plunger.Position;
+        LiveBalls.Add(LoadedBall);
+        AddChild(LoadedBall);
+    }
+
+    protected void AddExtraBall()
+    {
+        GameManager.AddExtraBall(LoadedBall.Duplicate() as Ball);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -115,11 +121,24 @@ public partial class Board : Node2D
 
     private void OnEnterDrain(Node2D body, bool oob)
     {
-        if (!(body is Ball)) return;
+        if (body is Ball ball)
+        {
+            if (oob) { GD.PrintErr($"Ball {ball} OOB"); }
+            LiveBalls.Remove(ball);
+            RemoveChild(ball);
+            if (LiveBalls.Count != 0) return;
+            if (SaveBallLight.IsOnOrBlinking)
+            {
+                CallDeferred(MethodName.LoadBall);
+                SaveBallLight.TurnOff();
+            }
+            else
+            {
+                ball.QueueFree();
+                LoadedBall = GameManager.GetNextBall();
+            }
 
-        if (oob) { GD.PrintErr($"Ball {body} OOB"); }
-        LiveBalls.Remove(body as Ball);
-        body.QueueFree();
+        }
     }
 
     private void Tilt()

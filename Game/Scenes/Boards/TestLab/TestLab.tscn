@@ -1,7 +1,6 @@
-[gd_scene load_steps=55 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=56 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
-[ext_resource type="PackedScene" uid="uid://dr0mugi8okm00" path="res://Game/Assets/Ball/Ball.tscn" id="2_qvs32"]
 [ext_resource type="Texture2D" uid="uid://b6x313mirbl7c" path="res://Game/Scenes/Boards/TestLab/Template.jpg" id="3_ijggr"]
 [ext_resource type="PackedScene" uid="uid://1jrg7mxwi5so" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Round/RoundTarget.tscn" id="4_2d0ue"]
 [ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="4_6e6jg"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="5_dxs6n"]
 [ext_resource type="PackedScene" uid="uid://cn74ne78k7kod" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShot.tscn" id="6_3fbbc"]
 [ext_resource type="PackedScene" uid="uid://ckk4x5dhl1c0w" path="res://Game/Assets/BoardElements/Scorers/Collidables/Bumper/Bumper.tscn" id="6_awf70"]
+[ext_resource type="PackedScene" uid="uid://dxb6w1wy4dxrp" path="res://Game/Assets/CompositionComponents/OnOffLight/DecayingOnOffLight.tscn" id="7_166f2"]
 [ext_resource type="PackedScene" uid="uid://641jx1x1js2s" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotZone.tscn" id="7_rbrd7"]
 [ext_resource type="PackedScene" uid="uid://tm0n8wum3wb6" path="res://Game/Assets/BoardElements/Scorers/Collidables/Slingshot/Slingshot.tscn" id="8_8xkpc"]
 [ext_resource type="PackedScene" uid="uid://cl5k1huk7mxl1" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.tscn" id="9_u8226"]
@@ -48,10 +48,10 @@ normal = Vector2(-1, 0)
 normal = Vector2(0, 1)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rjk18"]
-b = Vector2(147, 103)
+b = Vector2(146, 109)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jjm4o"]
-b = Vector2(105, 74)
+b = Vector2(101, 80)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kqonf"]
 b = Vector2(-50, 26)
@@ -86,6 +86,8 @@ size = Vector2(97.8131, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nafru"]
 size = Vector2(118.081, 20)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kncno"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ub0f"]
 size = Vector2(80, 10)
 
@@ -112,16 +114,17 @@ b = Vector2(0, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttt3n"]
 size = Vector2(60, 20)
 
-[node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "SpinnersLevel", "Plunger", "PaddlesLeft", "PaddlesRight")]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "SpinnersLevel", "Plunger", "PaddlesLeft", "PaddlesRight", "SaveBallLight")]
 position = Vector2(1, 0)
 script = ExtResource("1_mse42")
 Entry = NodePath("Layer1/Entry")
 Lab = NodePath("Layer2/Lab")
+MagicPostLight = NodePath("Layer1/MagicPost/DecayingOnOffLight")
 SpinnersLevel = NodePath("Layer1/Spinners")
-Ball = ExtResource("2_qvs32")
 Plunger = NodePath("Layer1/Plunger")
 PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
 PaddlesRight = [NodePath("Layer1/PaddleRightMain")]
+SaveBallLight = NodePath("Layer1/SaveBallLight")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 600.0
@@ -184,12 +187,12 @@ shape = SubResource("SegmentShape2D_jjm4o")
 
 [node name="LeftSlingshot" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(157, 774)
-polygon = PackedVector2Array(4, -4, -3, 1, -3, 91, 46, 127, 54, 127, 59, 120, 29, 71, 12, -2)
+polygon = PackedVector2Array(4, -4, -3, 1, -3, 91, 46, 127, 54, 127, 59, 120, 57, 115, 29, 71, 14, 3, 12, -2)
 
 [node name="RightSlingshot" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(457, 774)
 scale = Vector2(-1, 1)
-polygon = PackedVector2Array(4, -4, -3, 1, -3, 91, 46, 127, 54, 127, 59, 120, 29, 71, 12, -2)
+polygon = PackedVector2Array(4, -4, -3, 1, -3, 91, 46, 127, 54, 127, 59, 120, 57, 115, 29, 71, 14, 3, 12, -2)
 
 [node name="DownLeftCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(0, 891)
@@ -297,6 +300,18 @@ position = Vector2(520, 629)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer1/ExceptionGate"]
 polygon = PackedVector2Array(-22, 9, -20, -10, 23, -10, 23, 34, 13, 34, 13, 9)
 
+[node name="MagicPost" type="StaticBody2D" parent="Layer1"]
+position = Vector2(309, 1011)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layer1/MagicPost"]
+shape = SubResource("CircleShape2D_kncno")
+disabled = true
+
+[node name="DecayingOnOffLight" parent="Layer1/MagicPost" instance=ExtResource("7_166f2")]
+position = Vector2(0, -26)
+
 [node name="UnderRampSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(162, 417)
 
@@ -305,9 +320,6 @@ rotation = 0.471239
 
 [node name="CollisionShape2D" parent="Layer1/UnderRampSlingshot/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_7ub0f")
-
-[node name="AudioStreamPlayer" parent="Layer1/UnderRampSlingshot" index="2"]
-bus = &"Master"
 
 [node name="TunnelSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(434, 388)
@@ -318,38 +330,53 @@ rotation = -1.13446
 [node name="CollisionShape2D" parent="Layer1/TunnelSlingshot/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_yy6bf")
 
-[node name="AudioStreamPlayer" parent="Layer1/TunnelSlingshot" index="2"]
-bus = &"Master"
-
 [node name="Plunger" parent="Layer1" instance=ExtResource("4_6e6jg")]
 position = Vector2(562, 936)
+
+[node name="SaveBallLight" parent="Layer1" instance=ExtResource("7_166f2")]
+modulate = Color(1, 0.486104, 0.418607, 1)
+position = Vector2(422, 970)
+
+[node name="OnTimer" parent="Layer1/SaveBallLight" index="0"]
+wait_time = 12.0
+
+[node name="BlinkingTimer" parent="Layer1/SaveBallLight" index="1"]
+wait_time = 3.0
+
+[node name="ReplayBallLight" parent="Layer1" instance=ExtResource("7_166f2")]
+modulate = Color(1, 0.486104, 0.418607, 1)
+position = Vector2(194, 970)
 
 [node name="SkillShot" parent="Layer1" instance=ExtResource("6_3fbbc")]
 position = Vector2(562, 685)
 
 [node name="Validation" parent="Layer1/SkillShot" index="0"]
-position = Vector2(-33, 0)
+position = Vector2(-29, -2)
 
 [node name="Cancellation" parent="Layer1/SkillShot" index="1"]
-position = Vector2(-174, -591)
-rotation = 1.5708
+position = Vector2(-142, -590)
+rotation = 2.06041
 
-[node name="Scorer" parent="Layer1/SkillShot" index="2"]
+[node name="CollisionPolygon2D" parent="Layer1/SkillShot/Inbound" index="0"]
+polygon = PackedVector2Array(-24, 22, -24, -407, -140, -567, -111, -613, 13, -585, 22, 23)
+
+[node name="Scorer" parent="Layer1/SkillShot" index="3"]
 position = Vector2(-73, 16)
 
 [node name="SkillShotZone" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
-position = Vector2(-3, 5)
+position = Vector2(0, 5)
+Multiplier = 2
 
 [node name="SkillShotZone2" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
-position = Vector2(-6, -123)
-Multiplier = 3
+position = Vector2(-3, -123)
+Multiplier = 4
 
 [node name="SkillShotZone3" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
-position = Vector2(-6, -249)
-Multiplier = 7
+position = Vector2(-3, -249)
+Multiplier = 10
 
 [node name="SkillShotZone4" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
-position = Vector2(-6, -377)
+position = Vector2(-3, -377)
 Multiplier = 4
 
 [node name="SkillShotZone5" parent="Layer1/SkillShot" instance=ExtResource("7_rbrd7")]
@@ -362,10 +389,10 @@ position = Vector2(-85, -557)
 rotation = -0.887486
 
 [node name="PaddleLeftMain" parent="Layer1" instance=ExtResource("5_dxs6n")]
-position = Vector2(222, 963)
+position = Vector2(222, 967)
 
 [node name="PaddleRightMain" parent="Layer1" instance=ExtResource("5_dxs6n")]
-position = Vector2(394, 963)
+position = Vector2(396, 967)
 scale = Vector2(-1, 1)
 
 [node name="PlungerSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
@@ -397,17 +424,35 @@ position = Vector2(55, 113)
 [node name="Hitbox" parent="Layer1/BumperTopTargetGroup/RoundTarget1" index="0"]
 rotation = -1.6055
 
+[node name="OnOffLight" parent="Layer1/BumperTopTargetGroup/RoundTarget1/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/BumperTopTargetGroup/RoundTarget1" index="1"]
+Value = 750
+
 [node name="RoundTarget2" parent="Layer1/BumperTopTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(91, 58)
 
 [node name="Hitbox" parent="Layer1/BumperTopTargetGroup/RoundTarget2" index="0"]
 rotation = -0.383126
 
+[node name="OnOffLight" parent="Layer1/BumperTopTargetGroup/RoundTarget2/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/BumperTopTargetGroup/RoundTarget2" index="1"]
+Value = 750
+
 [node name="RoundTarget3" parent="Layer1/BumperTopTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(156, 72)
 
 [node name="Hitbox" parent="Layer1/BumperTopTargetGroup/RoundTarget3" index="0"]
 rotation = 0.79256
+
+[node name="OnOffLight" parent="Layer1/BumperTopTargetGroup/RoundTarget3/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/BumperTopTargetGroup/RoundTarget3" index="1"]
+Value = 750
 
 [node name="BumperTop" parent="Layer1" instance=ExtResource("6_awf70")]
 position = Vector2(113, 112)
@@ -418,17 +463,11 @@ position = Vector2(188, 835)
 [node name="Hitbox" parent="Layer1/LeftSlingshot" index="0"]
 rotation = 1.20428
 
-[node name="AudioStreamPlayer" parent="Layer1/LeftSlingshot" index="2"]
-bus = &"Master"
-
 [node name="RightSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 position = Vector2(426, 835)
 
 [node name="Hitbox" parent="Layer1/RightSlingshot" index="0"]
 rotation = -1.20428
-
-[node name="AudioStreamPlayer" parent="Layer1/RightSlingshot" index="2"]
-bus = &"Master"
 
 [node name="Entry" type="Node" parent="Layer1"]
 script = ExtResource("18_pasr8")
@@ -437,22 +476,34 @@ Group = "Rollovers"
 [node name="Rollover1" parent="Layer1/Entry" instance=ExtResource("9_u8226")]
 position = Vector2(273, 163)
 
+[node name="Scorer" parent="Layer1/Entry/Rollover1" index="3"]
+Value = 2000
+
 [node name="Rollover2" parent="Layer1/Entry" instance=ExtResource("9_u8226")]
 position = Vector2(315, 163)
+
+[node name="Scorer" parent="Layer1/Entry/Rollover2" index="3"]
+Value = 2000
 
 [node name="Rollover3" parent="Layer1/Entry" instance=ExtResource("9_u8226")]
 position = Vector2(356, 163)
 
-[node name="Bumper1" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
+[node name="Scorer" parent="Layer1/Entry/Rollover3" index="3"]
+Value = 2000
+
+[node name="Bumpers" parent="Layer1/Entry" instance=ExtResource("19_8g6kt")]
+
+[node name="Timer" parent="Layer1/Entry/Bumpers" index="1"]
+wait_time = 45.0
+
+[node name="Bumper1" parent="Layer1/Entry/Bumpers" instance=ExtResource("6_awf70")]
 position = Vector2(360, 283)
 
-[node name="Bumper2" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
+[node name="Bumper2" parent="Layer1/Entry/Bumpers" instance=ExtResource("6_awf70")]
 position = Vector2(266, 285)
 
-[node name="Bumper3" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
+[node name="Bumper3" parent="Layer1/Entry/Bumpers" instance=ExtResource("6_awf70")]
 position = Vector2(307.04, 385.234)
-
-[node name="DecayingLeveler" parent="Layer1/Entry" instance=ExtResource("19_8g6kt")]
 
 [node name="LeftTargetGroup" type="Node" parent="Layer1"]
 script = ExtResource("18_pasr8")
@@ -465,6 +516,12 @@ position = Vector2(101, 370)
 rotation = -1.8719
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/LeftTargetGroup/RoundTarget1/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/LeftTargetGroup/RoundTarget1" index="1"]
+Value = 750
+
 [node name="RoundTarget2" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(97, 345)
 
@@ -472,12 +529,24 @@ position = Vector2(97, 345)
 rotation = 4.62974
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/LeftTargetGroup/RoundTarget2/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/LeftTargetGroup/RoundTarget2" index="1"]
+Value = 750
+
 [node name="RoundTarget3" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(98, 319)
 
 [node name="Hitbox" parent="Layer1/LeftTargetGroup/RoundTarget3" index="0"]
 rotation = -1.46875
 TriggerSpeed = 0
+
+[node name="OnOffLight" parent="Layer1/LeftTargetGroup/RoundTarget3/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/LeftTargetGroup/RoundTarget3" index="1"]
+Value = 750
 
 [node name="LeftKickBack" parent="Layer1" instance=ExtResource("5_cw1tt")]
 position = Vector2(49, 936)
@@ -503,6 +572,12 @@ position = Vector2(434, 261)
 rotation = 1.16211
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/RightTargetGroup/RoundTarget1/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/RightTargetGroup/RoundTarget1" index="1"]
+Value = 750
+
 [node name="RoundTarget2" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(444, 285)
 
@@ -510,12 +585,24 @@ position = Vector2(444, 285)
 rotation = 1.31917
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/RightTargetGroup/RoundTarget2/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/RightTargetGroup/RoundTarget2" index="1"]
+Value = 750
+
 [node name="RoundTarget3" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(447, 310)
 
 [node name="Hitbox" parent="Layer1/RightTargetGroup/RoundTarget3" index="0"]
 rotation = 1.47486
 TriggerSpeed = 0
+
+[node name="OnOffLight" parent="Layer1/RightTargetGroup/RoundTarget3/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/RightTargetGroup/RoundTarget3" index="1"]
+Value = 750
 
 [node name="RightKickBack" parent="Layer1" instance=ExtResource("5_cw1tt")]
 position = Vector2(515, 936)
@@ -530,6 +617,8 @@ position = Vector2(-4, -30)
 bus = &"Master"
 
 [node name="TopTargetGroup" type="Node" parent="Layer1"]
+script = ExtResource("18_pasr8")
+Group = "Targets"
 
 [node name="DropTarget1" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(204, 214)
@@ -538,12 +627,24 @@ position = Vector2(204, 214)
 rotation = -0.570422
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/TopTargetGroup/DropTarget1/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/TopTargetGroup/DropTarget1" index="1"]
+Value = 50
+
 [node name="DropTarget2" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(223, 202)
 
 [node name="Hitbox" parent="Layer1/TopTargetGroup/DropTarget2" index="0"]
 rotation = -0.570422
 TriggerSpeed = 0
+
+[node name="OnOffLight" parent="Layer1/TopTargetGroup/DropTarget2/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/TopTargetGroup/DropTarget2" index="1"]
+Value = 50
 
 [node name="DropTarget3" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(242, 190)
@@ -554,8 +655,28 @@ TriggerSpeed = 0
 
 [node name="OnOffLight" parent="Layer1/TopTargetGroup/DropTarget3/Hitbox" index="0"]
 scale = Vector2(1.00965, 1.00357)
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/TopTargetGroup/DropTarget3" index="1"]
+Value = 50
+
+[node name="DecayingLeveler" parent="Layer1/TopTargetGroup" instance=ExtResource("19_8g6kt")]
+
+[node name="OnOffLight1" parent="Layer1/TopTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
+position = Vector2(198, 238)
+
+[node name="OnOffLight2" parent="Layer1/TopTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
+position = Vector2(218, 225)
+
+[node name="OnOffLight3" parent="Layer1/TopTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
+position = Vector2(238, 212)
+
+[node name="OnOffLight4" parent="Layer1/TopTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
+position = Vector2(258, 199)
 
 [node name="BottomTargetGroup" type="Node" parent="Layer1"]
+script = ExtResource("18_pasr8")
+Group = "Targets"
 
 [node name="DropTarget1" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(274, 411)
@@ -564,6 +685,12 @@ position = Vector2(274, 411)
 rotation = 0.338306
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/BottomTargetGroup/DropTarget1/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/BottomTargetGroup/DropTarget1" index="1"]
+Value = 50
+
 [node name="DropTarget2" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(296, 419)
 
@@ -571,12 +698,38 @@ position = Vector2(296, 419)
 rotation = 0.338306
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/BottomTargetGroup/DropTarget2/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/BottomTargetGroup/DropTarget2" index="1"]
+Value = 50
+
 [node name="DropTarget3" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(318, 427)
 
 [node name="Hitbox" parent="Layer1/BottomTargetGroup/DropTarget3" index="0"]
 rotation = 0.338306
 TriggerSpeed = 0
+
+[node name="OnOffLight" parent="Layer1/BottomTargetGroup/DropTarget3/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/BottomTargetGroup/DropTarget3" index="1"]
+Value = 50
+
+[node name="DecayingLeveler" parent="Layer1/BottomTargetGroup" instance=ExtResource("19_8g6kt")]
+
+[node name="OnOffLight1" parent="Layer1/BottomTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
+modulate = Color(0, 0, 0.862745, 1)
+position = Vector2(290, 450)
+
+[node name="OnOffLight2" parent="Layer1/BottomTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
+modulate = Color(0, 0.882353, 0, 1)
+position = Vector2(290, 475)
+
+[node name="OnOffLight3" parent="Layer1/BottomTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
+modulate = Color(0.901961, 0, 0, 1)
+position = Vector2(290, 500)
 
 [node name="Spinners" parent="Layer1" instance=ExtResource("18_8qgjt")]
 MaxLevel = 1
@@ -599,43 +752,61 @@ position = Vector2(57, 338)
 [node name="OnOffLight" parent="Layer1/Spinners/LeftSpinner" instance=ExtResource("21_63yue")]
 position = Vector2(4, 32)
 
-[node name="Modes" parent="Layer1" instance=ExtResource("19_8g6kt")]
-
-[node name="TunnelTargetGroup" type="Node" parent="Layer1/Modes"]
+[node name="TunnelTargetGroup" type="Node" parent="Layer1"]
 script = ExtResource("18_pasr8")
 Group = "Targets"
 
-[node name="DropTarget1" parent="Layer1/Modes/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
+[node name="DropTarget1" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(457, 553)
 
-[node name="Hitbox" parent="Layer1/Modes/TunnelTargetGroup/DropTarget1" index="0"]
+[node name="Hitbox" parent="Layer1/TunnelTargetGroup/DropTarget1" index="0"]
 rotation = 1.5708
 TriggerSpeed = 0
 
-[node name="DropTarget2" parent="Layer1/Modes/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
+[node name="OnOffLight" parent="Layer1/TunnelTargetGroup/DropTarget1/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/TunnelTargetGroup/DropTarget1" index="1"]
+Value = 500
+
+[node name="DropTarget2" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(457, 578)
 
-[node name="Hitbox" parent="Layer1/Modes/TunnelTargetGroup/DropTarget2" index="0"]
+[node name="Hitbox" parent="Layer1/TunnelTargetGroup/DropTarget2" index="0"]
 rotation = 1.5708
 TriggerSpeed = 0
 
-[node name="DropTarget3" parent="Layer1/Modes/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
+[node name="OnOffLight" parent="Layer1/TunnelTargetGroup/DropTarget2/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/TunnelTargetGroup/DropTarget2" index="1"]
+Value = 500
+
+[node name="DropTarget3" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(457, 603)
 
-[node name="Hitbox" parent="Layer1/Modes/TunnelTargetGroup/DropTarget3" index="0"]
+[node name="Hitbox" parent="Layer1/TunnelTargetGroup/DropTarget3" index="0"]
 rotation = 1.5708
 TriggerSpeed = 0
 
-[node name="OnOffLight1" parent="Layer1/Modes" instance=ExtResource("21_63yue")]
+[node name="OnOffLight" parent="Layer1/TunnelTargetGroup/DropTarget3/Hitbox" index="0"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/TunnelTargetGroup/DropTarget3" index="1"]
+Value = 500
+
+[node name="ModesLevel" parent="Layer1/TunnelTargetGroup" instance=ExtResource("19_8g6kt")]
+
+[node name="OnOffLight1" parent="Layer1/TunnelTargetGroup/ModesLevel" instance=ExtResource("21_63yue")]
 position = Vector2(434, 629)
 
-[node name="OnOffLight2" parent="Layer1/Modes" instance=ExtResource("21_63yue")]
+[node name="OnOffLight2" parent="Layer1/TunnelTargetGroup/ModesLevel" instance=ExtResource("21_63yue")]
 position = Vector2(427, 602)
 
-[node name="OnOffLight3" parent="Layer1/Modes" instance=ExtResource("21_63yue")]
+[node name="OnOffLight3" parent="Layer1/TunnelTargetGroup/ModesLevel" instance=ExtResource("21_63yue")]
 position = Vector2(427, 573)
 
-[node name="OnOffLight4" parent="Layer1/Modes" instance=ExtResource("21_63yue")]
+[node name="OnOffLight4" parent="Layer1/TunnelTargetGroup/ModesLevel" instance=ExtResource("21_63yue")]
 position = Vector2(435, 544)
 
 [node name="TunnelRoundTarget" parent="Layer1" instance=ExtResource("4_2d0ue")]
@@ -645,6 +816,12 @@ position = Vector2(421, 426)
 rotation = 0.580763
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/TunnelRoundTarget/Hitbox" index="1"]
+animation = &"off"
+
+[node name="Scorer" parent="Layer1/TunnelRoundTarget" index="1"]
+Value = 750
+
 [node name="RightOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(512, 821)
 
@@ -653,17 +830,20 @@ position = Vector2(473, 820)
 SelfActivated = false
 
 [node name="Scorer" parent="Layer1/RightInLaneRollover" index="3"]
-Value = 25000
+Value = 5000
 
 [node name="LeftInLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(139, 820)
 SelfActivated = false
 
 [node name="Scorer" parent="Layer1/LeftInLaneRollover" index="3"]
-Value = 25000
+Value = 5000
 
 [node name="LeftReturnLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(98, 820)
+
+[node name="Scorer" parent="Layer1/LeftReturnLaneRollover" index="3"]
+Value = 10000
 
 [node name="LeftOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
 position = Vector2(54, 820)
@@ -762,6 +942,9 @@ position = Vector2(136, 634)
 rotation = -1.5708
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/MissionTargetGroup/RoundTarget1/Hitbox" index="1"]
+animation = &"off"
+
 [node name="RoundTarget2" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(136, 659)
 
@@ -769,12 +952,18 @@ position = Vector2(136, 659)
 rotation = -1.5708
 TriggerSpeed = 0
 
+[node name="OnOffLight" parent="Layer1/MissionTargetGroup/RoundTarget2/Hitbox" index="1"]
+animation = &"off"
+
 [node name="RoundTarget3" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(136, 684)
 
 [node name="Hitbox" parent="Layer1/MissionTargetGroup/RoundTarget3" index="0"]
 rotation = -1.5708
 TriggerSpeed = 0
+
+[node name="OnOffLight" parent="Layer1/MissionTargetGroup/RoundTarget3/Hitbox" index="1"]
+animation = &"off"
 
 [node name="TopRollover" type="Area2D" parent="Layer1"]
 position = Vector2(138, 259)
@@ -803,7 +992,7 @@ collision_mask = 0
 
 [node name="LabBoundaries" type="CollisionPolygon2D" parent="Layer2/Walls"]
 position = Vector2(103, 471)
-polygon = PackedVector2Array(32, 405, -103, 405, -103, -97, 117, -96, 160, 88, 157, 89, 141, 52, 114, 7, 97, -16, 84, -30, 70, -41, 56, -50, 39, -57, 22, -62, 3, -63, -14, -62, -34, -56, -54, -46, -69, -34, -81, -17, -89, 2, -91, 16, -92, 131, -72, 142, -72, 173, -92, 184, -92, 217, -88, 225, -61, 243, -45, 255, -36, 270, -32, 287, -32, 320, -27, 328, -21, 332, -12, 332, -6, 327, -2, 320, -2, 272, 1, 255, 5, 244, 11, 237, 17, 229, 19, 220, 19, 202, 2, 190, 2, 160, 19, 148, 21, 82, 8, 65, -13, 53, -25, 48, -36, 37, -45, 26, -51, 7, -51, -5, -48, -14, -43, -22, -36, -28, -24, -34, -14, -37, -2, -39, 7, -38, 17, -35, 27, -30, 37, -23, 46, -14, 55, -2, 62, 8, 78, 43, 89, 68, 100, 107, 95, 108, 84, 63, 75, 45, 33, 85)
+polygon = PackedVector2Array(32, 350, -103, 350, -103, -97, 117, -96, 160, 88, 157, 89, 141, 52, 114, 7, 97, -16, 84, -30, 70, -41, 56, -50, 39, -57, 22, -62, 3, -63, -14, -62, -34, -56, -54, -46, -69, -34, -81, -17, -89, 2, -91, 16, -92, 131, -72, 142, -72, 173, -92, 184, -92, 217, -88, 225, -61, 243, -45, 255, -36, 270, -32, 287, -32, 320, -27, 328, -21, 332, -12, 332, -6, 327, -2, 320, -2, 272, 1, 255, 5, 244, 11, 237, 17, 229, 19, 220, 19, 202, 2, 190, 2, 160, 19, 148, 21, 82, 8, 65, -13, 53, -25, 48, -36, 37, -45, 26, -51, 7, -51, -5, -48, -14, -43, -22, -36, -28, -24, -34, -14, -37, -2, -39, 7, -38, 17, -35, 27, -30, 37, -23, 46, -14, 55, -2, 62, 8, 78, 43, 89, 68, 100, 107, 95, 108, 84, 63, 75, 45, 33, 85)
 
 [node name="LeftLabSplitter" type="CollisionShape2D" parent="Layer2/Walls"]
 position = Vector2(47, 540)
@@ -832,6 +1021,9 @@ collision_mask = 4
 [node name="SouthZone" parent="Layer2/Lab/Rollover1" index="2"]
 collision_mask = 4
 
+[node name="Scorer" parent="Layer2/Lab/Rollover1" index="3"]
+Value = 500
+
 [node name="Rollover2" parent="Layer2/Lab" instance=ExtResource("9_u8226")]
 position = Vector2(68, 568)
 
@@ -840,6 +1032,9 @@ collision_mask = 4
 
 [node name="SouthZone" parent="Layer2/Lab/Rollover2" index="2"]
 collision_mask = 4
+
+[node name="Scorer" parent="Layer2/Lab/Rollover2" index="3"]
+Value = 500
 
 [node name="Rollover3" parent="Layer2/Lab" instance=ExtResource("9_u8226")]
 position = Vector2(106, 582)
@@ -850,6 +1045,9 @@ collision_mask = 4
 [node name="SouthZone" parent="Layer2/Lab/Rollover3" index="2"]
 collision_mask = 4
 
+[node name="Scorer" parent="Layer2/Lab/Rollover3" index="3"]
+Value = 500
+
 [node name="Bumper1" parent="Layer2/Lab" instance=ExtResource("6_awf70")]
 position = Vector2(103, 646)
 scale = Vector2(0.8, 0.8)
@@ -858,9 +1056,6 @@ scale = Vector2(0.8, 0.8)
 collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
-
-[node name="AudioStreamPlayer" parent="Layer2/Lab/Bumper1" index="3"]
-bus = &"Master"
 
 [node name="Pusher" parent="Layer2/Lab/Bumper1" index="4"]
 Strength = 500
@@ -873,9 +1068,6 @@ scale = Vector2(0.8, 0.8)
 collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
-
-[node name="AudioStreamPlayer" parent="Layer2/Lab/Bumper2" index="3"]
-bus = &"Master"
 
 [node name="Pusher" parent="Layer2/Lab/Bumper2" index="4"]
 Strength = 500
@@ -890,13 +1082,13 @@ collision_layer = 4
 HitsOverheat = 5
 MSToOverheat = 2000
 
-[node name="AudioStreamPlayer" parent="Layer2/Lab/Bumper3" index="3"]
-bus = &"Master"
-
 [node name="Pusher" parent="Layer2/Lab/Bumper3" index="4"]
 Strength = 500
 
 [node name="DecayingLeveler" parent="Layer2/Lab" instance=ExtResource("19_8g6kt")]
+
+[node name="Timer" parent="Layer2/Lab/DecayingLeveler" index="1"]
+wait_time = 40.0
 
 [node name="LayerDrop" parent="Layer2" instance=ExtResource("15_uh8xy")]
 position = Vector2(87, 793)
@@ -905,17 +1097,19 @@ position = Vector2(87, 793)
 collision_mask = 4
 
 [connection signal="body_entered" from="Boundaries" to="." method="OnEnterDrain" binds= [true]]
+[connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
+[connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
 [connection signal="SpittingBall" from="Layer1/PlungerSpitter" to="Layer1/ExceptionGate" method="RemoveException"]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="OnEnterDrain" binds= [false]]
 [connection signal="timeout" from="Layer1/BumperTopTargetGroup/RoundTarget1/ResetDelay" to="Layer1/BumperTopTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BumperTopTargetGroup/RoundTarget2/ResetDelay" to="Layer1/BumperTopTargetGroup/RoundTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BumperTopTargetGroup/RoundTarget3/ResetDelay" to="Layer1/BumperTopTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry" method="SetAllOff"]
-[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/DecayingLeveler/Leveler" method="LevelUp"]
-[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/BumperTop" method="SetLevel"]
-[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
-[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
-[connection signal="OnLevelChange" from="Layer1/Entry/DecayingLeveler/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
+[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Bumpers/Leveler" method="LevelUp"]
+[connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/BumperTop" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/Bumper1" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/Bumper2" method="SetLevel"]
+[connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/Bumper3" method="SetLevel"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack" method="Open"]
 [connection signal="timeout" from="Layer1/LeftTargetGroup/RoundTarget1/ResetDelay" to="Layer1/LeftTargetGroup/RoundTarget1/Hitbox/OnOffLight" method="TurnOn"]
@@ -927,26 +1121,33 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/RightTargetGroup/RoundTarget2/ResetDelay" to="Layer1/RightTargetGroup/RoundTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/RightTargetGroup/RoundTarget3/ResetDelay" to="Layer1/RightTargetGroup/RoundTarget3/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="KickingBall" from="Layer1/RightKickBack" to="Layer1/ExceptionGate" method="AddException" unbinds=1]
+[connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="timeout" from="Layer1/TopTargetGroup/DropTarget1/ResetDelay" to="Layer1/TopTargetGroup/DropTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/TopTargetGroup/DropTarget2/ResetDelay" to="Layer1/TopTargetGroup/DropTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/TopTargetGroup/DropTarget3/ResetDelay" to="Layer1/TopTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="OnLevelChange" from="Layer1/TopTargetGroup/DecayingLeveler/Leveler" to="." method="SetBoardMultLevel"]
+[connection signal="AllOn" from="Layer1/BottomTargetGroup" to="Layer1/BottomTargetGroup" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/BottomTargetGroup" to="Layer1/BottomTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="timeout" from="Layer1/BottomTargetGroup/DropTarget1/ResetDelay" to="Layer1/BottomTargetGroup/DropTarget1/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BottomTargetGroup/DropTarget2/ResetDelay" to="Layer1/BottomTargetGroup/DropTarget2/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/BottomTargetGroup/DropTarget3/ResetDelay" to="Layer1/BottomTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="OnLevelUp" from="Layer1/BottomTargetGroup/DecayingLeveler/Leveler" to="." method="GetPrizes"]
 [connection signal="OnLevelChange" from="Layer1/Spinners" to="Layer1/Spinners/TunnelSpinner" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner" method="SetLevel"]
 [connection signal="OnLevelDown" from="Layer1/Spinners" to="Layer1/Spinners/TunnelSpinner/OnOffLight" method="TurnOff" unbinds=1]
 [connection signal="OnLevelDown" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner/OnOffLight" method="TurnOff" unbinds=1]
 [connection signal="OnLevelUp" from="Layer1/Spinners" to="Layer1/Spinners/TunnelSpinner/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="OnLevelUp" from="Layer1/Spinners" to="Layer1/Spinners/LeftSpinner/OnOffLight" method="TurnOn" unbinds=1]
-[connection signal="OnLevelDown" from="Layer1/Modes/Leveler" to="." method="ModesHandler"]
-[connection signal="OnLevelUp" from="Layer1/Modes/Leveler" to="." method="ModesHandler" binds= [true]]
-[connection signal="AllOn" from="Layer1/Modes/TunnelTargetGroup" to="Layer1/Modes/Leveler" method="LevelUp"]
-[connection signal="AllOn" from="Layer1/Modes/TunnelTargetGroup" to="Layer1/Modes/TunnelTargetGroup" method="SetAllOff"]
-[connection signal="timeout" from="Layer1/Modes/TunnelTargetGroup/DropTarget1/ResetDelay" to="Layer1/Modes/TunnelTargetGroup/DropTarget1/Hitbox/OnOffLight" method="TurnOn"]
-[connection signal="timeout" from="Layer1/Modes/TunnelTargetGroup/DropTarget2/ResetDelay" to="Layer1/Modes/TunnelTargetGroup/DropTarget2/Hitbox/OnOffLight" method="TurnOn"]
-[connection signal="timeout" from="Layer1/Modes/TunnelTargetGroup/DropTarget3/ResetDelay" to="Layer1/Modes/TunnelTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="AllOn" from="Layer1/TunnelTargetGroup" to="Layer1/TunnelTargetGroup" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/TunnelTargetGroup" to="Layer1/TunnelTargetGroup/ModesLevel/Leveler" method="LevelUp"]
+[connection signal="timeout" from="Layer1/TunnelTargetGroup/DropTarget1/ResetDelay" to="Layer1/TunnelTargetGroup/DropTarget1/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="timeout" from="Layer1/TunnelTargetGroup/DropTarget2/ResetDelay" to="Layer1/TunnelTargetGroup/DropTarget2/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="timeout" from="Layer1/TunnelTargetGroup/DropTarget3/ResetDelay" to="Layer1/TunnelTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="OnLevelDown" from="Layer1/TunnelTargetGroup/ModesLevel/Leveler" to="." method="ModesHandler"]
+[connection signal="OnLevelUp" from="Layer1/TunnelTargetGroup/ModesLevel/Leveler" to="." method="ModesHandler" binds= [true]]
 [connection signal="timeout" from="Layer1/TunnelRoundTarget/ResetDelay" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOn"]
+[connection signal="OnLevelChange" from="Layer1/Tunnel/Leveler" to="." method="TunnelEntered"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Tunnel/Leveler" method="MinimizeLevel"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Magnet" method="TurnOn"]
 [connection signal="SwallowingBall" from="Layer1/Tunnel/TunnelSpitter" to="Layer1/Tunnel/Leveler" method="LevelUp" unbinds=1]
@@ -963,6 +1164,7 @@ collision_mask = 4
 
 [editable path="Layer1/UnderRampSlingshot"]
 [editable path="Layer1/TunnelSlingshot"]
+[editable path="Layer1/SaveBallLight"]
 [editable path="Layer1/SkillShot"]
 [editable path="Layer1/PlungerSpitter"]
 [editable path="Layer1/BumperTopTargetGroup/RoundTarget1"]
@@ -970,8 +1172,11 @@ collision_mask = 4
 [editable path="Layer1/BumperTopTargetGroup/RoundTarget3"]
 [editable path="Layer1/LeftSlingshot"]
 [editable path="Layer1/RightSlingshot"]
-[editable path="Layer1/Entry/DecayingLeveler"]
-[editable path="Layer1/Entry/DecayingLeveler/Leveler"]
+[editable path="Layer1/Entry/Rollover1"]
+[editable path="Layer1/Entry/Rollover2"]
+[editable path="Layer1/Entry/Rollover3"]
+[editable path="Layer1/Entry/Bumpers"]
+[editable path="Layer1/Entry/Bumpers/Leveler"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget1"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget2"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget2/Hitbox"]
@@ -984,17 +1189,21 @@ collision_mask = 4
 [editable path="Layer1/TopTargetGroup/DropTarget1"]
 [editable path="Layer1/TopTargetGroup/DropTarget2"]
 [editable path="Layer1/TopTargetGroup/DropTarget3"]
+[editable path="Layer1/TopTargetGroup/DecayingLeveler"]
+[editable path="Layer1/TopTargetGroup/DecayingLeveler/Leveler"]
 [editable path="Layer1/BottomTargetGroup/DropTarget1"]
 [editable path="Layer1/BottomTargetGroup/DropTarget2"]
 [editable path="Layer1/BottomTargetGroup/DropTarget3"]
+[editable path="Layer1/BottomTargetGroup/DecayingLeveler"]
+[editable path="Layer1/BottomTargetGroup/DecayingLeveler/Leveler"]
 [editable path="Layer1/Spinners"]
 [editable path="Layer1/Spinners/TunnelSpinner"]
 [editable path="Layer1/Spinners/LeftSpinner"]
-[editable path="Layer1/Modes"]
-[editable path="Layer1/Modes/Leveler"]
-[editable path="Layer1/Modes/TunnelTargetGroup/DropTarget1"]
-[editable path="Layer1/Modes/TunnelTargetGroup/DropTarget2"]
-[editable path="Layer1/Modes/TunnelTargetGroup/DropTarget3"]
+[editable path="Layer1/TunnelTargetGroup/DropTarget1"]
+[editable path="Layer1/TunnelTargetGroup/DropTarget2"]
+[editable path="Layer1/TunnelTargetGroup/DropTarget3"]
+[editable path="Layer1/TunnelTargetGroup/ModesLevel"]
+[editable path="Layer1/TunnelTargetGroup/ModesLevel/Leveler"]
 [editable path="Layer1/TunnelRoundTarget"]
 [editable path="Layer1/RightInLaneRollover"]
 [editable path="Layer1/LeftInLaneRollover"]

@@ -1,16 +1,16 @@
 [gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b0gwa38cgxp22"]
 
-[ext_resource type="Texture2D" uid="uid://bauwptfvpx6ie" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOff.png" id="1_ku6g2"]
-[ext_resource type="Texture2D" uid="uid://bila18oxscqqk" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOn.png" id="2_uel2a"]
+[ext_resource type="Texture2D" uid="uid://cb32inkhj64wx" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOffGreyScale.png" id="1_8mifw"]
+[ext_resource type="Texture2D" uid="uid://bdey0x6obr6ww" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetOnGreyScale.png" id="2_jgo3h"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ku6g2")
+"texture": ExtResource("1_8mifw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_uel2a")
+"texture": ExtResource("2_jgo3h")
 }],
 "loop": true,
 "name": &"blinking",
@@ -18,7 +18,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ku6g2")
+"texture": ExtResource("1_8mifw")
 }],
 "loop": true,
 "name": &"off",
@@ -26,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_uel2a")
+"texture": ExtResource("2_jgo3h")
 }],
 "loop": true,
 "name": &"on",
