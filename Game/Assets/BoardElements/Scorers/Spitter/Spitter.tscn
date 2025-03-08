@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6lxuqoyg1314"]
+[gd_scene load_steps=7 format=3 uid="uid://c6lxuqoyg1314"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.cs" id="1_qmuv0"]
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="2_qv3qe"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="4_4ynig"]
 [ext_resource type="AudioStream" uid="uid://cedb8fv60wq20" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.wav" id="4_mhvfs"]
 [ext_resource type="AudioStream" uid="uid://bfp1hjeodrpm2" path="res://Game/Assets/BoardElements/Scorers/Spitter/SpitterIn.wav" id="5_uojt7"]
@@ -23,6 +24,8 @@ shape = SubResource("CircleShape2D_ht0s7")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 20)
 collision_mask = 0
+
+[node name="OnOffLight" parent="." instance=ExtResource("2_qv3qe")]
 
 [node name="SpitDelay" type="Timer" parent="."]
 one_shot = true

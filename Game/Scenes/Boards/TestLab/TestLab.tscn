@@ -272,7 +272,7 @@ polygon = PackedVector2Array(40, -45, 40, 56, 31, 67, 15, 77, 1, 79, -14, 73, -2
 
 [node name="AroundTunnel" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(402, 111)
-polygon = PackedVector2Array(0, 0, -30, 36, -30, 76, -24, 81, -2, 67, 12, 81, 3, 100, 25, 133, 42, 173, 46, 211, 44, 228, 40, 248, 32, 277, 15, 302, 11, 310, 27, 321, 58, 282, 78, 236, 83, 202, 79, 170, 70, 136, 50, 102, 15, 63, 4, 48, 10, 38, 20, 32, 30, 32, 43, 42, 79, 81, 95, 108, 107, 141, 115, 173, 118, 217, 113, 267, 104, 301, 56, 413, 56, 506, 61, 509, 76, 496, 92, 508, 86, 527, 86, 569, 96, 569, 96, 534, 141, 201, 131, 150, 113, 97, 85, 51, 56, 23, 25, 0)
+polygon = PackedVector2Array(0, 0, -30, 36, -30, 76, -24, 81, -2, 67, 12, 81, 3, 100, 25, 133, 42, 173, 46, 211, 44, 228, 40, 248, 32, 277, 15, 302, 13, 309, 28, 318, 58, 282, 78, 236, 83, 202, 79, 170, 70, 136, 50, 102, 15, 63, 4, 48, 10, 38, 20, 32, 30, 32, 43, 42, 79, 81, 95, 108, 107, 141, 115, 173, 118, 217, 113, 267, 104, 301, 56, 413, 56, 506, 61, 509, 76, 496, 92, 508, 86, 527, 86, 569, 96, 569, 96, 534, 141, 201, 131, 150, 113, 97, 85, 51, 56, 23, 25, 0)
 
 [node name="LeftOneWayEntryLane" type="CollisionShape2D" parent="Layer1/Walls"]
 position = Vector2(208.796, 110.991)
@@ -409,7 +409,7 @@ Strength = 1500
 [node name="RayCast2D" parent="Layer1/PlungerSpitter" index="1"]
 target_position = Vector2(8, -55)
 
-[node name="Scorer" parent="Layer1/PlungerSpitter" index="5"]
+[node name="Scorer" parent="Layer1/PlungerSpitter" index="6"]
 Value = 0
 
 [node name="Drain" type="Area2D" parent="Layer1"]
@@ -864,7 +864,7 @@ position = Vector2(435, 544)
 position = Vector2(421, 426)
 
 [node name="Hitbox" parent="Layer1/TunnelRoundTarget" index="0"]
-rotation = 0.580763
+rotation = 0.542704
 TriggerSpeed = 0
 
 [node name="OnOffLight" parent="Layer1/TunnelRoundTarget/Hitbox" index="1"]
@@ -921,7 +921,7 @@ Strength = 1500
 [node name="RayCast2D" parent="Layer1/Tunnel/TunnelSpitter" index="1"]
 target_position = Vector2(22, 18)
 
-[node name="SpitDelay" parent="Layer1/Tunnel/TunnelSpitter" index="2"]
+[node name="SpitDelay" parent="Layer1/Tunnel/TunnelSpitter" index="3"]
 wait_time = 2.0
 
 [node name="OnOffLight1" parent="Layer1/Tunnel" instance=ExtResource("21_63yue")]
@@ -939,23 +939,25 @@ position = Vector2(483, 178)
 [node name="Magnet" parent="Layer1" instance=ExtResource("16_2wkew")]
 position = Vector2(308, 749)
 
-[node name="BottomTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
+[node name="Node" type="Node" parent="Layer1"]
+
+[node name="BottomTeleport" parent="Layer1/Node" instance=ExtResource("13_ctosm")]
 position = Vector2(480, 622)
 
-[node name="RayCast2D" parent="Layer1/BottomTeleport" index="1"]
+[node name="RayCast2D" parent="Layer1/Node/BottomTeleport" index="1"]
 target_position = Vector2(-20, 25)
 
-[node name="MiddleTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
+[node name="MiddleTeleport" parent="Layer1/Node" instance=ExtResource("13_ctosm")]
 position = Vector2(398, 195)
 
-[node name="RayCast2D" parent="Layer1/MiddleTeleport" index="1"]
+[node name="RayCast2D" parent="Layer1/Node/MiddleTeleport" index="1"]
 target_position = Vector2(-234, 222)
 
-[node name="TopTeleport" parent="Layer1" instance=ExtResource("13_ctosm")]
+[node name="TopTeleport" parent="Layer1/Node" instance=ExtResource("13_ctosm")]
 position = Vector2(204, 150)
 Strength = 1500
 
-[node name="RayCast2D" parent="Layer1/TopTeleport" index="1"]
+[node name="RayCast2D" parent="Layer1/Node/TopTeleport" index="1"]
 target_position = Vector2(-75, -93)
 
 [node name="MissionTargetGroup" type="Node" parent="Layer1"]
@@ -1256,9 +1258,9 @@ collision_mask = 4
 [editable path="Layer1/Tunnel/Leveler"]
 [editable path="Layer1/Tunnel/TunnelSpitter"]
 [editable path="Layer1/Magnet"]
-[editable path="Layer1/BottomTeleport"]
-[editable path="Layer1/MiddleTeleport"]
-[editable path="Layer1/TopTeleport"]
+[editable path="Layer1/Node/BottomTeleport"]
+[editable path="Layer1/Node/MiddleTeleport"]
+[editable path="Layer1/Node/TopTeleport"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget1"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget2"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget3"]

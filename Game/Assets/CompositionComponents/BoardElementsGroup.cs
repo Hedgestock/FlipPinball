@@ -14,6 +14,7 @@ public partial class BoardElementsGroup : Node
     string Group;
 
     List<Node> Nodes;
+    List<OnOffLight> Lights;
 
     public override void _Ready()
     {
@@ -24,9 +25,9 @@ public partial class BoardElementsGroup : Node
 
     public void RotateStatus(int direction)
     {
-        bool[] statuses = Nodes.Select(s => s.GetNode<OnOffLight>("OnOffLight").IsOn).ToArray();
+        bool[] statuses = Nodes.Select(s => ((OnOffLight)s.FindChild("OnOffLight")).IsOn).ToArray();
         //We do that to avoid triggering the "AllOn" Event by accident
-        Nodes.ForEach(s => s.GetNode<OnOffLight>("OnOffLight").IsOn = false);
+        Nodes.ForEach(s => ((OnOffLight)s.FindChild("OnOffLight")).IsOn = false);
 
         foreach (var (node, i) in Nodes.Select((n, i) => (n, i)))
         {
