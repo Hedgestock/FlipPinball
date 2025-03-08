@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=58 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="Texture2D" uid="uid://b6x313mirbl7c" path="res://Game/Scenes/Boards/TestLab/Template.jpg" id="3_ijggr"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://c08sduvfpdlky" path="res://Game/Assets/CompositionComponents/Leveler/DecayingLeveler.tscn" id="19_8g6kt"]
 [ext_resource type="AudioStream" uid="uid://cyphfp7ph37j6" path="res://Game/Scenes/Boards/TestLab/TunnelUp.wav" id="20_kbxw0"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="21_63yue"]
+[ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/TeleportGroup.cs" id="23_tort8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 
@@ -940,6 +941,7 @@ position = Vector2(483, 178)
 position = Vector2(308, 749)
 
 [node name="TeleportGroup" type="Node" parent="Layer1"]
+script = ExtResource("23_tort8")
 
 [node name="BottomTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(480, 622)
@@ -1182,6 +1184,7 @@ collision_mask = 4
 [connection signal="timeout" from="Layer1/TunnelTargetGroup/DropTarget3/ResetDelay" to="Layer1/TunnelTargetGroup/DropTarget3/Hitbox/OnOffLight" method="TurnOn"]
 [connection signal="OnLevelDown" from="Layer1/TunnelTargetGroup/ModesLevel/Leveler" to="." method="ModesHandler" binds= [false]]
 [connection signal="OnLevelUp" from="Layer1/TunnelTargetGroup/ModesLevel/Leveler" to="." method="ModesHandler" binds= [true]]
+[connection signal="Hit" from="Layer1/TunnelRoundTarget/Hitbox" to="Layer1/TeleportGroup" method="Activate" unbinds=2]
 [connection signal="Toggled" from="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" to="Layer1/TunnelRoundTarget/Hitbox" method="Activate"]
 [connection signal="Toggled" from="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" to="Layer1/TunnelRoundTarget/ResetDelay" method="stop" unbinds=1]
 [connection signal="timeout" from="Layer1/TunnelRoundTarget/ResetDelay" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOn"]

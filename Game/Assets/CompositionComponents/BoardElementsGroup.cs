@@ -11,14 +11,14 @@ public partial class BoardElementsGroup : Node
     public delegate void AllOffEventHandler();
 
     [Export]
-    string Group;
+    protected string Group;
 
-    List<(Node node, OnOffLight light)> Nodes;
+    protected List<(Node node, OnOffLight light)> Nodes;
 
     public override void _Ready()
     {
         base._Ready();
-        Nodes = GetChildren().Where(c => c.IsInGroup(Group)).Select(c => (c, ((OnOffLight)c.FindChild("OnOffLight")))).ToList();
+        Nodes = GetChildren().Where(c => c.IsInGroup(Group)).Select(c => (c, (OnOffLight)c.FindChild("OnOffLight"))).ToList();
         Nodes.ForEach(n => n.light.Toggled += (on) => { if (on) CheckGroupStatus(); });
     }
 
@@ -48,13 +48,13 @@ public partial class BoardElementsGroup : Node
             CallDeferred(MethodName.EmitSignal, SignalName.AllOff);
     }
 
-    void SetAllOn()
+    protected void SetAllOn()
     {
         foreach (var node in Nodes)
             node.light.TurnOn();
     }
 
-    void SetAllOff()
+    protected void SetAllOff()
     {
         foreach (var node in Nodes)
             node.light.TurnOff();
