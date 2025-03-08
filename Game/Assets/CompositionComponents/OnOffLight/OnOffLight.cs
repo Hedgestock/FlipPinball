@@ -18,8 +18,18 @@ public partial class OnOffLight : AnimatedSprite2D
         set
         {
             Stop();
-            if (value) Animation = "on";
-            else Animation = "off";
+            if (value)
+            {
+                if (Animation == "on") return;
+                Animation = "on";
+                EmitSignal(SignalName.TurnedOn);
+            }
+            else
+            {
+                if (Animation == "off") return;
+                Animation = "off";
+                EmitSignal(SignalName.TurnedOff);
+            }
             EmitSignal(SignalName.Toggled, value);
         }
     }
@@ -37,13 +47,11 @@ public partial class OnOffLight : AnimatedSprite2D
     public void TurnOn()
     {
         IsOn = true;
-        EmitSignal(SignalName.TurnedOn);
     }
 
     public void TurnOff()
     {
         IsOn = false;
-        EmitSignal(SignalName.TurnedOff);
     }
 
     public void TurnBlinking()

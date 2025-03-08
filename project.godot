@@ -15,6 +15,10 @@ run/main_scene="res://Game/Scenes/Game/Game.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Game/Audio/FlipPinball_bus_layout.tres"
+
 [autoload]
 
 ScoreManager="*res://Game/Scripts/ScoreManager.cs"

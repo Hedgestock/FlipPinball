@@ -9,16 +9,18 @@ public partial class Board : Node2D
     float PaddleSpeed = 25;
 
     [Export]
-    Node2D Plunger;
+    Plunger Plunger;
     [Export]
-    public Array<Paddle> PaddlesLeft = new Array<Paddle>();
+    public Array<Paddle> PaddlesLeft = new();
     [Export]
-    public Array<Paddle> PaddlesRight = new Array<Paddle>();
+    public Array<Paddle> PaddlesRight = new();
     [Export]
     OnOffLight SaveBallLight;
 
 
-    private List<Ball> LiveBalls = new List<Ball>();
+    private List<Ball> LiveBalls = new();
+
+    private List<Ball> HeldBalls = new();
 
     private Ball LoadedBall = null;
 
@@ -31,15 +33,16 @@ public partial class Board : Node2D
         GetTree().CreateTimer(1).Timeout += () =>
         {
             GameManager.SetGame();
-            LoadedBall = GameManager.GetNextBall();
         };
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("load_ball"))
+        if (@event.IsActionPressed("load_ball") && LiveBalls.Count == 0)
         {
-            LoadBall();
+            LoadedBall = GameManager.GetNextBall();
+            GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
+            LoadBall(LoadedBall, Plunger.Position);
         }
         if (@event.IsActionPressed("paddle_left"))
         {
@@ -66,8 +69,7 @@ public partial class Board : Node2D
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.Position = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
-                LiveBalls.Add(ball);
-                AddChild(ball);
+                AddLiveBall(ball);
             }
         }
     }
@@ -77,17 +79,32 @@ public partial class Board : Node2D
 
     }
 
-    private void LoadBall()
+    void AddLiveBall(Ball ball)
     {
-        if (LiveBalls.Count != 0) return;
-        LoadedBall.Position = Plunger.Position;
-        LiveBalls.Add(LoadedBall);
-        AddChild(LoadedBall);
+        LiveBalls.Add(ball);
+        GameManager.Instance.EmitSignal(GameManager.SignalName.LiveBallsChanged, LiveBalls.ToArray());
+        AddChild(ball);
     }
 
-    protected void AddExtraBall()
+    void RemoveLiveBall(Ball ball)
     {
-        GameManager.AddExtraBall(LoadedBall.Duplicate() as Ball);
+        LiveBalls.Remove(ball);
+        GameManager.Instance.EmitSignal(GameManager.SignalName.LiveBallsChanged, LiveBalls.ToArray());
+        RemoveChild(ball);
+    }
+
+    void LoadBall(Ball ball, Vector2 position)
+    {
+        ball.Position = position;
+        ball.LinearVelocity = Vector2.Zero;
+        AddLiveBall(ball);
+    }
+
+
+
+    protected void GiveExtraBall()
+    {
+        GameManager.AddExtraBall((Ball)LoadedBall.Duplicate());
     }
 
     public override void _PhysicsProcess(double delta)
@@ -119,17 +136,24 @@ public partial class Board : Node2D
         }
     }
 
+    protected void HoldBall(Ball ball)
+    {
+        HeldBalls.Add(ball);
+        RemoveLiveBall(ball);
+        LoadBall((Ball)ball.Duplicate(), Plunger.Position);
+    }
+
     private void OnEnterDrain(Node2D body, bool oob)
     {
         if (body is Ball ball)
         {
             if (oob) { GD.PrintErr($"Ball {ball} OOB"); }
-            LiveBalls.Remove(ball);
-            RemoveChild(ball);
+            RemoveLiveBall(ball);
             if (LiveBalls.Count != 0) return;
             if (SaveBallLight.IsOnOrBlinking)
             {
-                CallDeferred(MethodName.LoadBall);
+                CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.Position);
+                Plunger.AutoFire = true;
                 SaveBallLight.TurnOff();
             }
             else
@@ -137,7 +161,6 @@ public partial class Board : Node2D
                 ball.QueueFree();
                 LoadedBall = GameManager.GetNextBall();
             }
-
         }
     }
 

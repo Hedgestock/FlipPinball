@@ -26,7 +26,7 @@ size = Vector2(20, 3)
 [node name="Plunger" type="Node2D" node_paths=PackedStringArray("PlungerProgress", "DetectionZone", "ReleaseSoundPlayer", "WindUpSoundPlayer")]
 script = ExtResource("1_bv4d5")
 PlungerProgress = NodePath("PlungerProgress")
-DetectionZone = NodePath("Area2D")
+DetectionZone = NodePath("DetectionZone")
 ReleaseSoundPlayer = NodePath("Release")
 WindUpSoundPlayer = NodePath("WindUp")
 
@@ -43,16 +43,20 @@ texture_under = SubResource("GradientTexture2D_5dea6")
 texture_progress = SubResource("GradientTexture2D_yngwk")
 tint_under = Color(0.61, 0.61, 0.61, 1)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DetectionZone" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
 position = Vector2(0, 31.5)
 shape = SubResource("RectangleShape2D_ahhcf")
 
 [node name="Release" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_a28wm")
+bus = &"BoardElements"
 
 [node name="WindUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_mxsw7")
+bus = &"BoardElements"
+
+[connection signal="body_entered" from="DetectionZone" to="." method="OnDetectionZoneBodyEnter"]

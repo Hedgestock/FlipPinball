@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -18,10 +19,16 @@ public partial class GameManager : Node
     }
 
     [Signal]
-    public delegate void BallQueueChangedEventHandler(Array<Ball> queue);
+    public delegate void BallQueueChangedEventHandler(Array<Ball> balls);
 
     [Signal]
-    public delegate void NextBallEventHandler(Ball ball);
+    public delegate void HeldBallsChangedEventHandler(Array<Ball> balls);
+
+    [Signal]
+    public delegate void LiveBallsChangedEventHandler(Array<Ball> balls);
+
+    [Signal]
+    public delegate void LoadedBallEventHandler(Ball ball);
 
     private static LinkedList<Ball> BallQueue = new();
 
@@ -40,7 +47,6 @@ public partial class GameManager : Node
     {
         Ball ball = BallQueue.First.Value;
         BallQueue.RemoveFirst();
-        Instance.EmitSignal(SignalName.NextBall, ball);
         Instance.EmitSignal(SignalName.BallQueueChanged, new Array<Ball>(BallQueue));
         return ball;
     }

@@ -64,13 +64,17 @@ public partial class TestLab : Board
                 Score(50000);
                 break;
             case 3:
-                AddExtraBall();
+                GiveExtraBall();
                 break;
         }
     }
 
     [Export]
     OnOffLight MagicPostLight;
+    [Export]
+    OnOffLight LeftOutLaneLight;
+    [Export]
+    OnOffLight RightOutLaneLight;
     void TunnelEntered(int level)
     {
         switch (level)
@@ -89,7 +93,8 @@ public partial class TestLab : Board
                 break;
             case 4:
                 Score(50000);
-                AddExtraBall();
+                LeftOutLaneLight.TurnOn();
+                RightOutLaneLight.TurnOn();
                 break;
         }
     }

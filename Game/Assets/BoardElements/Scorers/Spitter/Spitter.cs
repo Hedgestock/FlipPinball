@@ -20,10 +20,9 @@ public partial class Spitter : Node2D
     Area2D DetectionZone;
 
 
-    private void OnBodyEnter(Node2D body)
+    private void OnAreaEnter(Area2D area)
     {
-        //if (!IsOn || !(body is Ball)) return;
-        if (body is Ball ball)
+        if (area.GetParent() is Ball ball)
         {
             Tween tween = GetTree().CreateTween();
             tween.TweenProperty(ball, "global_position", GlobalPosition, .5f)
@@ -31,20 +30,18 @@ public partial class Spitter : Node2D
                 .SetTrans(Tween.TransitionType.Elastic);
             ball.SetDeferred(RigidBody2D.PropertyName.Freeze, true);
             SpitDelay.Start();
-            //IsOn = false;
             EmitSignal(SignalName.SwallowingBall, ball);
         }
     }
 
     private void SpitBall()
     {
-        foreach (RigidBody2D ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
+        foreach (Ball ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
             ball.SetDeferred(RigidBody2D.PropertyName.Freeze, false);
             ball.LinearVelocity = (SpitDirection.TargetPosition - SpitDirection.Position).Normalized() * Strength;
 
             EmitSignal(SignalName.SpittingBall, ball);
         }
-        //IsOn = true;
     }
 }

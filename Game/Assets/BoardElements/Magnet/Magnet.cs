@@ -9,17 +9,17 @@ public partial class Magnet : Node2D
 
     [Export]
     Area2D EffectZone;
-
     [Export]
     Area2D MagnetZone;
+
+    [Export]
+    OnOffLight OnOffLight;
 
     [Export]
     Timer MagnetEndTimer;
 
     [Export]
     int MagnetStrength = 6000;
-
-    bool IsOn = false;
 
     public override void _Ready()
     {
@@ -29,7 +29,7 @@ public partial class Magnet : Node2D
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        if (!IsOn) return;
+        if (!OnOffLight.IsOn) return;
         foreach (Ball ball in EffectZone.GetOverlappingBodies().Where(b => b is Ball))
         {
             Vector2 vecToCenter = GlobalPosition - ball.GlobalPosition;
@@ -45,20 +45,6 @@ public partial class Magnet : Node2D
         {
             MagnetEndTimer.Stop();
         }
-    }
-
-    private void TurnOn()
-    {
-        IsOn = true;
-        EffectZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
-        MagnetZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
-    }
-
-    private void TurnOff()
-    {
-        IsOn = false;
-        EffectZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-        MagnetZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
     }
 
     private void OnEffectZoneBodyEnter(Node2D body)
@@ -79,7 +65,7 @@ public partial class Magnet : Node2D
 
     private void MagnetEnd()
     {
-        TurnOff();
+        OnOffLight.TurnOff();
         foreach (Ball ball in EffectZone.GetOverlappingBodies().Where(b => b is Ball))
             ball.LinearDamp = 0;
 

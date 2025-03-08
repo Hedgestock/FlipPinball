@@ -5,12 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
 [ext_resource type="PackedScene" uid="uid://1uf453kusqfd" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="3_vxydm"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("MainContainer", "BallsList", "CurrentBallViewer", "Score", "History", "StatusBox", "GameTimerLabel")]
+[node name="Game" type="Node" node_paths=PackedStringArray("BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "Score", "History", "StatusBox", "GameTimerLabel")]
 script = ExtResource("1_ems3e")
-MainContainer = NodePath("MainContainer")
-BallsList = NodePath("MainContainer/PanelContainer2/Status/HFlowContainer")
-CurrentBallViewer = NodePath("MainContainer/PanelContainer2/Status/BallViewer")
 BallViewerScene = ExtResource("2_ttlp1")
+BallQueue = NodePath("MainContainer/PanelContainer2/Status/HFlowContainer")
+HeldBalls = NodePath("MainContainer/PanelContainer2/Status/HFlowContainer3")
+LiveBalls = NodePath("MainContainer/PanelContainer2/Status/HFlowContainer2")
+LoadedBallViewer = NodePath("MainContainer/PanelContainer2/Status/BallViewer")
 Score = NodePath("MainContainer/PanelContainer/VBoxContainer/ScoreLabel")
 History = NodePath("MainContainer/PanelContainer/VBoxContainer/ScrollContainer/History")
 StatusBox = NodePath("MainContainer/PanelContainer2/Status")
@@ -67,16 +68,30 @@ size_flags_vertical = 3
 [node name="Status" type="VBoxContainer" parent="MainContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="BallsLeft" type="Label" parent="MainContainer/PanelContainer2/Status"]
+[node name="BallQueue" type="Label" parent="MainContainer/PanelContainer2/Status"]
 layout_mode = 2
-text = "Balls left"
+text = "Ball queue"
 
 [node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/PanelContainer2/Status"]
 layout_mode = 2
 
-[node name="CurrentBall" type="Label" parent="MainContainer/PanelContainer2/Status"]
+[node name="LiveBalls" type="Label" parent="MainContainer/PanelContainer2/Status"]
 layout_mode = 2
-text = "Current ball"
+text = "Live balls"
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+
+[node name="HeldBalls" type="Label" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+text = "Held balls"
+
+[node name="HFlowContainer3" type="HFlowContainer" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+
+[node name="LoadedBall" type="Label" parent="MainContainer/PanelContainer2/Status"]
+layout_mode = 2
+text = "Loaded ball"
 
 [node name="BallViewer" parent="MainContainer/PanelContainer2/Status" instance=ExtResource("2_ttlp1")]
 layout_mode = 2

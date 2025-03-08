@@ -22,6 +22,7 @@ Value = 500
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0t70i")
+bus = &"BoardElements"
 
 [connection signal="CompleteRotation" from="." to="Scorer" method="Score"]
 [connection signal="CompleteRotation" from="." to="AudioStreamPlayer" method="play" unbinds=1]

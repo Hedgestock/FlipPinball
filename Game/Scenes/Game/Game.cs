@@ -6,23 +6,22 @@ using System.Linq;
 public partial class Game : Node
 {
     [Export]
-    private GridContainer MainContainer;
-
-    [Export]
-    private HFlowContainer BallsList;
-
-    [Export]
-    private BallViewer CurrentBallViewer;
-
-    [Export]
     private PackedScene BallViewerScene;
 
     [Export]
-    private Label Score;
+    private HFlowContainer BallQueue;
+    [Export]
+    private HFlowContainer HeldBalls;
+    [Export]
+    private HFlowContainer LiveBalls;
+    [Export]
+    private BallViewer LoadedBallViewer;
+
 
     [Export]
+    private Label Score;
+    [Export]
     private Label History;
-
     [Export]
     VBoxContainer StatusBox;
 
@@ -32,8 +31,10 @@ public partial class Game : Node
     {
         GetTree().Root.SizeChanged += OnScreenResize;
         ScoreManager.Instance.Scoring += UpdateScore;
-        GameManager.Instance.NextBall += UpdateCurrentBall;
-        GameManager.Instance.BallQueueChanged += UpdateStatus;
+        GameManager.Instance.LoadedBall += UpdateLoadedBall;
+        GameManager.Instance.BallQueueChanged += (balls) => UpdateBallList(balls, BallQueue);
+        GameManager.Instance.HeldBallsChanged += (balls) => UpdateBallList(balls, HeldBalls);
+        GameManager.Instance.LiveBallsChanged += (balls) => UpdateBallList(balls, LiveBalls);
 
         GameStart = DateTime.Now;
 
@@ -58,6 +59,7 @@ public partial class Game : Node
 
     private void UpdateScore(long totalScoreValue, int currentlyScoring)
     {
+        if (currentlyScoring == 0) return;
         PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
         scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
         scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
@@ -66,23 +68,23 @@ public partial class Game : Node
         History.Text = $"Scored: {currentlyScoring}\n{History.Text}";
     }
 
-    private void UpdateStatus(Array<Ball> balls)
+    private void UpdateBallList(Array<Ball> balls, Container ballsViewer)
     {
-        foreach (var child in BallsList.GetChildren())
+        foreach (var child in ballsViewer.GetChildren())
         {
             child.QueueFree();
         }
         foreach (var ball in balls)
         {
             BallViewer viewer = BallViewerScene.Instantiate<BallViewer>();
-            viewer.Ball = ball.Duplicate() as Ball;
-            BallsList.AddChild(viewer);
+            viewer.Ball = (Ball)ball.Duplicate();
+            ballsViewer.AddChild(viewer);
         }
     }
 
-    private void UpdateCurrentBall(Ball ball)
+    private void UpdateLoadedBall(Ball ball)
     {
-        CurrentBallViewer.Ball = ball.Duplicate() as Ball;
+        LoadedBallViewer.Ball = (Ball)ball.Duplicate();
         BallTimerLabel = new Label();
         StatusBox.AddChild(BallTimerLabel);
         BallStart = DateTime.Now;
@@ -91,6 +93,5 @@ public partial class Game : Node
     private void OnScreenResize()
     {
         GD.Print(GetViewport().GetVisibleRect().Size);
-        //MainContainer.Size = GetViewport().GetVisibleRect().Size;
     }
 }

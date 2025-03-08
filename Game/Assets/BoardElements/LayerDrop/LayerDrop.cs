@@ -32,12 +32,9 @@ public partial class LayerDrop : Node2D
         }
     }
 
-
     private void DropBall()
     {
-        BallIn.SetCollisionLayerValue(LayerFrom, false);
-        BallIn.SetCollisionMaskValue(LayerFrom, false);
-        BallIn.SetCollisionLayerValue(LayerTo, true);
-        BallIn.SetCollisionMaskValue(LayerTo, true);
+        BallIn.SetCollision(LayerFrom, false);
+        BallIn.SetCollision(LayerTo, true);
     }
 }

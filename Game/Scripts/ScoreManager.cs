@@ -30,7 +30,7 @@ public partial class ScoreManager : Node
     public static int Score(int score)
     {
         ScoreValue += score;
-        _instance.EmitSignal(SignalName.Scoring, ScoreValue, score);
+        Instance.EmitSignal(SignalName.Scoring, ScoreValue, score);
         return score;
     }
 }

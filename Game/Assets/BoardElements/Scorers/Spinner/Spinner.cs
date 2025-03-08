@@ -25,7 +25,6 @@ public partial class Spinner : Node2D
         {
             for (int i = 0; i < numberOfTurns; i++)
             {
-                GD.Print($"NoT: {numberOfTurns,0:F4} CurrSpd: {currentSpinSpeed,0:F4} LastSpd: {LastSpinSpeed,0:F4} InitSpd: {InitialSpinSpeed,0:F4} Iter: {Iterations,0:F4} delta: {delta}");
                 EmitSignal(SignalName.CompleteRotation, (Level * 4) + 1);
             }
 

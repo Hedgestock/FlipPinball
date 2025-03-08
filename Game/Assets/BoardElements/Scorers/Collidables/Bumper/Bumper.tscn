@@ -30,6 +30,7 @@ animation = &"on"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_svyrr")
+bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("7_i7vyf")]
 

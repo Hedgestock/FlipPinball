@@ -44,6 +44,7 @@ position = Vector2(0, -25)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3evls")
+bus = &"BoardElements"
 
 [connection signal="LanePassed" from="." to="Scorer" method="Score"]
 [connection signal="LanePassed" from="." to="AudioStreamPlayer" method="play" unbinds=1]

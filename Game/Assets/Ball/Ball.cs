@@ -6,6 +6,8 @@ public partial class Ball : RigidBody2D
 {
     [Export]
     Line2D Trail;
+    [Export]
+    Area2D Center;
 
     Vector2 LastPosition;
     Vector2 LastVelocity;
@@ -48,5 +50,12 @@ public partial class Ball : RigidBody2D
     public void OnCollision(Node body)
     {
         if (body is Hitbox hitbox) hitbox.CollideWithBall(this, LastVelocity, LastCollisionNormal);
+    }
+
+    public void SetCollision(int layer, bool value)
+    {
+        SetCollisionLayerValue(layer, value);
+        SetCollisionMaskValue(layer, value);
+        Center.SetCollisionLayerValue(layer, value);
     }
 }

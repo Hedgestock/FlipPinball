@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwc6ituqxs0yg"]
+[gd_scene load_steps=8 format=3 uid="uid://dwc6ituqxs0yg"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Magnet/Magnet.cs" id="1_ix2jv"]
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="2_bxciu"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="2_qhgln"]
 [ext_resource type="AudioStream" uid="uid://8rkbcs5g6gcp" path="res://Game/Assets/BoardElements/Magnet/MagnetEject.wav" id="3_g5p1v"]
+[ext_resource type="AudioStream" uid="uid://bkef8rx2c3px7" path="res://Game/Assets/BoardElements/Magnet/Magnet.wav" id="4_52v3k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ydyob"]
 radius = 100.0
@@ -10,10 +12,11 @@ radius = 100.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lbojl"]
 radius = 12.0
 
-[node name="Magnet" type="Node2D" node_paths=PackedStringArray("EffectZone", "MagnetZone", "MagnetEndTimer")]
+[node name="Magnet" type="Node2D" node_paths=PackedStringArray("EffectZone", "MagnetZone", "OnOffLight", "MagnetEndTimer")]
 script = ExtResource("1_ix2jv")
 EffectZone = NodePath("EffectZone")
 MagnetZone = NodePath("MagnetZone")
+OnOffLight = NodePath("OnOffLight")
 MagnetEndTimer = NodePath("Timer")
 
 [node name="EffectZone" type="Area2D" parent="."]
@@ -33,6 +36,8 @@ monitorable = false
 shape = SubResource("CircleShape2D_lbojl")
 disabled = true
 
+[node name="OnOffLight" parent="." instance=ExtResource("2_bxciu")]
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
@@ -40,11 +45,22 @@ one_shot = true
 [node name="Pusher" parent="." instance=ExtResource("2_qhgln")]
 Strength = 2000
 
+[node name="MagnetOnSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_52v3k")
+volume_db = 5.2
+bus = &"BoardElements"
+
 [node name="MagnetEjectSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_g5p1v")
+bus = &"BoardElements"
 
 [connection signal="MagnetEject" from="." to="Pusher" method="Push"]
 [connection signal="body_entered" from="EffectZone" to="." method="OnEffectZoneBodyEnter"]
 [connection signal="body_exited" from="EffectZone" to="." method="OnEffectZoneBodyExit"]
+[connection signal="TurnedOff" from="OnOffLight" to="EffectZone/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
+[connection signal="TurnedOff" from="OnOffLight" to="MagnetZone/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
+[connection signal="TurnedOn" from="OnOffLight" to="MagnetOnSoundPlayer" method="play"]
+[connection signal="TurnedOn" from="OnOffLight" to="EffectZone/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
+[connection signal="TurnedOn" from="OnOffLight" to="MagnetZone/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
 [connection signal="timeout" from="Timer" to="." method="MagnetEnd"]
 [connection signal="timeout" from="Timer" to="MagnetEjectSoundPlayer" method="play"]

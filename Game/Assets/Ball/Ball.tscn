@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr0mugi8okm00"]
+[gd_scene load_steps=8 format=3 uid="uid://dr0mugi8okm00"]
 
 [ext_resource type="Texture2D" uid="uid://s4ju6ifcgx4u" path="res://Game/Assets/Ball/Ball.png" id="1_fwpxb"]
 [ext_resource type="Script" path="res://Game/Assets/Ball/Ball.cs" id="1_sowmc"]
@@ -16,7 +16,10 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5w72v"]
 
-[node name="Ball" type="RigidBody2D" node_paths=PackedStringArray("Trail") groups=["Balls"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_g1s2t"]
+radius = 1.0
+
+[node name="Ball" type="RigidBody2D" node_paths=PackedStringArray("Trail", "Center") groups=["Balls"]]
 process_priority = -1
 process_physics_priority = -1
 z_index = 2
@@ -31,6 +34,7 @@ max_contacts_reported = 20
 linear_damp_mode = 1
 script = ExtResource("1_sowmc")
 Trail = NodePath("Trail")
+Center = NodePath("Center")
 
 [node name="Trail" type="Line2D" parent="."]
 z_index = -1
@@ -48,5 +52,12 @@ texture = ExtResource("1_fwpxb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5w72v")
+
+[node name="Center" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center"]
+shape = SubResource("CircleShape2D_g1s2t")
 
 [connection signal="body_entered" from="." to="." method="OnCollision"]

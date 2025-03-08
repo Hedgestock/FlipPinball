@@ -48,8 +48,7 @@ public partial class LayerChange : Node2D
     {
         if (body is Ball ball && otherGate.OverlapsBody(ball))
         {
-            ball.SetCollisionLayerValue(layer, active);
-            ball.SetCollisionMaskValue(layer, active);
+            ball.SetCollision(layer, active);
         }
     }
 }

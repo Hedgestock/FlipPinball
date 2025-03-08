@@ -14,5 +14,4 @@ SubViewport = NodePath("SubViewport")
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 size = Vector2i(40, 40)
-size_2d_override_stretch = true
 render_target_update_mode = 4
