@@ -939,25 +939,25 @@ position = Vector2(483, 178)
 [node name="Magnet" parent="Layer1" instance=ExtResource("16_2wkew")]
 position = Vector2(308, 749)
 
-[node name="Node" type="Node" parent="Layer1"]
+[node name="TeleportGroup" type="Node" parent="Layer1"]
 
-[node name="BottomTeleport" parent="Layer1/Node" instance=ExtResource("13_ctosm")]
+[node name="BottomTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(480, 622)
 
-[node name="RayCast2D" parent="Layer1/Node/BottomTeleport" index="1"]
+[node name="RayCast2D" parent="Layer1/TeleportGroup/BottomTeleport" index="1"]
 target_position = Vector2(-20, 25)
 
-[node name="MiddleTeleport" parent="Layer1/Node" instance=ExtResource("13_ctosm")]
+[node name="MiddleTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(398, 195)
 
-[node name="RayCast2D" parent="Layer1/Node/MiddleTeleport" index="1"]
+[node name="RayCast2D" parent="Layer1/TeleportGroup/MiddleTeleport" index="1"]
 target_position = Vector2(-234, 222)
 
-[node name="TopTeleport" parent="Layer1/Node" instance=ExtResource("13_ctosm")]
+[node name="TopTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(204, 150)
 Strength = 1500
 
-[node name="RayCast2D" parent="Layer1/Node/TopTeleport" index="1"]
+[node name="RayCast2D" parent="Layer1/TeleportGroup/TopTeleport" index="1"]
 target_position = Vector2(-75, -93)
 
 [node name="MissionTargetGroup" type="Node" parent="Layer1"]
@@ -1258,9 +1258,9 @@ collision_mask = 4
 [editable path="Layer1/Tunnel/Leveler"]
 [editable path="Layer1/Tunnel/TunnelSpitter"]
 [editable path="Layer1/Magnet"]
-[editable path="Layer1/Node/BottomTeleport"]
-[editable path="Layer1/Node/MiddleTeleport"]
-[editable path="Layer1/Node/TopTeleport"]
+[editable path="Layer1/TeleportGroup/BottomTeleport"]
+[editable path="Layer1/TeleportGroup/MiddleTeleport"]
+[editable path="Layer1/TeleportGroup/TopTeleport"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget1"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget2"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget3"]

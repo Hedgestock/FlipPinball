@@ -13,33 +13,32 @@ public partial class BoardElementsGroup : Node
     [Export]
     string Group;
 
-    List<Node> Nodes;
-    List<OnOffLight> Lights;
+    List<(Node node, OnOffLight light)> Nodes;
 
     public override void _Ready()
     {
         base._Ready();
-        Nodes = GetChildren().Where(c => c.IsInGroup(Group)).ToList();
-        Nodes.ForEach(s => ((OnOffLight)s.FindChild("OnOffLight")).Toggled += (on) => { if (on) CheckGroupStatus(); });
+        Nodes = GetChildren().Where(c => c.IsInGroup(Group)).Select(c => (c, ((OnOffLight)c.FindChild("OnOffLight")))).ToList();
+        Nodes.ForEach(n => n.light.Toggled += (on) => { if (on) CheckGroupStatus(); });
     }
 
     public void RotateStatus(int direction)
     {
-        bool[] statuses = Nodes.Select(s => ((OnOffLight)s.FindChild("OnOffLight")).IsOn).ToArray();
+        bool[] statuses = Nodes.Select(n => n.light.IsOn).ToArray();
         //We do that to avoid triggering the "AllOn" Event by accident
-        Nodes.ForEach(s => ((OnOffLight)s.FindChild("OnOffLight")).IsOn = false);
+        Nodes.ForEach(n => n.light.IsOn = false);
 
-        foreach (var (node, i) in Nodes.Select((n, i) => (n, i)))
+        foreach (var (n, i) in Nodes.Select((n, i) => (n, i)))
         {
-            ((OnOffLight)node.FindChild("OnOffLight")).IsOn = statuses[Mathf.PosMod(i + direction, statuses.Length)];
+            n.light.IsOn = statuses[Mathf.PosMod(i + direction, statuses.Length)];
         }
     }
 
     void CheckGroupStatus()
     {
-        bool firstStatus = ((OnOffLight)Nodes[0].FindChild("OnOffLight")).IsOn;
+        bool firstStatus = Nodes[0].light.IsOn;
         foreach (var node in Nodes)
-            if (((OnOffLight)node.FindChild("OnOffLight")).IsOn != firstStatus) return;
+            if (node.light.IsOn != firstStatus) return;
 
         // We call deferred here otherwise the on or off signal arrives before the triggerring signal
         // in the cases where the group resets itself
@@ -52,12 +51,12 @@ public partial class BoardElementsGroup : Node
     void SetAllOn()
     {
         foreach (var node in Nodes)
-            ((OnOffLight)node.FindChild("OnOffLight")).TurnOn();
+            node.light.TurnOn();
     }
 
     void SetAllOff()
     {
         foreach (var node in Nodes)
-            ((OnOffLight)node.FindChild("OnOffLight")).TurnOff();
+            node.light.TurnOff();
     }
 }
