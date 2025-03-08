@@ -37,6 +37,8 @@ public partial class SkillShot : Node2D
         if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
         EmitSignal(SignalName.Cancel);
+
+        Reset();
     }
 
     private void Validation(Node2D body)
@@ -44,12 +46,12 @@ public partial class SkillShot : Node2D
         if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
         EmitSignal(SignalName.Validate, Multiplier);
+
+        Reset();
     }
 
-    private void Reset(Node2D body)
+    private void Reset()
     {
-        if (!(body is Ball)) return;
-
         CancellationZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         ValidationZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 

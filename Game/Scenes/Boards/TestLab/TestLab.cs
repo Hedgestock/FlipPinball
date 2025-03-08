@@ -76,7 +76,6 @@ public partial class TestLab : Board
         switch (level)
         {
             default:
-                Score(150000);
                 break;
             case 1:
                 Score(10000);
@@ -97,7 +96,7 @@ public partial class TestLab : Board
 
     [Export]
     Leveler SpinnersLevel;
-    void ModesHandler(int level, bool up = false)
+    void ModesHandler(int level, bool up)
     {
         if (up) Score(5000);
         switch (level)
