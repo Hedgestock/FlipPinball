@@ -95,6 +95,11 @@ public partial class Board : Node2D
 
     void LoadBall(Ball ball, Vector2 position)
     {
+        if (HeldBalls.Contains(ball))
+        {
+            HeldBalls.Remove(ball);
+            GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
+        }
         ball.Position = position;
         ball.LinearVelocity = Vector2.Zero;
         AddLiveBall(ball);
@@ -140,7 +145,9 @@ public partial class Board : Node2D
     {
         HeldBalls.Add(ball);
         RemoveLiveBall(ball);
-        LoadBall((Ball)ball.Duplicate(), Plunger.Position);
+        GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
+        CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.Position);
+        Plunger.AutoFire = true;
     }
 
     private void OnEnterDrain(Node2D body, bool oob)
