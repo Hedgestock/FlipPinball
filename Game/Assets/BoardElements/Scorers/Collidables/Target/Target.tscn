@@ -39,6 +39,5 @@ Strength = 500
 [connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="ResetDelay" method="start" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]
-[connection signal="Toggled" from="Hitbox/OnOffLight" to="Hitbox" method="Activate"]
-[connection signal="Toggled" from="Hitbox/OnOffLight" to="ResetDelay" method="stop" unbinds=1]
+[connection signal="TurnedOff" from="Hitbox/OnOffLight" to="ResetDelay" method="stop"]
 [connection signal="timeout" from="ResetDelay" to="Hitbox/OnOffLight" method="TurnOff"]

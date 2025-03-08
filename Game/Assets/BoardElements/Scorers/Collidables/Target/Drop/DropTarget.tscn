@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2n7ugga7yovq"]
+[gd_scene load_steps=5 format=3 uid="uid://b2n7ugga7yovq"]
 
 [ext_resource type="PackedScene" uid="uid://b8083u3uwi53p" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Target.tscn" id="1_4c8g5"]
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTarget.cs" id="2_fmo3h"]
 [ext_resource type="AudioStream" uid="uid://clrfdv6dsvvfj" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetDown.wav" id="3_7nryl"]
 [ext_resource type="SpriteFrames" uid="uid://b0gwa38cgxp22" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTargetAnimation.tres" id="3_apjk7"]
 
@@ -9,7 +8,6 @@
 size = Vector2(6, 20)
 
 [node name="DropTarget" groups=["ShapeSquare"] instance=ExtResource("1_4c8g5")]
-script = ExtResource("2_fmo3h")
 
 [node name="OnOffLight" parent="Hitbox" index="0"]
 position = Vector2(0, 0)
@@ -24,3 +22,5 @@ stream = ExtResource("3_7nryl")
 
 [node name="Pusher" parent="." index="4"]
 Strength = 250
+
+[connection signal="Toggled" from="Hitbox/OnOffLight" to="Hitbox/CollisionShape2D" method="set_disabled" flags=3]
