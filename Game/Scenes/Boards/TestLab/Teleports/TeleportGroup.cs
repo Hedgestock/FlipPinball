@@ -45,7 +45,7 @@ public partial class TeleportGroup : BoardElementsGroup
         }
         else
         {
-            ball.Position = ((Node2D)Nodes.First(n => n.light.IsOn).node).Position;
+            ball.GlobalPosition = ((Node2D)Nodes.First(n => n.light.IsOn).node).GlobalPosition;
         }
         SetAllOff();
     }
@@ -55,7 +55,7 @@ public partial class TeleportGroup : BoardElementsGroup
         if (HeldBalls.Count != Nodes.Count) return;
         for (int i = 0; i < HeldBalls.Count; i++)
         {
-            EmitSignal(SignalName.AddingBall, HeldBalls[i], ((Node2D)Nodes[i].node).Position);
+            EmitSignal(SignalName.AddingBall, HeldBalls[i], ((Node2D)Nodes[i].node).GlobalPosition);
         }
         SetAllOff();
     }

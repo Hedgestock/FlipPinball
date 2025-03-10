@@ -42,7 +42,7 @@ public partial class Spitter : Node2D
         foreach (Ball ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
             ball.SetDeferred(RigidBody2D.PropertyName.Freeze, false);
-            ball.LinearVelocity = (SpitDirection.TargetPosition - SpitDirection.Position).Normalized() * Strength;
+            ball.LinearVelocity = SpitDirection.TargetPosition.Normalized() * Strength;
 
             EmitSignal(SignalName.SpittingBall, ball);
         }

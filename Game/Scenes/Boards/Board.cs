@@ -42,7 +42,7 @@ public partial class Board : Node2D
         {
             LoadedBall = GameManager.GetNextBall();
             GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-            LoadBall(LoadedBall, Plunger.Position);
+            LoadBall(LoadedBall, Plunger.GlobalPosition);
         }
         if (@event.IsActionPressed("paddle_left"))
         {
@@ -67,7 +67,7 @@ public partial class Board : Node2D
             else if (@event.IsActionReleased("screen_tap"))
             {
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
-                ball.Position = LaunchPos;
+                ball.GlobalPosition = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
                 AddLiveBall(ball);
             }
@@ -129,7 +129,7 @@ public partial class Board : Node2D
             HeldBalls.Remove(ball);
             GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
         }
-        ball.Position = position;
+        ball.GlobalPosition = position;
         ball.LinearVelocity = Vector2.Zero;
         AddLiveBall(ball);
     }
@@ -145,7 +145,7 @@ public partial class Board : Node2D
         HeldBalls.Add(ball);
         RemoveLiveBall(ball);
         GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
-        CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.Position);
+        CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.GlobalPosition);
         Plunger.AutoFire = true;
     }
 
@@ -165,7 +165,7 @@ public partial class Board : Node2D
             if (LiveBalls.Count != 0) return;
             if (SaveBallLight.IsOnOrBlinking)
             {
-                CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.Position);
+                CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.GlobalPosition);
                 Plunger.AutoFire = true;
                 SaveBallLight.TurnOff();
             }
@@ -174,7 +174,7 @@ public partial class Board : Node2D
                 ball.Remove();
                 LoadedBall = GameManager.GetNextBall();
                 GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-                LoadBall(LoadedBall, Plunger.Position);
+                LoadBall(LoadedBall, Plunger.GlobalPosition);
             }
         }
     }
