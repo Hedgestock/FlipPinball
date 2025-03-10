@@ -21,7 +21,6 @@ public partial class LayerChange : Node2D
         Gate1.SetCollisionMaskValue(Layer2, true);
         Gate2.SetCollisionMaskValue(Layer1, true);
         Gate2.SetCollisionMaskValue(Layer2, true);
-
     }
 
     void OnBodyEnterGate1(Node2D body)

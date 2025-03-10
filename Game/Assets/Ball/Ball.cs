@@ -62,6 +62,8 @@ public partial class Ball : RigidBody2D
         SetCollisionLayerValue(layer, value);
         SetCollisionMaskValue(layer, value);
         Center.SetCollisionLayerValue(layer, value);
+        if (value)
+            ZIndex = (layer - 2) * 10 + 4;
     }
 
     public void ResetTrail()
