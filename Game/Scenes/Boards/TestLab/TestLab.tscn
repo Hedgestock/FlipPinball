@@ -1422,6 +1422,7 @@ collision_mask = 4
 [connection signal="AddingBall" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="." method="HoldBall"]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=1]
+[connection signal="Teleporting" from="Layer1/TeleportGroup" to="." method="TelportLiveBall"]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/Rollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]

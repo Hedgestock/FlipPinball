@@ -122,6 +122,12 @@ public partial class Board : Node2D
         RemoveChild(ball);
     }
 
+    void TelportLiveBall(Ball ball, Vector2 destination)
+    {
+        RemoveLiveBall(ball);
+        CallDeferred(MethodName.LoadBall, ball.Duplicate(), destination);
+    }
+
     void LoadBall(Ball ball, Vector2 position)
     {
         if (HeldBalls.Contains(ball))
@@ -171,17 +177,25 @@ public partial class Board : Node2D
             }
             else
             {
-                ball.Remove();
                 LoadedBall = GameManager.GetNextBall();
                 GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-                LoadBall(LoadedBall, Plunger.GlobalPosition);
+                CallDeferred(MethodName.LoadBall, LoadedBall, Plunger.GlobalPosition);
             }
         }
     }
 
     private void Tilt()
     {
-        Vector2 tiltDirection = Vector2.Up.Rotated((float)GD.RandRange(0, 2 * MathF.PI)) * 70;
-        LiveBalls.ForEach(b => b.LinearVelocity += tiltDirection);
+        float tiltAngle = (float)GD.RandRange(-MathF.PI / 4, MathF.PI / 4);
+        Vector2 tiltDirection =  Vector2.Down;
+
+        if (Input.IsActionPressed("paddle_left") && Input.IsActionPressed("paddle_right"))
+            tiltDirection = Vector2.Up;
+        else if (Input.IsActionPressed("paddle_left"))
+            tiltDirection = Vector2.Right;
+        else if (Input.IsActionPressed("paddle_right"))
+            tiltDirection = Vector2.Left;
+        
+        LiveBalls.ForEach(b => b.LinearVelocity += tiltDirection.Rotated(tiltAngle) * 70);
     }
 }

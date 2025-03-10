@@ -36,10 +36,10 @@ public partial class Game : Node
     {
         GetTree().Root.SizeChanged += OnScreenResize;
         ScoreManager.Instance.Scoring += UpdateScore;
-        GameManager.Instance.LoadedBall += UpdateLoadedBall;
-        GameManager.Instance.BallQueueChanged += (balls) => UpdateBallList(balls, BallQueue);
-        GameManager.Instance.HeldBallsChanged += (balls) => UpdateBallList(balls, HeldBalls);
-        GameManager.Instance.LiveBallsChanged += (balls) => UpdateBallList(balls, LiveBalls);
+        //GameManager.Instance.LoadedBall += UpdateLoadedBall;
+        //GameManager.Instance.BallQueueChanged += (balls) => UpdateBallList(balls, BallQueue);
+        //GameManager.Instance.HeldBallsChanged += (balls) => UpdateBallList(balls, HeldBalls);
+        //GameManager.Instance.LiveBallsChanged += (balls) => UpdateBallList(balls, LiveBalls);
 
         GameStart = DateTime.Now;
 

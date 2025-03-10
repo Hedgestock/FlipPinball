@@ -11,6 +11,9 @@ public partial class TeleportGroup : BoardElementsGroup
     [Signal]
     public delegate void AddingBallEventHandler(Ball ball, Vector2 position);
 
+    [Signal]
+    public delegate void TeleportingEventHandler(Ball ball, Vector2 position);
+
     public override void _Ready()
     {
         Group = "Spitters";
@@ -45,7 +48,7 @@ public partial class TeleportGroup : BoardElementsGroup
         }
         else
         {
-            ball.GlobalPosition = ((Node2D)Nodes.First(n => n.light.IsOn).node).GlobalPosition;
+            EmitSignal(SignalName.Teleporting, ball, ((Node2D)Nodes.First(n => n.light.IsOn).node).GlobalPosition);
         }
         SetAllOff();
     }

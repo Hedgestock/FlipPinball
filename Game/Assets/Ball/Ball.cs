@@ -21,8 +21,7 @@ public partial class Ball : RigidBody2D
         LastPosition = GlobalPosition;
         if (ProcessMode != ProcessModeEnum.Disabled)
         {
-            Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray();
-            LastPoints = Trail.Points;
+            ResetTrail();
         }
         else
         {
@@ -65,9 +64,9 @@ public partial class Ball : RigidBody2D
         Center.SetCollisionLayerValue(layer, value);
     }
 
-    public void Remove()
+    public void ResetTrail()
     {
-        Trail.QueueFree();
-        QueueFree();
+        Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray();
+        LastPoints = Trail.Points;
     }
 }
