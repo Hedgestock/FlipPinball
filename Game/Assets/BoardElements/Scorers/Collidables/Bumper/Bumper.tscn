@@ -12,6 +12,7 @@
 radius = 20.0
 
 [node name="Bumper" type="Node2D" node_paths=PackedStringArray("Sprite") groups=["Bumpers", "ShapeRound"]]
+z_index = 6
 script = ExtResource("1_euw7q")
 Sprite = NodePath("Hitbox/Sprite2D")
 
@@ -28,8 +29,9 @@ shape = SubResource("CircleShape2D_qmtc5")
 [node name="OnOffLight" parent="." instance=ExtResource("4_1k431")]
 animation = &"on"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_svyrr")
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("7_i7vyf")]

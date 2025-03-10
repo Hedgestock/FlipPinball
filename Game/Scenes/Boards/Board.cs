@@ -74,6 +74,35 @@ public partial class Board : Node2D
         }
     }
 
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        if (Input.IsActionPressed("paddle_left")) { RotatePaddle(delta, Mathf.DegToRad(-60), true); }
+        else { RotatePaddle(delta, 0, true); }
+
+        if (Input.IsActionPressed("paddle_right")) { RotatePaddle(delta, Mathf.DegToRad(60), false); }
+        else { RotatePaddle(delta, 0, false); }
+    }
+
+    private void RotatePaddle(double delta, double angle, bool left)
+    {
+        Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
+
+        foreach (var paddle in paddles)
+        {
+            paddle.Rotation = (float)Mathf.RotateToward(paddle.Rotation, angle, delta * PaddleSpeed);
+        }
+    }
+
+    protected virtual void PaddleAdditionnalBehaviour(bool left)
+    {
+        Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
+        foreach (var paddle in paddles)
+        {
+            paddle.SoundPlayer.Play();
+        }
+    }
+
     public virtual void ResetBoard()
     {
 
@@ -105,41 +134,11 @@ public partial class Board : Node2D
         AddLiveBall(ball);
     }
 
-
-
     protected void GiveExtraBall()
     {
         GameManager.AddExtraBall((Ball)LoadedBall.Duplicate());
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        if (Input.IsActionPressed("paddle_left")) { RotatePaddle(delta, Mathf.DegToRad(-60), true); }
-        else { RotatePaddle(delta, 0, true); }
-
-        if (Input.IsActionPressed("paddle_right")) { RotatePaddle(delta, Mathf.DegToRad(60), false); }
-        else { RotatePaddle(delta, 0, false); }
-    }
-
-    private void RotatePaddle(double delta, double angle, bool left)
-    {
-        Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
-
-        foreach (var paddle in paddles)
-        {
-            paddle.Rotation = (float)Mathf.RotateToward(paddle.Rotation, angle, delta * PaddleSpeed);
-        }
-    }
-
-    protected virtual void PaddleAdditionnalBehaviour(bool left)
-    {
-        Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
-        foreach (var paddle in paddles)
-        {
-            paddle.SoundPlayer.Play();
-        }
-    }
 
     protected void HoldBall(Ball ball)
     {
@@ -148,6 +147,13 @@ public partial class Board : Node2D
         GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
         CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.Position);
         Plunger.AutoFire = true;
+    }
+
+    protected void ClearHeldBalls()
+    {
+        if (HeldBalls.Count == 0) return;
+        HeldBalls.Clear();
+        GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
     }
 
     private void OnEnterDrain(Node2D body, bool oob)
@@ -165,8 +171,10 @@ public partial class Board : Node2D
             }
             else
             {
-                ball.QueueFree();
+                ball.Remove();
                 LoadedBall = GameManager.GetNextBall();
+                GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
+                LoadBall(LoadedBall, Plunger.Position);
             }
         }
     }

@@ -4,5 +4,5 @@ using System;
 public partial class Paddle : CharacterBody2D
 {
     [Export]
-    public AudioStreamPlayer SoundPlayer;
+    public AudioStreamPlayer2D SoundPlayer;
 }

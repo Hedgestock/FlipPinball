@@ -9,6 +9,15 @@ public partial class Bumper : Node2D
     [Export]
     Sprite2D Sprite;
 
+    OnOffLight OnOffLight;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        OnOffLight = GetNode<OnOffLight>("OnOffLight");
+        OnOffLight.Modulate = Colors.LightGray;
+    }
+
     int Level = 0;
 
     private void SetLevel(int value)
@@ -17,19 +26,19 @@ public partial class Bumper : Node2D
         switch (value)
         {
             default:
-                Sprite.Modulate = Colors.White;
+                OnOffLight.Modulate = Colors.LightGray;
                 break;
             case 1:
-                Sprite.Modulate = Colors.ForestGreen;
+                OnOffLight.Modulate = Colors.Green;
                 break;
             case 2:
-                Sprite.Modulate = Colors.MediumBlue;
+                OnOffLight.Modulate = Colors.Blue;
                 break;
             case 3:
-                Sprite.Modulate = Colors.Red;
+                OnOffLight.Modulate = Colors.Red;
                 break;
             case 4:
-                Sprite.Modulate = Colors.Black;
+                OnOffLight.Modulate = Colors.DarkViolet;
                 break;
         }
     }

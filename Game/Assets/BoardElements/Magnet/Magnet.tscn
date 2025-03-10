@@ -45,13 +45,15 @@ one_shot = true
 [node name="Pusher" parent="." instance=ExtResource("2_qhgln")]
 Strength = 2000
 
-[node name="MagnetOnSoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MagnetOnSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_52v3k")
 volume_db = 5.2
+attenuation = 1e-05
 bus = &"BoardElements"
 
-[node name="MagnetEjectSoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MagnetEjectSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g5p1v")
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [connection signal="MagnetEject" from="." to="Pusher" method="Push"]

@@ -2,7 +2,7 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class BoardElementsGroup : Node
+public partial class BoardElementsGroup : Node2D
 {
     [Signal]
     public delegate void AllOnEventHandler();

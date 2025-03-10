@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class DecayingLeveler : Node
+public partial class DecayingLeveler : Node2D
 {
     [Export]
     Leveler Leveler;
@@ -13,7 +13,7 @@ public partial class DecayingLeveler : Node
     public override void _Ready()
     {
         base._Ready();
-        Lights = GetChildren().Where(c => c is OnOffLight).Cast<OnOffLight>().ToList();
+        Lights = FindChildren("*").Where(c => c is OnOffLight).Cast<OnOffLight>().ToList();
         if (Lights.Count == 0) return;
         Leveler.MaxLevel = Lights.Count;
         Leveler.MinLevel = 0;

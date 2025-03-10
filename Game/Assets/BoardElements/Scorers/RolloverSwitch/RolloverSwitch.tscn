@@ -42,8 +42,9 @@ shape = SubResource("RectangleShape2D_flb67")
 [node name="OnOffLight" parent="." instance=ExtResource("3_43wvr")]
 position = Vector2(0, -25)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_3evls")
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [connection signal="LanePassed" from="." to="Scorer" method="Score"]

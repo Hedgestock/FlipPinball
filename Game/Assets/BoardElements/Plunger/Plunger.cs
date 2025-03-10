@@ -3,6 +3,11 @@ using System.Linq;
 
 public partial class Plunger : Node2D
 {
+    [Signal]
+    public delegate void WindingUpEventHandler();
+    [Signal]
+    public delegate void ReleasingEventHandler();
+
     [Export]
     uint MaxStrength = 5000;
 
@@ -10,11 +15,6 @@ public partial class Plunger : Node2D
     TextureProgressBar PlungerProgress;
     [Export]
     Area2D DetectionZone;
-
-    [Export]
-    AudioStreamPlayer ReleaseSoundPlayer;
-    [Export]
-    AudioStreamPlayer WindUpSoundPlayer;
 
     public bool AutoFire = false;
 
@@ -42,7 +42,7 @@ public partial class Plunger : Node2D
         if (AutoFire) return;
         if (@event.IsActionPressed("plunger"))
         {
-            WindUpSoundPlayer.Play();
+            EmitSignal(SignalName.WindingUp);
         }
         if (@event.IsActionReleased("plunger"))
         {
@@ -52,7 +52,7 @@ public partial class Plunger : Node2D
 
     void OnDetectionZoneBodyEnter(Node2D body)
     {
-        if (body is Ball)
+        if (body is Ball && AutoFire)
         {
             AutoFire = false;
             ReleasePlunger();
@@ -61,12 +61,11 @@ public partial class Plunger : Node2D
 
     void ReleasePlunger()
     {
+        EmitSignal(SignalName.Releasing);
         foreach (RigidBody2D ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
             ball.LinearVelocity = Vector2.Up * (int)PlungerProgress.Value;
         }
         PlungerProgress.Value = 0;
-        WindUpSoundPlayer.Stop();
-        ReleaseSoundPlayer.Play();
     }
 }

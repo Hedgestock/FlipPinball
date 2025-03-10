@@ -14,8 +14,6 @@ public partial class KickBack : Node2D
     Area2D DetectionZone;
 
     [Export]
-    StaticBody2D OneWayGate;
-    [Export]
     Timer Delay;
 
     public override void _Ready()
@@ -37,12 +35,12 @@ public partial class KickBack : Node2D
         {
             EmitSignal(SignalName.KickingBall, ball, Vector2.Up);
         }
-        OneWayGate.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+        GetNode<CollisionShape2D>("OneWayGate/CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+        GetNode<Line2D>("OneWayGate/Line2D").Show();
     }
 
     void Open()
     {
-        OneWayGate.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         EmitSignal(SignalName.Opening);
     }
 }

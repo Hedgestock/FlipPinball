@@ -30,12 +30,14 @@ collision_mask = 0
 [node name="SpitDelay" type="Timer" parent="."]
 one_shot = true
 
-[node name="SpitterInSoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SpitterInSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_uojt7")
+attenuation = 1e-05
 bus = &"BoardElements"
 
-[node name="SpitterOutSoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SpitterOutSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_mhvfs")
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [node name="Scorer" parent="." instance=ExtResource("4_4ynig")]

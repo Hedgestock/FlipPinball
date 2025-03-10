@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.cs" id="1_lu6j3"]
 
 [node name="PhysicsScoreBubble" type="RigidBody2D" node_paths=PackedStringArray("Label", "visibleOnScreenNotifier")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_lu6j3")
 Label = NodePath("Label")
 visibleOnScreenNotifier = NodePath("VisibleOnScreenNotifier2D")

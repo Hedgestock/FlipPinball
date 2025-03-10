@@ -23,12 +23,10 @@ fill_to = Vector2(0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhcf"]
 size = Vector2(20, 3)
 
-[node name="Plunger" type="Node2D" node_paths=PackedStringArray("PlungerProgress", "DetectionZone", "ReleaseSoundPlayer", "WindUpSoundPlayer")]
+[node name="Plunger" type="Node2D" node_paths=PackedStringArray("PlungerProgress", "DetectionZone")]
 script = ExtResource("1_bv4d5")
 PlungerProgress = NodePath("PlungerProgress")
 DetectionZone = NodePath("DetectionZone")
-ReleaseSoundPlayer = NodePath("Release")
-WindUpSoundPlayer = NodePath("WindUp")
 
 [node name="PlungerProgress" type="TextureProgressBar" parent="."]
 offset_left = -8.0
@@ -51,12 +49,19 @@ collision_mask = 2
 position = Vector2(0, 31.5)
 shape = SubResource("RectangleShape2D_ahhcf")
 
-[node name="Release" type="AudioStreamPlayer" parent="."]
+[node name="Release" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_a28wm")
+attenuation = 1e-05
+panning_strength = 0.3
 bus = &"BoardElements"
 
-[node name="WindUp" type="AudioStreamPlayer" parent="."]
+[node name="WindUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_mxsw7")
+attenuation = 1e-05
+panning_strength = 0.3
 bus = &"BoardElements"
 
+[connection signal="Releasing" from="." to="Release" method="play"]
+[connection signal="Releasing" from="." to="WindUp" method="stop"]
+[connection signal="WindingUp" from="." to="WindUp" method="play"]
 [connection signal="body_entered" from="DetectionZone" to="." method="OnDetectionZoneBodyEnter"]

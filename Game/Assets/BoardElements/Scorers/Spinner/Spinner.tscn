@@ -20,8 +20,9 @@ shape = SubResource("RectangleShape2D_ioksq")
 [node name="Scorer" parent="." instance=ExtResource("3_3mptj")]
 Value = 500
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_0t70i")
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [connection signal="CompleteRotation" from="." to="Scorer" method="Score"]

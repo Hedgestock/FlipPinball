@@ -29,7 +29,8 @@ shape = SubResource("CapsuleShape2D_0mlm1")
 wait_time = 45.0
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("5_s16b8")]

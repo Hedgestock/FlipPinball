@@ -20,8 +20,9 @@ shape = SubResource("RectangleShape2D_x3ii1")
 [node name="Scorer" parent="." instance=ExtResource("3_dtu0p")]
 Value = 500
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_isjs3")
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("5_q8d7r")]

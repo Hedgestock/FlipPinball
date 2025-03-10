@@ -6,8 +6,6 @@ public partial class Spinner : Node2D
     [Signal]
     public delegate void CompleteRotationEventHandler(int level);
 
-    int Level = 0;
-
     double InitialSpinSpeed = 0;
     double LastSpinSpeed = 0;
     double Iterations = -1;
@@ -25,7 +23,7 @@ public partial class Spinner : Node2D
         {
             for (int i = 0; i < numberOfTurns; i++)
             {
-                EmitSignal(SignalName.CompleteRotation, (Level * 4) + 1);
+                EmitSignal(SignalName.CompleteRotation, ((Leveler)GetParent()).CurrentLevel);
             }
 
             LastSpinSpeed = currentSpinSpeed;
@@ -45,28 +43,5 @@ public partial class Spinner : Node2D
             InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 200;
             LastSpinSpeed = InitialSpinSpeed;
         }
-    }
-
-    private void SetLevel(int value)
-    {
-        Level = value;
-        //switch (value)
-        //{
-        //    default:
-        //        Sprite.Modulate = Colors.White;
-        //        break;
-        //    case 2:
-        //        Sprite.Modulate = Colors.ForestGreen;
-        //        break;
-        //    case 3:
-        //        Sprite.Modulate = Colors.MediumBlue;
-        //        break;
-        //    case 4:
-        //        Sprite.Modulate = Colors.Red;
-        //        break;
-        //    case 5:
-        //        Sprite.Modulate = Colors.Black;
-        //        break;
-        //}
     }
 }

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Reflection.Emit;
 
-public partial class Leveler : Node
+public partial class Leveler : Node2D
 {
     [Signal]
     public delegate void OnLevelOverflowEventHandler();
@@ -70,13 +70,25 @@ public partial class Leveler : Node
         CurrentLevel = level;
     }
 
+    public void BumpLevel(int level)
+    {
+        if (_currentLevel >= level) return;
+        CurrentLevel = level;
+    }
+
+    public void BonkLevel(int level)
+    {
+        if (_currentLevel <= level) return;
+        CurrentLevel = level;
+    }
+
     public void MaximizeLevel()
     {
-        SetLevel(MaxLevel);
+        CurrentLevel = MaxLevel;
     }
 
     public void MinimizeLevel()
     {
-        SetLevel(MinLevel);
+        CurrentLevel = MinLevel;
     }
 }

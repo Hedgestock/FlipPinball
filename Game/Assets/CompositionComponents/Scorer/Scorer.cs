@@ -23,7 +23,7 @@ public partial class Scorer : Node2D
     //public abstract Attributes Kind { get; }
 
     [Export]
-    private int Value = 200;
+    private int Value;
 
     [Export]
     PackedScene ScoreBubbleScene;

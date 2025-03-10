@@ -1,0 +1,31 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://c1admrmm6460l"]
+
+[ext_resource type="Texture2D" uid="uid://sayghknuiddc" path="res://Game/Scenes/Boards/TestLab/Tunnel/TunnelLightOff.png" id="1_w2a4c"]
+[ext_resource type="Texture2D" uid="uid://ceebpvug6ccju" path="res://Game/Scenes/Boards/TestLab/Tunnel/TunnelLightOn.png" id="2_g5sc2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w2a4c")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w2a4c")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g5sc2")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]

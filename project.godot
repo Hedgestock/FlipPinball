@@ -28,7 +28,8 @@ GameManager="*res://Game/Scripts/GameManager.cs"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -101,8 +102,8 @@ rendering/root_node_auto_translate=false
 2d/run_on_separate_thread=true
 common/physics_ticks_per_second=240
 common/max_physics_steps_per_frame=16
-common/physics_interpolation=true
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 viewport/transparent_background=true

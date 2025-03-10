@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://gnv41djl03gp"]
+
+[ext_resource type="Texture2D" uid="uid://d5m3iwwp4ajr" path="res://Game/Scenes/Boards/TestLab/Teleports/ArrowLightOff.png" id="1_o2x8b"]
+[ext_resource type="Texture2D" uid="uid://dmwx7qfoxhqiu" path="res://Game/Scenes/Boards/TestLab/Teleports/ArrowLightOn.png" id="2_i7hl6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_o2x8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i7hl6")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_o2x8b")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i7hl6")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]

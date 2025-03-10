@@ -9,22 +9,25 @@ radius = 8.0
 height = 80.0
 
 [node name="Paddle" type="CharacterBody2D" node_paths=PackedStringArray("SoundPlayer")]
+z_index = 6
 collision_layer = 2
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_mvgij")
 SoundPlayer = NodePath("AudioStreamPlayer")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(25, 19)
+rotation = 0.645772
+texture = ExtResource("3_duipv")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(25, 19)
 rotation = -0.925025
 shape = SubResource("CapsuleShape2D_2x465")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_xcx2q")
+attenuation = 1e-05
+panning_strength = 0.3
 bus = &"BoardElements"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(25, 19)
-rotation = 0.645772
-texture = ExtResource("3_duipv")

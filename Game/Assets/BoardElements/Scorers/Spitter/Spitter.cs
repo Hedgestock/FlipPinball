@@ -19,10 +19,12 @@ public partial class Spitter : Node2D
     [Export]
     Area2D DetectionZone;
 
+    Ball StoredBall;
+
 
     private void OnAreaEnter(Area2D area)
     {
-        if (area.GetParent() is Ball ball)
+        if (area.GetParent() is Ball ball && ball != StoredBall)
         {
             Tween tween = GetTree().CreateTween();
             tween.TweenProperty(ball, "global_position", GlobalPosition, .5f)
@@ -31,6 +33,7 @@ public partial class Spitter : Node2D
             ball.SetDeferred(RigidBody2D.PropertyName.Freeze, true);
             SpitDelay.Start();
             EmitSignal(SignalName.SwallowingBall, ball);
+            StoredBall = ball;
         }
     }
 
@@ -43,5 +46,6 @@ public partial class Spitter : Node2D
 
             EmitSignal(SignalName.SpittingBall, ball);
         }
+        StoredBall = null;
     }
 }

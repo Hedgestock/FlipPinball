@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxi7chpix50wp"]
+[gd_scene load_steps=5 format=3 uid="uid://dxi7chpix50wp"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.cs" id="1_hm3li"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="2_17vhc"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dpfvq"]
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="3_pxfri"]
+[ext_resource type="AudioStream" uid="uid://cwgqkesk5x4om" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.wav" id="4_8l7oj"]
 
 [node name="Rollover" type="Node2D" groups=["Rollovers", "ShapeRound"]]
 script = ExtResource("1_hm3li")
@@ -12,9 +12,18 @@ script = ExtResource("1_hm3li")
 collision_layer = 0
 collision_mask = 2
 
+[node name="OnOffLight" parent="Area2D" instance=ExtResource("3_pxfri")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_dpfvq")
 
 [node name="Scorer" parent="." instance=ExtResource("2_17vhc")]
+Value = 500
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8l7oj")
+attenuation = 1e-05
+bus = &"BoardElements"
+
+[connection signal="body_entered" from="Area2D" to="." method="OnAreaBodyEnter"]
 [connection signal="body_entered" from="Area2D" to="Scorer" method="Score" unbinds=1]
+[connection signal="body_entered" from="Area2D" to="AudioStreamPlayer" method="play" unbinds=1]

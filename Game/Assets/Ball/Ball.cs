@@ -9,6 +9,7 @@ public partial class Ball : RigidBody2D
     [Export]
     Area2D Center;
 
+    Vector2[] LastPoints;
     Vector2 LastPosition;
     Vector2 LastVelocity;
     Vector2 LastCollisionNormal;
@@ -16,16 +17,19 @@ public partial class Ball : RigidBody2D
     public override void _Ready()
     {
         base._Ready();
+
         LastPosition = GlobalPosition;
         if (ProcessMode != ProcessModeEnum.Disabled)
         {
             Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray();
+            LastPoints = Trail.Points;
         }
         else
         {
             Trail.Points = [new(0, 0), new(20, 20)];
         }
     }
+
 
     public override void _PhysicsProcess(double delta)
     {
@@ -36,15 +40,17 @@ public partial class Ball : RigidBody2D
         {
             LastCollisionNormal = collisionInfo.GetNormal();
         }
-        Vector2[] tmp = new Vector2[Trail.Points.Length];
-        tmp[0] = Vector2.Zero;
+
+        LastVelocity = LinearVelocity;
+
+        LastPoints[0] = Vector2.Zero;
         for (int i = 1; i < Trail.Points.Length; i++)
         {
-            tmp[i] = Trail.Points[i - 1] + (LastPosition - GlobalPosition);
+            LastPoints[i] = Trail.Points[i - 1] + (LastPosition - GlobalPosition);
         }
-        Trail.Points = tmp;
+        Trail.Points = LastPoints;
+        LastPoints = Trail.Points;
         LastPosition = GlobalPosition;
-        LastVelocity = LinearVelocity;
     }
 
     public void OnCollision(Node body)
@@ -57,5 +63,11 @@ public partial class Ball : RigidBody2D
         SetCollisionLayerValue(layer, value);
         SetCollisionMaskValue(layer, value);
         Center.SetCollisionLayerValue(layer, value);
+    }
+
+    public void Remove()
+    {
+        Trail.QueueFree();
+        QueueFree();
     }
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Assets/CompositionComponents/Leveler/DecayingLeveler.cs" id="1_686j3"]
 [ext_resource type="PackedScene" uid="uid://0vf85v2k3lmd" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.tscn" id="2_1tbbw"]
 
-[node name="DecayingLeveler" type="Node" node_paths=PackedStringArray("Leveler")]
+[node name="DecayingLeveler" type="Node2D" node_paths=PackedStringArray("Leveler")]
 script = ExtResource("1_686j3")
 Leveler = NodePath("Leveler")
 

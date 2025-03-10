@@ -11,19 +11,22 @@ b = Vector2(50, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhcf"]
 size = Vector2(20, 3)
 
-[node name="KickBack" type="Node2D" node_paths=PackedStringArray("DetectionZone", "OneWayGate", "Delay") groups=["KickBacks"]]
+[node name="KickBack" type="Node2D" node_paths=PackedStringArray("DetectionZone", "Delay") groups=["KickBacks"]]
 script = ExtResource("1_2hlfo")
 DetectionZone = NodePath("Area2D")
-OneWayGate = NodePath("StaticBody2D")
 Delay = NodePath("Timer")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-15, 5)
+[node name="OneWayGate" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-3, 3)
+[node name="Line2D" type="Line2D" parent="OneWayGate"]
+visible = false
+points = PackedVector2Array(0, 0, 50, 0)
+width = 3.0
+default_color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayGate"]
 shape = SubResource("SegmentShape2D_0c4mb")
 one_way_collision = true
 
@@ -40,8 +43,9 @@ shape = SubResource("RectangleShape2D_ahhcf")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_ji2d3")
+attenuation = 1e-05
 bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("3_54quy")]
@@ -51,6 +55,7 @@ Strength = 2000
 [connection signal="KickingBall" from="." to="OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="KickingBall" from="." to="AudioStreamPlayer" method="play" unbinds=2]
 [connection signal="Opening" from="." to="OnOffLight" method="TurnOn"]
+[connection signal="Opening" from="." to="OneWayGate/Line2D" method="hide"]
+[connection signal="Opening" from="." to="OneWayGate/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
 [connection signal="timeout" from="Timer" to="." method="KickBall"]
-[connection signal="timeout" from="Timer" to="AudioStreamPlayer" method="play"]
