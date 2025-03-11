@@ -34,6 +34,7 @@ public partial class Board : Node2D
     public override void _Ready()
     {
         base._Ready();
+        TiltPusher = (Pusher)FindChild("TiltPusher");
         ScoreManager.BoardScore = Score;
 
         //OnScreenResize();
@@ -223,6 +224,9 @@ public partial class Board : Node2D
         }
     }
 
+    [Export]
+    Pusher TiltPusher;
+
     private void Tilt()
     {
         float tiltAngle = (float)GD.RandRange(-MathF.PI / 4, MathF.PI / 4);
@@ -235,7 +239,7 @@ public partial class Board : Node2D
         else if (Input.IsActionPressed("paddle_right"))
             tiltDirection = Vector2.Left;
 
-        LiveBalls.ForEach(b => b.LinearVelocity += tiltDirection.Rotated(tiltAngle) * 70);
+        LiveBalls.ForEach(b => TiltPusher.Push(b, tiltDirection.Rotated(tiltAngle)));
 
         EmitSignal(SignalName.BoardTilted);
     }
