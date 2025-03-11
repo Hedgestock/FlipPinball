@@ -155,7 +155,6 @@ MagicPostLight = NodePath("Layer1/MagicPost/DecayingOnOffLight")
 LeftOutLaneLight = NodePath("Layer1/LeftOutLaneRollover/OnOffLight")
 RightOutLaneLight = NodePath("Layer1/RightOutLaneRollover/OnOffLight")
 SpinnersLevel = NodePath("Layer1/Spinners")
-PaddleSpeed = 30.0
 Plunger = NodePath("Layer1/Plunger")
 PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
 PaddlesRight = [NodePath("Layer1/PaddleRightMain")]

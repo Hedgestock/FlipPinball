@@ -10,9 +10,6 @@ public partial class Board : Node2D
     public delegate void BoardTiltedEventHandler();
 
     [Export]
-    float PaddleSpeed = 25;
-
-    [Export]
     Plunger Plunger;
     [Export]
     public Array<Paddle> PaddlesLeft = new();
@@ -99,11 +96,18 @@ public partial class Board : Node2D
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        if (Input.IsActionPressed("paddle_left")) { RotatePaddle(delta, Mathf.DegToRad(-60), true); }
-        else { RotatePaddle(delta, 0, true); }
 
-        if (Input.IsActionPressed("paddle_right")) { RotatePaddle(delta, Mathf.DegToRad(60), false); }
-        else { RotatePaddle(delta, 0, false); }
+        if (Input.IsActionPressed("paddle_left"))
+            foreach (var paddle in PaddlesLeft)
+                paddle.Rotate(delta, Mathf.DegToRad(-60));
+        else foreach (var paddle in PaddlesLeft)
+                paddle.Rotate(delta, 0);
+
+        if (Input.IsActionPressed("paddle_right"))
+            foreach (var paddle in PaddlesRight)
+                paddle.Rotate(delta, Mathf.DegToRad(60));
+        else foreach (var paddle in PaddlesRight)
+                paddle.Rotate(delta, 0);
 
         if (OS.GetName() == "Android" || OS.GetName() == "iOS")
         {
@@ -128,16 +132,6 @@ public partial class Board : Node2D
     protected virtual int Score(int score)
     {
         return ScoreManager.Score(score);
-    }
-
-    private void RotatePaddle(double delta, double angle, bool left)
-    {
-        Array<Paddle> paddles = left ? PaddlesLeft : PaddlesRight;
-
-        foreach (var paddle in paddles)
-        {
-            paddle.Rotation = (float)Mathf.RotateToward(paddle.Rotation, angle, delta * PaddleSpeed);
-        }
     }
 
     protected virtual void PaddleAdditionnalBehaviour(bool left)

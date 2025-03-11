@@ -9,10 +9,6 @@ public partial class Ball : RigidBody2D
     [Export]
     Area2D Center;
 
-    Vector2[] LastPoints;
-    Vector2 LastPosition;
-    Vector2 LastVelocity;
-    Vector2 LastCollisionNormal;
 
     public override void _Ready()
     {
@@ -29,7 +25,8 @@ public partial class Ball : RigidBody2D
         }
     }
 
-
+    Vector2 LastVelocity;
+    Vector2 LastCollisionNormal;
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -42,14 +39,39 @@ public partial class Ball : RigidBody2D
 
         LastVelocity = LinearVelocity;
 
+        TrailProcessing(delta);
+    }
+
+
+    Vector2[] LastPoints;
+    Vector2 LastPosition;
+    Vector2 LastProcessedPosition;
+    double TimeSinceTrailProcessing = 0;
+    double TrailTime = 1;
+    int TrailDetail = 60;
+    void TrailProcessing(double delta)
+    {
         LastPoints[0] = Vector2.Zero;
+        TimeSinceTrailProcessing += delta;
+
+        if (TimeSinceTrailProcessing >= TrailTime / Trail.Points.Length)
+        {
+            for (int i = 1; i < Trail.Points.Length; i++)
+            {
+                LastPoints[i] = Trail.Points[i - 1];
+            }
+            TimeSinceTrailProcessing -= TrailTime / Trail.Points.Length;
+        }
+
         for (int i = 1; i < Trail.Points.Length; i++)
         {
-            LastPoints[i] = Trail.Points[i - 1] + (LastPosition - GlobalPosition);
+            LastPoints[i] += (LastPosition - GlobalPosition);
         }
+
+
+        LastPosition = GlobalPosition;
         Trail.Points = LastPoints;
         LastPoints = Trail.Points;
-        LastPosition = GlobalPosition;
     }
 
     public void OnCollision(Node body)
@@ -63,13 +85,13 @@ public partial class Ball : RigidBody2D
         SetCollisionMaskValue(layer, value);
         Center.SetCollisionLayerValue(layer, value);
         if (value)
-            ZIndex = (layer - 2) * 10 + 4;
+            ZIndex = (layer - 2) * 10 + 3;
         GD.Print("Ball ZIndex: ", ZIndex);
     }
 
     public void ResetTrail()
     {
-        Trail.Points = Enumerable.Repeat(Vector2.Zero, 50).ToArray();
+        Trail.Points = Enumerable.Repeat(Vector2.Zero, TrailDetail).ToArray();
         LastPoints = Trail.Points;
     }
 }
