@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene load_steps=7 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
 [ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
 [ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
 [ext_resource type="PackedScene" uid="uid://1uf453kusqfd" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="3_vxydm"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "Score", "History", "StatusBox", "FPS", "GameTimerLabel")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4slb"]
+size = Vector2(600, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
+size = Vector2(300, 600)
+
+[node name="Game" type="Node" node_paths=PackedStringArray("MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "Score", "StatusBox", "FPS", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton", "PlungerButton")]
 script = ExtResource("1_ems3e")
 BallViewerScene = ExtResource("2_ttlp1")
 MainContainer = NodePath("MainContainer")
@@ -14,22 +20,29 @@ HeldBalls = NodePath("MainContainer/PanelContainer2/VBoxContainer/ScrollContaine
 LiveBalls = NodePath("MainContainer/PanelContainer2/VBoxContainer/ScrollContainer/Status/HFlowContainer2")
 LoadedBallViewer = NodePath("MainContainer/PanelContainer2/VBoxContainer/ScrollContainer/Status/BallViewer")
 Score = NodePath("MainContainer/PanelContainer/VBoxContainer/VBoxContainer/ScoreLabel")
-History = NodePath("MainContainer/PanelContainer/VBoxContainer/VBoxContainer/ScrollContainer/History")
 StatusBox = NodePath("MainContainer/PanelContainer2/VBoxContainer/ScrollContainer/Status")
 FPS = NodePath("MainContainer/PanelContainer2/VBoxContainer/ScrollContainer/Status/FPS")
 ScoreBubbleScene = ExtResource("2_d708p")
 GameTimerLabel = NodePath("MainContainer/PanelContainer2/VBoxContainer/ScrollContainer/Status/GameTime")
+LeftPaddleButton = NodePath("LeftPaddleButton")
+RightPaddleButton = NodePath("RightPaddleButton")
+PlungerButton = NodePath("PlungerButton")
+
+[node name="Board" parent="." instance=ExtResource("3_vxydm")]
 
 [node name="MainContainer" type="BoxContainer" parent="."]
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -64.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -45,49 +58,9 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Score: 0"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MainContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="History" type="Label" parent="MainContainer/PanelContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Left" type="Button" parent="MainContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Left"
-
-[node name="Tilt" type="Button" parent="MainContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Tilt"
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MainContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-ratio = 0.5556
-alignment_vertical = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MainContainer/AspectRatioContainer"]
-custom_minimum_size = Vector2(600, 1080)
-layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="MainContainer/AspectRatioContainer/SubViewportContainer"]
-disable_3d = true
-handle_input_locally = false
-audio_listener_enable_2d = true
-size = Vector2i(600, 1080)
-render_target_update_mode = 4
-
-[node name="Board" parent="MainContainer/AspectRatioContainer/SubViewportContainer/SubViewport" instance=ExtResource("3_vxydm")]
 
 [node name="PanelContainer2" type="PanelContainer" parent="MainContainer"]
 layout_mode = 2
@@ -104,6 +77,7 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="FPS" type="Label" parent="MainContainer/PanelContainer2/VBoxContainer/ScrollContainer/Status"]
+visible = false
 layout_mode = 2
 text = "FPS"
 
@@ -139,27 +113,26 @@ layout_mode = 2
 layout_mode = 2
 text = "Game time: 00:00"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="PlungerButton" type="TouchScreenButton" parent="."]
+z_index = 100
+position = Vector2(300, 300)
+shape = SubResource("RectangleShape2D_i4slb")
+action = "plunger"
 
-[node name="Plunger" type="Button" parent="MainContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Plunger"
+[node name="BallLoadButton" type="TouchScreenButton" parent="."]
+z_index = 100
+position = Vector2(300, 300)
+shape = SubResource("RectangleShape2D_i4slb")
+action = "load_ball"
 
-[node name="Right" type="Button" parent="MainContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Right"
+[node name="LeftPaddleButton" type="TouchScreenButton" parent="."]
+z_index = 100
+position = Vector2(150, 780)
+shape = SubResource("RectangleShape2D_n7y7i")
+action = "paddle_left"
 
-[connection signal="button_down" from="MainContainer/PanelContainer/VBoxContainer/HBoxContainer/Left" to="." method="LeftPress"]
-[connection signal="button_up" from="MainContainer/PanelContainer/VBoxContainer/HBoxContainer/Left" to="." method="LeftRelease"]
-[connection signal="button_down" from="MainContainer/PanelContainer/VBoxContainer/HBoxContainer/Tilt" to="." method="TiltPress"]
-[connection signal="button_up" from="MainContainer/PanelContainer/VBoxContainer/HBoxContainer/Tilt" to="." method="TiltRelease"]
-[connection signal="button_down" from="MainContainer/PanelContainer2/VBoxContainer/HBoxContainer/Plunger" to="." method="PlungerPress"]
-[connection signal="button_up" from="MainContainer/PanelContainer2/VBoxContainer/HBoxContainer/Plunger" to="." method="PlungerRelease"]
-[connection signal="button_down" from="MainContainer/PanelContainer2/VBoxContainer/HBoxContainer/Right" to="." method="RightPress"]
-[connection signal="button_up" from="MainContainer/PanelContainer2/VBoxContainer/HBoxContainer/Right" to="." method="RightRelease"]
+[node name="RightPaddleButton" type="TouchScreenButton" parent="."]
+z_index = 100
+position = Vector2(450, 780)
+shape = SubResource("RectangleShape2D_n7y7i")
+action = "paddle_right"

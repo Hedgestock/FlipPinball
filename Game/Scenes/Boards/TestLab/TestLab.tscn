@@ -1,8 +1,9 @@
-[gd_scene load_steps=75 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=76 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Slingshots/SlingshotBody.png" id="3_6ad40"]
 [ext_resource type="Texture2D" uid="uid://b6x313mirbl7c" path="res://Game/Scenes/Boards/TestLab/Template.jpg" id="3_ijggr"]
+[ext_resource type="Texture2D" uid="uid://g7ly3when2mw" path="res://Game/Scenes/Boards/TestLab/BG 1 FTF.png" id="3_jj4cu"]
 [ext_resource type="PackedScene" uid="uid://1jrg7mxwi5so" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Round/RoundTarget.tscn" id="4_2d0ue"]
 [ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="4_6e6jg"]
 [ext_resource type="Texture2D" uid="uid://doytpbeocn5xt" path="res://Game/Scenes/Boards/TestLab/SusTargetWall.png" id="4_av5ve"]
@@ -36,6 +37,7 @@
 [ext_resource type="SpriteFrames" uid="uid://gnv41djl03gp" path="res://Game/Scenes/Boards/TestLab/Teleports/TeleportLightAnimation.tres" id="28_n3w53"]
 [ext_resource type="Texture2D" uid="uid://c0rnhvl8iwe60" path="res://Game/Scenes/Boards/TestLab/LabFloor.png" id="34_00wus"]
 [ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/LabWalls.png" id="34_ef6o4"]
+[ext_resource type="PackedScene" uid="uid://dlc68ojsii7om" path="res://Game/Assets/BoardElements/TiltLight/TiltLight.tscn" id="34_qajmy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 
@@ -133,11 +135,8 @@ size = Vector2(30, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqomp"]
 size = Vector2(30, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eia0n"]
-size = Vector2(20, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_03766"]
-size = Vector2(35, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orssv"]
+size = Vector2(25, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lvhxb"]
 b = Vector2(0, 34)
@@ -167,6 +166,12 @@ visible = false
 offset_right = 600.0
 offset_bottom = 1080.0
 texture = ExtResource("3_ijggr")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_right = 600.0
+offset_bottom = 1080.0
+texture = ExtResource("3_jj4cu")
 expand_mode = 1
 
 [node name="Boundaries" type="Area2D" parent="."]
@@ -1247,16 +1252,17 @@ sprite_frames = ExtResource("25_2a2yf")
 [node name="CollisionShape2D" parent="Layer1/Funds/Rollover6/Area2D" index="1"]
 shape = SubResource("RectangleShape2D_qqomp")
 
-[node name="LayerChange1to2" parent="." instance=ExtResource("14_d61wx")]
-position = Vector2(205, 585)
-rotation = -0.313472
-scale = Vector2(3, 2)
+[node name="TiltLight" parent="Layer1" instance=ExtResource("34_qajmy")]
+position = Vector2(180, 741)
 
-[node name="CollisionShape2D" parent="LayerChange1to2/Gate2" index="0"]
-shape = SubResource("RectangleShape2D_eia0n")
+[node name="LayerChange1to2" parent="." instance=ExtResource("14_d61wx")]
+z_index = 11
+position = Vector2(230, 568)
+rotation = -0.313472
+scale = Vector2(2, 1)
 
 [node name="CollisionShape2D" parent="LayerChange1to2/Gate1" index="0"]
-shape = SubResource("RectangleShape2D_03766")
+shape = SubResource("RectangleShape2D_orssv")
 
 [node name="Layer2" type="Node2D" parent="."]
 z_index = 10
@@ -1382,13 +1388,15 @@ position = Vector2(87, 793)
 [node name="Area2D" parent="Layer2/LayerDrop" index="0"]
 collision_mask = 4
 
+[connection signal="BoardTilted" from="." to="Layer1/TiltLight/OnOffLight" method="TurnBlinking"]
+[connection signal="BoardTilted" from="." to="Layer1/TiltLight/Timer" method="start"]
 [connection signal="body_entered" from="Boundaries" to="." method="OnEnterDrain" binds= [true]]
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
-[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3 unbinds=1]
+[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff" unbinds=1]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3 unbinds=1]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="OnEnterDrain" binds= [false]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/Funds/Leveler" method="MaximizeLevel"]
@@ -1528,6 +1536,7 @@ collision_mask = 4
 [editable path="Layer1/Funds/Rollover4"]
 [editable path="Layer1/Funds/Rollover5"]
 [editable path="Layer1/Funds/Rollover6"]
+[editable path="Layer1/TiltLight"]
 [editable path="LayerChange1to2"]
 [editable path="Layer2/Lab/Rollover1"]
 [editable path="Layer2/Lab/Rollover2"]

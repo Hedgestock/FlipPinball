@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlc68ojsii7om"]
+
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="1_sx782"]
+[ext_resource type="SpriteFrames" uid="uid://cicqms6gvqj2w" path="res://Game/Assets/BoardElements/TiltLight/TiltLightAnimation.tres" id="2_l6x63"]
+
+[node name="TiltLight" type="Node2D"]
+
+[node name="OnOffLight" parent="." instance=ExtResource("1_sx782")]
+modulate = Color(1, 0, 0, 1)
+sprite_frames = ExtResource("2_l6x63")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="OnOffLight" method="TurnOff"]

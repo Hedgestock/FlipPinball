@@ -2,9 +2,14 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 public partial class Board : Node2D
 {
+    [Signal]
+    public delegate void BoardTiltedEventHandler();
+
     [Export]
     float PaddleSpeed = 25;
 
@@ -57,6 +62,7 @@ public partial class Board : Node2D
             Tilt();
         }
 
+        return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -74,6 +80,9 @@ public partial class Board : Node2D
         }
     }
 
+    float[] lastAccel = new float[50];
+    int tiltDisabled = 0;
+
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -82,6 +91,29 @@ public partial class Board : Node2D
 
         if (Input.IsActionPressed("paddle_right")) { RotatePaddle(delta, Mathf.DegToRad(60), false); }
         else { RotatePaddle(delta, 0, false); }
+
+        if (OS.GetName() == "Android" || OS.GetName() == "iOS")
+        {
+            float[] tmp = lastAccel;
+            System.Array.Copy(tmp, 1, lastAccel, 0, lastAccel.Length - 1);
+            lastAccel[lastAccel.Length - 1] = Input.GetAccelerometer().Length();
+
+            if (tiltDisabled <= 0)
+            {
+                if (lastAccel.Max() - lastAccel.Min() > 10)
+                {
+                    GD.Print("tilting");
+                    Tilt();
+                }
+                tiltDisabled = 240;
+            }
+            else
+            {
+                tiltDisabled--;
+            }
+        }
+
+
     }
 
     private void RotatePaddle(double delta, double angle, bool left)
@@ -187,7 +219,7 @@ public partial class Board : Node2D
     private void Tilt()
     {
         float tiltAngle = (float)GD.RandRange(-MathF.PI / 4, MathF.PI / 4);
-        Vector2 tiltDirection =  Vector2.Down;
+        Vector2 tiltDirection = Vector2.Down;
 
         if (Input.IsActionPressed("paddle_left") && Input.IsActionPressed("paddle_right"))
             tiltDirection = Vector2.Up;
@@ -195,7 +227,9 @@ public partial class Board : Node2D
             tiltDirection = Vector2.Right;
         else if (Input.IsActionPressed("paddle_right"))
             tiltDirection = Vector2.Left;
-        
+
         LiveBalls.ForEach(b => b.LinearVelocity += tiltDirection.Rotated(tiltAngle) * 70);
+
+        EmitSignal(SignalName.BoardTilted);
     }
 }
