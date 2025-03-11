@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
 [ext_resource type="Script" path="res://Game/Scenes/SceneChanger.cs" id="1_57tko"]
 
-[node name="Home" type="CanvasLayer"]
+[node name="Home" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel")]
 script = ExtResource("1_4jmw7")
+ScoreLabel = NodePath("AspectRatioContainer/MarginContainer/Label")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 15

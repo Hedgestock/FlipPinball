@@ -16,7 +16,7 @@ public partial class ScoreManager : Node
         _instance = this;
     }
 
-    static long ScoreValue { get; set; }
+    public static long ScoreValue { get; set; }
 
     public override void _Ready()
     {

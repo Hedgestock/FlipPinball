@@ -10,12 +10,6 @@ public partial class TestLab : Board
     [Export]
     BoardElementsGroup Lab;
 
-    public override void _Ready()
-    {
-        base._Ready();
-        ScoreManager.BoardScore = Score;
-    }
-
     protected override void PaddleAdditionnalBehaviour(bool left)
     {
         base.PaddleAdditionnalBehaviour(left);
@@ -23,11 +17,12 @@ public partial class TestLab : Board
         Lab.RotateStatus(left ? 1 : -1);
     }
 
-    private int BoardMult = 1;
-    private int Score(int score)
+    protected override int Score(int score)
     {
         return ScoreManager.Score(score * BoardMult);
     }
+
+    private int BoardMult = 1;
 
     void SetBoardMultLevel(int level)
     {

@@ -50,8 +50,6 @@ public partial class Ball : RigidBody2D
         Trail.Points = LastPoints;
         LastPoints = Trail.Points;
         LastPosition = GlobalPosition;
-
-        GD.Print(GlobalPosition);
     }
 
     public void OnCollision(Node body)
@@ -66,7 +64,7 @@ public partial class Ball : RigidBody2D
         Center.SetCollisionLayerValue(layer, value);
         if (value)
             ZIndex = (layer - 2) * 10 + 4;
-        GD.Print(ZIndex);
+        GD.Print("Ball ZIndex: ", ZIndex);
     }
 
     public void ResetTrail()

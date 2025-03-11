@@ -29,10 +29,15 @@ public partial class GameManager : Node
     [Signal]
     public delegate void LoadedBallEventHandler(Ball ball);
 
-    private static LinkedList<Ball> BallQueue = new();
+    static int CurrentLevel;
+    //static int 
+    //public static int CurrentLevel { get { return _currentLevel; } }
+    static LinkedList<Ball> BallQueue;
 
     public static void SetGame()
     {
+        BallQueue = new();
+        CurrentLevel = 1;
         for (int i = 0; i < 3; i++)
         {
             Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
@@ -40,6 +45,7 @@ public partial class GameManager : Node
             ball.GetNode<Line2D>("Trail").Modulate = new(new Color(GD.Randi()), 1);
             BallQueue.AddLast(ball);
         }
+
     }
 
     public static Ball GetNextBall()

@@ -3,7 +3,6 @@ using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static System.Net.Mime.MediaTypeNames;
 
 public partial class Board : Node2D
 {
@@ -32,6 +31,14 @@ public partial class Board : Node2D
     // Debug code
     private Vector2 LaunchPos;
 
+    public override void _Ready()
+    {
+        base._Ready();
+        ScoreManager.BoardScore = Score;
+
+        //OnScreenResize();
+        //GetTree().Root.SizeChanged += OnScreenResize;
+    }
 
     public override void _Input(InputEvent @event)
     {
@@ -69,6 +76,19 @@ public partial class Board : Node2D
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
                 AddLiveBall(ball);
             }
+            else
+            {
+                Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
+                foreach (Node2D child in ball.GetChildren())
+                {
+                    child.Scale /= 2;
+                }
+                ball.GetNode<Line2D>("Trail").Scale = Vector2.One;
+                ball.GetNode<Line2D>("Trail").Width = 10;
+                //ball.Mass = .1f;
+                ball.GlobalPosition = @eventMouseButton.Position;
+                AddLiveBall(ball);
+            }
         }
     }
 
@@ -94,7 +114,6 @@ public partial class Board : Node2D
             {
                 if (lastAccel.Max() - lastAccel.Min() > 10)
                 {
-                    GD.Print("tilting");
                     Tilt();
                 }
                 tiltDisabled = 240;
@@ -104,8 +123,10 @@ public partial class Board : Node2D
                 tiltDisabled--;
             }
         }
-
-
+    }
+    protected virtual int Score(int score)
+    {
+        return ScoreManager.Score(score);
     }
 
     private void RotatePaddle(double delta, double angle, bool left)
@@ -218,4 +239,11 @@ public partial class Board : Node2D
 
         EmitSignal(SignalName.BoardTilted);
     }
+
+    //void OnScreenResize()
+    //{
+    //    Vector2 screenSize = GetViewport().GetVisibleRect().Size;
+
+    //    GlobalPosition = new Vector2(screenSize.X / 2 - 300, 0);
+    //}
 }

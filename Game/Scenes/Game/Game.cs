@@ -22,9 +22,13 @@ public partial class Game : Node
 
 
     [Export]
+    VBoxContainer InfoBox;
+    [Export]
     private Label Score;
     [Export]
-    private Label History;
+    Control Placeholder;
+    [Export]
+    Container StatusScrollContainer;
     [Export]
     VBoxContainer StatusBox;
     [Export]
@@ -36,8 +40,8 @@ public partial class Game : Node
     public override void _Ready()
     {
         OnScreenResize();
-
         GetTree().Root.SizeChanged += OnScreenResize;
+
         ScoreManager.Instance.Scoring += UpdateScore;
         GameManager.Instance.LoadedBall += UpdateLoadedBall;
         GameManager.Instance.BallQueueChanged += (balls) => UpdateBallList(balls, BallQueue);
@@ -104,7 +108,20 @@ public partial class Game : Node
     {
         Vector2 screenSize = GetViewport().GetVisibleRect().Size;
 
-        MainContainer.CustomMinimumSize = new Vector2(screenSize.X, screenSize.Y - 1080);
+        if (screenSize.X == 600)
+        {
+            MainContainer.CustomMinimumSize = new Vector2(screenSize.X, screenSize.Y - 1080);
+            StatusScrollContainer.Hide();
+            Placeholder.Hide();
+        }
+        else
+        {
+            MainContainer.CustomMinimumSize = Vector2.Zero;
+            StatusScrollContainer.Show();
+            Placeholder.Show();
+        }
+
+        GD.Print("Game resizing: ", screenSize);
 
         TouchInputSetup();
     }
