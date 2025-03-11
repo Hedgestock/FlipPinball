@@ -6,7 +6,7 @@ public partial class RolloverSwitch : Node2D
     [Signal]
     public delegate void LanePassedEventHandler(int mult);
     [Signal]
-    public delegate void DeactivatingEventHandler(int mult);
+    public delegate void DeactivatingEventHandler();
 
     [Export]
     Area2D NorthZone;

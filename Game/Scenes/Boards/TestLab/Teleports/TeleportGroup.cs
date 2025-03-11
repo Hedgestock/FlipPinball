@@ -58,7 +58,7 @@ public partial class TeleportGroup : BoardElementsGroup
         if (HeldBalls.Count != Nodes.Count) return;
         for (int i = 0; i < HeldBalls.Count; i++)
         {
-            EmitSignal(SignalName.AddingBall, HeldBalls[i], ((Node2D)Nodes[i].node).GlobalPosition);
+            CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.AddingBall, HeldBalls[i].Duplicate(), ((Node2D)Nodes[i].node).GlobalPosition);
         }
         SetAllOff();
     }

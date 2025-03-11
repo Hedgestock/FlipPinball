@@ -50,6 +50,8 @@ public partial class Ball : RigidBody2D
         Trail.Points = LastPoints;
         LastPoints = Trail.Points;
         LastPosition = GlobalPosition;
+
+        GD.Print(GlobalPosition);
     }
 
     public void OnCollision(Node body)

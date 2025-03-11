@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://b8iu65a2xswru"]
+[gd_scene load_steps=3 format=3 uid="uid://b8iu65a2xswru"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
+[ext_resource type="Script" path="res://Game/Scenes/SceneChanger.cs" id="1_57tko"]
 
 [node name="Home" type="CanvasLayer"]
+script = ExtResource("1_4jmw7")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 15
@@ -15,8 +19,18 @@ ratio = 1.33
 [node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+text = "Score,test
+Score.test
+Score test"
+
 [node name="Button" type="Button" parent="AspectRatioContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Test"
+text = "Start Game"
+script = ExtResource("1_57tko")
+ScenePath = "res://Game/Scenes/Game/Game.tscn"
+
+[connection signal="pressed" from="AspectRatioContainer/MarginContainer/Button" to="." method="StartGame"]

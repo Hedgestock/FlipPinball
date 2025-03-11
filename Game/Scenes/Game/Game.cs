@@ -33,10 +33,6 @@ public partial class Game : Node
     [Export]
     PackedScene ScoreBubbleScene;
 
-
-    //[Export]
-    //Container bars;
-    //ProgressBar[] test = new ProgressBar[100];
     public override void _Ready()
     {
         OnScreenResize();
@@ -51,18 +47,6 @@ public partial class Game : Node
         GameStart = DateTime.Now;
 
         base._Ready();
-
-        //for (int i = 0; i < test.Length; i++)
-        //{
-        //    var bar = new ProgressBar();
-        //    bar.FillMode = (int)ProgressBar.FillModeEnum.BottomToTop;
-        //    bar.ShowPercentage = false;
-        //    bar.SizeFlagsVertical = Control.SizeFlags.Fill;
-        //    bar.MaxValue = 20;
-        //    bar.Value = 10;
-        //    test[i] = bar;
-        //    bars.AddChild(bar);
-        //}
     }
 
     [Export]
@@ -82,21 +66,6 @@ public partial class Game : Node
         FPS.Text = $"{Engine.GetFramesPerSecond()} FPS";
     }
 
-    //Vector3[] lastAccel = new Vector3[100];
-
-    //public override void _PhysicsProcess(double delta)
-    //{
-    //    Vector3[] tmp = lastAccel;
-    //    System.Array.Copy(tmp, 1, lastAccel, 0, lastAccel.Length - 1);
-    //    base._PhysicsProcess(delta);
-
-    //    lastAccel[test.Length-1] = Input.GetAccelerometer();
-    //    for (int i = 0; i < test.Length; i++)
-    //    {
-    //        test[i].Value = lastAccel[i].Length();
-    //    }
-    //}
-
     private void UpdateScore(long totalScoreValue, int currentlyScoring)
     {
         if (currentlyScoring == 0) return;
@@ -104,7 +73,7 @@ public partial class Game : Node
         //scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
         //scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
         //AddChild(scoreBubble);
-        Score.Text = $"Score: {totalScoreValue}";
+        Score.Text = $"Score: {totalScoreValue:N0}";
         //History.Text = $"Scored: {currentlyScoring}\n{History.Text}";
     }
 

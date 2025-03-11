@@ -19,14 +19,13 @@ public partial class GameManager : Node
     }
 
     [Signal]
+    public delegate void GameOverEventHandler(Array<Ball> balls);
+    [Signal]
     public delegate void BallQueueChangedEventHandler(Array<Ball> balls);
-
     [Signal]
     public delegate void HeldBallsChangedEventHandler(Array<Ball> balls);
-
     [Signal]
     public delegate void LiveBallsChangedEventHandler(Array<Ball> balls);
-
     [Signal]
     public delegate void LoadedBallEventHandler(Ball ball);
 
@@ -45,6 +44,12 @@ public partial class GameManager : Node
 
     public static Ball GetNextBall()
     {
+        if (BallQueue.Count == 0)
+        {
+            Instance.EmitSignal(SignalName.GameOver);
+            Instance.GetTree().ChangeSceneToFile("res://Game/Scenes/Home.tscn");
+            return null;
+        }
         Ball ball = BallQueue.First.Value;
         BallQueue.RemoveFirst();
         Instance.EmitSignal(SignalName.BallQueueChanged, new Array<Ball>(BallQueue));

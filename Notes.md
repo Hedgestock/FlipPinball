@@ -4,6 +4,10 @@ Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that av
 Add tilt function timeout
 Add levelup delay
 
+Multiball crash
+Extra ball lane not working
+No reset table
+
 # Theme ideas
 Labo
 Pirate

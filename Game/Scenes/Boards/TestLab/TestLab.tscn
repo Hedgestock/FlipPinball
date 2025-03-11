@@ -1081,7 +1081,7 @@ position = Vector2(82, 427)
 target_position = Vector2(-20, 25)
 
 [node name="OnOffLight" parent="Layer1/TeleportGroup/BottomTeleport" index="2"]
-position = Vector2(-31, 43)
+position = Vector2(-25, 33)
 rotation = 0.682112
 sprite_frames = ExtResource("28_n3w53")
 
@@ -1092,7 +1092,7 @@ target_position = Vector2(-236, 211)
 
 [node name="OnOffLight" parent="Layer1/TeleportGroup/MiddleTeleport" index="2"]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(-21, 30)
+position = Vector2(-22, 31)
 rotation = 0.640678
 sprite_frames = ExtResource("28_n3w53")
 
@@ -1105,7 +1105,7 @@ target_position = Vector2(-75, -93)
 
 [node name="OnOffLight" parent="Layer1/TeleportGroup/TopTeleport" index="2"]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(-28, -34)
+position = Vector2(-33, -40)
 rotation = 2.46111
 sprite_frames = ExtResource("28_n3w53")
 
@@ -1436,9 +1436,9 @@ collision_mask = 4
 [connection signal="OnLevelDown" from="Layer1/TunnelTargetGroup/ModesLevel/Leveler" to="." method="ModesHandler" binds= [false]]
 [connection signal="OnLevelUp" from="Layer1/TunnelTargetGroup/ModesLevel/Leveler" to="." method="ModesHandler" binds= [true]]
 [connection signal="Hit" from="Layer1/TunnelRoundTarget/Hitbox" to="Layer1/TeleportGroup" method="Activate" unbinds=2]
-[connection signal="Deactivating" from="Layer1/RightOutLaneRollover" to="." method="AddExtraBall"]
+[connection signal="Deactivating" from="Layer1/RightOutLaneRollover" to="." method="GiveExtraBall"]
 [connection signal="TurnedOff" from="Layer1/RightOutLaneRollover/OnOffLight" to="Layer1/LeftOutLaneRollover/OnOffLight" method="TurnOff"]
-[connection signal="Deactivating" from="Layer1/LeftOutLaneRollover" to="." method="AddExtraBall"]
+[connection signal="Deactivating" from="Layer1/LeftOutLaneRollover" to="." method="GiveExtraBall"]
 [connection signal="TurnedOff" from="Layer1/LeftOutLaneRollover/OnOffLight" to="Layer1/RightOutLaneRollover/OnOffLight" method="TurnOff"]
 [connection signal="SwallowingBall" from="Layer1/TunnelSpitter" to="Layer1/Tunnel/Leveler" method="LevelUp" unbinds=1]
 [connection signal="OnLevelChange" from="Layer1/Tunnel/Leveler" to="." method="TunnelEntered"]
@@ -1446,10 +1446,11 @@ collision_mask = 4
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Magnet/OnOffLight" method="TurnOn"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="." method="Score" binds= [150000]]
 [connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="LoadBall"]
-[connection signal="AddingBall" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
+[connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="ClearHeldBalls" unbinds=2]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="." method="HoldBall"]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=1]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="." method="TelportLiveBall"]
+[connection signal="Teleporting" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/Rollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]

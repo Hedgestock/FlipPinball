@@ -32,14 +32,6 @@ public partial class Board : Node2D
     // Debug code
     private Vector2 LaunchPos;
 
-    public override void _Ready()
-    {
-        base._Ready();
-        GetTree().CreateTimer(1).Timeout += () =>
-        {
-            GameManager.SetGame();
-        };
-    }
 
     public override void _Input(InputEvent @event)
     {
@@ -62,7 +54,7 @@ public partial class Board : Node2D
             Tilt();
         }
 
-        return;
+        //return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -162,11 +154,6 @@ public partial class Board : Node2D
 
     void LoadBall(Ball ball, Vector2 position)
     {
-        if (HeldBalls.Contains(ball))
-        {
-            HeldBalls.Remove(ball);
-            GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
-        }
         ball.GlobalPosition = position;
         ball.LinearVelocity = Vector2.Zero;
         AddLiveBall(ball);
@@ -177,13 +164,12 @@ public partial class Board : Node2D
         GameManager.AddExtraBall((Ball)LoadedBall.Duplicate());
     }
 
-
     protected void HoldBall(Ball ball)
     {
         HeldBalls.Add(ball);
         RemoveLiveBall(ball);
         GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
-        CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.GlobalPosition);
+        CallDeferred(MethodName.LoadBall, ball.Duplicate(), Plunger.GlobalPosition);
         Plunger.AutoFire = true;
     }
 
@@ -203,7 +189,7 @@ public partial class Board : Node2D
             if (LiveBalls.Count != 0) return;
             if (SaveBallLight.IsOnOrBlinking)
             {
-                CallDeferred(MethodName.LoadBall, (Ball)ball.Duplicate(), Plunger.GlobalPosition);
+                CallDeferred(MethodName.LoadBall, ball.Duplicate(), Plunger.GlobalPosition);
                 Plunger.AutoFire = true;
                 SaveBallLight.TurnOff();
             }
