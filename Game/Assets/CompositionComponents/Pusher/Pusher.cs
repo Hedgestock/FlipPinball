@@ -8,6 +8,6 @@ public partial class Pusher : Node
 
     public void Push(Ball ball, Vector2 direction)
     {
-        ball.LinearVelocity += direction * Strength;
+        ball.ApplyCentralImpulse(direction * Strength);
     }
 }

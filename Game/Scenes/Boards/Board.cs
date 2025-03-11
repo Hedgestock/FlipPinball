@@ -77,7 +77,7 @@ public partial class Board : Node2D
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
                 AddLiveBall(ball);
             }
-            else
+            else if (eventMouseButton.Pressed)
             {
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 foreach (Node2D child in ball.GetChildren())
@@ -86,7 +86,7 @@ public partial class Board : Node2D
                 }
                 ball.GetNode<Line2D>("Trail").Scale = Vector2.One;
                 ball.GetNode<Line2D>("Trail").Width = 10;
-                //ball.Mass = .1f;
+                ball.Mass = .5f;
                 ball.GlobalPosition = @eventMouseButton.Position;
                 AddLiveBall(ball);
             }

@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn1sj2vcg06w5"]
+
+[ext_resource type="Script" path="res://PhysicsTest/test1.cs" id="1_dde8p"]
+[ext_resource type="Script" path="res://PhysicsTest/Test.cs" id="1_leqod"]
+[ext_resource type="Script" path="res://PhysicsTest/test2.cs" id="2_8hvl4"]
+[ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="4_cx3p0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fftow"]
+distance = -295.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bv30g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vaco4"]
+size = Vector2(20, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2pls"]
+size = Vector2(10000, 20)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("Paddles")]
+script = ExtResource("1_leqod")
+Paddles = [NodePath("testbox1/Paddle"), NodePath("testbox2/Paddle")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(300, 700)
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_fftow")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_bv30g")
+disabled = true
+
+[node name="Impulse" type="Area2D" parent="."]
+position = Vector2(264, 986)
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("1_dde8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Impulse"]
+shape = SubResource("RectangleShape2D_vaco4")
+
+[node name="Label" type="Label" parent="Impulse"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_right = 21.0
+offset_bottom = 13.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "Impulse"
+metadata/_edit_use_anchors_ = true
+
+[node name="Velocity" type="Area2D" parent="."]
+position = Vector2(335, 986)
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("2_8hvl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Velocity"]
+shape = SubResource("RectangleShape2D_vaco4")
+
+[node name="Label" type="Label" parent="Velocity"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "Velocity"
+
+[node name="testbox1" type="StaticBody2D" parent="."]
+position = Vector2(-25, 2)
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="testbox1"]
+position = Vector2(207, 897)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_u2pls")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="testbox1"]
+position = Vector2(256, 899)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_u2pls")
+
+[node name="Paddle" parent="testbox1" instance=ExtResource("4_cx3p0")]
+position = Vector2(183, 978)
+
+[node name="testbox2" type="StaticBody2D" parent="."]
+position = Vector2(200, 2)
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="testbox2"]
+position = Vector2(207, 897)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_u2pls")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="testbox2"]
+position = Vector2(256, 899)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_u2pls")
+
+[node name="Paddle" parent="testbox2" instance=ExtResource("4_cx3p0")]
+position = Vector2(183, 978)
