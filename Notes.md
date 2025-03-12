@@ -7,7 +7,9 @@ Add spinner sprites
 Add table reset
 Remove ball save on replay/reshoot
 
-#Settings for perfs
+Moving elements
+
+# Settings for perfs
 Tick rate
 Collision thing
 Trail Detail
@@ -23,7 +25,50 @@ Food
 Circus
 Steampunk
 FishTheFishes
+Haunted
 
 Boss
 -BankHeist
 -Cerberus
+
+# Board curses
+No see board
+No see score
+No see ball queue
+No see upgrades on level end
+No see live ball(s) ?
+Random teleports
+
+# Ballterations
+
+## Score
+Bumper score
+Target score
+Rollover score
+Slingshot score
+Spinner score
+Spitter score
+Round score
+Square score
+Global score
+
+(((score + score super adder) * score mult) + score adder) * score super mult
+
+## Ball Physics
+Size down
+Weight down
+Square hitbox ?
+
+## Trail
+Trail length
+Exploding trail
+
+## Board
+Paddle speed
+
+## Meta
+More options
+More choice times
+New ball
+Extra ball
+Timed ball ?
