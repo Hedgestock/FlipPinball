@@ -325,7 +325,7 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="TopLeftTeleport" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(205, 121)
-polygon = PackedVector2Array(0, 6, 21, -8, 50, 24, 50, 61, -16, 103, -22, 102, -24, 96, -21, 28, 1, 57, 28, 41)
+polygon = PackedVector2Array(-20, 24, 19, -10, 50, 24, 50, 61, -16, 103, -26, 103, -42, 46, -39, 38, -30, 59, -8, 48)
 
 [node name="LeftSplitterEntryLane" type="CollisionShape2D" parent="Layer1/Walls"]
 position = Vector2(293, 144)
@@ -536,6 +536,9 @@ Value = 750
 [node name="AudioStreamPlayer" parent="Layer1/BumperTopTargetGroup/RoundTarget1" index="3"]
 bus = &"Master"
 
+[node name="Pusher" parent="Layer1/BumperTopTargetGroup/RoundTarget1" index="4"]
+Strength = 250
+
 [node name="RoundTarget2" parent="Layer1/BumperTopTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-21, -54)
 
@@ -550,6 +553,9 @@ Value = 750
 
 [node name="AudioStreamPlayer" parent="Layer1/BumperTopTargetGroup/RoundTarget2" index="3"]
 bus = &"Master"
+
+[node name="Pusher" parent="Layer1/BumperTopTargetGroup/RoundTarget2" index="4"]
+Strength = 250
 
 [node name="RoundTarget3" parent="Layer1/BumperTopTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(44, -40)
@@ -566,8 +572,17 @@ Value = 750
 [node name="AudioStreamPlayer" parent="Layer1/BumperTopTargetGroup/RoundTarget3" index="3"]
 bus = &"Master"
 
+[node name="Pusher" parent="Layer1/BumperTopTargetGroup/RoundTarget3" index="4"]
+Strength = 250
+
 [node name="BumperTop" parent="Layer1" instance=ExtResource("6_awf70")]
 position = Vector2(112, 112)
+
+[node name="Hitbox" parent="Layer1/BumperTop" index="0"]
+MSToOverheat = 1600
+
+[node name="Pusher" parent="Layer1/BumperTop" index="4"]
+Strength = 500
 
 [node name="LeftSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
 z_index = 5
@@ -1103,11 +1118,11 @@ rotation = 0.640678
 sprite_frames = ExtResource("28_n3w53")
 
 [node name="TopTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
-position = Vector2(-188, -36)
+position = Vector2(-216, -30)
 Strength = 1500
 
 [node name="RayCast2D" parent="Layer1/TeleportGroup/TopTeleport" index="1"]
-target_position = Vector2(-75, -93)
+target_position = Vector2(-41, -95)
 
 [node name="OnOffLight" parent="Layer1/TeleportGroup/TopTeleport" index="2"]
 modulate = Color(0, 1, 0, 1)
@@ -1397,14 +1412,14 @@ collision_mask = 4
 
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/OnOffLight" method="TurnBlinking"]
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/Timer" method="start"]
-[connection signal="body_entered" from="Boundaries" to="." method="OnEnterDrain" binds= [true]]
+[connection signal="body_entered" from="Boundaries" to="." method="DespawnBall" binds= [1]]
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3 unbinds=1]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff" unbinds=1]
-[connection signal="body_entered" from="Layer1/Drain" to="." method="OnEnterDrain" binds= [false]]
+[connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/Funds/Leveler" method="MaximizeLevel"]
 [connection signal="Toggled" from="Layer1/BumperTopTargetGroup/RoundTarget1/Hitbox/OnOffLight" to="Layer1/BumperTopTargetGroup/RoundTarget1/Hitbox" method="Activate"]
@@ -1484,6 +1499,7 @@ collision_mask = 4
 [editable path="Layer1/BumperTopTargetGroup/RoundTarget1"]
 [editable path="Layer1/BumperTopTargetGroup/RoundTarget2"]
 [editable path="Layer1/BumperTopTargetGroup/RoundTarget3"]
+[editable path="Layer1/BumperTop"]
 [editable path="Layer1/LeftSlingshot"]
 [editable path="Layer1/RightSlingshot"]
 [editable path="Layer1/Entry/Rollover1"]

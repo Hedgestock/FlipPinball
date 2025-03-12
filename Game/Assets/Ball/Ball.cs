@@ -4,6 +4,9 @@ using System.Linq;
 
 public partial class Ball : RigidBody2D
 {
+    [Signal]
+    public delegate void SelfDestructEventHandler();
+
     [Export]
     Line2D Trail;
     [Export]

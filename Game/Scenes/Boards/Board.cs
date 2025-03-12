@@ -19,23 +19,20 @@ public partial class Board : Node2D
     OnOffLight SaveBallLight;
 
 
-    private List<Ball> LiveBalls = new();
+    List<Ball> LiveBalls = new();
 
-    private List<Ball> HeldBalls = new();
+    List<Ball> HeldBalls = new();
 
-    private Ball LoadedBall = null;
+    Ball LoadedBall = null;
 
     // Debug code
-    private Vector2 LaunchPos;
+    Vector2 LaunchPos;
 
     public override void _Ready()
     {
         base._Ready();
         TiltPusher = (Pusher)FindChild("TiltPusher");
         ScoreManager.BoardScore = Score;
-
-        //OnScreenResize();
-        //GetTree().Root.SizeChanged += OnScreenResize;
     }
 
     public override void _Input(InputEvent @event)
@@ -147,6 +144,7 @@ public partial class Board : Node2D
     {
         LiveBalls.Add(ball);
         GameManager.Instance.EmitSignal(GameManager.SignalName.LiveBallsChanged, LiveBalls.ToArray());
+        ball.SelfDestruct += () => DespawnBall(ball, DespawnType.SelfDestruct);
         AddChild(ball);
     }
 
@@ -191,14 +189,29 @@ public partial class Board : Node2D
         GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
     }
 
-    private void OnEnterDrain(Node2D body, bool oob)
+    void OnEnterDrain(Node2D body, bool oob)
+    {
+
+    }
+
+    public enum DespawnType
+    {
+        Drain,
+        OOB,
+        SelfDestruct
+    }
+
+    void DespawnBall(Node2D body, DespawnType type)
     {
         if (body is Ball ball)
         {
-            if (oob) { GD.PrintErr($"Ball {ball} OOB"); }
+            if (type == DespawnType.OOB) { GD.PrintErr($"Ball {ball} OOB"); }
+
             RemoveLiveBall(ball);
+
             if (LiveBalls.Count != 0) return;
-            if (SaveBallLight.IsOnOrBlinking)
+
+            if (type == DespawnType.Drain && SaveBallLight.IsOnOrBlinking)
             {
                 CallDeferred(MethodName.LoadBall, ball.Duplicate(), Plunger.GlobalPosition);
                 Plunger.AutoFire = true;
@@ -206,6 +219,7 @@ public partial class Board : Node2D
             }
             else
             {
+                SaveBallLight.TurnOff();
                 LoadedBall = GameManager.GetNextBall();
                 GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
                 CallDeferred(MethodName.LoadBall, LoadedBall, Plunger.GlobalPosition);
@@ -216,7 +230,7 @@ public partial class Board : Node2D
     [Export]
     Pusher TiltPusher;
 
-    private void Tilt()
+    void Tilt()
     {
         float tiltAngle = (float)GD.RandRange(-MathF.PI / 4, MathF.PI / 4);
         Vector2 tiltDirection = Vector2.Down;
@@ -232,11 +246,4 @@ public partial class Board : Node2D
 
         EmitSignal(SignalName.BoardTilted);
     }
-
-    //void OnScreenResize()
-    //{
-    //    Vector2 screenSize = GetViewport().GetVisibleRect().Size;
-
-    //    GlobalPosition = new Vector2(screenSize.X / 2 - 300, 0);
-    //}
 }
