@@ -63,7 +63,7 @@ public partial class Board : Node2D
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
-            if (@event.IsActionPressed("screen_tap"))
+            if (@event.IsActionPressed("screen_tap") || @event.IsActionPressed("screen_tap_secondary"))
             {
                 LaunchPos = @eventMouseButton.Position;
             }
@@ -74,17 +74,12 @@ public partial class Board : Node2D
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
                 AddLiveBall(ball);
             }
-            else if (eventMouseButton.Pressed)
+            else if (@event.IsActionReleased("screen_tap_secondary"))
             {
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
-                foreach (Node2D child in ball.GetChildren())
-                {
-                    child.Scale /= 2;
-                }
-                ball.GetNode<Line2D>("Trail").Scale = Vector2.One;
-                ball.GetNode<Line2D>("Trail").Width = 10;
-                ball.Mass = .5f;
-                ball.GlobalPosition = @eventMouseButton.Position;
+                ball.GlobalPosition = LaunchPos;
+                ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
+                ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/BallTimer/BallTimer.tscn").Instantiate<BallTimer>());
                 AddLiveBall(ball);
             }
         }
