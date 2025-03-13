@@ -13,7 +13,6 @@ height = 20.0
 
 [node name="Hitbox" parent="." instance=ExtResource("2_8lukt")]
 TriggerSpeed = 25
-ReverseActivity = true
 
 [node name="OnOffLight" parent="Hitbox" instance=ExtResource("3_avehg")]
 position = Vector2(0, 15)
@@ -27,7 +26,7 @@ shape = SubResource("CapsuleShape2D_0mlm1")
 Value = 750
 
 [node name="ResetDelay" type="Timer" parent="."]
-wait_time = 45.0
+wait_time = 60.0
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]

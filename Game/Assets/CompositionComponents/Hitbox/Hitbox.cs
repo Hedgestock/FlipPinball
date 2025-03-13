@@ -22,14 +22,11 @@ public partial class Hitbox : StaticBody2D
     [Export]
     double OverheatDuration;
 
-    [Export]
-    bool ReverseActivity;
-
     private bool _isActive = true;
 
     public void Activate(bool value)
     {
-        _isActive = ReverseActivity ? !value : value;
+        _isActive = value;
     }
 
     Queue<DateTime> LastHits = new Queue<DateTime>();

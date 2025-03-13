@@ -9,11 +9,12 @@ size = Vector2(10, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2811"]
 size = Vector2(60, 20)
 
-[node name="SkillShot" type="Node2D" node_paths=PackedStringArray("CancellationZone", "ValidationZone", "InboundZone")]
+[node name="SkillShot" type="Node2D" node_paths=PackedStringArray("CancellationZone", "ValidationZone", "InboundZone", "Scorer")]
 script = ExtResource("1_jy57y")
 CancellationZone = NodePath("Cancellation")
 ValidationZone = NodePath("Validation")
 InboundZone = NodePath("Inbound")
+Scorer = NodePath("Scorer")
 
 [node name="Validation" type="Area2D" parent="."]
 collision_layer = 0
@@ -40,6 +41,5 @@ collision_mask = 2
 [node name="Scorer" parent="." instance=ExtResource("2_15m0l")]
 Value = 7500
 
-[connection signal="Validate" from="." to="Scorer" method="Score"]
 [connection signal="body_exited" from="Validation" to="." method="Validation"]
 [connection signal="body_exited" from="Cancellation" to="." method="Cancellation"]

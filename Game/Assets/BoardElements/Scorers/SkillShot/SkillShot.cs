@@ -6,10 +6,9 @@ using System.Linq;
 public partial class SkillShot : Node2D
 {
     [Signal]
-    public delegate void ValidateEventHandler(int multiplier);
+    public delegate void ValidateEventHandler();
     [Signal]
     public delegate void CancelEventHandler();
-    int Multiplier = 1;
 
     [Export]
     Area2D CancellationZone;
@@ -17,8 +16,12 @@ public partial class SkillShot : Node2D
     Area2D ValidationZone;
     [Export]
     Area2D InboundZone;
+    [Export]
+    Scorer Scorer;
 
     List<SkillShotZone> Zones;
+
+    int Multiplier = 1;
 
     public override void _Ready()
     {
@@ -45,7 +48,8 @@ public partial class SkillShot : Node2D
     {
         if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
-        EmitSignal(SignalName.Validate, Multiplier);
+        Scorer.Score((Ball)body, Scorer.Value * Multiplier);
+        EmitSignal(SignalName.Validate);
 
         Reset();
     }

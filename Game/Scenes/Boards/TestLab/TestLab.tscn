@@ -363,14 +363,14 @@ position = Vector2(402, 111)
 polygon = PackedVector2Array(0, 0, -30, 36, -30, 78, -25, 82, -3, 64, 16, 85, 0, 102, 25, 133, 42, 173, 46, 211, 44, 228, 40, 248, 32, 277, 15, 302, 13, 309, 28, 318, 58, 282, 78, 236, 83, 202, 79, 170, 70, 136, 50, 102, 15, 63, 4, 48, 10, 38, 20, 32, 30, 32, 43, 42, 79, 81, 95, 108, 107, 141, 115, 173, 118, 217, 113, 267, 104, 301, 56, 413, 56, 506, 61, 509, 76, 496, 92, 508, 86, 527, 86, 569, 96, 569, 96, 534, 141, 201, 138, 175, 128, 129, 109, 84, 85, 51, 56, 23, 25, 0)
 
 [node name="LeftOneWayEntryLane" type="CollisionShape2D" parent="Layer1/Walls"]
-position = Vector2(209, 109)
-rotation = 0.840548
+position = Vector2(209, 105)
+rotation = 1.0472
 shape = SubResource("RectangleShape2D_f5xdy")
 one_way_collision = true
 
 [node name="RightOneWayEntryLane" type="CollisionShape2D" parent="Layer1/Walls"]
-position = Vector2(426, 97)
-rotation = -0.883695
+position = Vector2(421, 96)
+rotation = -1.0472
 shape = SubResource("RectangleShape2D_fgkce")
 one_way_collision = true
 
@@ -412,6 +412,7 @@ disabled = true
 position = Vector2(0, -26)
 
 [node name="UnderRampSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
+z_index = 6
 position = Vector2(162, 417)
 
 [node name="Hitbox" parent="Layer1/UnderRampSlingshot" index="0"]
@@ -421,6 +422,7 @@ rotation = 0.471239
 shape = SubResource("RectangleShape2D_7ub0f")
 
 [node name="TunnelSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
+z_index = 6
 position = Vector2(434, 388)
 
 [node name="Hitbox" parent="Layer1/TunnelSlingshot" index="0"]
@@ -498,13 +500,15 @@ scale = Vector2(-1, 1)
 
 [node name="PlungerSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(519, 605)
-Strength = 1500
 
-[node name="RayCast2D" parent="Layer1/PlungerSpitter" index="1"]
+[node name="RayCast2D" parent="Layer1/PlungerSpitter" index="2"]
 target_position = Vector2(8, -55)
 
 [node name="Scorer" parent="Layer1/PlungerSpitter" index="6"]
 Value = 0
+
+[node name="Pusher" parent="Layer1/PlungerSpitter" index="7"]
+Strength = 2000
 
 [node name="Drain" type="Area2D" parent="Layer1"]
 z_index = 10
@@ -572,17 +576,17 @@ position = Vector2(112, 112)
 MSToOverheat = 1600
 
 [node name="Pusher" parent="Layer1/BumperTop" index="4"]
-Strength = 500
+Strength = 750
 
 [node name="LeftSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
-z_index = 5
+z_index = 6
 position = Vector2(188, 835)
 
 [node name="Hitbox" parent="Layer1/LeftSlingshot" index="0"]
 rotation = 1.20428
 
 [node name="RightSlingshot" parent="Layer1" instance=ExtResource("8_8xkpc")]
-z_index = 5
+z_index = 6
 position = Vector2(426, 835)
 
 [node name="Hitbox" parent="Layer1/RightSlingshot" index="0"]
@@ -750,6 +754,9 @@ animation = &"off"
 [node name="Scorer" parent="Layer1/TopTargetGroup/DropTarget1" index="1"]
 Value = 500
 
+[node name="ResetDelay" parent="Layer1/TopTargetGroup/DropTarget1" index="2"]
+wait_time = 45.0
+
 [node name="AudioStreamPlayer" parent="Layer1/TopTargetGroup/DropTarget1" index="3"]
 bus = &"Master"
 
@@ -764,6 +771,9 @@ animation = &"off"
 
 [node name="Scorer" parent="Layer1/TopTargetGroup/DropTarget2" index="1"]
 Value = 500
+
+[node name="ResetDelay" parent="Layer1/TopTargetGroup/DropTarget2" index="2"]
+wait_time = 45.0
 
 [node name="AudioStreamPlayer" parent="Layer1/TopTargetGroup/DropTarget2" index="3"]
 bus = &"Master"
@@ -781,6 +791,9 @@ animation = &"off"
 
 [node name="Scorer" parent="Layer1/TopTargetGroup/DropTarget3" index="1"]
 Value = 500
+
+[node name="ResetDelay" parent="Layer1/TopTargetGroup/DropTarget3" index="2"]
+wait_time = 45.0
 
 [node name="AudioStreamPlayer" parent="Layer1/TopTargetGroup/DropTarget3" index="3"]
 bus = &"Master"
@@ -820,6 +833,9 @@ animation = &"off"
 [node name="Scorer" parent="Layer1/BottomTargetGroup/DropTarget1" index="1"]
 Value = 1500
 
+[node name="ResetDelay" parent="Layer1/BottomTargetGroup/DropTarget1" index="2"]
+wait_time = 45.0
+
 [node name="AudioStreamPlayer" parent="Layer1/BottomTargetGroup/DropTarget1" index="3"]
 bus = &"Master"
 
@@ -834,6 +850,9 @@ animation = &"off"
 
 [node name="Scorer" parent="Layer1/BottomTargetGroup/DropTarget2" index="1"]
 Value = 1500
+
+[node name="ResetDelay" parent="Layer1/BottomTargetGroup/DropTarget2" index="2"]
+wait_time = 45.0
 
 [node name="AudioStreamPlayer" parent="Layer1/BottomTargetGroup/DropTarget2" index="3"]
 bus = &"Master"
@@ -850,6 +869,9 @@ animation = &"off"
 
 [node name="Scorer" parent="Layer1/BottomTargetGroup/DropTarget3" index="1"]
 Value = 1500
+
+[node name="ResetDelay" parent="Layer1/BottomTargetGroup/DropTarget3" index="2"]
+wait_time = 45.0
 
 [node name="AudioStreamPlayer" parent="Layer1/BottomTargetGroup/DropTarget3" index="3"]
 bus = &"Master"
@@ -873,6 +895,7 @@ position = Vector2(-6, 81)
 
 [node name="TunnelSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
 position = Vector2(471, 421)
+OnMultiplier = 5
 
 [node name="OnOffLight" parent="Layer1/TunnelSpinner" index="0"]
 position = Vector2(-12, 23)
@@ -885,6 +908,7 @@ position = Vector2(1.83044, -6.03087)
 
 [node name="LeftSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
 position = Vector2(57, 338)
+OnMultiplier = 5
 
 [node name="OnOffLight" parent="Layer1/LeftSpinner" index="0"]
 position = Vector2(4, 32)
@@ -907,6 +931,9 @@ animation = &"off"
 [node name="Scorer" parent="Layer1/TunnelTargetGroup/DropTarget1" index="1"]
 Value = 500
 
+[node name="ResetDelay" parent="Layer1/TunnelTargetGroup/DropTarget1" index="2"]
+wait_time = 45.0
+
 [node name="AudioStreamPlayer" parent="Layer1/TunnelTargetGroup/DropTarget1" index="3"]
 bus = &"Master"
 
@@ -921,6 +948,9 @@ animation = &"off"
 
 [node name="Scorer" parent="Layer1/TunnelTargetGroup/DropTarget2" index="1"]
 Value = 500
+
+[node name="ResetDelay" parent="Layer1/TunnelTargetGroup/DropTarget2" index="2"]
+wait_time = 45.0
 
 [node name="AudioStreamPlayer" parent="Layer1/TunnelTargetGroup/DropTarget2" index="3"]
 bus = &"Master"
@@ -937,6 +967,9 @@ animation = &"off"
 
 [node name="Scorer" parent="Layer1/TunnelTargetGroup/DropTarget3" index="1"]
 Value = 500
+
+[node name="ResetDelay" parent="Layer1/TunnelTargetGroup/DropTarget3" index="2"]
+wait_time = 45.0
 
 [node name="AudioStreamPlayer" parent="Layer1/TunnelTargetGroup/DropTarget3" index="3"]
 bus = &"Master"
@@ -1014,18 +1047,20 @@ Value = 20000
 [node name="UnderRampSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(180, 503)
 
-[node name="RayCast2D" parent="Layer1/UnderRampSpitter" index="1"]
+[node name="RayCast2D" parent="Layer1/UnderRampSpitter" index="2"]
 target_position = Vector2(92, -89)
 
 [node name="TunnelSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(427, 163)
-Strength = 1500
 
-[node name="RayCast2D" parent="Layer1/TunnelSpitter" index="1"]
+[node name="RayCast2D" parent="Layer1/TunnelSpitter" index="2"]
 target_position = Vector2(22, 18)
 
 [node name="SpitDelay" parent="Layer1/TunnelSpitter" index="3"]
 wait_time = 2.0
+
+[node name="Pusher" parent="Layer1/TunnelSpitter" index="7"]
+Strength = 1500
 
 [node name="Tunnel" parent="Layer1" instance=ExtResource("19_8g6kt")]
 z_index = 6
@@ -1071,37 +1106,36 @@ script = ExtResource("23_tort8")
 [node name="BottomTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(82, 427)
 
-[node name="RayCast2D" parent="Layer1/TeleportGroup/BottomTeleport" index="1"]
-target_position = Vector2(-20, 25)
-
-[node name="OnOffLight" parent="Layer1/TeleportGroup/BottomTeleport" index="2"]
+[node name="OnOffLight" parent="Layer1/TeleportGroup/BottomTeleport" index="0"]
 position = Vector2(-25, 33)
 rotation = 0.682112
 sprite_frames = ExtResource("28_n3w53")
 
+[node name="RayCast2D" parent="Layer1/TeleportGroup/BottomTeleport" index="2"]
+target_position = Vector2(-19, 26)
+
 [node name="MiddleTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 
-[node name="RayCast2D" parent="Layer1/TeleportGroup/MiddleTeleport" index="1"]
-target_position = Vector2(-236, 211)
-
-[node name="OnOffLight" parent="Layer1/TeleportGroup/MiddleTeleport" index="2"]
+[node name="OnOffLight" parent="Layer1/TeleportGroup/MiddleTeleport" index="0"]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(-22, 31)
 rotation = 0.640678
 sprite_frames = ExtResource("28_n3w53")
 
+[node name="RayCast2D" parent="Layer1/TeleportGroup/MiddleTeleport" index="2"]
+target_position = Vector2(-236, 211)
+
 [node name="TopTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(-216, -30)
-Strength = 1500
 
-[node name="RayCast2D" parent="Layer1/TeleportGroup/TopTeleport" index="1"]
-target_position = Vector2(-41, -95)
-
-[node name="OnOffLight" parent="Layer1/TeleportGroup/TopTeleport" index="2"]
+[node name="OnOffLight" parent="Layer1/TeleportGroup/TopTeleport" index="0"]
 modulate = Color(0, 1, 0, 1)
 position = Vector2(-33, -40)
 rotation = 2.46111
 sprite_frames = ExtResource("28_n3w53")
+
+[node name="RayCast2D" parent="Layer1/TeleportGroup/TopTeleport" index="2"]
+target_position = Vector2(-41, -95)
 
 [node name="MissionTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(136, 659)
@@ -1413,8 +1447,8 @@ collision_mask = 4
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3 unbinds=1]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff" unbinds=1]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/Funds/Leveler" method="MaximizeLevel"]

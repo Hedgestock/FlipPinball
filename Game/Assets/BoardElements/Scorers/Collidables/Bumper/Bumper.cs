@@ -44,6 +44,8 @@ public partial class Bumper : Node2D
 
     void Bump(Ball ball)
     {
+        Scorer.Score(ball, Scorer.Value * Level);
+
         Tween tween = GetTree().CreateTween();
         tween.TweenProperty(Sprite, "scale", Vector2.One * 1.2f, .05)
             .SetEase(Tween.EaseType.Out)
@@ -51,7 +53,5 @@ public partial class Bumper : Node2D
         tween.TweenProperty(Sprite, "scale", Vector2.One, .05)
            .SetEase(Tween.EaseType.In)
            .SetTrans(Tween.TransitionType.Elastic);
-
-        Scorer.Score(ball, Scorer.Value * Level);
     }
 }

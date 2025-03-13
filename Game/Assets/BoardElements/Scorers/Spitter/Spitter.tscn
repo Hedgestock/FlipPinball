@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6lxuqoyg1314"]
+[gd_scene load_steps=8 format=3 uid="uid://c6lxuqoyg1314"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.cs" id="1_qmuv0"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="2_qv3qe"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="4_4ynig"]
 [ext_resource type="AudioStream" uid="uid://cedb8fv60wq20" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.wav" id="4_mhvfs"]
 [ext_resource type="AudioStream" uid="uid://bfp1hjeodrpm2" path="res://Game/Assets/BoardElements/Scorers/Spitter/SpitterIn.wav" id="5_uojt7"]
+[ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="6_kuqv2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ht0s7"]
 
@@ -13,6 +14,8 @@ script = ExtResource("1_qmuv0")
 SpitDelay = NodePath("SpitDelay")
 SpitDirection = NodePath("RayCast2D")
 DetectionZone = NodePath("Area2D")
+
+[node name="OnOffLight" parent="." instance=ExtResource("2_qv3qe")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -24,8 +27,6 @@ shape = SubResource("CircleShape2D_ht0s7")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 20)
 collision_mask = 0
-
-[node name="OnOffLight" parent="." instance=ExtResource("2_qv3qe")]
 
 [node name="SpitDelay" type="Timer" parent="."]
 one_shot = true
@@ -42,7 +43,10 @@ bus = &"BoardElements"
 
 [node name="Scorer" parent="." instance=ExtResource("4_4ynig")]
 
-[connection signal="SpittingBall" from="." to="SpitterOutSoundPlayer" method="play" unbinds=1]
+[node name="Pusher" parent="." instance=ExtResource("6_kuqv2")]
+
+[connection signal="SpittingBall" from="." to="Pusher" method="Push"]
+[connection signal="SpittingBall" from="." to="SpitterOutSoundPlayer" method="play" unbinds=2]
 [connection signal="SpittingBall" from="." to="Scorer" method="Score" unbinds=1]
 [connection signal="SwallowingBall" from="." to="SpitterInSoundPlayer" method="play" unbinds=1]
 [connection signal="area_entered" from="Area2D" to="." method="OnAreaEnter"]
