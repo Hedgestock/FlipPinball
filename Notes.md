@@ -72,3 +72,6 @@ More choice times
 New ball
 Extra ball
 Timed ball ?
+
+## Other
+Remove ballteration

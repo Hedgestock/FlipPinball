@@ -33,12 +33,23 @@ public partial class Scorer : Node2D
         Score(1);
     }
 
+
+    private void Score(int superAdder, int multiplier, int adder, int superMultiplier)
+    {
+        Score((((Value + superAdder) * multiplier) + adder) * superMultiplier);
+    }
+
     private void Score(int multiplier)
     {
-        ScoreBubble bubble = ScoreBubbleScene.Instantiate<ScoreBubble>();
+        if (Value == 0) return;
+
         int actualScore = ScoreManager.BoardScore(Value * multiplier);
+
         if (actualScore == 0) return;
+
+        ScoreBubble bubble = ScoreBubbleScene.Instantiate<ScoreBubble>();
         bubble.Text = actualScore.ToString("+0;-#");
+
         AddChild(bubble);
     }
 }
