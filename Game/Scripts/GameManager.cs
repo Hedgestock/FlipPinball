@@ -19,7 +19,7 @@ public partial class GameManager : Node
     }
 
     [Signal]
-    public delegate void GameOverEventHandler(Array<Ball> balls);
+    public delegate void GameOverEventHandler();
     [Signal]
     public delegate void BallQueueChangedEventHandler(Array<Ball> balls);
     [Signal]
@@ -38,6 +38,8 @@ public partial class GameManager : Node
     {
         BallQueue = new();
         CurrentLevel = 1;
+        ScoreManager.ScoreValue = 0;
+
         for (int i = 0; i < 3; i++)
         {
             Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
@@ -45,7 +47,6 @@ public partial class GameManager : Node
             ball.GetNode<Line2D>("Trail").Modulate = new(new Color(GD.Randi()), 1);
             BallQueue.AddLast(ball);
         }
-
     }
 
     public static Ball GetNextBall()
@@ -53,7 +54,7 @@ public partial class GameManager : Node
         if (BallQueue.Count == 0)
         {
             Instance.EmitSignal(SignalName.GameOver);
-            Instance.GetTree().ChangeSceneToFile("res://Game/Scenes/Home.tscn");
+            Instance.GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
             return null;
         }
         Ball ball = BallQueue.First.Value;

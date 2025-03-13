@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ow0vrkbjml63"]
+
+[ext_resource type="Script" path="res://Game/Assets/Ballterations/ScoreModifier/ScoreModifier.cs" id="1_g3qvx"]
+
+[node name="BumperSuperMultiplier" type="Node" groups=["Bumpers"]]
+script = ExtResource("1_g3qvx")
+Prio = 3
+Value = 2

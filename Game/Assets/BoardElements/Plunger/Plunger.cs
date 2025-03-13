@@ -15,6 +15,8 @@ public partial class Plunger : Node2D
     TextureProgressBar PlungerProgress;
     [Export]
     Area2D DetectionZone;
+    [Export]
+    Pusher Pusher;
 
     public bool AutoFire = false;
 
@@ -54,17 +56,17 @@ public partial class Plunger : Node2D
     {
         if (body is Ball && AutoFire)
         {
-            AutoFire = false;
             ReleasePlunger();
+            AutoFire = false;
         }
     }
 
     void ReleasePlunger()
     {
         EmitSignal(SignalName.Releasing);
-        foreach (RigidBody2D ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
+        foreach (Ball ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
-            ball.LinearVelocity = Vector2.Up * (int)PlungerProgress.Value;
+            Pusher.Push(ball, Vector2.Up * (int)(PlungerProgress.Value + GD.RandRange(-100, 100) * (AutoFire ? 1 : 0)));
         }
         PlungerProgress.Value = 0;
     }

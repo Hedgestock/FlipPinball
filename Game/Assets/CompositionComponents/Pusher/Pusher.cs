@@ -4,7 +4,7 @@ using System;
 public partial class Pusher : Node
 {
     [Export]
-    uint Strength;
+    public uint Strength;
 
     public void Push(Ball ball, Vector2 direction)
     {

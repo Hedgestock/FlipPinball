@@ -440,10 +440,10 @@ modulate = Color(1, 0.486104, 0.418607, 1)
 position = Vector2(422, 970)
 
 [node name="OnTimer" parent="Layer1/SaveBallLight" index="0"]
-wait_time = 4.0
+wait_time = 1.0
 
 [node name="BlinkingTimer" parent="Layer1/SaveBallLight" index="1"]
-wait_time = 4.0
+wait_time = 1.0
 
 [node name="ReplayBallLight" parent="Layer1" instance=ExtResource("7_166f2")]
 modulate = Color(1, 0.486104, 0.418607, 1)

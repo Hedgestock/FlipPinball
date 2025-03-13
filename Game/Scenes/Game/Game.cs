@@ -6,25 +6,25 @@ using System.Linq;
 public partial class Game : Node
 {
     [Export]
-    private PackedScene BallViewerScene;
+    PackedScene BallViewerScene;
 
     [Export]
     BoxContainer MainContainer;
 
     [Export]
-    private HFlowContainer BallQueue;
+    HFlowContainer BallQueue;
     [Export]
-    private HFlowContainer HeldBalls;
+    HFlowContainer HeldBalls;
     [Export]
-    private HFlowContainer LiveBalls;
+    HFlowContainer LiveBalls;
     [Export]
-    private BallViewer LoadedBallViewer;
+    BallViewer LoadedBallViewer;
 
 
     [Export]
     VBoxContainer InfoBox;
     [Export]
-    private Label Score;
+    Label Score;
     [Export]
     Control Placeholder;
     [Export]
@@ -32,7 +32,7 @@ public partial class Game : Node
     [Export]
     VBoxContainer StatusBox;
     [Export]
-    private Label FPS;
+    Label FPS;
 
     [Export]
     PackedScene ScoreBubbleScene;
@@ -40,24 +40,27 @@ public partial class Game : Node
     public override void _Ready()
     {
         OnScreenResize();
-        GetTree().Root.SizeChanged += OnScreenResize;
+        GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, MethodName.OnScreenResize));
 
-        ScoreManager.Instance.Scoring += UpdateScore;
-        GameManager.Instance.LoadedBall += UpdateLoadedBall;
-        GameManager.Instance.BallQueueChanged += (balls) => UpdateBallList(balls, BallQueue);
-        GameManager.Instance.HeldBallsChanged += (balls) => UpdateBallList(balls, HeldBalls);
-        GameManager.Instance.LiveBallsChanged += (balls) => UpdateBallList(balls, LiveBalls);
+        ScoreManager.Instance.Connect(ScoreManager.SignalName.Scoring, new Callable(this, MethodName.UpdateScore));
+
+        GameManager.Instance.Connect(GameManager.SignalName.LoadedBall, new Callable(this, MethodName.UpdateLoadedBall));
+        GameManager.Instance.Connect(GameManager.SignalName.BallQueueChanged, new Callable(this, MethodName.UpdateBallQueue));
+        GameManager.Instance.Connect(GameManager.SignalName.HeldBallsChanged, new Callable(this, MethodName.UpdateHeldBalls));
+        GameManager.Instance.Connect(GameManager.SignalName.LiveBallsChanged, new Callable(this, MethodName.UpdateLiveBalls));
 
         GameStart = DateTime.Now;
+
+        GameManager.SetGame();
 
         base._Ready();
     }
 
     [Export]
-    private Label GameTimerLabel;
-    private Label BallTimerLabel;
-    private DateTime GameStart;
-    private DateTime BallStart;
+    Label GameTimerLabel;
+    Label BallTimerLabel;
+    DateTime GameStart;
+    DateTime BallStart;
 
     public override void _Process(double delta)
     {
@@ -70,7 +73,7 @@ public partial class Game : Node
         FPS.Text = $"{Engine.GetFramesPerSecond()} FPS";
     }
 
-    private void UpdateScore(long totalScoreValue, int currentlyScoring)
+    void UpdateScore(long totalScoreValue, int currentlyScoring)
     {
         if (currentlyScoring == 0) return;
         //PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
@@ -81,7 +84,21 @@ public partial class Game : Node
         //History.Text = $"Scored: {currentlyScoring}\n{History.Text}";
     }
 
-    private void UpdateBallList(Array<Ball> balls, Container ballsViewer)
+    void UpdateBallQueue(Array<Ball> balls)
+    {
+        UpdateBallList(balls, BallQueue);
+    }
+    void UpdateHeldBalls(Array<Ball> balls)
+    {
+        UpdateBallList(balls, HeldBalls);
+    }
+
+    void UpdateLiveBalls(Array<Ball> balls)
+    {
+        UpdateBallList(balls, LiveBalls);
+    }
+
+    void UpdateBallList(Array<Ball> balls, Container ballsViewer)
     {
         foreach (var child in ballsViewer.GetChildren())
         {
@@ -95,7 +112,7 @@ public partial class Game : Node
         }
     }
 
-    private void UpdateLoadedBall(Ball ball)
+    void UpdateLoadedBall(Ball ball)
     {
         LoadedBallViewer.Ball = (Ball)ball.Duplicate();
         BallTimerLabel = new Label();

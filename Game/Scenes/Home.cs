@@ -13,6 +13,6 @@ public partial class Home : CanvasLayer
 
     void StartGame()
     {
-        GameManager.SetGame();
+        GameManager.Instance.GetTree().ChangeSceneToFile("res://Game/Scenes/Game/Game.tscn");
     }
 }

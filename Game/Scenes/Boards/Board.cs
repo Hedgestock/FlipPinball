@@ -32,16 +32,24 @@ public partial class Board : Node2D
     {
         base._Ready();
         ScoreManager.BoardScore = Score;
+
+
+        Callable.From(() =>
+        {
+            LoadedBall = GameManager.GetNextBall();
+            LoadBall(LoadedBall, Plunger.GlobalPosition);
+            GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
+        }).CallDeferred();
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("load_ball") && LiveBalls.Count == 0)
-        {
-            LoadedBall = GameManager.GetNextBall();
-            GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-            LoadBall(LoadedBall, Plunger.GlobalPosition);
-        }
+        //if (@event.IsActionPressed("load_ball") && LiveBalls.Count == 0)
+        //{
+        //    LoadedBall = GameManager.GetNextBall();
+        //    GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
+        //    LoadBall(LoadedBall, Plunger.GlobalPosition);
+        //}
         if (@event.IsActionPressed("paddle_left"))
         {
             PaddleAdditionnalBehaviour(true);
@@ -75,7 +83,14 @@ public partial class Board : Node2D
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.GlobalPosition = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
-                ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/BallTimer/BallTimer.tscn").Instantiate<BallTimer>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperMultiplier.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperSuperMultiplier.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperSuperAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/SlingshotAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperSlingshotAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/RoundOrTargetAdder.tscn").Instantiate<ScoreModifier>());
+                ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/RoundAndTargetAdder.tscn").Instantiate<ScoreModifier>());
                 AddLiveBall(ball);
             }
         }
@@ -220,6 +235,9 @@ public partial class Board : Node2D
             {
                 SaveBallLight.TurnOff();
                 LoadedBall = GameManager.GetNextBall();
+
+                if (LoadedBall == null) return;
+
                 GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
                 CallDeferred(MethodName.LoadBall, LoadedBall, Plunger.GlobalPosition);
             }
