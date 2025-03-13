@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BallTimer : Node2D
+public partial class BallTimer : Node
 {
     [Export]
     Timer Timer;
@@ -15,6 +15,7 @@ public partial class BallTimer : Node2D
     public override void _Ready()
     {
         base._Ready();
+
         Timer.Start(timeleft);
         Timer.Timeout += () =>
             {

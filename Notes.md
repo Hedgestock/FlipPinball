@@ -6,6 +6,12 @@ Add levelup delay
 Add spinner sprites
 Add table reset
 Remove ball save on replay/reshoot
+Stop ball on magnet
+
+Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
+Maybe factorise the "OnMultiplier" thing
+Extra call args + unbind signal args
+Defaut values instead of overloading in signals callback
 
 Moving elements
 
@@ -68,7 +74,9 @@ Paddle speed
 
 ## Meta
 More options
+More options persistent
 More choice times
+More choice times persistent
 New ball
 Extra ball
 Timed ball ?

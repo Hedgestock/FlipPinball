@@ -25,13 +25,6 @@ public partial class Hitbox : StaticBody2D
     [Export]
     bool ReverseActivity;
 
-    public override void _Ready()
-    {
-        base._Ready();
-        foreach (var group in GetParent().GetGroups())
-            AddToGroup(group);
-    }
-
     private bool _isActive = true;
 
     public void Activate(bool value)

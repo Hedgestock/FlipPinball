@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System.Linq;
 
 public partial class TestLab : Board
 {
@@ -67,9 +66,7 @@ public partial class TestLab : Board
     [Export]
     OnOffLight MagicPostLight;
     [Export]
-    OnOffLight LeftOutLaneLight;
-    [Export]
-    OnOffLight RightOutLaneLight;
+    Array<OnOffLight> OutLanesLights;
     void TunnelEntered(int level)
     {
         switch (level)
@@ -88,14 +85,13 @@ public partial class TestLab : Board
                 break;
             case 4:
                 Score(50000);
-                LeftOutLaneLight.TurnOn();
-                RightOutLaneLight.TurnOn();
+                foreach (var light in OutLanesLights) light.TurnOn();
                 break;
         }
     }
 
     [Export]
-    Leveler SpinnersLevel;
+    Array<OnOffLight> SpinnersLights;
     void ModesHandler(int level, bool up)
     {
         if (up) Score(5000);
@@ -103,11 +99,11 @@ public partial class TestLab : Board
         {
             case 0:
                 if (!up)
-                    SpinnersLevel.MinimizeLevel();
+                    foreach (var light in SpinnersLights) light.TurnOff();
                 break;
             case 1:
                 if (up)
-                    SpinnersLevel.MaximizeLevel();
+                    foreach (var light in SpinnersLights) light.TurnOn();
                 else
                 { }
                 break;

@@ -3,22 +3,20 @@ using System;
 using System.Collections.Generic;
 public partial class Bumper : Node2D
 {
-    [Signal]
-    public delegate void BumpingEventHandler(int level);
-
     [Export]
     Sprite2D Sprite;
-
+    [Export]
     OnOffLight OnOffLight;
+    [Export]
+    Scorer Scorer;
 
     public override void _Ready()
     {
         base._Ready();
-        OnOffLight = GetNode<OnOffLight>("OnOffLight");
         OnOffLight.Modulate = Colors.LightGray;
     }
 
-    int Level = 0;
+    int Level = 1;
 
     private void SetLevel(int value)
     {
@@ -28,23 +26,23 @@ public partial class Bumper : Node2D
             default:
                 OnOffLight.Modulate = Colors.LightGray;
                 break;
-            case 1:
+            case 2:
                 OnOffLight.Modulate = Colors.Green;
                 break;
-            case 2:
+            case 3:
                 OnOffLight.Modulate = Colors.Blue;
                 break;
-            case 3:
+            case 4:
                 OnOffLight.Modulate = Colors.Red;
                 break;
-            case 4:
+            case 5:
                 OnOffLight.Modulate = Colors.DarkViolet;
                 break;
         }
     }
 
 
-    void Bump()
+    void Bump(Ball ball)
     {
         Tween tween = GetTree().CreateTween();
         tween.TweenProperty(Sprite, "scale", Vector2.One * 1.2f, .05)
@@ -54,6 +52,6 @@ public partial class Bumper : Node2D
            .SetEase(Tween.EaseType.In)
            .SetTrans(Tween.TransitionType.Elastic);
 
-        EmitSignal(SignalName.Bumping, Level + 1);
+        Scorer.Score(ball, Scorer.Value * Level);
     }
 }

@@ -12,13 +12,17 @@ size = Vector2(14, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flb67"]
 size = Vector2(14, 18)
 
-[node name="RolloverSwitch" type="Node2D" node_paths=PackedStringArray("NorthZone", "SouthZone", "OnOffLight") groups=["Rollovers"]]
+[node name="RolloverSwitch" type="Node2D" node_paths=PackedStringArray("NorthZone", "SouthZone", "OnOffLight", "Scorer") groups=["Rollovers"]]
 script = ExtResource("1_al2n7")
 NorthZone = NodePath("NorthZone")
 SouthZone = NodePath("SouthZone")
 OnOffLight = NodePath("OnOffLight")
+Scorer = NodePath("Scorer")
 
-[node name="RolloverSwitch" type="Sprite2D" parent="."]
+[node name="OnOffLight" parent="." instance=ExtResource("3_43wvr")]
+position = Vector2(0, -25)
+
+[node name="Switch" type="Sprite2D" parent="."]
 texture = ExtResource("2_tskb8")
 
 [node name="NorthZone" type="Area2D" parent="."]
@@ -39,15 +43,11 @@ shape = SubResource("RectangleShape2D_flb67")
 
 [node name="Scorer" parent="." instance=ExtResource("2_6dibq")]
 
-[node name="OnOffLight" parent="." instance=ExtResource("3_43wvr")]
-position = Vector2(0, -25)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_3evls")
 attenuation = 1e-05
 bus = &"BoardElements"
 
-[connection signal="LanePassed" from="." to="Scorer" method="Score"]
-[connection signal="LanePassed" from="." to="AudioStreamPlayer" method="play" unbinds=1]
+[connection signal="LanePassed" from="." to="AudioStreamPlayer" method="play"]
 [connection signal="body_entered" from="NorthZone" to="." method="OnNorthZoneEnter"]
 [connection signal="body_entered" from="SouthZone" to="." method="OnSouthZoneEnter"]

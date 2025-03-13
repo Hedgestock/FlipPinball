@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="3_pxfri"]
 [ext_resource type="AudioStream" uid="uid://cwgqkesk5x4om" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.wav" id="4_8l7oj"]
 
-[node name="Rollover" type="Node2D" groups=["Rollovers", "ShapeRound"]]
+[node name="Rollover" type="Node2D" node_paths=PackedStringArray("OnOffLight", "Scorer") groups=["Rollovers", "ShapeRound"]]
 script = ExtResource("1_hm3li")
+OnOffLight = NodePath("Area2D/OnOffLight")
+Scorer = NodePath("Scorer")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -24,6 +26,5 @@ stream = ExtResource("4_8l7oj")
 attenuation = 1e-05
 bus = &"BoardElements"
 
+[connection signal="RolledOver" from="." to="AudioStreamPlayer" method="play"]
 [connection signal="body_entered" from="Area2D" to="." method="OnAreaBodyEnter"]
-[connection signal="body_entered" from="Area2D" to="Scorer" method="Score" unbinds=1]
-[connection signal="body_entered" from="Area2D" to="AudioStreamPlayer" method="play" unbinds=1]

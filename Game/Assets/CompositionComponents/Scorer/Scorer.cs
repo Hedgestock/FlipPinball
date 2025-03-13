@@ -1,49 +1,68 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Scorer : Node2D
 {
-    //[Flags]
-    //public enum Attributes
-    //{
-    //    None = 0,
-    //    Bumper = 1,
-    //    Slingshot = 1 << 1,
-    //    Spinner = 1 << 2,
-    //    Target = 1 << 3,
-    //    Rollover = 1 << 4,
-    //    Plunger = 1 << 5,
-    //    Magnet = 1 << 6,
-    //    Teleport = 1 << 7,
-    //    BallLock = 1 << 8,
-    //    Round = 1 << 10,
-    //    Square = 1 << 11,
-    //}
-
-    //public abstract Attributes Kind { get; }
-
     [Export]
-    private int Value;
+    public int Value;
 
     [Export]
     PackedScene ScoreBubbleScene;
 
-    private void Score()
+    public override void _Ready()
     {
-        Score(1);
+        base._Ready();
+        foreach (var group in GetParent().GetGroups())
+            AddToGroup(group);
     }
 
-
-    private void Score(int superAdder, int multiplier, int adder, int superMultiplier)
+    public void Score(Ball ball)
     {
-        Score((((Value + superAdder) * multiplier) + adder) * superMultiplier);
+        Score(ball, Value);
     }
 
-    private void Score(int multiplier)
+    bool CheckEligibility(ScoreModifier modifier)
     {
-        if (Value == 0) return;
+        var intersection = modifier.GetGroups().Intersect(GetGroups());
+        if (modifier.Restrictive)
+            return intersection.Count() == modifier.GetGroups().Count();
+        return intersection.Any();
+    }
 
-        int actualScore = ScoreManager.BoardScore(Value * multiplier);
+    public void Score(Ball ball, int value)
+    {
+        int superAdder = 0;
+        int multiplier = 1;
+        int adder = 0;
+        int superMultiplier = 1;
+
+        foreach (ScoreModifier ballteration in ball.GetChildren().Where(c => c is ScoreModifier sm && CheckEligibility(sm)))
+        {
+            switch (ballteration.Prio)
+            {
+                case ScoreModifier.Priority.SuperAdder:
+                    superAdder += ballteration.Value;
+                    break;
+                case ScoreModifier.Priority.Multiplier:
+                    multiplier *= ballteration.Value;
+                    break;
+                case ScoreModifier.Priority.Adder:
+                    adder += ballteration.Value;
+                    break;
+                case ScoreModifier.Priority.SuperMultiplier:
+                    superMultiplier *= ballteration.Value;
+                    break;
+            }
+        }
+        Score((((value + superAdder) * multiplier) + adder) * superMultiplier);
+    }
+
+    public void Score(int score)
+    {
+        if (score == 0) return;
+
+        int actualScore = ScoreManager.BoardScore(score);
 
         if (actualScore == 0) return;
 

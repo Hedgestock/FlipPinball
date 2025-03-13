@@ -1,9 +1,15 @@
 using Godot;
 using System;
 
-[GlobalClass]
-public partial class Ballteration : Resource
+public partial class Ballteration : Node
 {
-    [Export]
-    public int Value { get; set; } = 5;
+    public enum Type
+    {
+        Score,
+        Physics,
+        Meta,
+        Other
+    }
+
+    protected Type Kind = Type.Other;
 }

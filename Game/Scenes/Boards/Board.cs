@@ -31,7 +31,6 @@ public partial class Board : Node2D
     public override void _Ready()
     {
         base._Ready();
-        TiltPusher = (Pusher)FindChild("TiltPusher");
         ScoreManager.BoardScore = Score;
     }
 

@@ -4,8 +4,17 @@ using System;
 public partial class Spinner : Node2D
 {
     [Signal]
-    public delegate void CompleteRotationEventHandler(int level);
+    public delegate void CompleteRotationEventHandler();
 
+    [Export]
+    OnOffLight OnOffLight;
+    [Export]
+    Scorer Scorer;
+
+    [Export]
+    int OnMultiplier = 1;
+
+    Ball RotationInitiator;
     double InitialSpinSpeed = 0;
     double LastSpinSpeed = 0;
     double Iterations = -1;
@@ -23,7 +32,11 @@ public partial class Spinner : Node2D
         {
             for (int i = 0; i < numberOfTurns; i++)
             {
-                EmitSignal(SignalName.CompleteRotation, ((Leveler)GetParent()).CurrentLevel);
+                if (OnOffLight.IsOn)
+                    Scorer.Score(RotationInitiator, Scorer.Value * OnMultiplier);
+                else
+                    Scorer.Score(RotationInitiator);
+                EmitSignal(SignalName.CompleteRotation);
             }
 
             LastSpinSpeed = currentSpinSpeed;
@@ -39,6 +52,7 @@ public partial class Spinner : Node2D
     {
         if (body is Ball ball)
         {
+            RotationInitiator = ball;
             Iterations = 0;
             InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 200;
             LastSpinSpeed = InitialSpinSpeed;

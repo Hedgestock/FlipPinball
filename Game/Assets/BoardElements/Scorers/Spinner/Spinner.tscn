@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://clvc7nom5cigw"]
+[gd_scene load_steps=6 format=3 uid="uid://clvc7nom5cigw"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.cs" id="1_p8fa6"]
 [ext_resource type="AudioStream" uid="uid://da0ppe1ufp02w" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.wav" id="3_0t70i"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_3mptj"]
+[ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="4_72wfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioksq"]
 size = Vector2(60, 20)
 
-[node name="Spinner" type="Node2D" groups=["ShapeSquare", "Spinners"]]
+[node name="Spinner" type="Node2D" node_paths=PackedStringArray("OnOffLight", "Scorer") groups=["ShapeSquare", "Spinners"]]
 script = ExtResource("1_p8fa6")
+OnOffLight = NodePath("OnOffLight")
+Scorer = NodePath("Scorer")
+
+[node name="OnOffLight" parent="." instance=ExtResource("4_72wfm")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -25,6 +30,5 @@ stream = ExtResource("3_0t70i")
 attenuation = 1e-05
 bus = &"BoardElements"
 
-[connection signal="CompleteRotation" from="." to="Scorer" method="Score"]
-[connection signal="CompleteRotation" from="." to="AudioStreamPlayer" method="play" unbinds=1]
+[connection signal="CompleteRotation" from="." to="AudioStreamPlayer" method="play"]
 [connection signal="body_entered" from="Area2D" to="." method="OnSpinnerBodyEnter"]

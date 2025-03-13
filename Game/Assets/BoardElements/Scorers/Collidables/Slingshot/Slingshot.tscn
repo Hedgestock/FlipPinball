@@ -28,5 +28,5 @@ bus = &"BoardElements"
 [node name="Pusher" parent="." instance=ExtResource("5_q8d7r")]
 
 [connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
-[connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=1]
 [connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]
