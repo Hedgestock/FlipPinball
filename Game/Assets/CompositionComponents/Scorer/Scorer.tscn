@@ -3,7 +3,10 @@
 [ext_resource type="Script" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.cs" id="1_od0ul"]
 [ext_resource type="PackedScene" uid="uid://dvtue82cyhx5" path="res://Game/Assets/CompositionComponents/ScoreBubble/ScoreBubble.tscn" id="2_eqs5r"]
 
-[node name="Scorer" type="Node2D"]
+[node name="Scorer" type="Node2D" node_paths=PackedStringArray("ScoreBubbleScene")]
 script = ExtResource("1_od0ul")
 Value = 1000
-ScoreBubbleScene = ExtResource("2_eqs5r")
+ScoreBubbleScene = NodePath("ScoreBubble")
+
+[node name="ScoreBubble" parent="." instance=ExtResource("2_eqs5r")]
+visible = false

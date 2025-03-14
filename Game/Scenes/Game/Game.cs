@@ -44,7 +44,7 @@ public partial class Game : Node
 
     public override void _Ready()
     {
-        OnScreenResize();
+        CallDeferred(MethodName.OnScreenResize);
         GetTree().Root.Connect(Viewport.SignalName.SizeChanged, new Callable(this, MethodName.OnScreenResize));
 
         ScoreManager.Instance.Connect(ScoreManager.SignalName.Scoring, new Callable(this, MethodName.UpdateScore));
@@ -143,12 +143,17 @@ public partial class Game : Node
         if (screenSize.X == 600)
         {
             MainContainer.CustomMinimumSize = new Vector2(screenSize.X, screenSize.Y - 1080);
+            MainContainer.Size = new Vector2(screenSize.X, screenSize.Y - 1080);
+            MainContainer.Position = new Vector2(0, 1080);
+            MainContainer.Position = new Vector2(0, 1080);
+
             StatusScrollContainer.Hide();
             Placeholder.Hide();
         }
         else
         {
             MainContainer.CustomMinimumSize = Vector2.Zero;
+            MainContainer.Position = Vector2.Zero;
             StatusScrollContainer.Show();
             Placeholder.Show();
         }

@@ -8,7 +8,7 @@ public partial class Scorer : Node2D
     public int Value;
 
     [Export]
-    PackedScene ScoreBubbleScene;
+    ScoreBubble ScoreBubbleScene;
 
     public override void _Ready()
     {
@@ -66,9 +66,6 @@ public partial class Scorer : Node2D
 
         if (actualScore == 0) return;
 
-        ScoreBubble bubble = ScoreBubbleScene.Instantiate<ScoreBubble>();
-        bubble.Text = actualScore.ToString("+0;-#");
-
-        AddChild(bubble);
+        ScoreBubbleScene.Display(actualScore.ToString("+0;-#"));
     }
 }

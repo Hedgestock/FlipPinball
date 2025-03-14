@@ -15,7 +15,7 @@ radius = 20.0
 z_index = 6
 script = ExtResource("1_euw7q")
 Sprite = NodePath("Hitbox/Sprite2D")
-OnOffLight = NodePath("OnOffLight")
+OnOffLight = NodePath("Hitbox/OnOffLight")
 Scorer = NodePath("Scorer")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_f5amf")]
@@ -23,13 +23,13 @@ Scorer = NodePath("Scorer")
 [node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
 texture = ExtResource("2_lf46c")
 
+[node name="OnOffLight" parent="Hitbox" instance=ExtResource("4_1k431")]
+animation = &"on"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_qmtc5")
 
 [node name="Scorer" parent="." instance=ExtResource("3_6ygmk")]
-
-[node name="OnOffLight" parent="." instance=ExtResource("4_1k431")]
-animation = &"on"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_svyrr")
@@ -41,5 +41,5 @@ bus = &"BoardElements"
 [connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
 [connection signal="Hit" from="Hitbox" to="." method="Bump" unbinds=1]
 [connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]
-[connection signal="Overheat" from="Hitbox" to="OnOffLight" method="TurnOff"]
-[connection signal="OverheatEnd" from="Hitbox" to="OnOffLight" method="TurnOn"]
+[connection signal="Overheat" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOff"]
+[connection signal="OverheatEnd" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOn"]

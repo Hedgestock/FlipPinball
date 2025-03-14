@@ -59,6 +59,7 @@ bus = &"BoardElements"
 [connection signal="MagnetEject" from="." to="Pusher" method="Push"]
 [connection signal="body_entered" from="EffectZone" to="." method="OnEffectZoneBodyEnter"]
 [connection signal="body_exited" from="EffectZone" to="." method="OnEffectZoneBodyExit"]
+[connection signal="area_entered" from="MagnetZone" to="." method="OnMagnetZoneAreaEnter"]
 [connection signal="TurnedOff" from="OnOffLight" to="EffectZone/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOff" from="OnOffLight" to="MagnetZone/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="OnOffLight" to="MagnetOnSoundPlayer" method="play"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7wrp1hb3227q"]
+[gd_scene load_steps=11 format=3 uid="uid://c7wrp1hb3227q"]
 
 [ext_resource type="Script" path="res://Game/Assets/BoardElements/Plunger/Plunger.cs" id="1_bv4d5"]
 [ext_resource type="AudioStream" uid="uid://cnrra38ygjr8w" path="res://Game/Assets/BoardElements/Plunger/Plunger.wav" id="2_a28wm"]
@@ -24,6 +24,9 @@ fill_to = Vector2(0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhcf"]
 size = Vector2(20, 3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u1vd"]
+size = Vector2(40, 100)
+
 [node name="Plunger" type="Node2D" node_paths=PackedStringArray("PlungerProgress", "DetectionZone", "Pusher")]
 script = ExtResource("1_bv4d5")
 PlungerProgress = NodePath("PlungerProgress")
@@ -31,10 +34,14 @@ DetectionZone = NodePath("DetectionZone")
 Pusher = NodePath("Pusher")
 
 [node name="PlungerProgress" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = -8.0
 offset_top = 32.0
 offset_right = 8.0
 offset_bottom = 96.0
+grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 value = 50.0
@@ -65,6 +72,11 @@ bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("4_t61ul")]
 Strength = 1
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_8u1vd")
+action = "plunger"
 
 [connection signal="Releasing" from="." to="Release" method="play"]
 [connection signal="Releasing" from="." to="WindUp" method="stop"]

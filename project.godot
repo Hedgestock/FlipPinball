@@ -96,10 +96,6 @@ tilt={
 ]
 }
 
-[input_devices]
-
-pointing/android/enable_long_press_as_right_click=true
-
 [internationalization]
 
 rendering/root_node_auto_translate=false

@@ -4,9 +4,8 @@ Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that av
 Add tilt function timeout
 Add levelup delay
 Add spinner sprites
-Remove ball save on replay/reshoot
-Stop ball on magnet
 Add tooltip for balls
+Fix freeze+tweening doing strange stuff on trail (Spitters)
 
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing
@@ -62,6 +61,7 @@ Global score
 ## Ball Physics
 Size down
 Weight down
+Random direction changes
 Square hitbox ?
 
 ## Trail

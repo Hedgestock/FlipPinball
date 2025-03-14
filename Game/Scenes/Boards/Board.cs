@@ -17,6 +17,8 @@ public partial class Board : Node2D
     public Array<Paddle> PaddlesRight = new();
     [Export]
     OnOffLight SaveBallLight;
+    [Export]
+    SkillShot SkillShot;
 
 
     List<Ball> LiveBalls = new();
@@ -31,6 +33,8 @@ public partial class Board : Node2D
         base._Ready();
         ScoreManager.BoardScore = Score;
 
+        if (OS.GetName() == "Android" || OS.GetName() == "iOS")
+            lastAccel = Enumerable.Repeat(Input.GetAccelerometer().Length(), 50).ToArray();
 
         Callable.From(() =>
         {
@@ -42,12 +46,6 @@ public partial class Board : Node2D
 
     public override void _Input(InputEvent @event)
     {
-        //if (@event.IsActionPressed("load_ball") && LiveBalls.Count == 0)
-        //{
-        //    LoadedBall = GameManager.GetNextBall();
-        //    GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-        //    LoadBall(LoadedBall, Plunger.GlobalPosition);
-        //}
         if (@event.IsActionPressed("paddle_left"))
         {
             PaddleAdditionnalBehaviour(true);
@@ -94,7 +92,7 @@ public partial class Board : Node2D
         }
     }
 
-    float[] lastAccel = new float[50];
+    float[] lastAccel;
     int tiltDisabled = 0;
 
     public override void _PhysicsProcess(double delta)
@@ -196,11 +194,6 @@ public partial class Board : Node2D
         GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, GameManager.HeldBalls.ToArray());
     }
 
-    void OnEnterDrain(Node2D body, bool oob)
-    {
-
-    }
-
     public enum DespawnType
     {
         Drain,
@@ -221,19 +214,11 @@ public partial class Board : Node2D
             if (type == DespawnType.Drain && SaveBallLight.IsOnOrBlinking)
             {
                 CallDeferred(MethodName.LoadBall, ball.Duplicate(), Plunger.GlobalPosition);
-                Plunger.AutoFire = true;
                 SaveBallLight.TurnOff();
             }
             else
             {
                 GameManager.Instance.EmitSignal(GameManager.SignalName.BoardReset);
-                //SaveBallLight.TurnOff();
-                //LoadedBall = GameManager.GetNextBall();
-
-                //if (LoadedBall == null) return;
-
-                //GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-                //CallDeferred(MethodName.LoadBall, LoadedBall, Plunger.GlobalPosition);
             }
         }
     }

@@ -63,6 +63,14 @@ public partial class Magnet : Node2D
         }
     }
 
+    private void OnMagnetZoneAreaEnter(Area2D area)
+    {
+        if (area.GetParent() is Ball ball)
+        {
+            ball.LinearVelocity = Vector2.Zero;
+        }
+    }
+
     private void MagnetEnd()
     {
         OnOffLight.TurnOff();

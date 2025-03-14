@@ -35,26 +35,38 @@ public partial class SkillShot : Node2D
         });
     }
 
-    private void Cancellation(Node2D body)
+    void Cancellation(Node2D body)
     {
         if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
         EmitSignal(SignalName.Cancel);
 
-        Reset();
+        TurnOff();
     }
 
-    private void Validation(Node2D body)
+    void Validation(Node2D body)
     {
         if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
         Scorer.Score((Ball)body, Scorer.Value * Multiplier);
         EmitSignal(SignalName.Validate);
 
-        Reset();
+        TurnOff();
     }
 
-    private void Reset()
+    public void TurnOff()
+    {
+        CancellationZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+        ValidationZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+
+        Zones.ForEach(z =>
+        {
+            z.GetNode<OnOffLight>("OnOffLight").TurnOff();
+            z.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+        });
+    }
+
+    public void TurnOn()
     {
         CancellationZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         ValidationZone.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);

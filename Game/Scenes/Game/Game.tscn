@@ -1,17 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene load_steps=6 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
 [ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
 [ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
 [ext_resource type="PackedScene" uid="uid://1uf453kusqfd" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="3_vxydm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4slb"]
-size = Vector2(600, 600)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
-size = Vector2(300, 600)
+size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("CurrentBoard", "BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "InfoBox", "Score", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton", "PlungerButton")]
+[node name="Game" type="Node" node_paths=PackedStringArray("CurrentBoard", "BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "InfoBox", "Score", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
 CurrentBoard = NodePath("SubViewportContainer/SubViewport/Board")
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
@@ -31,14 +28,15 @@ ScoreBubbleScene = ExtResource("2_d708p")
 GameTimerLabel = NodePath("MainContainer/StatusScrollContainer/Status/GameTime")
 LeftPaddleButton = NodePath("LeftPaddleButton")
 RightPaddleButton = NodePath("RightPaddleButton")
-PlungerButton = NodePath("PlungerButton")
 
 [node name="MainContainer" type="BoxContainer" parent="."]
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1080.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -120,7 +118,6 @@ layout_mode = 2
 text = "Game time: 00:00"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-custom_minimum_size = Vector2(600, 1080)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -138,26 +135,14 @@ render_target_update_mode = 4
 
 [node name="Board" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_vxydm")]
 
-[node name="PlungerButton" type="TouchScreenButton" parent="."]
-z_index = 100
-position = Vector2(300, 300)
-shape = SubResource("RectangleShape2D_i4slb")
-action = "plunger"
-
-[node name="BallLoadButton" type="TouchScreenButton" parent="."]
-z_index = 100
-position = Vector2(300, 300)
-shape = SubResource("RectangleShape2D_i4slb")
-action = "load_ball"
-
 [node name="LeftPaddleButton" type="TouchScreenButton" parent="."]
 z_index = 100
-position = Vector2(150, 780)
+position = Vector2(150, 540)
 shape = SubResource("RectangleShape2D_n7y7i")
 action = "paddle_left"
 
 [node name="RightPaddleButton" type="TouchScreenButton" parent="."]
 z_index = 100
-position = Vector2(450, 780)
+position = Vector2(450, 540)
 shape = SubResource("RectangleShape2D_n7y7i")
 action = "paddle_right"
