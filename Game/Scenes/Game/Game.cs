@@ -6,6 +6,11 @@ using System.Linq;
 public partial class Game : Node
 {
     [Export]
+    Board CurrentBoard;
+    [Export]
+    Viewport BoardViewport;
+
+    [Export]
     PackedScene BallViewerScene;
 
     [Export]
@@ -44,6 +49,7 @@ public partial class Game : Node
 
         ScoreManager.Instance.Connect(ScoreManager.SignalName.Scoring, new Callable(this, MethodName.UpdateScore));
 
+        GameManager.Instance.Connect(GameManager.SignalName.BoardReset, new Callable(this, MethodName.ResetBoard));
         GameManager.Instance.Connect(GameManager.SignalName.LoadedBall, new Callable(this, MethodName.UpdateLoadedBall));
         GameManager.Instance.Connect(GameManager.SignalName.BallQueueChanged, new Callable(this, MethodName.UpdateBallQueue));
         GameManager.Instance.Connect(GameManager.SignalName.HeldBallsChanged, new Callable(this, MethodName.UpdateHeldBalls));
@@ -71,6 +77,15 @@ public partial class Game : Node
             BallTimerLabel.Text = $"Ball time: {DateTime.Now - BallStart:mm\\:ss}";
         }
         FPS.Text = $"{Engine.GetFramesPerSecond()} FPS";
+    }
+
+    void ResetBoard()
+    {
+        foreach (var child in BoardViewport.GetChildren())
+        {
+            child.QueueFree();
+        }
+        BoardViewport.CallDeferred(Node.MethodName.AddChild, GameManager.CurrentBoard.Instantiate());
     }
 
     void UpdateScore(long totalScoreValue, int currentlyScoring)

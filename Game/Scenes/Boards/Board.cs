@@ -21,8 +21,6 @@ public partial class Board : Node2D
 
     List<Ball> LiveBalls = new();
 
-    List<Ball> HeldBalls = new();
-
     Ball LoadedBall = null;
 
     // Debug code
@@ -149,11 +147,6 @@ public partial class Board : Node2D
         }
     }
 
-    public virtual void ResetBoard()
-    {
-
-    }
-
     void AddLiveBall(Ball ball)
     {
         LiveBalls.Add(ball);
@@ -189,18 +182,18 @@ public partial class Board : Node2D
 
     protected void HoldBall(Ball ball)
     {
-        HeldBalls.Add(ball);
+        GameManager.HeldBalls.Add(ball);
         RemoveLiveBall(ball);
-        GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
+        GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, GameManager.HeldBalls.ToArray());
         CallDeferred(MethodName.LoadBall, ball.Duplicate(), Plunger.GlobalPosition);
         Plunger.AutoFire = true;
     }
 
     protected void ClearHeldBalls()
     {
-        if (HeldBalls.Count == 0) return;
-        HeldBalls.Clear();
-        GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, HeldBalls.ToArray());
+        if (GameManager.HeldBalls.Count == 0) return;
+        GameManager.HeldBalls.Clear();
+        GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, GameManager.HeldBalls.ToArray());
     }
 
     void OnEnterDrain(Node2D body, bool oob)
@@ -233,13 +226,14 @@ public partial class Board : Node2D
             }
             else
             {
-                SaveBallLight.TurnOff();
-                LoadedBall = GameManager.GetNextBall();
+                GameManager.Instance.EmitSignal(GameManager.SignalName.BoardReset);
+                //SaveBallLight.TurnOff();
+                //LoadedBall = GameManager.GetNextBall();
 
-                if (LoadedBall == null) return;
+                //if (LoadedBall == null) return;
 
-                GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-                CallDeferred(MethodName.LoadBall, LoadedBall, Plunger.GlobalPosition);
+                //GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
+                //CallDeferred(MethodName.LoadBall, LoadedBall, Plunger.GlobalPosition);
             }
         }
     }

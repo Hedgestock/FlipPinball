@@ -20,7 +20,7 @@ public partial class TeleportGroup : BoardElementsGroup
         base._Ready();
         foreach (var node in Nodes)
             ((Spitter)node.node).SwallowingBall += (ball) => SpitFromActive(ball, node.light);
-        GameManager.Instance.HeldBallsChanged += SpitFromAll;
+        GameManager.Instance.Connect(GameManager.SignalName.HeldBallsChanged, new Callable(this, MethodName.SpitFromAll));
     }
 
     bool Activated

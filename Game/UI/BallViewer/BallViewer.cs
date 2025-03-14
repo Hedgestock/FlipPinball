@@ -14,7 +14,7 @@ public partial class BallViewer : SubViewportContainer
         set
         {   
             if (_ball != null)
-                SubViewport.RemoveChild(_ball);
+                Ball.QueueFree();
             value.ProcessMode = ProcessModeEnum.Disabled;
             value.GlobalPosition = Vector2.One * 12;
             SubViewport.AddChild(value);

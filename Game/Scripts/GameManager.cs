@@ -21,6 +21,8 @@ public partial class GameManager : Node
     [Signal]
     public delegate void GameOverEventHandler();
     [Signal]
+    public delegate void BoardResetEventHandler();
+    [Signal]
     public delegate void BallQueueChangedEventHandler(Array<Ball> balls);
     [Signal]
     public delegate void HeldBallsChangedEventHandler(Array<Ball> balls);
@@ -30,14 +32,18 @@ public partial class GameManager : Node
     public delegate void LoadedBallEventHandler(Ball ball);
 
     static int CurrentLevel;
+    public static PackedScene CurrentBoard;
     //static int 
     //public static int CurrentLevel { get { return _currentLevel; } }
-    static LinkedList<Ball> BallQueue;
+    public static LinkedList<Ball> BallQueue;
+    public static List<Ball> HeldBalls = new();
 
     public static void SetGame()
     {
         BallQueue = new();
         CurrentLevel = 1;
+        CurrentBoard = GD.Load<PackedScene>("res://Game/Scenes/Boards/TestLab/TestLab.tscn");
+
         ScoreManager.ScoreValue = 0;
 
         for (int i = 0; i < 3; i++)
@@ -69,4 +75,10 @@ public partial class GameManager : Node
         Instance.EmitSignal(SignalName.BallQueueChanged, new Array<Ball>(BallQueue));
     }
 
+    protected void ClearHeldBalls()
+    {
+        if (HeldBalls.Count == 0) return;
+        HeldBalls.Clear();
+        Instance.EmitSignal(SignalName.HeldBallsChanged, HeldBalls.ToArray());
+    }
 }

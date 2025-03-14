@@ -4,9 +4,9 @@ Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that av
 Add tilt function timeout
 Add levelup delay
 Add spinner sprites
-Add table reset
 Remove ball save on replay/reshoot
 Stop ball on magnet
+Add tooltip for balls
 
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing
@@ -58,8 +58,6 @@ Spitter score
 Round score
 Square score
 Global score
-
-(((score + score super adder) * score mult) + score adder) * score super mult
 
 ## Ball Physics
 Size down
