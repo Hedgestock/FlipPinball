@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmtif368xe830"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Paddle/Paddle.cs" id="1_mvgij"]
+[ext_resource type="Script" uid="uid://b6dwtc3jk7rth" path="res://Game/Assets/BoardElements/Paddle/Paddle.cs" id="1_mvgij"]
 [ext_resource type="AudioStream" uid="uid://dv0bk64dordjx" path="res://Game/Assets/BoardElements/Paddle/Paddle.wav" id="2_xcx2q"]
 [ext_resource type="Texture2D" uid="uid://ifarj6hso8eb" path="res://Game/Assets/BoardElements/Paddle/Paddle.png" id="3_duipv"]
 

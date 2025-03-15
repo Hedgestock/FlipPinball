@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6lxuqoyg1314"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.cs" id="1_qmuv0"]
+[ext_resource type="Script" uid="uid://20qq6ruvwy6n" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.cs" id="1_qmuv0"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="2_qv3qe"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="4_4ynig"]
 [ext_resource type="AudioStream" uid="uid://cedb8fv60wq20" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.wav" id="4_mhvfs"]

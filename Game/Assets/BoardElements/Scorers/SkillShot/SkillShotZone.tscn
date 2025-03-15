@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://641jx1x1js2s"]
 
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="1_85713"]
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotZone.cs" id="1_h70cc"]
+[ext_resource type="Script" uid="uid://3axwqy5xtsma" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotZone.cs" id="1_h70cc"]
 [ext_resource type="Texture2D" uid="uid://cqwfxdcvklhwe" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotLightOff.png" id="3_sl7ml"]
 [ext_resource type="Texture2D" uid="uid://c8f8lfgdq75r6" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotLightOn.png" id="4_psl2w"]
 

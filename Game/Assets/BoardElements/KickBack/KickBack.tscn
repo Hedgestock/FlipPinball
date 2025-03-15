@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxgbd1q0e6fpk"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/KickBack/KickBack.cs" id="1_2hlfo"]
+[ext_resource type="Script" uid="uid://sm032pmauw0c" path="res://Game/Assets/BoardElements/KickBack/KickBack.cs" id="1_2hlfo"]
 [ext_resource type="AudioStream" uid="uid://cj07vcni84f8p" path="res://Game/Assets/BoardElements/KickBack/Collision.wav" id="2_ji2d3"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="3_54quy"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="4_rpygy"]

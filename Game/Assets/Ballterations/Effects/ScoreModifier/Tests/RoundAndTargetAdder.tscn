@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://euydknmlbr2e"]
 
-[ext_resource type="Script" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="1_ev8op"]
+[ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="1_ev8op"]
 
 [node name="RoundAndTargetAdder" type="Node" groups=["ShapeRound", "Targets"]]
 script = ExtResource("1_ev8op")

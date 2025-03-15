@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c7wrp1hb3227q"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Plunger/Plunger.cs" id="1_bv4d5"]
+[ext_resource type="Script" uid="uid://fbxo0360anab" path="res://Game/Assets/BoardElements/Plunger/Plunger.cs" id="1_bv4d5"]
 [ext_resource type="AudioStream" uid="uid://cnrra38ygjr8w" path="res://Game/Assets/BoardElements/Plunger/Plunger.wav" id="2_a28wm"]
 [ext_resource type="AudioStream" uid="uid://82f7sddkqsy2" path="res://Game/Assets/BoardElements/Plunger/PlungerWindUp.wav" id="3_mxsw7"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="4_t61ul"]

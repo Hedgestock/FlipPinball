@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://tm0n8wum3wb6"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Collidables/Slingshot/Slingshot.cs" id="1_lrqkg"]
+[ext_resource type="Script" uid="uid://rl5ayqowjo88" path="res://Game/Assets/BoardElements/Scorers/Collidables/Slingshot/Slingshot.cs" id="1_lrqkg"]
 [ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.tscn" id="2_2pgt5"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_dtu0p"]
 [ext_resource type="AudioStream" uid="uid://dodqps03wacfl" path="res://Game/Assets/BoardElements/Scorers/Collidables/Slingshot/Slingshot.wav" id="4_isjs3"]

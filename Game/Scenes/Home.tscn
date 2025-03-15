@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8iu65a2xswru"]
+[gd_scene load_steps=5 format=3 uid="uid://b8iu65a2xswru"]
 
-[ext_resource type="Script" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
-[ext_resource type="Script" path="res://Game/Scenes/SceneChanger.cs" id="1_57tko"]
+[ext_resource type="Script" uid="uid://der05hffi8ur0" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
+[ext_resource type="Script" uid="uid://dgsbm63myfhuc" path="res://Game/Scenes/SceneChanger.cs" id="1_57tko"]
+[ext_resource type="Script" uid="uid://862tv3trf265" path="res://Game/Scenes/SplashScreen.cs" id="3_ghef2"]
+[ext_resource type="Texture2D" uid="uid://bb3yuplc8admj" path="res://logo_Wafflestock.png" id="4_r6hok"]
 
 [node name="Home" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel")]
 script = ExtResource("1_4jmw7")
@@ -33,5 +35,46 @@ size_flags_vertical = 0
 text = "Start Game"
 script = ExtResource("1_57tko")
 ScenePath = "res://Game/Scenes/Game/Game.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="." node_paths=PackedStringArray("Wafflestock")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+script = ExtResource("3_ghef2")
+Wafflestock = NodePath("Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r6hok")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = 275.0
+offset_right = 247.0
+offset_bottom = 373.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 120
+text = "WaffleStock"
 
 [connection signal="pressed" from="AspectRatioContainer/MarginContainer/Button" to="." method="StartGame"]

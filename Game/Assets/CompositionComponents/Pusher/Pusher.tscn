@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0b1ipfsklfhf"]
 
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.cs" id="1_jot6r"]
+[ext_resource type="Script" uid="uid://cwchkbfaj0x18" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.cs" id="1_jot6r"]
 
 [node name="Pusher" type="Node"]
 script = ExtResource("1_jot6r")

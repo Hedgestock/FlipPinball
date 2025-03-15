@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://60bnglansny4"]
 
-[ext_resource type="Script" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_a8ygs"]
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_a8ygs"]
 
 [node name="Ballteration" type="Node2D"]
 script = ExtResource("1_a8ygs")

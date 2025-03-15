@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dwc6ituqxs0yg"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Magnet/Magnet.cs" id="1_ix2jv"]
+[ext_resource type="Script" uid="uid://ys2x4hetpyai" path="res://Game/Assets/BoardElements/Magnet/Magnet.cs" id="1_ix2jv"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="2_bxciu"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="2_qhgln"]
 [ext_resource type="AudioStream" uid="uid://8rkbcs5g6gcp" path="res://Game/Assets/BoardElements/Magnet/MagnetEject.wav" id="3_g5p1v"]

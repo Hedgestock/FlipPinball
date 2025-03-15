@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://clvc7nom5cigw"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.cs" id="1_p8fa6"]
+[ext_resource type="Script" uid="uid://b08x7lrn78upq" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.cs" id="1_p8fa6"]
 [ext_resource type="AudioStream" uid="uid://da0ppe1ufp02w" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.wav" id="3_0t70i"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_3mptj"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="4_72wfm"]

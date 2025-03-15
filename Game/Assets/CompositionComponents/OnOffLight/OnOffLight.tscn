@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://2lxhflonuboy"]
 
 [ext_resource type="SpriteFrames" uid="uid://dete5i3mo25t2" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLightAnimation.tres" id="1_twk08"]
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.cs" id="2_g3lvu"]
+[ext_resource type="Script" uid="uid://tuowcnyuxd87" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.cs" id="2_g3lvu"]
 
 [node name="OnOffLight" type="AnimatedSprite2D"]
 modulate = Color(1, 1, 0, 1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxi7chpix50wp"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.cs" id="1_hm3li"]
+[ext_resource type="Script" uid="uid://bp0ontn2mxavx" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.cs" id="1_hm3li"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="2_17vhc"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="3_pxfri"]
 [ext_resource type="AudioStream" uid="uid://cwgqkesk5x4om" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.wav" id="4_8l7oj"]

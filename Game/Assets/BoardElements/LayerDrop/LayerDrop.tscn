@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rbcr7e4wg3cr"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/LayerDrop/LayerDrop.cs" id="1_jdjdk"]
+[ext_resource type="Script" uid="uid://v38gk70y5vne" path="res://Game/Assets/BoardElements/LayerDrop/LayerDrop.cs" id="1_jdjdk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2c0px"]
 radius = 2.0

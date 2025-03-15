@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c08sduvfpdlky"]
 
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/Leveler/DecayingLeveler.cs" id="1_686j3"]
+[ext_resource type="Script" uid="uid://cu0j6a6mdy8f1" path="res://Game/Assets/CompositionComponents/Leveler/DecayingLeveler.cs" id="1_686j3"]
 [ext_resource type="PackedScene" uid="uid://0vf85v2k3lmd" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.tscn" id="2_1tbbw"]
 
 [node name="DecayingLeveler" type="Node2D" node_paths=PackedStringArray("Leveler")]

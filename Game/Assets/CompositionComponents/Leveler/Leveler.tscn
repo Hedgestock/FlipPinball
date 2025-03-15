@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0vf85v2k3lmd"]
 
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.cs" id="1_a0556"]
+[ext_resource type="Script" uid="uid://cs2rppsi3s3vt" path="res://Game/Assets/CompositionComponents/Leveler/Leveler.cs" id="1_a0556"]
 [ext_resource type="AudioStream" uid="uid://b81syioe7u8km" path="res://Game/Assets/CompositionComponents/Leveler/LevelUp.wav" id="2_7t7tc"]
 
 [node name="Leveler" type="Node2D"]

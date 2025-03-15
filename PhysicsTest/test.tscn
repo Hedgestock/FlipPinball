@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dn1sj2vcg06w5"]
 
-[ext_resource type="Script" path="res://PhysicsTest/test1.cs" id="1_dde8p"]
-[ext_resource type="Script" path="res://PhysicsTest/Test.cs" id="1_leqod"]
-[ext_resource type="Script" path="res://PhysicsTest/test2.cs" id="2_8hvl4"]
+[ext_resource type="Script" uid="uid://cwnrqf6qri4h7" path="res://PhysicsTest/test1.cs" id="1_dde8p"]
+[ext_resource type="Script" uid="uid://cdivu7iitdiy3" path="res://PhysicsTest/Test.cs" id="1_leqod"]
+[ext_resource type="Script" uid="uid://d00jusen4j23v" path="res://PhysicsTest/test2.cs" id="2_8hvl4"]
 [ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="4_cx3p0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fftow"]

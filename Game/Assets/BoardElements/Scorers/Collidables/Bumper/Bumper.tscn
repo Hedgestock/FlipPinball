@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ckk4x5dhl1c0w"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/Collidables/Bumper/Bumper.cs" id="1_euw7q"]
+[ext_resource type="Script" uid="uid://db2ou6osxw0hh" path="res://Game/Assets/BoardElements/Scorers/Collidables/Bumper/Bumper.cs" id="1_euw7q"]
 [ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.tscn" id="2_f5amf"]
 [ext_resource type="Texture2D" uid="uid://dblu7c57f74om" path="res://Game/Assets/BoardElements/Scorers/Collidables/Bumper/Bumper.png" id="2_lf46c"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_6ygmk"]

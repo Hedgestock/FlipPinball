@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4edkv81n13el"]
 
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.cs" id="1_lu6j3"]
+[ext_resource type="Script" uid="uid://btxwdmac1qi14" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.cs" id="1_lu6j3"]
 
 [node name="PhysicsScoreBubble" type="RigidBody2D" node_paths=PackedStringArray("Label", "visibleOnScreenNotifier")]
 collision_layer = 0

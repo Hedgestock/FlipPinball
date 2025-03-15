@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dn1735yghpl7a"]
 
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.cs" id="1_egv42"]
+[ext_resource type="Script" uid="uid://c8mjfgjid1jed" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.cs" id="1_egv42"]
 
 [node name="Hitbox" type="StaticBody2D"]
 collision_layer = 2

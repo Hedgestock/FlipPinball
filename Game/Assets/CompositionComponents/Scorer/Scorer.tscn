@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ldg25jc4i0rg"]
 
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.cs" id="1_od0ul"]
+[ext_resource type="Script" uid="uid://clqyjxi10plw5" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.cs" id="1_od0ul"]
 [ext_resource type="PackedScene" uid="uid://dvtue82cyhx5" path="res://Game/Assets/CompositionComponents/ScoreBubble/ScoreBubble.tscn" id="2_eqs5r"]
 
 [node name="Scorer" type="Node2D" node_paths=PackedStringArray("ScoreBubbleScene")]

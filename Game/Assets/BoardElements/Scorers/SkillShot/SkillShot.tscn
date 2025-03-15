@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cn74ne78k7kod"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShot.cs" id="1_jy57y"]
+[ext_resource type="Script" uid="uid://cfuhl623sld4c" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShot.cs" id="1_jy57y"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="2_15m0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5nxpm"]

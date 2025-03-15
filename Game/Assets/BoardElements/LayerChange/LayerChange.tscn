@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccj786gqjcjn0"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/LayerChange/LayerChange.cs" id="1_f7kq0"]
+[ext_resource type="Script" uid="uid://doytk6d6308lq" path="res://Game/Assets/BoardElements/LayerChange/LayerChange.cs" id="1_f7kq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5e6v"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cl5k1huk7mxl1"]
 
-[ext_resource type="Script" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.cs" id="1_al2n7"]
+[ext_resource type="Script" uid="uid://ddki4e8gotu78" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.cs" id="1_al2n7"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="2_6dibq"]
 [ext_resource type="Texture2D" uid="uid://bjxjjno47gobs" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.png" id="2_tskb8"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="3_43wvr"]

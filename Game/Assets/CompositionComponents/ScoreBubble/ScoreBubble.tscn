@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvtue82cyhx5"]
 
-[ext_resource type="Script" path="res://Game/Assets/CompositionComponents/ScoreBubble/ScoreBubble.cs" id="2_l8huw"]
+[ext_resource type="Script" uid="uid://c5nxd25ljlpu7" path="res://Game/Assets/CompositionComponents/ScoreBubble/ScoreBubble.cs" id="2_l8huw"]
 
 [node name="ScoreBubble" type="Label"]
 modulate = Color(1, 1, 1, 0.666667)
