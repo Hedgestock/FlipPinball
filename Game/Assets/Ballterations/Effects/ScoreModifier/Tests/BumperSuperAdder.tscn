@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b6gphicmiuiv1"]
 
-[ext_resource type="Script" path="res://Game/Assets/Ballterations/ScoreModifier/ScoreModifier.cs" id="1_460le"]
+[ext_resource type="Script" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="1_460le"]
 
 [node name="BumperSuperAdder" type="Node" groups=["Bumpers"]]
 script = ExtResource("1_460le")

@@ -20,7 +20,7 @@ public partial class BallTimer : Node
         Timer.Timeout += () =>
             {
                 GD.Print("LOL");
-                GetParent().EmitSignal(Ball.SignalName.SelfDestruct);
+                GetParent().GetParent().EmitSignal(Ball.SignalName.SelfDestruct);
             };
     }
 

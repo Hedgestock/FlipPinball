@@ -79,14 +79,21 @@ public partial class Board : Node2D
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.GlobalPosition = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
-                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperAdder.tscn").Instantiate<ScoreModifier>());
-                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperMultiplier.tscn").Instantiate<ScoreModifier>());
-                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperSuperMultiplier.tscn").Instantiate<ScoreModifier>());
-                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperSuperAdder.tscn").Instantiate<ScoreModifier>());
-                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/SlingshotAdder.tscn").Instantiate<ScoreModifier>());
-                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/BumperSlingshotAdder.tscn").Instantiate<ScoreModifier>());
-                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/RoundOrTargetAdder.tscn").Instantiate<ScoreModifier>());
-                ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/RoundAndTargetAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/BumperAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/BumperMultiplier.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/BumperSuperMultiplier.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/BumperSuperAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/SlingshotAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/BumperSlingshotAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/RoundOrTargetAdder.tscn").Instantiate<ScoreModifier>());
+                //ball.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/ScoreModifier/Tests/RoundAndTargetAdder.tscn").Instantiate<ScoreModifier>());
+                var bt = GD.Load<PackedScene>("res://Game/Assets/Ballterations/test.tscn").Instantiate<Ballteration>();
+                //bt.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/BallTimer/BallTimer.tscn").Instantiate<BallTimer>());
+                ball.AddChild(bt);
+                ball.AddChild(bt);
+                ball.AddChild(bt);
+                ball.AddChild(bt);
+                ball.AddChild(bt);
                 AddLiveBall(ball);
             }
         }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dahrdfuff3o8l"]
 
-[ext_resource type="Script" path="res://Game/Assets/Ballterations/BallTimer/BallTimer.cs" id="1_0kgw0"]
+[ext_resource type="Script" path="res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.cs" id="1_0kgw0"]
 
 [node name="BallTimer" type="Node2D" node_paths=PackedStringArray("Timer", "Label")]
 z_index = 100

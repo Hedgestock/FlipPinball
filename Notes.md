@@ -11,7 +11,6 @@ Think of a way to make levels generic (think bumper with more/less than 5, or sp
 Maybe factorise the "OnMultiplier" thing
 Extra call args + unbind signal args
 Defaut values instead of overloading in signals callback
-MRP sigal not disconnecting when freeing scene ?
 
 Moving elements
 
@@ -82,3 +81,13 @@ Timed ball ?
 
 ## Other
 Remove ballteration
+
+# Rarity system
+
+Grey
+Green
+Blue
+Red
+Purple
+
+Yellow (Fixed)

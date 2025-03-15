@@ -12,4 +12,6 @@ public partial class Ballteration : Node
     }
 
     protected Type Kind = Type.Other;
+
+    public string DisplayName;
 }
