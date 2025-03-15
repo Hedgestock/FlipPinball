@@ -158,7 +158,7 @@ public partial class Game : Node
             Placeholder.Show();
         }
 
-        GD.Print("Game resizing: ", screenSize);
+        GD.Print("Game.cs -> Game resizing: ", screenSize);
 
         TouchInputSetup();
     }
