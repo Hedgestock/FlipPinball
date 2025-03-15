@@ -61,10 +61,10 @@ normal = Vector2(-1, 0)
 normal = Vector2(0, 1)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rjk18"]
-b = Vector2(150.5, 111.2)
+b = Vector2(153.5, 113.2)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jjm4o"]
-b = Vector2(104.5, 83.3)
+b = Vector2(107.5, 85.3)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kqonf"]
 b = Vector2(-50, 26)
@@ -224,7 +224,7 @@ position = Vector2(76.5, 850.8)
 shape = SubResource("SegmentShape2D_rjk18")
 
 [node name="Line2D" type="Line2D" parent="Layer1/Walls/AboveLeftPaddle"]
-points = PackedVector2Array(0, 0, 150.5, 111.2)
+points = PackedVector2Array(0, 0, 153.5, 113.2)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 
@@ -234,7 +234,7 @@ scale = Vector2(-1, 1)
 shape = SubResource("SegmentShape2D_jjm4o")
 
 [node name="Line2D" type="Line2D" parent="Layer1/Walls/AboveRightPaddle"]
-points = PackedVector2Array(0, 0, 104.5, 83.3)
+points = PackedVector2Array(0, 0, 107.5, 85.3)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 
@@ -1329,9 +1329,19 @@ polygon = PackedVector2Array(32, 350, -103, 350, -103, -97, 117, -96, 160, 88, 1
 position = Vector2(47, 540)
 shape = SubResource("SegmentShape2D_lvhxb")
 
+[node name="Line2D" type="Line2D" parent="Layer2/Walls/LeftLabSplitter"]
+points = PackedVector2Array(0, 0, 0, 38)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
 [node name="RightLabSplitter" type="CollisionShape2D" parent="Layer2/Walls"]
 position = Vector2(85, 562)
 shape = SubResource("SegmentShape2D_ot2g7")
+
+[node name="Line2D" type="Line2D" parent="Layer2/Walls/RightLabSplitter"]
+points = PackedVector2Array(0, 0, 0, 38)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="LabOneWay" type="CollisionShape2D" parent="Layer2/Walls"]
 position = Vector2(64, 429)

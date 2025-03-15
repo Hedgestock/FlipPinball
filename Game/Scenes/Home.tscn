@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8iu65a2xswru"]
+[gd_scene load_steps=6 format=3 uid="uid://b8iu65a2xswru"]
 
 [ext_resource type="Script" uid="uid://der05hffi8ur0" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
-[ext_resource type="Script" uid="uid://dgsbm63myfhuc" path="res://Game/Scenes/SceneChanger.cs" id="1_57tko"]
+[ext_resource type="Script" uid="uid://dgsbm63myfhuc" path="res://Game/UI/SceneChanger.cs" id="1_57tko"]
 [ext_resource type="Script" uid="uid://862tv3trf265" path="res://Game/Scenes/SplashScreen.cs" id="3_ghef2"]
+[ext_resource type="PackedScene" uid="uid://bfnn6iuv460e" path="res://Game/Scenes/Game/Game.tscn" id="3_r6hok"]
 [ext_resource type="Texture2D" uid="uid://bb3yuplc8admj" path="res://logo_Wafflestock.png" id="4_r6hok"]
 
 [node name="Home" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel")]
@@ -34,9 +35,10 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Start Game"
 script = ExtResource("1_57tko")
-ScenePath = "res://Game/Scenes/Game/Game.tscn"
+Scene = ExtResource("3_r6hok")
 
 [node name="ColorRect" type="ColorRect" parent="." node_paths=PackedStringArray("Wafflestock")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,5 +78,3 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 120
 text = "WaffleStock"
-
-[connection signal="pressed" from="AspectRatioContainer/MarginContainer/Button" to="." method="StartGame"]

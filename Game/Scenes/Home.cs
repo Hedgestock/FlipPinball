@@ -10,9 +10,4 @@ public partial class Home : CanvasLayer
         base._Ready();
         ScoreLabel.Text = $"Score: {ScoreManager.ScoreValue:N0}";
     }
-
-    void StartGame()
-    {
-        GameManager.Instance.GetTree().ChangeSceneToFile("res://Game/Scenes/Game/Game.tscn");
-    }
 }

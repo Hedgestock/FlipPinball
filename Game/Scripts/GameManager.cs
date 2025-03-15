@@ -1,10 +1,6 @@
 using Godot;
 using Godot.Collections;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
 
 public partial class GameManager : Node
 {
@@ -60,7 +56,7 @@ public partial class GameManager : Node
         if (BallQueue.Count == 0)
         {
             Instance.EmitSignal(SignalName.GameOver);
-            Instance.GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
+            SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
             return null;
         }
         Ball ball = BallQueue.First.Value;
