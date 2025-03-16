@@ -494,10 +494,12 @@ rotation = -0.801413
 
 [node name="PaddleLeftMain" parent="Layer1" instance=ExtResource("5_dxs6n")]
 position = Vector2(224, 968)
+rotation = 0.645772
+scale = Vector2(-1, 1)
 
 [node name="PaddleRightMain" parent="Layer1" instance=ExtResource("5_dxs6n")]
 position = Vector2(394, 968)
-scale = Vector2(-1, 1)
+rotation = -0.645772
 
 [node name="PlungerSpitter" parent="Layer1" instance=ExtResource("13_ctosm")]
 position = Vector2(519, 605)

@@ -59,7 +59,7 @@ public partial class Board : Node2D
             Tilt();
         }
 
-        //return;
+        return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -108,15 +108,15 @@ public partial class Board : Node2D
 
         if (Input.IsActionPressed("paddle_left"))
             foreach (var paddle in PaddlesLeft)
-                paddle.Rotate(delta, Mathf.DegToRad(-60));
+                paddle.Flip(delta);
         else foreach (var paddle in PaddlesLeft)
-                paddle.Rotate(delta, 0);
+                paddle.Return(delta);
 
         if (Input.IsActionPressed("paddle_right"))
             foreach (var paddle in PaddlesRight)
-                paddle.Rotate(delta, Mathf.DegToRad(60));
+                paddle.Flip(delta);
         else foreach (var paddle in PaddlesRight)
-                paddle.Rotate(delta, 0);
+                paddle.Return(delta);
 
         if (OS.GetName() == "Android" || OS.GetName() == "iOS")
         {

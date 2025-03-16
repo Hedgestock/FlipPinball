@@ -6,12 +6,28 @@ public partial class Paddle : CharacterBody2D
 {
 
     [Export]
-    float RotationSpeed;
+    int RotationSpeed;
+    [Export]
+    int AngleRange;
 
     [Export]
     public AudioStreamPlayer2D SoundPlayer;
-    public void Rotate(double delta, double angle)
+
+    float RestRotation;
+
+    public override void _Ready()
     {
-        Rotation = (float)Mathf.RotateToward(Rotation, angle, delta * RotationSpeed);
+        base._Ready();
+        RestRotation = Rotation;
+    }
+
+    public void Flip(double delta)
+    {
+        Rotation = (float)Mathf.RotateToward(Rotation, RestRotation + Mathf.DegToRad(Scale.X * AngleRange), delta * RotationSpeed);
+    }
+
+    public void Return(double delta)
+    {
+        Rotation = (float)Mathf.RotateToward(Rotation, RestRotation, delta * RotationSpeed);
     }
 }
