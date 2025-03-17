@@ -1,5 +1,4 @@
-bumper *1.5
-slingshot *3.4
+Extra ball sometimes freezes (hyper chute 4)
 
 Feather Weight
     -0.1 Weight

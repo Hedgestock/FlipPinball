@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb3yuplc8admj"
-path="res://.godot/imported/logo_Wafflestock.png-7b549214d0ff185adc508aca3680d292.ctex"
+uid="uid://2qvij3wih6hg"
+path="res://.godot/imported/ARROWRIGHT.png-7fae87714f88f8093aead6fc3ddf4571.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logo_Wafflestock.png"
-dest_files=["res://.godot/imported/logo_Wafflestock.png-7b549214d0ff185adc508aca3680d292.ctex"]
+source_file="res://Game/UI/Controls/ARROWRIGHT.png"
+dest_files=["res://.godot/imported/ARROWRIGHT.png-7fae87714f88f8093aead6fc3ddf4571.ctex"]
 
 [params]
 

@@ -39,7 +39,7 @@ public partial class Board : Node2D
         Callable.From(() =>
         {
             LoadedBall = GameManager.GetNextBall();
-            LoadBall(LoadedBall, Plunger.GlobalPosition);
+            LoadBall((Ball)LoadedBall.Duplicate(), Plunger.GlobalPosition);
             GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
         }).CallDeferred();
     }
@@ -59,7 +59,7 @@ public partial class Board : Node2D
             Tilt();
         }
 
-        return;
+        //return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {

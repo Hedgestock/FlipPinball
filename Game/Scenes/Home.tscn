@@ -1,66 +1,131 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8iu65a2xswru"]
+[gd_scene load_steps=11 format=3 uid="uid://b8iu65a2xswru"]
 
 [ext_resource type="Script" uid="uid://der05hffi8ur0" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
 [ext_resource type="Script" uid="uid://dgsbm63myfhuc" path="res://Game/UI/SceneChanger.cs" id="1_57tko"]
 [ext_resource type="Script" uid="uid://862tv3trf265" path="res://Game/Scenes/SplashScreen.cs" id="3_ghef2"]
 [ext_resource type="PackedScene" uid="uid://bfnn6iuv460e" path="res://Game/Scenes/Game/Game.tscn" id="3_r6hok"]
-[ext_resource type="Texture2D" uid="uid://bb3yuplc8admj" path="res://logo_Wafflestock.png" id="4_r6hok"]
+[ext_resource type="Texture2D" uid="uid://cqpbfcqe2rp8d" path="res://Game/UI/Controls/ARROWDOWN.png" id="4_2pmwa"]
+[ext_resource type="Texture2D" uid="uid://0bqgl85jn2bq" path="res://Game/UI/Controls/ARROWLEFT.png" id="4_phf7v"]
+[ext_resource type="Texture2D" uid="uid://bb8a48yce6n2c" path="res://Game/UI/Controls/ARROWUP.png" id="4_v06be"]
+[ext_resource type="Texture2D" uid="uid://bxjjnpv3iybje" path="res://Wafflestock/wafflestock_anime_frame_1.png" id="5_r6hok"]
+[ext_resource type="Texture2D" uid="uid://2qvij3wih6hg" path="res://Game/UI/Controls/ARROWRIGHT.png" id="5_v06be"]
+[ext_resource type="VideoStream" uid="uid://dc8x63t6skiub" path="res://Wafflestock/wafflestock animé.ogv" id="5_y1lpq"]
 
 [node name="Home" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel")]
 script = ExtResource("1_4jmw7")
-ScoreLabel = NodePath("AspectRatioContainer/MarginContainer/Label")
+ScoreLabel = NodePath("CenterContainer/MarginContainer/VBoxContainer/Score")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-ratio = 1.33
 
-[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
 layout_mode = 2
-text = "Score,test
-Score.test
-Score test"
+alignment = 1
 
-[node name="Button" type="Button" parent="AspectRatioContainer/MarginContainer"]
+[node name="Score" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+text = "Score: 0 "
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Start Game"
 script = ExtResource("1_57tko")
 Scene = ExtResource("3_r6hok")
 
-[node name="ColorRect" type="ColorRect" parent="." node_paths=PackedStringArray("Wafflestock")]
+[node name="PlungerContro" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerContro"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Plunger"
+
+[node name="ArrowDown" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerContro"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_2pmwa")
+expand_mode = 3
+
+[node name="PaddleControls" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PaddleControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Flippers"
+
+[node name="ArrowLeft" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PaddleControls"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_phf7v")
+expand_mode = 3
+
+[node name="ArrowRight" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PaddleControls"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("5_v06be")
+expand_mode = 3
+
+[node name="TiltControl" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TiltControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tilt"
+
+[node name="ArrowUp" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/TiltControl"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_v06be")
+expand_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="." node_paths=PackedStringArray("Wafflestock", "Logo")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.141176, 0.141176, 0.141176, 1)
+color = Color(0.0980392, 0.27451, 0.407843, 1)
 script = ExtResource("3_ghef2")
 Wafflestock = NodePath("Label")
+Logo = NodePath("AspectRatioContainer/VideoStreamPlayer")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+ratio = 0.5625
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/VBoxContainer"]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="ColorRect/AspectRatioContainer"]
 layout_mode = 2
-texture = ExtResource("4_r6hok")
+stream = ExtResource("5_y1lpq")
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/AspectRatioContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_r6hok")
 expand_mode = 4
+stretch_mode = 4
 
 [node name="Label" type="Label" parent="ColorRect"]
 modulate = Color(1, 1, 1, 0)
@@ -71,9 +136,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -247.0
-offset_top = 275.0
+offset_top = 111.0
 offset_right = 247.0
-offset_bottom = 373.0
+offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 120

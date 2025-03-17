@@ -10,9 +10,15 @@ public partial class Ballterator : ScrollContainer
 
     int BallterationCount = 3;
 
-    void Fill()
+    void StartBallterating()
     {
         if (Visible == false) return;
+        BallterationCyclesLeft = GameManager.BallQueue.Count;
+        DisplayBallterations();
+    }
+
+    void DisplayBallterations()
+    {
         foreach (var child in BallterationsContainer.GetChildren())
         {
             child.QueueFree();
@@ -44,7 +50,6 @@ public partial class Ballterator : ScrollContainer
 
     void DisplayBallSelector()
     {
-        if (Visible == false) return;
         foreach (var child in BallSelectionContainer.GetChildren())
         {
             child.QueueFree();
@@ -57,12 +62,26 @@ public partial class Ballterator : ScrollContainer
             {
                 ball.AddChild(SelectedBallteration);
                 BallSelectionContainer.Hide();
-                Hide();
-
-                GetTree().Paused = false;
+                BallterationCycleEnd();
             };
             BallSelectionContainer.AddChild(selector);
         }
         BallSelectionContainer.Show();
+    }
+
+    int BallterationCyclesLeft;
+
+    void BallterationCycleEnd()
+    {
+        BallterationCyclesLeft--;
+        if (BallterationCyclesLeft <= 0)
+        {
+            Hide();
+            GetTree().Paused = false;
+        } else
+        {
+            DisplayBallterations();
+        }
+
     }
 }

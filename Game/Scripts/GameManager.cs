@@ -32,11 +32,12 @@ public partial class GameManager : Node
     //static int 
     //public static int CurrentLevel { get { return _currentLevel; } }
     public static LinkedList<Ball> BallQueue;
-    public static List<Ball> HeldBalls = new();
+    public static List<Ball> HeldBalls;
 
     public static void SetGame()
     {
         BallQueue = new();
+        HeldBalls = new();
         CurrentLevel = 1;
         CurrentBoard = GD.Load<PackedScene>("res://Game/Scenes/Boards/TestLab/TestLab.tscn");
 
