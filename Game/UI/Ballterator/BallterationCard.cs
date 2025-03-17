@@ -5,7 +5,7 @@ using System.Linq;
 public partial class BallterationCard : PanelContainer
 {
     [Signal]
-    public delegate void BallterationChosenEventHandler();
+    public delegate void BallterationChosenEventHandler(Ballteration ballteration);
 
     [Export]
     VBoxContainer DescriptionContainer;
@@ -32,9 +32,7 @@ public partial class BallterationCard : PanelContainer
 
     void OnClick()
     {
-        GameManager.BallQueue.First().AddChild(_ballteration);
-        EmitSignal(SignalName.BallterationChosen);
-        GetTree().Paused = false;
+        EmitSignal(SignalName.BallterationChosen, _ballteration);
     }
 
 }

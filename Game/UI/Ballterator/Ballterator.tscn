@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1y2vydb0dwx7" path="res://Game/UI/Ballterator/Ballterator.cs" id="1_7uc8g"]
 
-[node name="Ballterator" type="ScrollContainer" node_paths=PackedStringArray("Container")]
+[node name="Ballterator" type="ScrollContainer" node_paths=PackedStringArray("BallterationsContainer", "BallSelectionContainer")]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,10 +12,26 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_7uc8g")
-Container = NodePath("Container")
+BallterationsContainer = NodePath("BallterationsContainer")
+BallSelectionContainer = NodePath("BallSelectionContainer")
 
-[node name="Container" type="FlowContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BallterationsContainer" type="FlowContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 alignment = 1
+
+[node name="BallSelectionContainer" type="FlowContainer" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="Fill"]

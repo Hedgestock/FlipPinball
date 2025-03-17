@@ -59,7 +59,7 @@ public partial class Board : Node2D
             Tilt();
         }
 
-        //return;
+        return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -215,6 +215,7 @@ public partial class Board : Node2D
             {
                 GameManager.Instance.EmitSignal(GameManager.SignalName.NewBall);
             }
+            else
             {
                 GameManager.Instance.EmitSignal(GameManager.SignalName.GameOver);
                 SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");

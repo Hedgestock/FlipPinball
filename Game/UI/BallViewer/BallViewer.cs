@@ -10,11 +10,10 @@ public partial class BallViewer : SubViewportContainer
 
     public Ball Ball
     {
-        get { return _ball; }
         set
         {   
             if (_ball != null)
-                Ball.QueueFree();
+                _ball.QueueFree();
             value.ProcessMode = ProcessModeEnum.Disabled;
             value.GlobalPosition = Vector2.One * 12;
             SubViewport.AddChild(value);

@@ -1,3 +1,6 @@
+bumper *1.5
+slingshot *3.4
+
 Feather Weight
     -0.1 Weight
 
