@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Ballterator : ScrollContainer
 {
@@ -25,23 +26,45 @@ public partial class Ballterator : ScrollContainer
         }
         for (int i = 0; i < BallterationCount; i++)
         {
-            BallterationsContainer.AddChild(CreateBalterationCard());
+            BallterationsContainer.AddChild(CreateBalterationCard(i));
         }
         BallterationsContainer.Show();
     }
 
-    Control CreateBalterationCard()
+    Control CreateBalterationCard(int i)
     {
         MarginContainer cardMargin = new();
         BallterationCard card = GD.Load<PackedScene>("res://Game/UI/Ballterator/BallterationCard.tscn").Instantiate<BallterationCard>();
         card.BallterationChosen += (Ballteration ballteration) =>
         {
-            SelectedBallteration = ballteration;
             BallterationsContainer.Hide();
-            DisplayBallSelector();
+            var children = ballteration.GetChildren();
+
+
+            if (Ballteration.Type.Meta == ballteration.Kind)
+            {
+                foreach (var metaEffect in ballteration.GetChildren().OfType<MetaEffect>())
+                {
+                    metaEffect.Activate();
+                }
+                BallterationCycleEnd();
+            }
+            else
+            {
+                SelectedBallteration = ballteration;
+                DisplayBallSelector();
+            }
         };
 
-        card.Ballteration = ScoreModifier.CreateRandomSimple();
+        if (BallterationCyclesLeft == 1 && i == 0)
+        {
+            card.Ballteration = GD.Load<PackedScene>("res://Game/Assets/Ballterations/PoolCommon/NewBall.tscn").Instantiate<Ballteration>();
+        }
+        else
+        {
+            card.Ballteration = ScoreModifier.CreateRandomSimple();
+        }
+
         cardMargin.AddChild(card);
         return cardMargin;
     }
@@ -78,7 +101,8 @@ public partial class Ballterator : ScrollContainer
         {
             Hide();
             GetTree().Paused = false;
-        } else
+        }
+        else
         {
             DisplayBallterations();
         }

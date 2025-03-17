@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class Game : Node
@@ -108,9 +109,9 @@ public partial class Game : Node
         //History.Text = $"Scored: {currentlyScoring}\n{History.Text}";
     }
 
-    void UpdateBallQueue(Array<Ball> balls)
+    void UpdateBallQueue()
     {
-        UpdateBallList(balls, BallQueue);
+        UpdateBallList(GameManager.BallQueue.ToArray(), BallQueue);
     }
     void UpdateHeldBalls(Array<Ball> balls)
     {
@@ -122,7 +123,7 @@ public partial class Game : Node
         UpdateBallList(balls, LiveBalls);
     }
 
-    void UpdateBallList(Array<Ball> balls, Container ballsViewer)
+    void UpdateBallList(IEnumerable<Ball> balls, Container ballsViewer)
     {
         foreach (var child in ballsViewer.GetChildren())
         {

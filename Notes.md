@@ -82,6 +82,7 @@ Capsule hitbox ?
 Count ball rotation ?
 Slow motion on the ball ?
 Slow motion on the ball on flipper approach ?
+Timed ball
 
 ## Trail
 Trail length
@@ -101,9 +102,8 @@ More options persistent
 More choice times
 More choice times persistent
 New ball
+Extra timed ball
 Extra ball
-Extra
-Timed ball
 
 ## Other
 Remove ballteration

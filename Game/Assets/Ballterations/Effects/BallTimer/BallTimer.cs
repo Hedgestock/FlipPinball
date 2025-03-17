@@ -1,8 +1,16 @@
 using Godot;
 using System;
 
-public partial class BallTimer : Node
+public partial class BallTimer : Effect
 {
+    public override string Description
+    {
+        get
+        {
+            return $"Ball destroys itself after {timeleft:0.00} seconds";
+        }
+    }
+
     [Export]
     Timer Timer;
     [Export]
@@ -19,7 +27,6 @@ public partial class BallTimer : Node
         Timer.Start(timeleft);
         Timer.Timeout += () =>
             {
-                GD.Print("LOL");
                 GetParent().GetParent().EmitSignal(Ball.SignalName.SelfDestruct);
             };
     }

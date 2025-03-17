@@ -12,6 +12,13 @@ public partial class ScoreModifier : Effect
         SuperMultiplier,
     }
 
+    public override string Description
+    {
+        get
+        {
+            return $"{GetGroups()} score {((int)Prio <= 1 ? '+' : 'x')}{Value} {((int)Prio % 2 == 1 ? 'S' : "")}{(Restrictive ? 'R' : "")}";
+        }
+    }
 
     [Export]
     public Priority Prio = Priority.Adder;
@@ -21,14 +28,6 @@ public partial class ScoreModifier : Effect
 
     [Export]
     public float Value = 1;
-
-    public override string Description
-    {
-        get
-        {
-            return $"{GetGroups()} score {((int)Prio <= 1 ? '+' : 'x')}{Value} {((int)Prio % 2 == 1 ? 'S' : "")}{(Restrictive ? 'R' : "")}";
-        }
-    }
 
     static StringName[] ScoringGroups = ["Bumpers", "Global", "Rollovers", "Slingshots", "Spinners", "Spitters", "Targets", "ShapeRound", "ShapeSquare"];
 
@@ -42,6 +41,7 @@ public partial class ScoreModifier : Effect
         sc.AddToGroup(ScoringGroups[GD.RandRange(0, ScoringGroups.Length - 1)]);
         b.AddChild(sc);
 
+        b.Kind = Ballteration.Type.Score;
         b.DisplayName = $"{sc.GetGroups().First()}{((int)sc.Prio % 2 == 1 ? " super" : "")} {((int)sc.Prio <= 1 ? "adder" : "multiplier")}";
 
         return b;

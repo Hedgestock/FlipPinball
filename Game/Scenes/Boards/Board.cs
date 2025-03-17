@@ -59,7 +59,7 @@ public partial class Board : Node2D
             Tilt();
         }
 
-        //return;
+        return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -79,7 +79,7 @@ public partial class Board : Node2D
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.GlobalPosition = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
-                var bt = GD.Load<PackedScene>("res://Game/Assets/Ballterations/Ballteration.tscn").Instantiate<Ballteration>();
+                Ballteration bt = new();
                 bt.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/Effects/ScoreModifier/Tests/GlobalAdder.tscn").Instantiate<ScoreModifier>());
                 ball.AddChild(bt);
                 AddLiveBall(ball);

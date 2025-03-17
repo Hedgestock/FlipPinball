@@ -19,7 +19,7 @@ public partial class GameManager : Node
     [Signal]
     public delegate void NewBallEventHandler();
     [Signal]
-    public delegate void BallQueueChangedEventHandler(Array<Ball> balls);
+    public delegate void BallQueueChangedEventHandler();
     [Signal]
     public delegate void HeldBallsChangedEventHandler(Array<Ball> balls);
     [Signal]
@@ -60,14 +60,17 @@ public partial class GameManager : Node
         //}
         Ball ball = BallQueue.First.Value;
         BallQueue.RemoveFirst();
-        Instance.EmitSignal(SignalName.BallQueueChanged, new Array<Ball>(BallQueue));
+        Instance.EmitSignal(SignalName.BallQueueChanged);
         return ball;
     }
 
-    public static void AddExtraBall(Ball ball)
+    public static void AddExtraBall(Ball ball, bool enqueue = false)
     {
-        BallQueue.AddFirst(ball);
-        Instance.EmitSignal(SignalName.BallQueueChanged, new Array<Ball>(BallQueue));
+        if (enqueue)
+            BallQueue.AddLast(ball);
+        else
+            BallQueue.AddFirst(ball);
+        Instance.EmitSignal(SignalName.BallQueueChanged);
     }
 
     protected void ClearHeldBalls()

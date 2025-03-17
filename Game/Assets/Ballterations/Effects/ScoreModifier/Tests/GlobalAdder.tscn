@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://da42mlnrnpusg"]
-
-[ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="1_r16of"]
-
-[node name="GlobalAdder" type="Node" groups=["Global"]]
-script = ExtResource("1_r16of")

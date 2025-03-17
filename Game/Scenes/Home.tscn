@@ -93,6 +93,14 @@ layout_mode = 2
 texture = ExtResource("4_v06be")
 expand_mode = 3
 
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tilting while engaging either flipper or both will change the direction of the table nudge."
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="ColorRect" type="ColorRect" parent="." node_paths=PackedStringArray("Wafflestock", "Logo")]
 visible = false
 anchors_preset = 15
