@@ -6,6 +6,7 @@ Add levelup delay
 Add spinner sprites
 Add tooltip for balls
 Fix freeze+tweening doing strange stuff on trail (Spitters)
+Fix ball draw layer not right on lab semi exit
 
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing
@@ -26,13 +27,23 @@ Middle Ages
 Dinosaurs
 Cyberpunk
 Racecar
-Food
+Food salty
+Food sweet
+Food healthy
 Circus
 Steampunk
 FishTheFishes
 Haunted
+Double sided board
+
+
+Birthday (Based on user birth month)
+Easter
+Halloween
+Christmas
 
 Boss
+-ET
 -BankHeist
 -Cerberus
 
@@ -43,6 +54,8 @@ No see ball queue
 No see upgrades on level end
 No see live ball(s) ?
 Random teleports
+Random teleports invisible
+Slow motion (Also in target)
 
 # Ballterations
 
@@ -61,14 +74,25 @@ Global score
 Size down
 Weight down
 Random direction changes
+Bounciness
 Square hitbox ?
+Triangle hitbox ?
+Capsule hitbox ?
+Count ball rotation ?
+Slow motion on the ball ?
+Slow motion on the ball on flipper approach ?
 
 ## Trail
 Trail length
 Exploding trail
 
+## Missions
+Mission scrore mult
+Reduce completion threshold
+
 ## Board
 Paddle speed
+Gravity inverter
 
 ## Meta
 More options
@@ -77,10 +101,12 @@ More choice times
 More choice times persistent
 New ball
 Extra ball
-Timed ball ?
+Extra
+Timed ball
 
 ## Other
 Remove ballteration
+On flipper hit swap the ball ?
 
 # Rarity system
 

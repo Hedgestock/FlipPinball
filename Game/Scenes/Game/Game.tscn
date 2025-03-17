@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene load_steps=7 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" uid="uid://c6o8v1jksh0gh" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
 [ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
 [ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
 [ext_resource type="PackedScene" uid="uid://1uf453kusqfd" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="3_vxydm"]
+[ext_resource type="PackedScene" uid="uid://6aanashyb3dl" path="res://Game/UI/Ballterator/Ballterator.tscn" id="5_ueg0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
 size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("CurrentBoard", "BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "InfoBox", "Score", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
+[node name="Game" type="Node" node_paths=PackedStringArray("CurrentBoard", "BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "InfoBox", "Score", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
 CurrentBoard = NodePath("SubViewportContainer/SubViewport/Board")
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
@@ -24,6 +25,7 @@ Placeholder = NodePath("MainContainer/Placeholder")
 StatusScrollContainer = NodePath("MainContainer/StatusScrollContainer")
 StatusBox = NodePath("MainContainer/StatusScrollContainer/Status")
 FPS = NodePath("MainContainer/StatusScrollContainer/Status/FPS")
+Ballterator = NodePath("Ballterator")
 ScoreBubbleScene = ExtResource("2_d708p")
 GameTimerLabel = NodePath("MainContainer/StatusScrollContainer/Status/GameTime")
 LeftPaddleButton = NodePath("LeftPaddleButton")
@@ -146,3 +148,8 @@ z_index = 100
 position = Vector2(450, 540)
 shape = SubResource("RectangleShape2D_n7y7i")
 action = "paddle_right"
+
+[node name="Ballterator" parent="." instance=ExtResource("5_ueg0k")]
+visible = false
+
+[connection signal="hidden" from="Ballterator" to="." method="ResetBoard"]

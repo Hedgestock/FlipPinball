@@ -40,6 +40,9 @@ public partial class Game : Node
     Label FPS;
 
     [Export]
+    Container Ballterator;
+
+    [Export]
     PackedScene ScoreBubbleScene;
 
     public override void _Ready()
@@ -49,7 +52,7 @@ public partial class Game : Node
 
         ScoreManager.Instance.Connect(ScoreManager.SignalName.Scoring, new Callable(this, MethodName.UpdateScore));
 
-        GameManager.Instance.Connect(GameManager.SignalName.BoardReset, new Callable(this, MethodName.ResetBoard));
+        GameManager.Instance.Connect(GameManager.SignalName.NewBall, new Callable(this, MethodName.OpenBallterator));
         GameManager.Instance.Connect(GameManager.SignalName.LoadedBall, new Callable(this, MethodName.UpdateLoadedBall));
         GameManager.Instance.Connect(GameManager.SignalName.BallQueueChanged, new Callable(this, MethodName.UpdateBallQueue));
         GameManager.Instance.Connect(GameManager.SignalName.HeldBallsChanged, new Callable(this, MethodName.UpdateHeldBalls));
@@ -77,6 +80,12 @@ public partial class Game : Node
             BallTimerLabel.Text = $"Ball time: {DateTime.Now - BallStart:mm\\:ss}";
         }
         FPS.Text = $"{Engine.GetFramesPerSecond()} FPS";
+    }
+
+    void OpenBallterator()
+    {
+        GetTree().Paused = true;
+        Ballterator.Show();
     }
 
     void ResetBoard()

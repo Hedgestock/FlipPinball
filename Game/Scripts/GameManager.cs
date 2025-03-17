@@ -17,7 +17,7 @@ public partial class GameManager : Node
     [Signal]
     public delegate void GameOverEventHandler();
     [Signal]
-    public delegate void BoardResetEventHandler();
+    public delegate void NewBallEventHandler();
     [Signal]
     public delegate void BallQueueChangedEventHandler(Array<Ball> balls);
     [Signal]
@@ -53,12 +53,10 @@ public partial class GameManager : Node
 
     public static Ball GetNextBall()
     {
-        if (BallQueue.Count == 0)
-        {
-            Instance.EmitSignal(SignalName.GameOver);
-            SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
-            return null;
-        }
+        //if (BallQueue.Count == 0)
+        //{
+        //    Instance.EmitSignal(SignalName.GameOver);
+        //}
         Ball ball = BallQueue.First.Value;
         BallQueue.RemoveFirst();
         Instance.EmitSignal(SignalName.BallQueueChanged, new Array<Ball>(BallQueue));

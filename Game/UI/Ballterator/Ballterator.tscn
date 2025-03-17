@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://6aanashyb3dl"]
+[gd_scene load_steps=2 format=3 uid="uid://6aanashyb3dl"]
 
 [ext_resource type="Script" uid="uid://1y2vydb0dwx7" path="res://Game/UI/Ballterator/Ballterator.cs" id="1_7uc8g"]
-[ext_resource type="PackedScene" uid="uid://jfrcj037eim1" path="res://Game/UI/Ballterator/BalterationCard.tscn" id="2_suorm"]
 
 [node name="Ballterator" type="ScrollContainer" node_paths=PackedStringArray("Container")]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,9 +19,3 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Container"]
-layout_mode = 2
-
-[node name="BalterationCard" parent="Container/MarginContainer" instance=ExtResource("2_suorm")]
-layout_mode = 2

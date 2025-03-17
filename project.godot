@@ -51,6 +51,7 @@ ShapeRound=""
 Spinners=""
 Spitters=""
 Walls=""
+Global=""
 
 [gui]
 

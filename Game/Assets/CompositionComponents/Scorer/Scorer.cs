@@ -24,20 +24,21 @@ public partial class Scorer : Node2D
 
     bool CheckEligibility(ScoreModifier modifier)
     {
-        var intersection = modifier.GetGroups().Intersect(GetGroups());
+        var groups = modifier.GetGroups();
+        var intersection = groups.Intersect(GetGroups());
         if (modifier.Restrictive)
-            return intersection.Count() == modifier.GetGroups().Count();
-        return intersection.Any();
+            return intersection.Count() == groups.Count();
+        return intersection.Any() || modifier.GetGroups().Contains("Global");
     }
 
     public void Score(Ball ball, int value)
     {
-        int superAdder = 0;
-        int multiplier = 1;
-        int adder = 0;
-        int superMultiplier = 1;
+        float superAdder = 0;
+        float multiplier = 1;
+        float adder = 0;
+        float superMultiplier = 1;
 
-        foreach (ScoreModifier ballteration in ball.GetChildren().Where(c => c is ScoreModifier sm && CheckEligibility(sm)))
+        foreach (ScoreModifier ballteration in ball.GetChildren().OfType<Ballteration>().SelectMany(p => p.GetChildren().Where(c => c is ScoreModifier sm && CheckEligibility(sm))))
         {
             switch (ballteration.Prio)
             {
@@ -55,7 +56,7 @@ public partial class Scorer : Node2D
                     break;
             }
         }
-        Score((((value + superAdder) * multiplier) + adder) * superMultiplier);
+        Score((int)((((value + superAdder) * multiplier) + adder) * superMultiplier));
     }
 
     public void Score(int score)
