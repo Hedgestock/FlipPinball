@@ -24,7 +24,10 @@ public partial class Ballteration : Node
     }
 
     [Export]
-    public Type Kind;
+    public Type Kind = Type.Other;
+
+    [Export]
+    public Rarity Color = Rarity.Yellow;
 
     [Export]
     public string DisplayName;

@@ -4,7 +4,7 @@ using System;
 public partial class ScoreManager : Node
 {
     [Signal]
-    public delegate void ScoringEventHandler(long totalScoreValue, int currentlyScoring);
+    public delegate void ScoringEventHandler(int currentlyScoring);
 
     protected static ScoreManager _instance;
     public static ScoreManager Instance { get { return _instance; } }
@@ -17,6 +17,7 @@ public partial class ScoreManager : Node
     }
 
     public static long ScoreValue { get; set; }
+    public static long TotalScoreValue { get; set; }
 
     public override void _Ready()
     {
@@ -30,7 +31,8 @@ public partial class ScoreManager : Node
     public static int Score(int score)
     {
         ScoreValue += score;
-        Instance.EmitSignal(SignalName.Scoring, ScoreValue, score);
+        TotalScoreValue += score;
+        Instance.EmitSignal(SignalName.Scoring, score);
         return score;
     }
 }

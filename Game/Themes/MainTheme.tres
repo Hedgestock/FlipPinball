@@ -1,6 +1,15 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cw3uspn2sthsy"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cw3uspn2sthsy"]
 
 [ext_resource type="FontFile" uid="uid://bkcr2bf0r61kc" path="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf" id="1_6bbnb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqpbp"]
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
 
 [resource]
 default_font = ExtResource("1_6bbnb")
@@ -9,5 +18,6 @@ MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_nqpbp")
 ScoreBubble/base_type = &"Label"
 ScoreBubble/constants/outline_size = 10

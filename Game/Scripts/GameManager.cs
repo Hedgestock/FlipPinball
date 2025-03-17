@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System;
 using System.Collections.Generic;
 
 public partial class GameManager : Node
@@ -17,6 +18,8 @@ public partial class GameManager : Node
     [Signal]
     public delegate void GameOverEventHandler();
     [Signal]
+    public delegate void LevelClearedEventHandler();
+    [Signal]
     public delegate void NewBallEventHandler();
     [Signal]
     public delegate void BallQueueChangedEventHandler();
@@ -27,10 +30,9 @@ public partial class GameManager : Node
     [Signal]
     public delegate void LoadedBallEventHandler(Ball ball);
 
-    static int CurrentLevel;
+    public static int CurrentLevel;
+    public static long TargetScore { get { return 200000 * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2); } }
     public static PackedScene CurrentBoard;
-    //static int 
-    //public static int CurrentLevel { get { return _currentLevel; } }
     public static LinkedList<Ball> BallQueue;
     public static List<Ball> HeldBalls;
 
@@ -42,6 +44,7 @@ public partial class GameManager : Node
         CurrentBoard = GD.Load<PackedScene>("res://Game/Scenes/Boards/TestLab/TestLab.tscn");
 
         ScoreManager.ScoreValue = 0;
+        ScoreManager.TotalScoreValue = 0;
 
         for (int i = 0; i < 3; i++)
         {
@@ -52,12 +55,26 @@ public partial class GameManager : Node
         }
     }
 
+    public static void BallDiedHandler()
+    {
+        if (ScoreManager.ScoreValue < TargetScore)
+            Instance.EmitSignal(SignalName.NewBall);
+
+        else
+        {
+            CurrentLevel++;
+            ScoreManager.ScoreValue = 0;
+            Instance.EmitSignal(SignalName.LevelCleared);
+        }
+    }
+
     public static Ball GetNextBall()
     {
-        //if (BallQueue.Count == 0)
-        //{
-        //    Instance.EmitSignal(SignalName.GameOver);
-        //}
+        if (BallQueue.Count == 0)
+        {
+            Instance.EmitSignal(SignalName.GameOver);
+            SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
+        }
         Ball ball = BallQueue.First.Value;
         BallQueue.RemoveFirst();
         Instance.EmitSignal(SignalName.BallQueueChanged);

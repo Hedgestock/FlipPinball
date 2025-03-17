@@ -32,6 +32,8 @@ public partial class Game : Node
     [Export]
     Label Score;
     [Export]
+    Label TargetScore;
+    [Export]
     Control Placeholder;
     [Export]
     Container StatusScrollContainer;
@@ -53,7 +55,8 @@ public partial class Game : Node
 
         ScoreManager.Instance.Connect(ScoreManager.SignalName.Scoring, new Callable(this, MethodName.UpdateScore));
 
-        GameManager.Instance.Connect(GameManager.SignalName.NewBall, new Callable(this, MethodName.OpenBallterator));
+        GameManager.Instance.Connect(GameManager.SignalName.NewBall, new Callable(this, MethodName.ResetBoard));
+        GameManager.Instance.Connect(GameManager.SignalName.LevelCleared, new Callable(this, MethodName.OpenBallterator));
         GameManager.Instance.Connect(GameManager.SignalName.LoadedBall, new Callable(this, MethodName.UpdateLoadedBall));
         GameManager.Instance.Connect(GameManager.SignalName.BallQueueChanged, new Callable(this, MethodName.UpdateBallQueue));
         GameManager.Instance.Connect(GameManager.SignalName.HeldBallsChanged, new Callable(this, MethodName.UpdateHeldBalls));
@@ -62,6 +65,7 @@ public partial class Game : Node
         GameStart = DateTime.Now;
 
         GameManager.SetGame();
+        TargetScore.Text = $"Target score: {GameManager.TargetScore} ({GameManager.CurrentLevel})";
 
         base._Ready();
     }
@@ -87,6 +91,8 @@ public partial class Game : Node
     {
         GetTree().Paused = true;
         Ballterator.Show();
+        TargetScore.Text = $"Target score: {GameManager.TargetScore} ({GameManager.CurrentLevel})";
+        Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
     }
 
     void ResetBoard()
@@ -98,14 +104,14 @@ public partial class Game : Node
         BoardViewport.CallDeferred(Node.MethodName.AddChild, GameManager.CurrentBoard.Instantiate());
     }
 
-    void UpdateScore(long totalScoreValue, int currentlyScoring)
+    void UpdateScore(int currentlyScoring)
     {
         if (currentlyScoring == 0) return;
         //PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
         //scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
         //scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
         //AddChild(scoreBubble);
-        Score.Text = $"Score: {totalScoreValue:N0}";
+        Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
         //History.Text = $"Scored: {currentlyScoring}\n{History.Text}";
     }
 

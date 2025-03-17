@@ -5,9 +5,15 @@ Add tilt function timeout
 Add levelup delay
 Add spinner sprites
 Add tooltip for balls
+Add +-10 on spitters
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix ball draw layer not right on lab semi exit
-Clear held balls on game start
+Fix paddle position
+Fix top teleport hitbox
+Fix rollover lane hitbox
+Fix new ball color
+Fix score bubble tweening
+Fix ball manager failing on game over
 
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing

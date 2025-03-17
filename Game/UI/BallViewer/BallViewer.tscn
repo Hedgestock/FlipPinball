@@ -1,14 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgs5jt3kt7xw3"]
+[gd_scene load_steps=4 format=3 uid="uid://dgs5jt3kt7xw3"]
 
 [ext_resource type="Script" uid="uid://cfrijwhc6b4dh" path="res://Game/UI/BallViewer/BallViewer.cs" id="1_y3gcp"]
 [ext_resource type="Texture2D" uid="uid://cm3t8b8qctbws" path="res://Game/UI/BallViewer/Damier.png" id="2_01d5j"]
 
-[node name="BallViewer" type="SubViewportContainer" node_paths=PackedStringArray("SubViewport")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="ViewportTexture" id="ViewportTexture_q607d"]
+viewport_path = NodePath("SubViewport")
+
+[node name="BallViewer" type="TextureRect" node_paths=PackedStringArray("SubViewport")]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("ViewportTexture_q607d")
 script = ExtResource("1_y3gcp")
 SubViewport = NodePath("SubViewport")
 
@@ -17,7 +30,6 @@ disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(40, 40)
-render_target_update_mode = 4
 
 [node name="Damier" type="Sprite2D" parent="SubViewport"]
 texture = ExtResource("2_01d5j")

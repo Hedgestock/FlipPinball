@@ -52,6 +52,7 @@ size_flags_horizontal = 3
 text = "Plunger"
 
 [node name="ArrowDown" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerContro"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("4_2pmwa")
@@ -67,12 +68,14 @@ size_flags_horizontal = 3
 text = "Flippers"
 
 [node name="ArrowLeft" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PaddleControls"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("4_phf7v")
 expand_mode = 3
 
 [node name="ArrowRight" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PaddleControls"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("5_v06be")
@@ -88,6 +91,7 @@ size_flags_horizontal = 3
 text = "Tilt"
 
 [node name="ArrowUp" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/TiltControl"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("4_v06be")

@@ -56,7 +56,7 @@ public partial class Ballterator : ScrollContainer
             }
         };
 
-        if (BallterationCyclesLeft == 1 && i == 0)
+        if ((BallterationCyclesLeft == 1 && i == 0) || GameManager.BallQueue.Count == 0)
         {
             card.Ballteration = GD.Load<PackedScene>("res://Game/Assets/Ballterations/PoolCommon/NewBall.tscn").Instantiate<Ballteration>();
         }
@@ -106,6 +106,5 @@ public partial class Ballterator : ScrollContainer
         {
             DisplayBallterations();
         }
-
     }
 }

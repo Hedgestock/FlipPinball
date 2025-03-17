@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BallViewer : SubViewportContainer
+public partial class BallViewer : TextureRect
 {
     [Export]
     SubViewport SubViewport;

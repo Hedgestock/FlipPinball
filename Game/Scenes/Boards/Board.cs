@@ -36,12 +36,7 @@ public partial class Board : Node2D
         if (OS.GetName() == "Android" || OS.GetName() == "iOS")
             lastAccel = Enumerable.Repeat(Input.GetAccelerometer().Length(), 50).ToArray();
 
-        Callable.From(() =>
-        {
-            LoadedBall = GameManager.GetNextBall();
-            LoadBall((Ball)LoadedBall.Duplicate(), Plunger.GlobalPosition);
-            GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
-        }).CallDeferred();
+        CallDeferred(MethodName.LoadBall);
     }
 
     public override void _Input(InputEvent @event)
@@ -72,7 +67,7 @@ public partial class Board : Node2D
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.GlobalPosition = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
-                AddLiveBall(ball);
+                AddLiveBall(ball, LaunchPos);
             }
             else if (@event.IsActionReleased("screen_tap_secondary"))
             {
@@ -82,7 +77,7 @@ public partial class Board : Node2D
                 Ballteration bt = new();
                 bt.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/Effects/ScoreModifier/Tests/GlobalAdder.tscn").Instantiate<ScoreModifier>());
                 ball.AddChild(bt);
-                AddLiveBall(ball);
+                AddLiveBall(ball, LaunchPos);
             }
         }
     }
@@ -140,8 +135,20 @@ public partial class Board : Node2D
         }
     }
 
-    void AddLiveBall(Ball ball)
+    void LoadBall()
     {
+        LoadedBall = GameManager.GetNextBall();
+        AddLiveBall((Ball)LoadedBall.Duplicate(), Plunger.GlobalPosition, true);
+        GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
+    }
+
+    void AddLiveBall(Ball ball, Vector2 position, bool inert = false)
+    {
+        if (inert)
+            ball.LinearVelocity = Vector2.Zero;
+
+        ball.GlobalPosition = position;
+
         LiveBalls.Add(ball);
         GameManager.Instance.EmitSignal(GameManager.SignalName.LiveBallsChanged, LiveBalls.ToArray());
         ball.SelfDestruct += () => DespawnBall(ball, DespawnType.SelfDestruct);
@@ -158,15 +165,9 @@ public partial class Board : Node2D
     void TelportLiveBall(Ball ball, Vector2 destination)
     {
         RemoveLiveBall(ball);
-        CallDeferred(MethodName.LoadBall, ball.Duplicate(), destination);
+        CallDeferred(MethodName.AddLiveBall, ball.Duplicate(), destination, true);
     }
 
-    void LoadBall(Ball ball, Vector2 position)
-    {
-        ball.GlobalPosition = position;
-        ball.LinearVelocity = Vector2.Zero;
-        AddLiveBall(ball);
-    }
 
     protected void GiveExtraBall()
     {
@@ -178,7 +179,7 @@ public partial class Board : Node2D
         GameManager.HeldBalls.Add(ball);
         RemoveLiveBall(ball);
         GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, GameManager.HeldBalls.ToArray());
-        CallDeferred(MethodName.LoadBall, ball.Duplicate(), Plunger.GlobalPosition);
+        CallDeferred(MethodName.AddLiveBall, ball.Duplicate(), Plunger.GlobalPosition, true);
         Plunger.AutoFire = true;
     }
 
@@ -208,17 +209,12 @@ public partial class Board : Node2D
 
             if (type == DespawnType.Drain && SaveBallLight.IsOnOrBlinking)
             {
-                CallDeferred(MethodName.LoadBall, ball.Duplicate(), Plunger.GlobalPosition);
+                CallDeferred(MethodName.AddLiveBall, ball.Duplicate(), Plunger.GlobalPosition, true);
                 SaveBallLight.TurnOff();
-            }
-            else if (GameManager.BallQueue.Count > 0)
-            {
-                GameManager.Instance.EmitSignal(GameManager.SignalName.NewBall);
             }
             else
             {
-                GameManager.Instance.EmitSignal(GameManager.SignalName.GameOver);
-                SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
+                GameManager.BallDiedHandler();
             }
         }
     }

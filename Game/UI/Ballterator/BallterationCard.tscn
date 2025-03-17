@@ -1,19 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://jfrcj037eim1"]
+[gd_scene load_steps=2 format=3 uid="uid://jfrcj037eim1"]
 
 [ext_resource type="Script" uid="uid://b8gp1iwlg6o6o" path="res://Game/UI/Ballterator/BallterationCard.cs" id="1_5erwd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyd2f"]
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="BalterationCard" type="PanelContainer" node_paths=PackedStringArray("DescriptionContainer", "NameLabel")]
 offset_right = 452.0
 offset_bottom = 296.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_hyd2f")
 script = ExtResource("1_5erwd")
 DescriptionContainer = NodePath("MarginContainer/VBoxContainer")
 NameLabel = NodePath("MarginContainer/VBoxContainer/Name")
