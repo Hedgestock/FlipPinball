@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl5k1huk7mxl1"]
+[gd_scene load_steps=7 format=3 uid="uid://cl5k1huk7mxl1"]
 
 [ext_resource type="Script" uid="uid://ddki4e8gotu78" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.cs" id="1_al2n7"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="2_6dibq"]
@@ -7,15 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://dq3yusg03w6pa" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.wav" id="4_3evls"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwhw8"]
-size = Vector2(14, 18)
+size = Vector2(14, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_flb67"]
-size = Vector2(14, 18)
-
-[node name="RolloverSwitch" type="Node2D" node_paths=PackedStringArray("NorthZone", "SouthZone", "OnOffLight", "Scorer") groups=["Rollovers"]]
+[node name="RolloverSwitch" type="Node2D" node_paths=PackedStringArray("OnOffLight", "Scorer") groups=["Rollovers"]]
 script = ExtResource("1_al2n7")
-NorthZone = NodePath("NorthZone")
-SouthZone = NodePath("SouthZone")
 OnOffLight = NodePath("OnOffLight")
 Scorer = NodePath("Scorer")
 
@@ -25,21 +20,12 @@ position = Vector2(0, -25)
 [node name="Switch" type="Sprite2D" parent="."]
 texture = ExtResource("2_tskb8")
 
-[node name="NorthZone" type="Area2D" parent="."]
+[node name="SwitchArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NorthZone"]
-position = Vector2(0, -5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchArea"]
 shape = SubResource("RectangleShape2D_lwhw8")
-
-[node name="SouthZone" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SouthZone"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_flb67")
 
 [node name="Scorer" parent="." instance=ExtResource("2_6dibq")]
 
@@ -49,5 +35,4 @@ attenuation = 1e-05
 bus = &"BoardElements"
 
 [connection signal="LanePassed" from="." to="AudioStreamPlayer" method="play"]
-[connection signal="body_entered" from="NorthZone" to="." method="OnNorthZoneEnter"]
-[connection signal="body_entered" from="SouthZone" to="." method="OnSouthZoneEnter"]
+[connection signal="body_entered" from="SwitchArea" to="." method="LanePass"]

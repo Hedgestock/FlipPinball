@@ -9,9 +9,7 @@ public partial class RolloverSwitch : Node2D
     public delegate void DeactivatingEventHandler();
 
     [Export]
-    Area2D NorthZone;
-    [Export]
-    Area2D SouthZone;
+    Area2D Switch;
 
     [Export]
     OnOffLight OnOffLight;
@@ -23,32 +21,19 @@ public partial class RolloverSwitch : Node2D
     [Export]
     int OnMultiplier = 1;
 
-    void OnNorthZoneEnter(Node2D body)
+    void LanePass(Node2D body)
     {
-        if (body is Ball ball && SouthZone.OverlapsBody(body))
+        if (body is Ball ball)
         {
-            LanePass(ball);
+            if (OnOffLight.IsOn)
+                Scorer.Score(ball, Scorer.Value * OnMultiplier);
+            else
+                Scorer.Score(ball);
+
+            EmitSignal(SignalName.LanePassed);
+            if (!SelfActivated && !OnOffLight.IsOn) return;
+            OnOffLight.IsOn = !OnOffLight.IsOn;
+            if (!OnOffLight.IsOn) EmitSignal(SignalName.Deactivating);
         }
-    }
-
-    void OnSouthZoneEnter(Node2D body)
-    {
-        if (body is Ball ball && NorthZone.OverlapsBody(body))
-        {
-            LanePass(ball);
-        }
-    }
-
-    void LanePass(Ball ball)
-    {
-        if (OnOffLight.IsOn)
-            Scorer.Score(ball, Scorer.Value * OnMultiplier);
-        else
-            Scorer.Score(ball);
-
-        EmitSignal(SignalName.LanePassed);
-        if (!SelfActivated && !OnOffLight.IsOn) return;
-        OnOffLight.IsOn = !OnOffLight.IsOn;
-        if (!OnOffLight.IsOn) EmitSignal(SignalName.Deactivating);
     }
 }

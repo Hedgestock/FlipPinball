@@ -9,5 +9,5 @@
 [node name="Sprite2D" type="Sprite2D" parent="Hitbox" index="0"]
 texture = ExtResource("3_bl4pq")
 
-[node name="AudioStreamPlayer" parent="." index="3"]
+[node name="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("3_8g0ij")
