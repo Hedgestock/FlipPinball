@@ -22,7 +22,6 @@ public partial class BallterationCard : PanelContainer
             NameLabel.Text = _ballteration.DisplayName;
 
             StyleBox sb = (StyleBox)GetThemeStylebox("panel").Duplicate();
-
             switch (_ballteration.Color)
             {
                 default:
@@ -43,17 +42,16 @@ public partial class BallterationCard : PanelContainer
                     (sb as StyleBoxFlat).BgColor = Colors.DarkGoldenrod;
                     break;
             }
-
-
             AddThemeStyleboxOverride("panel", sb);
+
             foreach (var effect in value.GetChildren().OfType<Effect>())
             {
                 Label effectDescription = new();
                 effectDescription.Text = effect.Description;
+                effectDescription.AutowrapMode = TextServer.AutowrapMode.WordSmart;
                 DescriptionContainer.AddChild(effectDescription);
             }
         }
-
     }
 
     void OnClick()

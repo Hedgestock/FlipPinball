@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpwjamahfvpu1"]
 
-[ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialButton/TutorialInfo.cs" id="1_67f7d"]
+[ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialInfo.cs" id="1_67f7d"]
 
 [node name="TutorialButton" type="Button"]
 process_mode = 3

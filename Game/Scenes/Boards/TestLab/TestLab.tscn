@@ -37,8 +37,8 @@
 [ext_resource type="Texture2D" uid="uid://c0rnhvl8iwe60" path="res://Game/Scenes/Boards/TestLab/LabFloor.png" id="34_00wus"]
 [ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/LabWalls.png" id="34_ef6o4"]
 [ext_resource type="PackedScene" uid="uid://dlc68ojsii7om" path="res://Game/Assets/BoardElements/TiltLight/TiltLight.tscn" id="34_qajmy"]
-[ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialButton/TutorialInfo.cs" id="38_1b66e"]
-[ext_resource type="PackedScene" uid="uid://cpwjamahfvpu1" path="res://Game/UI/Tutorial/TutorialButton/TutorialButton.tscn" id="38_a4afa"]
+[ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialInfo.cs" id="38_1b66e"]
+[ext_resource type="PackedScene" uid="uid://cpwjamahfvpu1" path="res://Game/UI/Tutorial/TutorialButton.tscn" id="38_a4afa"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 

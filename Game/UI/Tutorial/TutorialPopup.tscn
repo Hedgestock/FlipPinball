@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://desalmyy6b5on"]
 
-[ext_resource type="Script" uid="uid://b5fyxy0ypguwt" path="res://Game/UI/Tutorial/TutorialButton/ScrollContainerMax.cs" id="1_qlptu"]
+[ext_resource type="Script" uid="uid://b5fyxy0ypguwt" path="res://Game/UI/Tutorial/ScrollContainerMax.cs" id="1_qlptu"]
 
 [node name="TutorialPopup" type="Button"]
 process_mode = 3
