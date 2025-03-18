@@ -67,6 +67,8 @@ public partial class Game : Node
         GameManager.SetGame();
         TargetScore.Text = $"Target score: {GameManager.TargetScore} ({GameManager.CurrentLevel})";
 
+        ResetBoard();
+
         base._Ready();
     }
 
@@ -101,7 +103,8 @@ public partial class Game : Node
         {
             child.QueueFree();
         }
-        BoardViewport.CallDeferred(Node.MethodName.AddChild, GameManager.CurrentBoard.Instantiate());
+        GameManager.CurrentBoard = GD.Load<PackedScene>("res://Game/Scenes/Boards/TestLab/TestLab.tscn").Instantiate<Board>();
+        BoardViewport.CallDeferred(Node.MethodName.AddChild, GameManager.CurrentBoard);
     }
 
     void UpdateScore(int currentlyScoring)

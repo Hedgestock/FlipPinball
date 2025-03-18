@@ -15,6 +15,12 @@ public partial class GameManager : Node
         _instance = this;
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+        ProcessMode = ProcessModeEnum.Always;
+    }
+
     [Signal]
     public delegate void GameOverEventHandler();
     [Signal]
@@ -32,7 +38,7 @@ public partial class GameManager : Node
 
     public static int CurrentLevel;
     public static long TargetScore { get { return 200000 * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2); } }
-    public static PackedScene CurrentBoard;
+    public static Board CurrentBoard;
     public static LinkedList<Ball> BallQueue;
     public static List<Ball> HeldBalls;
 
@@ -41,7 +47,6 @@ public partial class GameManager : Node
         BallQueue = new();
         HeldBalls = new();
         CurrentLevel = 1;
-        CurrentBoard = GD.Load<PackedScene>("res://Game/Scenes/Boards/TestLab/TestLab.tscn");
 
         ScoreManager.ScoreValue = 0;
         ScoreManager.TotalScoreValue = 0;
@@ -52,6 +57,16 @@ public partial class GameManager : Node
             ball.GetNode<Sprite2D>("Sprite2D").Modulate = new(new Color(GD.Randi()), 1);
             ball.GetNode<Line2D>("Trail").Modulate = new(new Color(GD.Randi()), 1);
             BallQueue.AddLast(ball);
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("pause"))
+        {
+            //GetTree().Paused = !GetTree().Paused;
+            if (CurrentBoard != null)
+                CurrentBoard.Tutorial.Visible = !CurrentBoard.Tutorial.Visible;
         }
     }
 

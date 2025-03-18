@@ -10,6 +10,9 @@ public partial class Board : Node2D
     public delegate void BoardTiltedEventHandler();
 
     [Export]
+    public CanvasLayer Tutorial;
+
+    [Export]
     Plunger Plunger;
     [Export]
     public Array<Paddle> PaddlesLeft = new();
@@ -53,7 +56,6 @@ public partial class Board : Node2D
         {
             Tilt();
         }
-
         return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
