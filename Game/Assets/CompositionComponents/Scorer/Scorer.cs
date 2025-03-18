@@ -67,6 +67,6 @@ public partial class Scorer : Node2D
 
         if (actualScore == 0) return;
 
-        ScoreBubbleScene.Display(actualScore.ToString("+0;-#"));
+        ScoreBubbleScene.DisplayScore(actualScore);
     }
 }

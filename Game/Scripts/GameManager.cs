@@ -53,10 +53,7 @@ public partial class GameManager : Node
 
         for (int i = 0; i < 3; i++)
         {
-            Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
-            ball.GetNode<Sprite2D>("Sprite2D").Modulate = new(new Color(GD.Randi()), 1);
-            ball.GetNode<Line2D>("Trail").Modulate = new(new Color(GD.Randi()), 1);
-            BallQueue.AddLast(ball);
+            AddExtraBall(Ball.GetFreshBall());
         }
     }
 
@@ -89,6 +86,7 @@ public partial class GameManager : Node
         {
             Instance.EmitSignal(SignalName.GameOver);
             SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
+            return null;
         }
         Ball ball = BallQueue.First.Value;
         BallQueue.RemoveFirst();

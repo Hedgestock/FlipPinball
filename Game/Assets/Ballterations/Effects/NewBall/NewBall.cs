@@ -13,6 +13,6 @@ public partial class NewBall : MetaEffect
 
     public override void Activate()
     {
-        GameManager.AddExtraBall(GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>(), true);
+        GameManager.AddExtraBall(Ball.GetFreshBall(), true);
     }
 }

@@ -140,6 +140,8 @@ public partial class Board : Node2D
     void LoadBall()
     {
         LoadedBall = GameManager.GetNextBall();
+        if (LoadedBall == null) return;
+
         AddLiveBall((Ball)LoadedBall.Duplicate(), Plunger.GlobalPosition, true);
         GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
     }

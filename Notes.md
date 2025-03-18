@@ -5,17 +5,13 @@ Add tilt function timeout
 Add levelup delay
 Add spinner sprites
 Add tooltip for balls
-Add +-10 on spitters
-Add total score
 Add pause
 Add actual mobile UI
 Add reroll system (overscoring/debt)
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix ball draw layer not right on lab semi exit
 Fix paddle position
-Fix new ball color
-Fix score bubble tweening
-Fix ball manager failing on game over (ball not set to an instance)
+Fix multiple balls in spitter
 
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing

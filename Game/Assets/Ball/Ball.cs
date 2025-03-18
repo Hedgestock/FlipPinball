@@ -12,7 +12,6 @@ public partial class Ball : RigidBody2D
     [Export]
     Area2D Center;
 
-
     public override void _Ready()
     {
         base._Ready();
@@ -96,5 +95,13 @@ public partial class Ball : RigidBody2D
     {
         Trail.Points = Enumerable.Repeat(Vector2.Zero, TrailDetail).ToArray();
         LastPoints = Trail.Points;
+    }
+
+    public static Ball GetFreshBall()
+    {
+        Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
+        ball.GetNode<Sprite2D>("Sprite2D").Modulate = new(new Color(GD.Randi()), 1);
+        ball.GetNode<Line2D>("Trail").Modulate = new(new Color(GD.Randi()), 1);
+        return ball;
     }
 }
