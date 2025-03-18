@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=80 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Slingshots/SlingshotBody.png" id="3_6ad40"]
@@ -63,6 +63,7 @@ normal = Vector2(-1, 0)
 normal = Vector2(0, 1)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rjk18"]
+a = Vector2(-7.5, 0.200012)
 b = Vector2(153.5, 113.2)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jjm4o"]
@@ -115,6 +116,15 @@ size = Vector2(60, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5xv0"]
 size = Vector2(160, 20)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1b66e"]
+b = Vector2(67, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1x0hi"]
+b = Vector2(67, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hwdub"]
+b = Vector2(67, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3owd7"]
 
@@ -227,7 +237,7 @@ position = Vector2(76.5, 850.8)
 shape = SubResource("SegmentShape2D_rjk18")
 
 [node name="Line2D" type="Line2D" parent="Layer1/Walls/AboveLeftPaddle"]
-points = PackedVector2Array(0, 0, 153.5, 113.2)
+points = PackedVector2Array(-7.5, 0.200012, 153.5, 113.2)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 
@@ -264,11 +274,11 @@ texture = ExtResource("3_6ad40")
 
 [node name="DownLeftCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(0, 891)
-polygon = PackedVector2Array(0, -24, 32, -33, 32, 76, 66, 76, 66, 13, 231, 138, 231, 189, -1, 189)
+polygon = PackedVector2Array(0, -24, 32, -33, 32, 76, 68, 76, 68, 15, 231, 138, 231, 189, -1, 189)
 
 [node name="DownRigtCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(363, 891)
-polygon = PackedVector2Array(22, 139, 139, 48, 139, 77, 169, 77, 170, -184, 182, -190, 182, 77, 236, 77, 237, 189, 22, 189)
+polygon = PackedVector2Array(22, 139, 133, 53, 133, 77, 170, 77, 170, -184, 182, -190, 182, 77, 236, 77, 237, 189, 22, 189)
 
 [node name="TopRightCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(600, 0)
@@ -309,7 +319,7 @@ width = 3.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="LeftSplitterOutLane" type="CollisionShape2D" parent="Layer1/Walls"]
-position = Vector2(77, 750)
+position = Vector2(69, 750)
 shape = SubResource("SegmentShape2D_qxt4u")
 
 [node name="Line2D" type="Line2D" parent="Layer1/Walls/LeftSplitterOutLane"]
@@ -318,7 +328,7 @@ width = 3.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="LeftSplitterReturnLane" type="CollisionShape2D" parent="Layer1/Walls"]
-position = Vector2(120, 777)
+position = Vector2(114, 777)
 shape = SubResource("SegmentShape2D_tb1of")
 
 [node name="Line2D" type="Line2D" parent="Layer1/Walls/LeftSplitterReturnLane"]
@@ -677,16 +687,26 @@ animation = &"off"
 bus = &"Master"
 
 [node name="LeftKickBack" parent="Layer1" instance=ExtResource("5_cw1tt")]
-position = Vector2(49, 936)
+position = Vector2(49, 935)
 
-[node name="OneWayGate" parent="Layer1/LeftKickBack" index="0"]
-position = Vector2(-20, -59)
-rotation = 0.663225
+[node name="OneWayGateBlocking" parent="Layer1/LeftKickBack" index="0"]
+position = Vector2(-28, -63)
+rotation = 0.645772
 
-[node name="OnOffLight" parent="Layer1/LeftKickBack" index="2"]
-position = Vector2(7, -67)
+[node name="OneWayGateSaving" parent="Layer1/LeftKickBack" index="1"]
+position = Vector2(20, -26)
+rotation = -1.5708
 
-[node name="AudioStreamPlayer" parent="Layer1/LeftKickBack" index="4"]
+[node name="CollisionShape2D" parent="Layer1/LeftKickBack/OneWayGateSaving" index="1"]
+shape = SubResource("SegmentShape2D_1b66e")
+
+[node name="CollisionShape2D" parent="Layer1/LeftKickBack/Area2D" index="0"]
+position = Vector2(1, 31)
+
+[node name="OnOffLight" parent="Layer1/LeftKickBack" index="3"]
+position = Vector2(2, -68)
+
+[node name="AudioStreamPlayer" parent="Layer1/LeftKickBack" index="5"]
 bus = &"Master"
 
 [node name="RightTargetGroup" type="Node2D" parent="Layer1"]
@@ -735,12 +755,26 @@ bus = &"Master"
 [node name="RightKickBack" parent="Layer1" instance=ExtResource("5_cw1tt")]
 position = Vector2(515, 936)
 
-[node name="OneWayGate" parent="Layer1/RightKickBack" index="0"]
-position = Vector2(-21, 11)
-rotation = -0.663225
+[node name="OneWayGateBlocking" parent="Layer1/RightKickBack" index="0"]
+position = Vector2(-23, 13)
+rotation = -0.645772
 
-[node name="OnOffLight" parent="Layer1/RightKickBack" index="2"]
-position = Vector2(-4, -30)
+[node name="CollisionShape2D" parent="Layer1/RightKickBack/OneWayGateBlocking" index="1"]
+position = Vector2(-3.59954, -0.208174)
+shape = SubResource("SegmentShape2D_1x0hi")
+
+[node name="OneWayGateSaving" parent="Layer1/RightKickBack" index="1"]
+position = Vector2(-20, -57)
+rotation = 1.5708
+
+[node name="CollisionShape2D" parent="Layer1/RightKickBack/OneWayGateSaving" index="1"]
+shape = SubResource("SegmentShape2D_hwdub")
+
+[node name="CollisionShape2D" parent="Layer1/RightKickBack/Area2D" index="0"]
+position = Vector2(-1, 31)
+
+[node name="OnOffLight" parent="Layer1/RightKickBack" index="3"]
+position = Vector2(1, -36)
 
 [node name="TopTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(223, 202)
@@ -981,14 +1015,14 @@ TriggerSpeed = 0
 animation = &"off"
 
 [node name="RightOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
-position = Vector2(512, 821)
+position = Vector2(512, 820)
 SelfActivated = false
 
 [node name="Scorer" parent="Layer1/RightOutLaneRollover" index="3"]
 Value = 20000
 
 [node name="RightInLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
-position = Vector2(473, 820)
+position = Vector2(480, 820)
 SelfActivated = false
 OnMultiplier = 5
 
@@ -996,7 +1030,7 @@ OnMultiplier = 5
 Value = 5000
 
 [node name="LeftInLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
-position = Vector2(139, 820)
+position = Vector2(134, 820)
 SelfActivated = false
 OnMultiplier = 5
 
@@ -1004,7 +1038,7 @@ OnMultiplier = 5
 Value = 5000
 
 [node name="LeftReturnLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
-position = Vector2(98, 820)
+position = Vector2(93, 820)
 
 [node name="OnOffLight" parent="Layer1/LeftReturnLaneRollover" index="0"]
 position = Vector2(0, 25)
@@ -1013,7 +1047,7 @@ position = Vector2(0, 25)
 Value = 10000
 
 [node name="LeftOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
-position = Vector2(54, 820)
+position = Vector2(51, 820)
 SelfActivated = false
 
 [node name="Scorer" parent="Layer1/LeftOutLaneRollover" index="3"]
@@ -1901,9 +1935,9 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllOff"]
-[connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack" method="Open"]
+[connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack/OnOffLight" method="TurnOn"]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup" method="SetAllOff"]
-[connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightKickBack" method="Open"]
+[connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightKickBack/OnOffLight" method="TurnOn"]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="OnLevelChange" from="Layer1/TopTargetGroup/DecayingLeveler/Leveler" to="." method="SetBoardMultLevel"]
