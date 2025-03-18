@@ -7,7 +7,7 @@ Add spinner sprites
 Add tooltip for balls
 Add pause
 Add actual mobile UI
-Add reroll system (overscoring/debt)
+Fix reroll button moving
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix ball draw layer not right on lab semi exit
 Fix paddle position

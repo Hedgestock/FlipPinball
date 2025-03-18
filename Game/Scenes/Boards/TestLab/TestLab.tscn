@@ -67,6 +67,7 @@ a = Vector2(-7.5, 0.200012)
 b = Vector2(153.5, 113.2)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jjm4o"]
+a = Vector2(-1.5, 0.299988)
 b = Vector2(107.5, 85.3)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kqonf"]
@@ -247,7 +248,7 @@ scale = Vector2(-1, 1)
 shape = SubResource("SegmentShape2D_jjm4o")
 
 [node name="Line2D" type="Line2D" parent="Layer1/Walls/AboveRightPaddle"]
-points = PackedVector2Array(0, 0, 107.5, 85.3)
+points = PackedVector2Array(-1.5, 0.299988, 107.5, 85.3)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 
@@ -278,7 +279,7 @@ polygon = PackedVector2Array(0, -24, 32, -33, 32, 76, 68, 76, 68, 15, 231, 138, 
 
 [node name="DownRigtCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(363, 891)
-polygon = PackedVector2Array(22, 139, 133, 53, 133, 77, 170, 77, 170, -184, 182, -190, 182, 77, 236, 77, 237, 189, 22, 189)
+polygon = PackedVector2Array(22, 139, 136, 51, 136, 77, 170, 77, 170, -184, 182, -190, 182, 77, 236, 77, 237, 189, 22, 189)
 
 [node name="TopRightCorner" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(600, 0)
@@ -310,7 +311,7 @@ shape = SubResource("RectangleShape2D_j12jh")
 one_way_collision = true
 
 [node name="RightSplitterOutLane" type="CollisionShape2D" parent="Layer1/Walls"]
-position = Vector2(495, 780)
+position = Vector2(498, 780)
 shape = SubResource("SegmentShape2D_id00n")
 
 [node name="Line2D" type="Line2D" parent="Layer1/Walls/RightSplitterOutLane"]
@@ -764,7 +765,7 @@ position = Vector2(-3.59954, -0.208174)
 shape = SubResource("SegmentShape2D_1x0hi")
 
 [node name="OneWayGateSaving" parent="Layer1/RightKickBack" index="1"]
-position = Vector2(-20, -57)
+position = Vector2(-17, -57)
 rotation = 1.5708
 
 [node name="CollisionShape2D" parent="Layer1/RightKickBack/OneWayGateSaving" index="1"]
@@ -1015,7 +1016,7 @@ TriggerSpeed = 0
 animation = &"off"
 
 [node name="RightOutLaneRollover" parent="Layer1" instance=ExtResource("9_u8226")]
-position = Vector2(512, 820)
+position = Vector2(515, 820)
 SelfActivated = false
 
 [node name="Scorer" parent="Layer1/RightOutLaneRollover" index="3"]
@@ -1132,7 +1133,7 @@ rotation = 0.640678
 sprite_frames = ExtResource("28_n3w53")
 
 [node name="RayCast2D" parent="Layer1/TeleportGroup/MiddleTeleport" index="2"]
-target_position = Vector2(-236, 211)
+target_position = Vector2(-226, 217)
 
 [node name="TopTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(-216, -30)
@@ -1960,12 +1961,12 @@ offset_bottom = 983.0
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Tunnel/Leveler" method="MinimizeLevel"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Magnet/OnOffLight" method="TurnOn"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="." method="Score" binds= [150000]]
-[connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="LoadBall"]
 [connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="ClearHeldBalls" unbinds=2]
+[connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="AddLiveBall" binds= [true]]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="." method="HoldBall"]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=1]
-[connection signal="Teleporting" from="Layer1/TeleportGroup" to="." method="TelportLiveBall"]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
+[connection signal="Teleporting" from="Layer1/TeleportGroup" to="." method="TelportLiveBall" binds= [true]]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/Rollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]

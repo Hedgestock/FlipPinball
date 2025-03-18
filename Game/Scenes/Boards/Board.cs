@@ -69,7 +69,7 @@ public partial class Board : Node2D
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.GlobalPosition = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
-                AddLiveBall(ball, LaunchPos);
+                AddLiveBall(ball, LaunchPos, false);
             }
             else if (@event.IsActionReleased("screen_tap_secondary"))
             {
@@ -79,7 +79,7 @@ public partial class Board : Node2D
                 Ballteration bt = new();
                 bt.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/Effects/ScoreModifier/Tests/GlobalAdder.tscn").Instantiate<ScoreModifier>());
                 ball.AddChild(bt);
-                AddLiveBall(ball, LaunchPos);
+                AddLiveBall(ball, LaunchPos, false);
             }
         }
     }
@@ -142,11 +142,11 @@ public partial class Board : Node2D
         LoadedBall = GameManager.GetNextBall();
         if (LoadedBall == null) return;
 
-        AddLiveBall((Ball)LoadedBall.Duplicate(), Plunger.GlobalPosition, true);
+        AddLiveBall((Ball)LoadedBall.Duplicate(), Plunger.GlobalPosition);
         GameManager.Instance.EmitSignal(GameManager.SignalName.LoadedBall, LoadedBall);
     }
 
-    void AddLiveBall(Ball ball, Vector2 position, bool inert = false)
+    void AddLiveBall(Ball ball, Vector2 position, bool inert = true)
     {
         if (inert)
             ball.LinearVelocity = Vector2.Zero;
@@ -166,10 +166,10 @@ public partial class Board : Node2D
         RemoveChild(ball);
     }
 
-    void TelportLiveBall(Ball ball, Vector2 destination)
+    void TelportLiveBall(Ball ball, Vector2 destination, bool inert = true)
     {
         RemoveLiveBall(ball);
-        CallDeferred(MethodName.AddLiveBall, ball.Duplicate(), destination, true);
+        CallDeferred(MethodName.AddLiveBall, ball.Duplicate(), destination, inert);
     }
 
 

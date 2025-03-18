@@ -37,7 +37,8 @@ public partial class GameManager : Node
     public delegate void LoadedBallEventHandler(Ball ball);
 
     public static int CurrentLevel;
-    public static long TargetScore { get { return 20/*0000*/ * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2); } }
+    public static long Debt = 0;
+    public static long TargetScore { get { return 200000 * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2) - Debt; } }
     public static Board CurrentBoard;
     public static LinkedList<Ball> BallQueue;
     public static List<Ball> HeldBalls;
@@ -71,12 +72,11 @@ public partial class GameManager : Node
     {
         if (ScoreManager.ScoreValue < TargetScore)
             Instance.EmitSignal(SignalName.NewBall);
-
         else
         {
+            Instance.EmitSignal(SignalName.LevelCleared);
             CurrentLevel++;
             ScoreManager.ScoreValue = 0;
-            Instance.EmitSignal(SignalName.LevelCleared);
         }
     }
 
@@ -103,7 +103,7 @@ public partial class GameManager : Node
         Instance.EmitSignal(SignalName.BallQueueChanged);
     }
 
-    protected void ClearHeldBalls()
+    void ClearHeldBalls()
     {
         if (HeldBalls.Count == 0) return;
         HeldBalls.Clear();

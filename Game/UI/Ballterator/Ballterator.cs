@@ -5,21 +5,57 @@ using System.Linq;
 public partial class Ballterator : ScrollContainer
 {
     [Export]
+    Container Ballterations;
+    [Export]
+    Container Balls;
+
+    [Export]
     FlowContainer BallterationsContainer;
     [Export]
     FlowContainer BallSelectionContainer;
 
+    [Export]
+    Button RerollButton;
+    [Export]
+    Label CreditsLabel;
+
     int BallterationCount = 3;
+    long _creditsLeft = 0;
+    long CreditsLeft
+    {
+        get { return _creditsLeft; }
+        set
+        {
+            _creditsLeft = value;
+            if (value >= 0)
+                CreditsLabel.Text = $"Credits: ({CreditsLeft:N0})";
+            else
+                CreditsLabel.Text = $"Debt: ({CreditsLeft:N0})";
+        }
+    }
+    long RerollPrice = 0;
 
     void StartBallterating()
     {
         if (Visible == false) return;
+
+        CreditsLeft = ScoreManager.ScoreValue - GameManager.TargetScore;
+        RerollPrice = GameManager.TargetScore / 2;
+
         BallterationCyclesLeft = GameManager.BallQueue.Count;
+        DisplayBallterations();
+    }
+
+    void Reroll()
+    {
+        CreditsLeft -= RerollPrice;
+        RerollPrice *= 2;
         DisplayBallterations();
     }
 
     void DisplayBallterations()
     {
+        RerollButton.Text = $"Reroll ({RerollPrice:N0})";
         foreach (var child in BallterationsContainer.GetChildren())
         {
             child.QueueFree();
@@ -28,7 +64,7 @@ public partial class Ballterator : ScrollContainer
         {
             BallterationsContainer.AddChild(CreateBalterationCard(i));
         }
-        BallterationsContainer.Show();
+        Ballterations.Show();
     }
 
     Control CreateBalterationCard(int i)
@@ -37,7 +73,7 @@ public partial class Ballterator : ScrollContainer
         BallterationCard card = GD.Load<PackedScene>("res://Game/UI/Ballterator/BallterationCard.tscn").Instantiate<BallterationCard>();
         card.BallterationChosen += (Ballteration ballteration) =>
         {
-            BallterationsContainer.Hide();
+            Ballterations.Hide();
             var children = ballteration.GetChildren();
 
 
@@ -84,12 +120,12 @@ public partial class Ballterator : ScrollContainer
             selector.BallSelected += (Ball ball) =>
             {
                 ball.AddChild(SelectedBallteration);
-                BallSelectionContainer.Hide();
+                Balls.Hide();
                 BallterationCycleEnd();
             };
             BallSelectionContainer.AddChild(selector);
         }
-        BallSelectionContainer.Show();
+        Balls.Show();
     }
 
     int BallterationCyclesLeft;
@@ -99,6 +135,8 @@ public partial class Ballterator : ScrollContainer
         BallterationCyclesLeft--;
         if (BallterationCyclesLeft <= 0)
         {
+            GameManager.Debt = Math.Min(CreditsLeft, 0);
+
             Hide();
             GetTree().Paused = false;
         }
