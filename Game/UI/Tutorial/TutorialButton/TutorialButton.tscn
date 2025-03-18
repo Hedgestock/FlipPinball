@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialButton/TutorialInfo.cs" id="1_67f7d"]
 
 [node name="TutorialButton" type="Button"]
+process_mode = 3
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_default_cursor_shape = 2

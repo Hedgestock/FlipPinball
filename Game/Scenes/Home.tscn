@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8iu65a2xswru"]
+[gd_scene load_steps=12 format=3 uid="uid://b8iu65a2xswru"]
 
 [ext_resource type="Script" uid="uid://der05hffi8ur0" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
 [ext_resource type="Script" uid="uid://dgsbm63myfhuc" path="res://Game/UI/SceneChanger.cs" id="1_57tko"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bxjjnpv3iybje" path="res://Wafflestock/wafflestock_anime_frame_1.png" id="5_r6hok"]
 [ext_resource type="Texture2D" uid="uid://2qvij3wih6hg" path="res://Game/UI/Controls/ARROWRIGHT.png" id="5_v06be"]
 [ext_resource type="VideoStream" uid="uid://dc8x63t6skiub" path="res://Wafflestock/wafflestock animé.ogv" id="5_y1lpq"]
+[ext_resource type="Texture2D" uid="uid://ejueu4jlpcfd" path="res://Game/UI/Controls/SPACE.png" id="8_7vkef"]
 
 [node name="Home" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel")]
 script = ExtResource("1_4jmw7")
@@ -95,6 +96,25 @@ texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("4_v06be")
+expand_mode = 3
+
+[node name="TutorialControl" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TutorialControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tutorial
+Overlay"
+
+[node name="Space" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/TutorialControl"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_7vkef")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]

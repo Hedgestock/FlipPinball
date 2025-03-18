@@ -73,6 +73,7 @@ text = "Ball queue"
 [node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/InfoScrollContainer/InfoBox/BallQueue"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
 
 [node name="LiveBalls" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
@@ -84,6 +85,7 @@ text = "Live balls"
 [node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/InfoScrollContainer/InfoBox/LiveBalls"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
 
 [node name="HeldBalls" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
@@ -95,6 +97,7 @@ text = "Held balls"
 [node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/InfoScrollContainer/InfoBox/HeldBalls"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
 
 [node name="LoadedBall" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2

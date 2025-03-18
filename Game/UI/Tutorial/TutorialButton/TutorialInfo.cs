@@ -9,6 +9,12 @@ public partial class TutorialInfo : Control
     [Export(PropertyHint.MultilineText)]
     public string Description;
 
+    public override void _Ready()
+    {
+        base._Ready();
+        ProcessMode = ProcessModeEnum.Always;
+    }
+
     public void OnPressed()
     {
         if (GetParent() is TutorialInfo parent)

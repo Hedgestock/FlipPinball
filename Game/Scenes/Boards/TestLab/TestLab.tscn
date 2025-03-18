@@ -1456,6 +1456,7 @@ position = Vector2(87, 793)
 collision_mask = 4
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MainBumpersTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
