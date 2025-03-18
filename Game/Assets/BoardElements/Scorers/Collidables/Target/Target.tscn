@@ -25,10 +25,6 @@ shape = SubResource("CapsuleShape2D_0mlm1")
 [node name="Scorer" parent="." instance=ExtResource("3_f5lic")]
 Value = 750
 
-[node name="ResetDelay" type="Timer" parent="."]
-wait_time = 60.0
-one_shot = true
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 attenuation = 1e-05
 bus = &"BoardElements"
@@ -39,7 +35,4 @@ Strength = 500
 [connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
 [connection signal="Hit" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOn" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=1]
-[connection signal="Hit" from="Hitbox" to="ResetDelay" method="start" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]
-[connection signal="TurnedOff" from="Hitbox/OnOffLight" to="ResetDelay" method="stop"]
-[connection signal="timeout" from="ResetDelay" to="Hitbox/OnOffLight" method="TurnOff"]

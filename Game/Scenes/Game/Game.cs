@@ -65,7 +65,6 @@ public partial class Game : Node
         GameStart = DateTime.Now;
 
         GameManager.SetGame();
-        TargetScore.Text = $"Target score: {GameManager.TargetScore} ({GameManager.CurrentLevel})";
 
         ResetBoard();
 
@@ -93,12 +92,12 @@ public partial class Game : Node
     {
         GetTree().Paused = true;
         Ballterator.Show();
-        TargetScore.Text = $"Target score: {GameManager.TargetScore} ({GameManager.CurrentLevel})";
-        Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
     }
 
     void ResetBoard()
     {
+        TargetScore.Text = $"Target score: {GameManager.TargetScore:N0} ({GameManager.CurrentLevel})";
+        Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
         foreach (var child in BoardViewport.GetChildren())
         {
             child.QueueFree();
