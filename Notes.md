@@ -13,8 +13,6 @@ Add reroll system (overscoring/debt)
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix ball draw layer not right on lab semi exit
 Fix paddle position
-Fix top teleport hitbox
-Fix rollover lane hitbox
 Fix new ball color
 Fix score bubble tweening
 Fix ball manager failing on game over (ball not set to an instance)

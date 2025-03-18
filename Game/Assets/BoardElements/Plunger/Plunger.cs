@@ -66,7 +66,9 @@ public partial class Plunger : Node2D
         EmitSignal(SignalName.Releasing);
         foreach (Ball ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
-            Pusher.Push(ball, Vector2.Up * (int)(PlungerProgress.Value + GD.RandRange(-100, 100) * (AutoFire ? 1 : 0)));
+            Pusher.Strength = (uint)PlungerProgress.Value;
+            Pusher.PushVariation = AutoFire ? 100 : 0;
+            Pusher.Push(ball, Vector2.Up);
         }
         PlungerProgress.Value = 0;
     }

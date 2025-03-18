@@ -44,6 +44,7 @@ bus = &"BoardElements"
 [node name="Scorer" parent="." instance=ExtResource("4_4ynig")]
 
 [node name="Pusher" parent="." instance=ExtResource("6_kuqv2")]
+PushVariation = 10
 
 [connection signal="SpittingBall" from="." to="Pusher" method="Push"]
 [connection signal="SpittingBall" from="." to="SpitterOutSoundPlayer" method="play" unbinds=2]

@@ -71,7 +71,6 @@ panning_strength = 0.3
 bus = &"BoardElements"
 
 [node name="Pusher" parent="." instance=ExtResource("4_t61ul")]
-Strength = 1
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
 position = Vector2(0, 64)
