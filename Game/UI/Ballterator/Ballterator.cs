@@ -1,3 +1,4 @@
+using FlipPinball;
 using Godot;
 using System;
 using System.Linq;
@@ -94,11 +95,11 @@ public partial class Ballterator : ScrollContainer
 
         if ((BallterationCyclesLeft == 1 && i == 0) || GameManager.BallQueue.Count == 0)
         {
-            card.Ballteration = GD.Load<PackedScene>("res://Game/Assets/Ballterations/PoolCommon/NewBall.tscn").Instantiate<Ballteration>();
+            card.Ballteration = GD.Load<PackedScene>("uid://cyd2kjk3ugtu6").Instantiate<Ballteration>();
         }
         else
         {
-            card.Ballteration = ScoreModifier.CreateRandomSimple();
+            card.Ballteration = BallterationGenerator.CreateScorer();
         }
 
         cardMargin.AddChild(card);

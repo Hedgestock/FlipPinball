@@ -11,6 +11,8 @@ public partial class ExtraBall : MetaEffect
         }
     }
 
+    public override float AnalogRarity => throw new NotImplementedException();
+
     public override void Activate()
     {
         throw new NotImplementedException();

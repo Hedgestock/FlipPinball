@@ -11,6 +11,8 @@ public partial class NewBall : MetaEffect
         }
     }
 
+    public override float AnalogRarity => throw new NotImplementedException();
+
     public override void Activate()
     {
         GameManager.AddExtraBall(Ball.GetFreshBall(), true);

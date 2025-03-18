@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Ballteration : Node
 {
@@ -16,10 +17,10 @@ public partial class Ballteration : Node
     [Flags]
     public enum Type
     {
-        Score =     0001,
-        Physics =   0010,
-        Meta =      0100,
-        Other =     1000,
+        Score = 0001,
+        Physics = 0010,
+        Meta = 0100,
+        Other = 1000,
     }
 
     [Export]
@@ -27,6 +28,21 @@ public partial class Ballteration : Node
 
     [Export]
     public Rarity Color = Rarity.Yellow;
+
+    public float AnalogRarity
+    {
+        get
+        {
+            try
+            {
+                return GetChildren().OfType<Effect>().Select(e => e.AnalogRarity).Sum();
+            }
+            catch
+            {
+                return 1;
+            }
+        }
+    }
 
     [Export]
     public string DisplayName;

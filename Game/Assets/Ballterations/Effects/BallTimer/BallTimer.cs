@@ -11,6 +11,8 @@ public partial class BallTimer : Effect
         }
     }
 
+    public override float AnalogRarity => throw new NotImplementedException();
+
     [Export]
     Timer Timer;
     [Export]

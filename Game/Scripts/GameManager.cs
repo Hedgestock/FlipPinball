@@ -5,6 +5,21 @@ using System.Collections.Generic;
 
 public partial class GameManager : Node
 {
+    [Signal]
+    public delegate void GameOverEventHandler();
+    [Signal]
+    public delegate void LevelClearedEventHandler();
+    [Signal]
+    public delegate void NewBallEventHandler();
+    [Signal]
+    public delegate void BallQueueChangedEventHandler();
+    [Signal]
+    public delegate void HeldBallsChangedEventHandler(Array<Ball> balls);
+    [Signal]
+    public delegate void LiveBallsChangedEventHandler(Array<Ball> balls);
+    [Signal]
+    public delegate void LoadedBallEventHandler(Ball ball);
+
     protected static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
@@ -21,24 +36,9 @@ public partial class GameManager : Node
         ProcessMode = ProcessModeEnum.Always;
     }
 
-    [Signal]
-    public delegate void GameOverEventHandler();
-    [Signal]
-    public delegate void LevelClearedEventHandler();
-    [Signal]
-    public delegate void NewBallEventHandler();
-    [Signal]
-    public delegate void BallQueueChangedEventHandler();
-    [Signal]
-    public delegate void HeldBallsChangedEventHandler(Array<Ball> balls);
-    [Signal]
-    public delegate void LiveBallsChangedEventHandler(Array<Ball> balls);
-    [Signal]
-    public delegate void LoadedBallEventHandler(Ball ball);
-
     public static int CurrentLevel;
     public static long Debt = 0;
-    public static long TargetScore { get { return 200000 * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2) - Debt; } }
+    public static long TargetScore { get { return 20/*0000*/ * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2) - Debt; } }
     public static Board CurrentBoard;
     public static LinkedList<Ball> BallQueue;
     public static List<Ball> HeldBalls;

@@ -33,10 +33,10 @@ public partial class Bumper : Node2D
                 OnOffLight.Modulate = Colors.Blue;
                 break;
             case 4:
-                OnOffLight.Modulate = Colors.Red;
+                OnOffLight.Modulate = Colors.DarkViolet;
                 break;
             case 5:
-                OnOffLight.Modulate = Colors.DarkViolet;
+                OnOffLight.Modulate = Colors.Red;
                 break;
         }
     }

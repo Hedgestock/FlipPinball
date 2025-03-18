@@ -19,13 +19,6 @@ public partial class ScoreManager : Node
     public static long ScoreValue { get; set; }
     public static long TotalScoreValue { get; set; }
 
-    public override void _Ready()
-    {
-        base._Ready();
-        ScoreValue = 0;
-    }
-
-
     public static Func<int, int> BoardScore = Score;
 
     public static int Score(int score)

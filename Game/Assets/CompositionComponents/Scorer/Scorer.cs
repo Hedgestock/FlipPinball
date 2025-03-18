@@ -25,10 +25,13 @@ public partial class Scorer : Node2D
     bool CheckEligibility(ScoreModifier modifier)
     {
         var groups = modifier.GetGroups();
+
+        if (groups.Contains("Global")) return true;
+
         var intersection = groups.Intersect(GetGroups());
         if (modifier.Restrictive)
             return intersection.Count() == groups.Count();
-        return intersection.Any() || modifier.GetGroups().Contains("Global");
+        return intersection.Any();
     }
 
     public void Score(Ball ball, int value)
