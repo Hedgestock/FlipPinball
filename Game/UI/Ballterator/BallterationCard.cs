@@ -31,9 +31,9 @@ public partial class BallterationCard : PanelContainer
                 DescriptionContainer.AddChild(effectDescription);
             }
 
-            Callable.From(() =>
-            GD.Print($"Container is: {DescriptionContainer.Size}")
-            ).CallDeferred();
+            //Callable.From(() =>
+            //GD.Print($"Container is: {DescriptionContainer.Size}")
+            //).CallDeferred();
         }
     }
 

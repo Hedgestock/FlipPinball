@@ -94,6 +94,9 @@ public partial class Ballterator : ScrollContainer
         };
 
 
+        //.Ballteration = BallterationGenerator.EnsureRarity(() => BallterationGenerator.EnsureRarity(BallterationGenerator.CreateSimpleScoreModifier, Ballteration.Rarity.Green, false), Ballteration.Rarity.Green);
+
+
         if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
         {
             var tmp = BallterationGenerator.CreateNewBall();
@@ -111,7 +114,6 @@ public partial class Ballterator : ScrollContainer
         else
         {
             card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
-
         }
 
         cardMargin.AddChild(card);

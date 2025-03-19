@@ -1,4 +1,5 @@
 ﻿using Godot;
+using System;
 using System.Linq;
 
 
@@ -50,6 +51,23 @@ namespace FlipPinball
         public static Ballteration CreateNewBall()
         {
             return GD.Load<PackedScene>("uid://cyd2kjk3ugtu6").Instantiate<Ballteration>();
+        }
+
+        public static Ballteration EnsureRarity(Func<Ballteration> Creator, Ballteration.Rarity rarity, bool max = true, int retries = 20)
+        {
+            Ballteration ballteration = Creator();
+            for (int i = 0; i < retries; i++)
+            {
+                if ((max && ballteration.AnalogRarity <= (float)rarity) || (!max && ballteration.AnalogRarity >= (float)rarity))
+                {
+                    //GD.Print($"Generated ballteration in {i} retries (max: {max}, rarity: {rarity})");
+                    return ballteration;
+                }
+                ballteration = Creator();
+            }
+
+            GD.PrintErr($"Failed to generate ballteration meeting rarity criterias (max: {max}, rarity: {rarity})");
+            return ballteration;
         }
     }
 }

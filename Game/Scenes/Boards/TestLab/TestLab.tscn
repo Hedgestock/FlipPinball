@@ -1488,7 +1488,7 @@ offset_right = 374.0
 offset_bottom = 185.0
 Title = "Entry Lanes"
 Description = "The lanes through which balls will (re)enter the playfield.
-Lit all off them by triggering the rollover swithches to upgrade the main bumpers.
+Lit all off them by triggering the rollover switches to upgrade the main bumpers.
 Engaging the left/right paddle will respectively rotate the lights left/right."
 
 [node name="SkillShotTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
@@ -1692,7 +1692,7 @@ offset_bottom = 572.0
 rotation = 0.351317
 Title = "Lab Entry Lanes"
 Description = "The lanes through which balls will (re)enter the lab.
-Lit all off them by triggering the rollover swithches to upgrade the lab bumpers.
+Lit all off them by triggering the rollover switches to upgrade the lab bumpers.
 Engaging the left/right paddle will respectively rotate the lights left/right."
 
 [node name="LabBumpersTutorial" type="Control" parent="Tutorial"]
@@ -1919,10 +1919,10 @@ offset_bottom = 983.0
 [connection signal="body_entered" from="Boundaries" to="." method="DespawnBall" binds= [1]]
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
-[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
+[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/Funds/Leveler" method="MaximizeLevel"]
