@@ -41,9 +41,9 @@ public partial class ScoreModifier : Effect
             if (GetGroups().Contains("Global"))
                 rarity++;
             else if (Restrictive)
-                rarity -= GetGroups().Count / 4;
+                rarity -= GetGroups().Count / 4f;
             else
-                rarity += GetGroups().Count / ScoringGroups.Count();
+                rarity += Math.Min(GetGroups().Count / 4f, 1f);
             //GD.Print((GetGroups(), Prio, Value, rarity));
 
             return rarity;

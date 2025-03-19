@@ -15,7 +15,6 @@ namespace FlipPinball
 
             ballteration.Kind = Ballteration.Type.Score;
             ballteration.DisplayName = $"{modifier.GetGroups().First()}{((int)modifier.Prio % 2 == 1 ? " super" : "")} {((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
-            ballteration.Color = (Ballteration.Rarity)modifier.AnalogRarity;
 
             return ballteration;
         }
@@ -28,7 +27,6 @@ namespace FlipPinball
 
             ballteration.Kind = Ballteration.Type.Score;
             ballteration.DisplayName = $"Score {((int)modifier.Prio % 2 == 1 ? " super" : "")} {((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
-            ballteration.Color = (Ballteration.Rarity)modifier.AnalogRarity;
 
             return ballteration;
         }
@@ -45,7 +43,6 @@ namespace FlipPinball
 
             ballteration.Kind = Ballteration.Type.Score;
             ballteration.DisplayName = $"Chaotic score modifier";
-            ballteration.Color = (Ballteration.Rarity)ballteration.AnalogRarity;
 
             return ballteration;
         }
