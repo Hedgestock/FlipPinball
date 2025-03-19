@@ -11,7 +11,7 @@ public partial class NewBall : MetaEffect
         }
     }
 
-    public override float AnalogRarity => throw new NotImplementedException();
+    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Green; } }
 
     public override void Activate()
     {

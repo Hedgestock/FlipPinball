@@ -35,7 +35,7 @@ namespace FlipPinball
         {
             Ballteration ballteration = new();
 
-            for (int i = 0; i < GD.RandRange(1, 10); i++)
+            for (int i = 0; i < GD.RandRange(1, 4); i++)
             {
                 ScoreModifier modifier = ScoreModifier.CreateRandom();
                 ballteration.AddChild(modifier);

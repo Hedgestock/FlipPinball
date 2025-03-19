@@ -26,7 +26,7 @@ public partial class Board : Node2D
 
     List<Ball> LiveBalls = new();
 
-    Ball LoadedBall = null;
+    public Ball LoadedBall = null;
 
     // Debug code
     Vector2 LaunchPos;

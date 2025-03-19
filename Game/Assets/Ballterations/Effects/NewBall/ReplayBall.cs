@@ -1,17 +1,17 @@
 using Godot;
 using System;
 
-public partial class ExtraBall : MetaEffect
+public partial class ReplayBall : MetaEffect
 {
     public override string Description
     {
         get
         {
-            return $"Adds a copy of the currently loaded ball to your ball queue.";
+            return $"Puts the last played ball to the front of the ball queue.";
         }
     }
 
-    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Blue; } }
+    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Purple; } }
 
     public override void Activate()
     {
