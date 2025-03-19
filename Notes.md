@@ -3,16 +3,17 @@ Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that av
 
 Add tilt function timeout
 Add levelup delay
+Add drag mode for plunger
 Add spinner sprites
 Add tooltip for balls
 Add pause
 Add actual mobile UI
-Fix reroll button moving
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix ball draw layer not right on lab semi exit
 Fix paddle position
 Fix multiple balls in spitter
 
+Maybe pool queue for like score bubbles
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing
 Extra call args + unbind signal args

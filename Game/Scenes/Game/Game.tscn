@@ -11,7 +11,7 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
 size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "InfoBox", "Score", "TargetScore", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
+[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "InfoBox", "Score", "TotalScore", "TargetScore", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
 BallViewerScene = ExtResource("2_ttlp1")
@@ -22,6 +22,7 @@ LiveBalls = NodePath("MainContainer/InfoScrollContainer/InfoBox/LiveBalls/HFlowC
 LoadedBallViewer = NodePath("MainContainer/InfoScrollContainer/InfoBox/LoadedBall/BallViewer")
 InfoBox = NodePath("MainContainer/InfoScrollContainer/InfoBox")
 Score = NodePath("MainContainer/InfoScrollContainer/InfoBox/ScoreLabel")
+TotalScore = NodePath("MainContainer/InfoScrollContainer/InfoBox/TotalScoreLabel")
 TargetScore = NodePath("MainContainer/InfoScrollContainer/InfoBox/TargetScoreLabel")
 Placeholder = NodePath("MainContainer/Placeholder")
 StatusScrollContainer = NodePath("MainContainer/StatusScrollContainer")
@@ -57,10 +58,17 @@ size_flags_vertical = 3
 [node name="TargetScoreLabel" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 text = "Target score: 0"
+autowrap_mode = 3
 
 [node name="ScoreLabel" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 text = "Score: 0"
+autowrap_mode = 3
+
+[node name="TotalScoreLabel" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox"]
+layout_mode = 2
+text = "Total Score: 0"
+autowrap_mode = 3
 
 [node name="BallQueue" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2

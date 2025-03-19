@@ -32,6 +32,8 @@ public partial class Game : Node
     [Export]
     Label Score;
     [Export]
+    Label TotalScore;
+    [Export]
     Label TargetScore;
     [Export]
     Control Placeholder;
@@ -109,12 +111,12 @@ public partial class Game : Node
     void UpdateScore(int currentlyScoring)
     {
         if (currentlyScoring == 0) return;
-        //PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
-        //scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
-        //scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
-        //AddChild(scoreBubble);
+        PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
+        scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
+        scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
+        AddChild(scoreBubble);
         Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
-        //History.Text = $"Scored: {currentlyScoring}\n{History.Text}";
+        TotalScore.Text = $"Total Score: {ScoreManager.TotalScoreValue:N0}";
     }
 
     void UpdateBallQueue()

@@ -46,6 +46,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_gypbg")
+shortcut_in_tooltip = false
 text = "Start Game"
 script = ExtResource("1_57tko")
 Scene = ExtResource("3_r6hok")

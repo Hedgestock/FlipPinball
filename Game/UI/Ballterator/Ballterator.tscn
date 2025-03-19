@@ -28,7 +28,7 @@ size_flags_vertical = 3
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Ballterations"]
 layout_mode = 2
@@ -53,6 +53,7 @@ autowrap_mode = 3
 
 [node name="BallterationsContainer" type="FlowContainer" parent="Ballterations"]
 layout_mode = 2
+size_flags_vertical = 6
 alignment = 1
 
 [node name="Balls" type="VBoxContainer" parent="."]
