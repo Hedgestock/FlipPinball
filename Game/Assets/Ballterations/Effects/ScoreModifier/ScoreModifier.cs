@@ -82,8 +82,15 @@ public partial class ScoreModifier : Effect
         for (int i = 0; i < GD.RandRange(1, ScoringGroups.Length); i++)
             sm.AddToGroup(ScoringGroups[GD.RandRange(0, ScoringGroups.Length - 1)]);
 
-        //if (sm.GetGroups().Contains("Global"))
-
+        // Maybe optimise that at some point, not critical though
+        if (sm.GetGroups().Contains("Global"))
+        { 
+            foreach (var group in sm.GetGroups())
+            {
+                sm.RemoveFromGroup(group);
+            }
+            sm.AddToGroup("Global");
+        }
         return sm;
     }
 }
