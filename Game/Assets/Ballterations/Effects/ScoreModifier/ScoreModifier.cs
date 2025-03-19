@@ -17,7 +17,7 @@ public partial class ScoreModifier : Effect
     {
         get
         {
-            return $"{GetGroups()} score {((int)Prio <= 1 ? '+' : 'x')}{Value} {((int)Prio % 2 == 1 ? 'S' : "")}{(Restrictive ? 'R' : "")}";
+            return $"{string.Join(Restrictive ? " and " : " or ", GetGroups())} score {((int)Prio <= 1 ? '+' : 'x')}{Value} {((int)Prio % 2 == 1 ? 'S' : "")}{(Restrictive ? 'R' : "")}";
         }
     }
 
@@ -47,7 +47,6 @@ public partial class ScoreModifier : Effect
             GD.Print((GetGroups(), Prio, Value, rarity));
 
             return rarity;
-            //return (Ballteration.Rarity)Math.Clamp(rarity, 1, 5);
         }
     }
 
@@ -70,6 +69,20 @@ public partial class ScoreModifier : Effect
         sm.Prio = (Priority)GD.RandRange(0, 3);
         sm.Value = (float)((int)sm.Prio <= 1 ? GD.RandRange(100, 2000) : Mathf.Snapped(GD.RandRange(1.1, 5), 0.1));
         sm.AddToGroup(ScoringGroups[GD.RandRange(0, ScoringGroups.Length - 1)]);
+
+        return sm;
+    }
+
+    public static ScoreModifier CreateRandom()
+    {
+        ScoreModifier sm = new();
+
+        sm.Prio = (Priority)GD.RandRange(0, 3);
+        sm.Value = (float)((int)sm.Prio <= 1 ? GD.RandRange(100, 2000) : Mathf.Snapped(GD.RandRange(1.1, 5), 0.1));
+        for (int i = 0; i < GD.RandRange(1, ScoringGroups.Length); i++)
+            sm.AddToGroup(ScoringGroups[GD.RandRange(0, ScoringGroups.Length - 1)]);
+
+        //if (sm.GetGroups().Contains("Global"))
 
         return sm;
     }

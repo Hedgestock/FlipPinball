@@ -6,12 +6,14 @@ public partial class Ballteration : Node
 {
     public enum Rarity
     {
+        Black = -1,
         Yellow,
         Grey,
         Green,
         Blue,
         Red,
         Purple,
+        Analog,
     }
 
     [Flags]
@@ -27,7 +29,7 @@ public partial class Ballteration : Node
     public Type Kind = Type.Other;
 
     [Export]
-    public Rarity Color = Rarity.Yellow;
+    public Rarity Color = Rarity.Analog;
 
     public float AnalogRarity
     {
@@ -37,8 +39,9 @@ public partial class Ballteration : Node
             {
                 return GetChildren().OfType<Effect>().Select(e => e.AnalogRarity).Sum();
             }
-            catch
+            catch (Exception ex) 
             {
+                GD.PrintErr(ex);
                 return 1;
             }
         }

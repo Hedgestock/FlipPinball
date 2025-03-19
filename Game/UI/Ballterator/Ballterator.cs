@@ -95,11 +95,13 @@ public partial class Ballterator : ScrollContainer
 
         if ((BallterationCyclesLeft == 1 && i == 0) || GameManager.BallQueue.Count == 0)
         {
-            card.Ballteration = GD.Load<PackedScene>("uid://cyd2kjk3ugtu6").Instantiate<Ballteration>();
+            var tmp = BallterationGenerator.CreateNewBall();
+            tmp.Color = Ballteration.Rarity.Yellow;
+            card.Ballteration = tmp;
         }
         else
         {
-            card.Ballteration = BallterationGenerator.CreateScorer();
+            card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
         }
 
         cardMargin.AddChild(card);

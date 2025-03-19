@@ -38,7 +38,7 @@ public partial class GameManager : Node
 
     public static int CurrentLevel;
     public static long Debt = 0;
-    public static long TargetScore { get { return 20/*0000*/ * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2) - Debt; } }
+    public static long TargetScore { get { return 20/*0000*/ * (long)Math.Pow((CurrentLevel), (CurrentLevel + 1f) / 2) - Debt; } }
     public static Board CurrentBoard;
     public static LinkedList<Ball> BallQueue;
     public static List<Ball> HeldBalls;
