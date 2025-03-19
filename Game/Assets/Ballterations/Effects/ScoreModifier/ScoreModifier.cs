@@ -44,7 +44,7 @@ public partial class ScoreModifier : Effect
                 rarity -= GetGroups().Count / 4;
             else
                 rarity += GetGroups().Count / ScoringGroups.Count();
-            GD.Print((GetGroups(), Prio, Value, rarity));
+            //GD.Print((GetGroups(), Prio, Value, rarity));
 
             return rarity;
         }

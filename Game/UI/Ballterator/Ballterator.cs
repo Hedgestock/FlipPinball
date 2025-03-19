@@ -43,7 +43,7 @@ public partial class Ballterator : ScrollContainer
         CreditsLeft = ScoreManager.ScoreValue - GameManager.TargetScore;
         RerollPrice = GameManager.TargetScore / 2;
 
-        BallterationCyclesLeft = GameManager.BallQueue.Count;
+        BallterationCycleNumber = 0;
         DisplayBallterations();
     }
 
@@ -93,15 +93,25 @@ public partial class Ballterator : ScrollContainer
             }
         };
 
-        if ((BallterationCyclesLeft == 1 && i == 0) || GameManager.BallQueue.Count == 0)
+
+        if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
         {
             var tmp = BallterationGenerator.CreateNewBall();
             tmp.Color = Ballteration.Rarity.Yellow;
             card.Ballteration = tmp;
         }
-        else
+        else if (BallterationCycleNumber == 0)
         {
             card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
+        }
+        else if (BallterationCycleNumber == 1)
+        {
+            card.Ballteration = BallterationGenerator.CreateScoreModifier();
+        }
+        else
+        {
+            card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
+
         }
 
         cardMargin.AddChild(card);
@@ -131,12 +141,12 @@ public partial class Ballterator : ScrollContainer
         Balls.Show();
     }
 
-    int BallterationCyclesLeft;
+    int BallterationCycleNumber;
 
     void BallterationCycleEnd()
     {
-        BallterationCyclesLeft--;
-        if (BallterationCyclesLeft <= 0)
+        BallterationCycleNumber++;
+        if (BallterationCycleNumber >= GameManager.BallQueue.Count)
         {
             GameManager.Debt = Math.Min(CreditsLeft, 0);
 

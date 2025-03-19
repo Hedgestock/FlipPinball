@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8iu65a2xswru"]
+[gd_scene load_steps=14 format=3 uid="uid://b8iu65a2xswru"]
 
 [ext_resource type="Script" uid="uid://der05hffi8ur0" path="res://Game/Scenes/Home.cs" id="1_4jmw7"]
 [ext_resource type="Script" uid="uid://dgsbm63myfhuc" path="res://Game/UI/SceneChanger.cs" id="1_57tko"]
@@ -11,6 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://2qvij3wih6hg" path="res://Game/UI/Controls/ARROWRIGHT.png" id="5_v06be"]
 [ext_resource type="VideoStream" uid="uid://dc8x63t6skiub" path="res://Wafflestock/wafflestock animé.ogv" id="5_y1lpq"]
 [ext_resource type="Texture2D" uid="uid://ejueu4jlpcfd" path="res://Game/UI/Controls/SPACE.png" id="8_7vkef"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_7vkef"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_gypbg"]
+events = [SubResource("InputEventAction_7vkef")]
 
 [node name="Home" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel")]
 script = ExtResource("1_4jmw7")
@@ -39,6 +45,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+shortcut = SubResource("Shortcut_gypbg")
 text = "Start Game"
 script = ExtResource("1_57tko")
 Scene = ExtResource("3_r6hok")
