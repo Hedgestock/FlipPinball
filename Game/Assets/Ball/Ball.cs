@@ -69,7 +69,6 @@ public partial class Ball : RigidBody2D
             LastPoints[i] += (LastPosition - GlobalPosition);
         }
 
-
         LastPosition = GlobalPosition;
         Trail.Points = LastPoints;
         LastPoints = Trail.Points;
@@ -92,8 +91,7 @@ public partial class Ball : RigidBody2D
         // -2 because the lowest board layer is 2
         ZIndex = (highestSetLayer - 2) * 10 + 3;
 
-        GD.Print($"ZIndex:{ZIndex} {(value? "set": "unset")}layer:{layer} hsl:{highestSetLayer} cl:{CollisionLayer}");
-
+        //GD.Print($"ZIndex:{ZIndex} {(value? "set": "unset")}layer:{layer} hsl:{highestSetLayer} cl:{CollisionLayer}");
     }
 
     public void ResetTrail()

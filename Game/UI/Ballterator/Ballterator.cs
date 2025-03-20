@@ -22,6 +22,7 @@ public partial class Ballterator : ScrollContainer
 
     int BallterationCount = 3;
     long _creditsLeft = 0;
+    long RerollPrice = 0;
     long CreditsLeft
     {
         get { return _creditsLeft; }
@@ -34,7 +35,6 @@ public partial class Ballterator : ScrollContainer
                 CreditsLabel.Text = $"Debt: ({CreditsLeft:N0})";
         }
     }
-    long RerollPrice = 0;
 
     void StartBallterating()
     {
@@ -56,6 +56,7 @@ public partial class Ballterator : ScrollContainer
 
     void DisplayBallterations()
     {
+        CreditsLabel.Text = $"{(CreditsLeft < 0 ? "Debt" : "Credits")}: ({CreditsLeft:N0})";
         RerollButton.Text = $"Reroll ({RerollPrice:N0})";
         foreach (var child in BallterationsContainer.GetChildren())
         {
@@ -72,11 +73,14 @@ public partial class Ballterator : ScrollContainer
     {
         MarginContainer cardMargin = new();
         BallterationCard card = GD.Load<PackedScene>("res://Game/UI/Ballterator/BallterationCard.tscn").Instantiate<BallterationCard>();
-        card.BallterationChosen += (Ballteration ballteration) =>
+        card.BallterationChosen += (Ballteration ballteration, long price) =>
         {
+            CreditsLeft -= price;
+
             Ballterations.Hide();
             var children = ballteration.GetChildren();
 
+            GameManager.Credits -= price;
 
             if (Ballteration.Type.Meta == ballteration.Kind)
             {
@@ -94,7 +98,7 @@ public partial class Ballterator : ScrollContainer
         };
 
 
-        //.Ballteration = BallterationGenerator.EnsureRarity(() => BallterationGenerator.EnsureRarity(BallterationGenerator.CreateSimpleScoreModifier, Ballteration.Rarity.Green, false), Ballteration.Rarity.Green);
+        //card.Ballteration = BallterationGenerator.EnsureRarity(() => BallterationGenerator.EnsureRarity(BallterationGenerator.CreateSimpleScoreModifier, Ballteration.Rarity.Green, false), Ballteration.Rarity.Green);
 
 
         if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
@@ -102,19 +106,27 @@ public partial class Ballterator : ScrollContainer
             var tmp = BallterationGenerator.CreateNewBall();
             tmp.Color = Ballteration.Rarity.Yellow;
             card.Ballteration = tmp;
-        }
-        else if (BallterationCycleNumber == 0)
-        {
-            card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
-        }
-        else if (BallterationCycleNumber == 1)
-        {
-            card.Ballteration = BallterationGenerator.CreateScoreModifier();
+            card.Price = 0;
         }
         else
         {
-            card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
+            var tmp = BallterationGenerator.CreateSimpleScoreModifier();
+            tmp.Color = Ballteration.Rarity.Grey;
+            card.Ballteration = tmp;
+
         }
+        //else if (BallterationCycleNumber == 0)
+        //{
+        //    card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
+        //}
+        //else if (BallterationCycleNumber == 1)
+        //{
+        //    card.Ballteration = BallterationGenerator.CreateScoreModifier();
+        //}
+        //else
+        //{
+        //    card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
+        //}
 
         cardMargin.AddChild(card);
         return cardMargin;

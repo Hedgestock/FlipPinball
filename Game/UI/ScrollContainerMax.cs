@@ -9,8 +9,6 @@ public partial class ScrollContainerMax : ScrollContainer
 
     Control Child;
 
-
-
     public override void _Ready()
     {
         base._Ready();
@@ -20,8 +18,8 @@ public partial class ScrollContainerMax : ScrollContainer
     public override void _Process(double delta)
     {
         base._Process(delta);
-        // Is expensive for somethig that only runs once, but in _Ready() the size of
-        // the balletration effects container in the ballteration card is wrong...
+        // TODO: Is expensive for somethig that only runs once, but in _Ready() the size
+        // of the balletration effects container in the ballteration card is wrong...
         CustomMinimumSize = new Vector2(Math.Min(CustomMaximumSize.X, Child.Size.X), Math.Min(CustomMaximumSize.Y, Child.Size.Y));
     }
 

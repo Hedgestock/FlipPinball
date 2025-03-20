@@ -14,7 +14,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="BalterationCard" type="PanelContainer" node_paths=PackedStringArray("DescriptionContainer", "NameLabel")]
+[node name="BalterationCard" type="PanelContainer" node_paths=PackedStringArray("DescriptionContainer", "NameLabel", "BuyButton")]
 offset_right = 452.0
 offset_bottom = 296.0
 size_flags_horizontal = 4
@@ -23,6 +23,7 @@ mouse_filter = 1
 script = ExtResource("1_5erwd")
 DescriptionContainer = NodePath("MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/VBoxContainer")
 NameLabel = NodePath("MarginContainer/VBoxContainer/Name")
+BuyButton = NodePath("MarginContainer/VBoxContainer/Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

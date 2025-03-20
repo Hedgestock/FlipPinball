@@ -5,15 +5,26 @@ using System.Linq;
 public partial class BallterationCard : PanelContainer
 {
     [Signal]
-    public delegate void BallterationChosenEventHandler(Ballteration ballteration);
+    public delegate void BallterationChosenEventHandler(Ballteration ballteration, long price);
 
     [Export]
     VBoxContainer DescriptionContainer;
     [Export]
     Label NameLabel;
+    [Export]
+    Button BuyButton;
 
-    private Ballteration _ballteration;
+    long _price = 0;
+    public long Price
+    {
+        set
+        {
+            _price = value;
+            BuyButton.Text = $"Ballterate ({value})";
+        }
+    }
 
+    Ballteration _ballteration;
     public Ballteration Ballteration
     {
         set
@@ -22,6 +33,9 @@ public partial class BallterationCard : PanelContainer
             NameLabel.Text = _ballteration.DisplayName;
 
             PaintCard();
+
+            // TODO: Check for float overflow
+            Price = (long)(_ballteration.Color == Ballteration.Rarity.Analog ? _ballteration.AnalogRarity : (int)_ballteration.Color)* GameManager.TargetScore / 10;
 
             foreach (var effect in value.GetChildren().OfType<Effect>())
             {
@@ -39,7 +53,7 @@ public partial class BallterationCard : PanelContainer
 
     void OnClick()
     {
-        EmitSignal(SignalName.BallterationChosen, _ballteration);
+        EmitSignal(SignalName.BallterationChosen, _ballteration, _price);
     }
 
     void PaintCard()
@@ -59,7 +73,7 @@ public partial class BallterationCard : PanelContainer
         switch (_ballteration.Color)
         {
             case Ballteration.Rarity.Analog:
-            default: //Will I ever get to clean that?
+            default: // TODO: Will I ever get to clean that?
                 if (_ballteration.AnalogRarity <= -1)
                     (sb as StyleBoxFlat).BgColor = Colors.Black;
                 else if (_ballteration.AnalogRarity > -1 && _ballteration.AnalogRarity <= 0)

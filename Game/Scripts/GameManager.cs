@@ -51,7 +51,7 @@ public partial class GameManager : Node
             Instance.EmitSignal(SignalName.CreditsChanged);
         }
     }
-    public static long TargetScore { get { return 10000 * (long)Math.Pow(CurrentLevel + 1, CurrentLevel / 2f) - Math.Min(_credits, 0); } }
+    public static long TargetScore { get { return 100000 * (long)Math.Pow(CurrentLevel + 1, CurrentLevel / 2f) - Math.Min(_credits, 0); } }
     public static Board CurrentBoard;
     public static LinkedList<Ball> BallQueue;
     public static List<Ball> HeldBalls;

@@ -108,6 +108,7 @@ More options
 More options persistent
 More choice times
 More choice times persistent
+Resupply instead of rerolling
 New ball
 Extra timed ball
 Extra ball
@@ -115,6 +116,7 @@ Extra ball
 ## Other
 Remove ballteration
 On flipper hit swap the ball ?
+Timed effect
 
 # Rarity system
 
