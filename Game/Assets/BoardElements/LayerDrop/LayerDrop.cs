@@ -34,7 +34,7 @@ public partial class LayerDrop : Node2D
 
     private void DropBall()
     {
-        BallIn.SetCollision(LayerFrom, false);
         BallIn.SetCollision(LayerTo, true);
+        BallIn.SetCollision(LayerFrom, false);
     }
 }

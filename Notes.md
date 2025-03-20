@@ -9,7 +9,6 @@ Add tooltip for balls
 Add pause
 Add actual mobile UI
 Fix freeze+tweening doing strange stuff on trail (Spitters)
-Fix ball draw layer not right on lab semi exit
 Fix paddle position
 Fix multiple balls in spitter
 

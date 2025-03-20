@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Linq;
 
 public partial class Ball : RigidBody2D
@@ -86,9 +85,15 @@ public partial class Ball : RigidBody2D
         SetCollisionLayerValue(layer, value);
         SetCollisionMaskValue(layer, value);
         Center.SetCollisionLayerValue(layer, value);
-        if (value)
-            ZIndex = (layer - 2) * 10 + 3;
-        GD.Print("Ball ZIndex: ", ZIndex);
+
+
+        // Kinda magic but I look at the possition of the most significant bit to get the "height" of the ball
+        int highestSetLayer = 32 - System.Numerics.BitOperations.LeadingZeroCount(CollisionLayer);
+        // -2 because the lowest board layer is 2
+        ZIndex = (highestSetLayer - 2) * 10 + 3;
+
+        GD.Print($"ZIndex:{ZIndex} {(value? "set": "unset")}layer:{layer} hsl:{highestSetLayer} cl:{CollisionLayer}");
+
     }
 
     public void ResetTrail()

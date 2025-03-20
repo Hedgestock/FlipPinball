@@ -119,7 +119,7 @@ public partial class Game : Node
         PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
         scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
         scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
-        GD.Print(scoreBubble.ProcessMode);
+        //GD.Print(scoreBubble.ProcessMode);
         AddChild(scoreBubble);
         Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
         TotalScore.Text = $"Total Score: {ScoreManager.TotalScoreValue:N0}";
