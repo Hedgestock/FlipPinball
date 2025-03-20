@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.Linq;
-using static Ballteration;
 
 public partial class ScoreModifier : Effect
 {

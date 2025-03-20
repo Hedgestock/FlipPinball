@@ -11,8 +11,8 @@ public partial class Ballteration : Node
         Grey,
         Green,
         Blue,
-        Red,
         Purple,
+        Red,
         Analog,
     }
 

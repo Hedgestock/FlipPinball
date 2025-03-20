@@ -89,9 +89,13 @@ public partial class GameManager : Node
         else
         {
             Instance.EmitSignal(SignalName.LevelCleared);
-            CurrentLevel++;
-            ScoreManager.ScoreValue = 0;
         }
+    }
+
+    public static void AdvanceLevel()
+    {
+        CurrentLevel++;
+        ScoreManager.ScoreValue = 0;
     }
 
     public static Ball GetNextBall()

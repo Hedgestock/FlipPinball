@@ -75,12 +75,10 @@ public partial class Ballterator : ScrollContainer
         BallterationCard card = GD.Load<PackedScene>("res://Game/UI/Ballterator/BallterationCard.tscn").Instantiate<BallterationCard>();
         card.BallterationChosen += (Ballteration ballteration, long price) =>
         {
-            CreditsLeft -= price;
-
             Ballterations.Hide();
             var children = ballteration.GetChildren();
 
-            GameManager.Credits -= price;
+            CreditsLeft -= price;
 
             if (Ballteration.Type.Meta == ballteration.Kind)
             {
@@ -113,7 +111,6 @@ public partial class Ballterator : ScrollContainer
             var tmp = BallterationGenerator.CreateSimpleScoreModifier();
             tmp.Color = Ballteration.Rarity.Grey;
             card.Ballteration = tmp;
-
         }
         //else if (BallterationCycleNumber == 0)
         //{
@@ -160,16 +157,26 @@ public partial class Ballterator : ScrollContainer
     void BallterationCycleEnd()
     {
         BallterationCycleNumber++;
+        //if (BallterationCycleNumber >= GameManager.BallQueue.Count)
+        //{
+        //    Close();
+        //}
         if (BallterationCycleNumber >= GameManager.BallQueue.Count)
         {
-            GameManager.Credits = CreditsLeft;
-
-            Hide();
-            GetTree().Paused = false;
+            Close();
         }
         else
         {
             DisplayBallterations();
         }
+    }
+
+    void Close()
+    {
+        GameManager.Credits = CreditsLeft;
+        GameManager.AdvanceLevel();
+
+        Hide();
+        GetTree().Paused = false;
     }
 }

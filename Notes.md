@@ -8,6 +8,7 @@ Add spinner sprites
 Add tooltip for balls
 Add pause
 Add actual mobile UI
+Add vibrations
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix paddle position
 Fix multiple balls in spitter
@@ -27,6 +28,7 @@ Moving elements
 Tick rate
 Collision thing
 Trail Detail
+Particle effects
 
 # Theme ideas
 Labo
