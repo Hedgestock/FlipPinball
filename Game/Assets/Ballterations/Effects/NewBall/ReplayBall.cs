@@ -11,10 +11,10 @@ public partial class ReplayBall : MetaEffect
         }
     }
 
-    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Purple; } }
+    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Red; } }
 
     public override void Activate()
     {
-        GameManager.AddExtraBall(GameManager.CurrentBoard.LoadedBall, true);
+        GameManager.AddExtraBall(GameManager.CurrentBoard.LoadedBall);
     }
 }

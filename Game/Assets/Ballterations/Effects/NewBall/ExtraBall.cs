@@ -11,7 +11,7 @@ public partial class ExtraBall : MetaEffect
         }
     }
 
-    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Blue; } }
+    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Purple; } }
 
     public override void Activate()
     {

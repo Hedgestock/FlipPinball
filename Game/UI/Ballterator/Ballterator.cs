@@ -106,24 +106,24 @@ public partial class Ballterator : Container
             card.Ballteration = tmp;
             card.Price = 0;
         }
-        else
-        {
-            var tmp = BallterationGenerator.CreateSimpleScoreModifier();
-            tmp.Color = Ballteration.Rarity.Grey;
-            card.Ballteration = tmp;
-        }
-        //else if (BallterationCycleNumber == 0)
-        //{
-        //    card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
-        //}
-        //else if (BallterationCycleNumber == 1)
-        //{
-        //    card.Ballteration = BallterationGenerator.CreateScoreModifier();
-        //}
         //else
         //{
-        //    card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
+        //    var tmp = BallterationGenerator.CreateSimpleScoreModifier();
+        //    tmp.Color = Ballteration.Rarity.Blue;
+        //    card.Ballteration = tmp;
         //}
+        else if (BallterationCycleNumber == 0)
+        {
+            card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
+        }
+        else if (BallterationCycleNumber == 1)
+        {
+            card.Ballteration = BallterationGenerator.CreateScoreModifier();
+        }
+        else
+        {
+            card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
+        }
 
         cardMargin.AddChild(card);
         return cardMargin;
@@ -157,11 +157,7 @@ public partial class Ballterator : Container
     void BallterationCycleEnd()
     {
         BallterationCycleNumber++;
-        //if (BallterationCycleNumber >= GameManager.BallQueue.Count)
-        //{
-        //    Close();
-        //}
-        if (BallterationCycleNumber >= GameManager.BallQueue.Count)
+        if (CreditsLeft < 0)
         {
             Close();
         }

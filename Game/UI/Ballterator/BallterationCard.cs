@@ -92,6 +92,9 @@ public partial class BallterationCard : PanelContainer
             case Ballteration.Rarity.Black:
                 (sb as StyleBoxFlat).BgColor = Colors.Black;
                 break;
+            case Ballteration.Rarity.Grey:
+                (sb as StyleBoxFlat).BgColor = new Color("#999999");
+                break;
             case Ballteration.Rarity.Green:
                 (sb as StyleBoxFlat).BgColor = Colors.DarkGreen;
                 break;

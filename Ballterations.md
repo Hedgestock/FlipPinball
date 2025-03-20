@@ -76,22 +76,10 @@ The more the merrier
 Safety first
     Multiplier grows with time except when you don't score
 
-    Bumper score x1.5 super
-    Bumper score x1.5
-    Bumper score x2 super
-    Bumper score x2
-    Bumper score x3 super
-    Bumper score x3
-    Bumper score x5 super
-    Bumper score x5
+Holy trinity
+    Replay ball
+    Extra ball
+    New ball
 
-    Bumper score +100
-    Bumper score +100 super
-    Bumper score +200
-    Bumper score +200 super
-    Bumper score +500
-    Bumper score +500 super
-    Bumper score +1000
-    Bumper score +1000 super
-    Bumper score +2000
-    Bumper score +2000 super
+Deep pockets
+    Allows for infinite rerolls

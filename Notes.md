@@ -1,14 +1,16 @@
 Normal pinball macines usually are 130x72cm thus I'm basing the boards on a 72:130 (or 36:65) aspect ratio.
 Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that avoids dealing with fraction of pixels, making the base board 600x1080px.
 
-Add tilt function timeout
 Add levelup delay
+Add tilt function timeout
 Add drag mode for plunger
 Add spinner sprites
 Add tooltip for balls
 Add pause
 Add actual mobile UI
 Add vibrations
+Add replay ball light fuctionality
+Add mission system
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix paddle position
 Fix multiple balls in spitter
@@ -46,6 +48,13 @@ FishTheFishes
 Haunted
 Double sided board
 
+Lanes' land
+Bumpers' borough
+Slingshots' stronghold
+Spinners' suburb
+Spitters' sector
+Targets' town
+Rollovers' resort
 
 Birthday (Based on user birth month)
 Easter
@@ -70,58 +79,66 @@ Slow motion (Also in target)
 # Ballterations
 
 ## Score
-Bumper score
-Target score
-Rollover score
-Slingshot score
-Spinner score
-Spitter score
-Round score
-Square score
-Global score
+- [x] Bumper score
+- [x] Target score
+- [x] Rollover score
+- [x] Slingshot score
+- [x] Spinner score
+- [x] Spitter score
+- [x] Round score
+- [x] Square score
+- [x] Global score
 
 ## Ball Physics
-Size down
-Weight down
-Random direction changes
-Bounciness
-Square hitbox ?
-Triangle hitbox ?
-Capsule hitbox ?
-Count ball rotation ?
-Slow motion on the ball ?
-Slow motion on the ball on flipper approach ?
-Timed ball
+- [ ] Size down
+- [ ] Weight down
+- [ ] Random direction changes
+- [ ] Bounciness
+- [ ] Square hitbox ?
+- [ ] Triangle hitbox ?
+- [ ] Capsule hitbox ?
+- [ ] Count ball rotation ?
+- [ ] Slow motion on the ball ?
+- [ ] Slow motion on the ball on flipper approach ?
+- [x] Timed ball
 
 ## Trail
-Trail length
-Exploding trail
+- [ ] Trail length
+- [ ] Exploding trail
 
 ## Missions
-Mission scrore mult
-Reduce completion threshold
+- [ ] Mission scrore mult
+- [ ] Reduce completion threshold
 
 ## Board
-Paddle speed
-Gravity inverter
+- [ ] Paddle speed
+- [ ] Gravity inverter
 
 ## Meta
-More options
-More options persistent
-More choice times
-More choice times persistent
-Resupply instead of rerolling
-New ball
-Extra timed ball
-Extra ball
+- [ ] More options
+- [ ] More options persistent
+- [ ] More choice times
+- [ ] More choice times persistent
+- [ ] Resupply instead of rerolling
+- [x] New ball
+- [ ] Extra timed ball
+- [x] Extra ball
+- [x] Replay ball
 
 ## Other
-Remove ballteration
-On flipper hit swap the ball ?
-Timed effect
+- [ ] Remove ballteration
+- [ ] On flipper hit swap the ball ?
+- [ ] Timed effect
+
+## Downsides
+
+- [ ] Adds to the target score
+- [ ] Multiplies the target score
+
 
 # Rarity system
 
+Black
 Grey
 Green
 Blue

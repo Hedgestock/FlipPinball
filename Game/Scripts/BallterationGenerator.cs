@@ -50,7 +50,15 @@ namespace FlipPinball
 
         public static Ballteration CreateNewBall()
         {
-            return GD.Load<PackedScene>("uid://cyd2kjk3ugtu6").Instantiate<Ballteration>();
+            switch (GD.RandRange(1, 3))
+            {
+                default:
+                    return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool0Yellow/NewBall.tscn").Instantiate<Ballteration>();
+                case 2:
+                    return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool0Yellow/ExtraBall.tscn").Instantiate<Ballteration>();
+                case 3:
+                    return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool0Yellow/ReplayBall.tscn").Instantiate<Ballteration>();
+            }
         }
 
         public static Ballteration ConstrainRarity(Func<Ballteration> Creator, Ballteration.Rarity rarity, bool max = true, int retries = 20)

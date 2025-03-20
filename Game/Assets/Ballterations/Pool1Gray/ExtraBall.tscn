@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp6rxi0b6dydp"]
-
-[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_2dst8"]
-
-[node name="ExtraBall" type="Node"]
-script = ExtResource("1_2dst8")
-DisplayName = "Extra Ball"
