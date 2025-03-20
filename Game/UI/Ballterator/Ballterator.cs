@@ -3,7 +3,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class Ballterator : ScrollContainer
+public partial class Ballterator : Container
 {
     [Export]
     Container Ballterations;

@@ -15,7 +15,7 @@ namespace FlipPinball
             ballteration.AddChild(modifier);
 
             ballteration.Kind = Ballteration.Type.Score;
-            ballteration.DisplayName = $"{modifier.GetGroups().First()}{((int)modifier.Prio % 2 == 1 ? "super " : "")}{((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
+            ballteration.DisplayName = $"{modifier.GetGroups().First()} {((int)modifier.Prio % 2 == 1 ? "super " : "")}{((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
 
             return ballteration;
         }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1y2vydb0dwx7" path="res://Game/UI/Ballterator/Ballterator.cs" id="1_7uc8g"]
 
-[node name="Ballterator" type="ScrollContainer" node_paths=PackedStringArray("Ballterations", "Balls", "BallterationsContainer", "BallSelectionContainer", "RerollButton", "CreditsLabel")]
+[node name="Ballterator" type="PanelContainer" node_paths=PackedStringArray("Ballterations", "Balls", "BallterationsContainer", "BallSelectionContainer", "RerollButton", "CreditsLabel")]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,38 +12,42 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_7uc8g")
-Ballterations = NodePath("Ballterations")
-Balls = NodePath("Balls")
-BallterationsContainer = NodePath("Ballterations/BallterationsContainer")
-BallSelectionContainer = NodePath("Balls/BallsContainer")
-RerollButton = NodePath("Ballterations/Button")
-CreditsLabel = NodePath("Ballterations/Credits")
+Ballterations = NodePath("ScrollContainer/Ballterations")
+Balls = NodePath("ScrollContainer/Balls")
+BallterationsContainer = NodePath("ScrollContainer/Ballterations/BallterationsContainer")
+BallSelectionContainer = NodePath("ScrollContainer/Balls/BallsContainer")
+RerollButton = NodePath("ScrollContainer/Ballterations/HFlowContainer/RerollButton")
+CreditsLabel = NodePath("ScrollContainer/Ballterations/Credits")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Ballterations" type="VBoxContainer" parent="."]
+[node name="Ballterations" type="VBoxContainer" parent="ScrollContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Ballterations"]
+[node name="Label" type="Label" parent="ScrollContainer/Ballterations"]
 layout_mode = 2
 text = "Select a ballteration"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Ballterations"]
-custom_minimum_size = Vector2(500, 0)
+[node name="HFlowContainer" type="HFlowContainer" parent="ScrollContainer/Ballterations"]
 layout_mode = 2
-size_flags_horizontal = 4
+alignment = 1
+
+[node name="RerollButton" type="Button" parent="ScrollContainer/Ballterations/HFlowContainer"]
+layout_mode = 2
 size_flags_vertical = 4
 text = "Reroll"
-autowrap_mode = 3
 
-[node name="Credits" type="Label" parent="Ballterations"]
+[node name="CloseButton" type="Button" parent="ScrollContainer/Ballterations/HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Close"
+
+[node name="Credits" type="Label" parent="ScrollContainer/Ballterations"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -51,26 +55,27 @@ text = "Credits: 0"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="BallterationsContainer" type="FlowContainer" parent="Ballterations"]
+[node name="BallterationsContainer" type="FlowContainer" parent="ScrollContainer/Ballterations"]
 layout_mode = 2
 size_flags_vertical = 6
 alignment = 1
 
-[node name="Balls" type="VBoxContainer" parent="."]
+[node name="Balls" type="VBoxContainer" parent="ScrollContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="Balls"]
+[node name="Label" type="Label" parent="ScrollContainer/Balls"]
 layout_mode = 2
 text = "Apply ballteration"
 horizontal_alignment = 1
 
-[node name="BallsContainer" type="FlowContainer" parent="Balls"]
+[node name="BallsContainer" type="FlowContainer" parent="ScrollContainer/Balls"]
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
 [connection signal="visibility_changed" from="." to="." method="StartBallterating"]
-[connection signal="pressed" from="Ballterations/Button" to="." method="Reroll"]
+[connection signal="pressed" from="ScrollContainer/Ballterations/HFlowContainer/RerollButton" to="." method="Reroll"]
+[connection signal="pressed" from="ScrollContainer/Ballterations/HFlowContainer/CloseButton" to="." method="Close"]

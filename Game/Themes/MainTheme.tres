@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://bkcr2bf0r61kc" path="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf" id="1_6bbnb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqpbp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axagp"]
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -14,10 +14,11 @@ shadow_offset = Vector2(10, 10)
 [resource]
 default_font = ExtResource("1_6bbnb")
 default_font_size = 64
+Card/base_type = &"PanelContainer"
+Card/styles/panel = SubResource("StyleBoxFlat_axagp")
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_nqpbp")
 ScoreBubble/base_type = &"Label"
 ScoreBubble/constants/outline_size = 10
