@@ -11,19 +11,20 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
 size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "InfoBox", "Score", "TotalScore", "TargetScore", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
+[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "Score", "TargetScore", "Credits", "TotalScore", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
 BallViewerScene = ExtResource("2_ttlp1")
 MainContainer = NodePath("MainContainer")
-BallQueue = NodePath("MainContainer/InfoScrollContainer/InfoBox/BallQueue/HFlowContainer")
-HeldBalls = NodePath("MainContainer/InfoScrollContainer/InfoBox/HeldBalls/HFlowContainer")
-LiveBalls = NodePath("MainContainer/InfoScrollContainer/InfoBox/LiveBalls/HFlowContainer")
-LoadedBallViewer = NodePath("MainContainer/InfoScrollContainer/InfoBox/LoadedBall/BallViewer")
-InfoBox = NodePath("MainContainer/InfoScrollContainer/InfoBox")
-Score = NodePath("MainContainer/InfoScrollContainer/InfoBox/ScoreLabel")
-TotalScore = NodePath("MainContainer/InfoScrollContainer/InfoBox/TotalScoreLabel")
-TargetScore = NodePath("MainContainer/InfoScrollContainer/InfoBox/TargetScoreLabel")
+BallQueue = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/BallQueue/HFlowContainer")
+HeldBalls = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/HeldBalls/HFlowContainer")
+LiveBalls = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LiveBalls/HFlowContainer")
+LoadedBallViewer = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LoadedBall/BallViewer")
+Score = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/ScoreLabel")
+TargetScore = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/TargetScoreLabel")
+Credits = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/CreditsLabel")
+TotalScore = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/TotalScoreLabel")
+InfoBox = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox")
 Placeholder = NodePath("MainContainer/Placeholder")
 StatusScrollContainer = NodePath("MainContainer/StatusScrollContainer")
 StatusBox = NodePath("MainContainer/StatusScrollContainer/Status")
@@ -45,78 +46,89 @@ grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InfoScrollContainer" type="ScrollContainer" parent="MainContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="InfoScrollContainer" type="ScrollContainer" parent="MainContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InfoBox" type="VBoxContainer" parent="MainContainer/InfoScrollContainer"]
+[node name="InfoBox" type="VBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TargetScoreLabel" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox"]
+[node name="TargetScoreLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 text = "Target score: 0"
 autowrap_mode = 3
 
-[node name="ScoreLabel" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox"]
+[node name="ScoreLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 text = "Score: 0"
 autowrap_mode = 3
 
-[node name="TotalScoreLabel" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-text = "Total Score: 0"
-autowrap_mode = 3
-
-[node name="BallQueue" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
+[node name="BallQueue" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox/BallQueue"]
+[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/BallQueue"]
 layout_mode = 2
 text = "Ball queue"
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/InfoScrollContainer/InfoBox/BallQueue"]
+[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/BallQueue"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="LiveBalls" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
+[node name="LiveBalls" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox/LiveBalls"]
+[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LiveBalls"]
 layout_mode = 2
 text = "Live balls"
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/InfoScrollContainer/InfoBox/LiveBalls"]
+[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LiveBalls"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="HeldBalls" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
+[node name="HeldBalls" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox/HeldBalls"]
+[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/HeldBalls"]
 layout_mode = 2
 text = "Held balls"
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/InfoScrollContainer/InfoBox/HeldBalls"]
+[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/HeldBalls"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="LoadedBall" type="HBoxContainer" parent="MainContainer/InfoScrollContainer/InfoBox"]
+[node name="LoadedBall" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContainer/InfoScrollContainer/InfoBox/LoadedBall"]
+[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LoadedBall"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Loaded ball"
 
-[node name="BallViewer" parent="MainContainer/InfoScrollContainer/InfoBox/LoadedBall" instance=ExtResource("2_ttlp1")]
+[node name="BallViewer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LoadedBall" instance=ExtResource("2_ttlp1")]
 layout_mode = 2
 texture = SubResource("ViewportTexture_ueg0k")
+
+[node name="TotalScoreLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
+layout_mode = 2
+text = "Total Score: 0"
+autowrap_mode = 3
+
+[node name="CreditsLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
+layout_mode = 2
+text = "Credits Left: 0"
+autowrap_mode = 3
 
 [node name="Placeholder" type="Control" parent="MainContainer"]
 custom_minimum_size = Vector2(600, 1080)

@@ -15,7 +15,7 @@ namespace FlipPinball
             ballteration.AddChild(modifier);
 
             ballteration.Kind = Ballteration.Type.Score;
-            ballteration.DisplayName = $"{modifier.GetGroups().First()}{((int)modifier.Prio % 2 == 1 ? " super" : "")} {((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
+            ballteration.DisplayName = $"{modifier.GetGroups().First()}{((int)modifier.Prio % 2 == 1 ? "super " : "")}{((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
 
             return ballteration;
         }
@@ -27,7 +27,7 @@ namespace FlipPinball
             ballteration.AddChild(modifier);
 
             ballteration.Kind = Ballteration.Type.Score;
-            ballteration.DisplayName = $"Score {((int)modifier.Prio % 2 == 1 ? " super" : "")} {((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
+            ballteration.DisplayName = $"Score {((int)modifier.Prio % 2 == 1 ? "super " : "")}{((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
 
             return ballteration;
         }
@@ -53,7 +53,7 @@ namespace FlipPinball
             return GD.Load<PackedScene>("uid://cyd2kjk3ugtu6").Instantiate<Ballteration>();
         }
 
-        public static Ballteration EnsureRarity(Func<Ballteration> Creator, Ballteration.Rarity rarity, bool max = true, int retries = 20)
+        public static Ballteration ConstrainRarity(Func<Ballteration> Creator, Ballteration.Rarity rarity, bool max = true, int retries = 20)
         {
             Ballteration ballteration = Creator();
             for (int i = 0; i < retries; i++)
@@ -67,6 +67,23 @@ namespace FlipPinball
             }
 
             GD.PrintErr($"Failed to generate ballteration meeting rarity criterias (max: {max}, rarity: {rarity})");
+            return ballteration;
+        }
+
+        public static Ballteration EnsureRarity(Func<Ballteration> Creator, Ballteration.Rarity rarity, int retries = 20)
+        {
+            Ballteration ballteration = Creator();
+            for (int i = 0; i < retries; i++)
+            {
+                if (ballteration.AnalogRarity >= (float)rarity - 0.5 && ballteration.AnalogRarity <= (float)rarity + 0.5)
+                {
+                    //GD.Print($"Generated ballteration in {i} retries (rarity: {rarity})");
+                    return ballteration;
+                }
+                ballteration = Creator();
+            }
+
+            GD.PrintErr($"Failed to generate ballteration meeting rarity criterias (rarity: {rarity})");
             return ballteration;
         }
     }

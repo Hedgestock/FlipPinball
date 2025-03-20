@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btxwdmac1qi14" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.cs" id="1_lu6j3"]
 
 [node name="PhysicsScoreBubble" type="RigidBody2D" node_paths=PackedStringArray("Label", "visibleOnScreenNotifier")]
+process_mode = 3
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_lu6j3")

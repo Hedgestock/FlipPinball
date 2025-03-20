@@ -9,6 +9,7 @@ public partial class GameManager : Node
     public delegate void GameOverEventHandler();
     [Signal]
     public delegate void LevelClearedEventHandler();
+
     [Signal]
     public delegate void NewBallEventHandler();
     [Signal]
@@ -19,6 +20,9 @@ public partial class GameManager : Node
     public delegate void LiveBallsChangedEventHandler(Array<Ball> balls);
     [Signal]
     public delegate void LoadedBallEventHandler(Ball ball);
+
+    [Signal]
+    public delegate void CreditsChangedEventHandler();
 
     protected static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
@@ -37,8 +41,17 @@ public partial class GameManager : Node
     }
 
     public static int CurrentLevel;
-    public static long Debt = 0;
-    public static long TargetScore { get { return 100000 * (long)Math.Pow(CurrentLevel + 1, CurrentLevel / 2f) - Debt; } }
+    static long _credits = 0;
+    public static long Credits
+    {
+        get { return _credits; }
+        set
+        {
+            _credits = value;
+            Instance.EmitSignal(SignalName.CreditsChanged);
+        }
+    }
+    public static long TargetScore { get { return 10000 * (long)Math.Pow(CurrentLevel + 1, CurrentLevel / 2f) - Math.Min(_credits, 0); } }
     public static Board CurrentBoard;
     public static LinkedList<Ball> BallQueue;
     public static List<Ball> HeldBalls;
@@ -48,6 +61,7 @@ public partial class GameManager : Node
         BallQueue = new();
         HeldBalls = new();
         CurrentLevel = 1;
+        Credits = 0;
 
         ScoreManager.ScoreValue = 0;
         ScoreManager.TotalScoreValue = 0;

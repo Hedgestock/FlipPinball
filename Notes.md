@@ -13,11 +13,14 @@ Fix ball draw layer not right on lab semi exit
 Fix paddle position
 Fix multiple balls in spitter
 
+Split code for UI management (rn all in Game.cs)
 Maybe pool queue for like score bubbles
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing
 Extra call args + unbind signal args
 Defaut values instead of overloading in signals callback
+
+MRP process mode of instanciated stuff
 
 Moving elements
 

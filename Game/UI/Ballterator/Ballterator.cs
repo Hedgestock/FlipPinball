@@ -40,7 +40,7 @@ public partial class Ballterator : ScrollContainer
     {
         if (Visible == false) return;
 
-        CreditsLeft = ScoreManager.ScoreValue - GameManager.TargetScore;
+        CreditsLeft = Math.Max(GameManager.Credits, 0) + ScoreManager.ScoreValue - GameManager.TargetScore;
         RerollPrice = GameManager.TargetScore / 2;
 
         BallterationCycleNumber = 0;
@@ -150,7 +150,7 @@ public partial class Ballterator : ScrollContainer
         BallterationCycleNumber++;
         if (BallterationCycleNumber >= GameManager.BallQueue.Count)
         {
-            GameManager.Debt = Math.Min(CreditsLeft, 0);
+            GameManager.Credits = CreditsLeft;
 
             Hide();
             GetTree().Paused = false;

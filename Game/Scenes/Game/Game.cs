@@ -27,14 +27,18 @@ public partial class Game : Node
     BallViewer LoadedBallViewer;
 
 
-    [Export]
-    VBoxContainer InfoBox;
+
     [Export]
     Label Score;
     [Export]
-    Label TotalScore;
-    [Export]
     Label TargetScore;
+    [Export]
+    Label Credits;
+    [Export]
+    Label TotalScore;
+
+    [Export]
+    VBoxContainer InfoBox;
     [Export]
     Control Placeholder;
     [Export]
@@ -57,6 +61,7 @@ public partial class Game : Node
 
         ScoreManager.Instance.Connect(ScoreManager.SignalName.Scoring, new Callable(this, MethodName.UpdateScore));
 
+        GameManager.Instance.Connect(GameManager.SignalName.CreditsChanged, new Callable(this, MethodName.UpdateCredits));
         GameManager.Instance.Connect(GameManager.SignalName.NewBall, new Callable(this, MethodName.ResetBoard));
         GameManager.Instance.Connect(GameManager.SignalName.LevelCleared, new Callable(this, MethodName.OpenBallterator));
         GameManager.Instance.Connect(GameManager.SignalName.LoadedBall, new Callable(this, MethodName.UpdateLoadedBall));
@@ -114,9 +119,15 @@ public partial class Game : Node
         PhysicsScoreBubble scoreBubble = ScoreBubbleScene.Instantiate<PhysicsScoreBubble>();
         scoreBubble.Label.Text = currentlyScoring.ToString("+0;-#");
         scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
+        GD.Print(scoreBubble.ProcessMode);
         AddChild(scoreBubble);
         Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
         TotalScore.Text = $"Total Score: {ScoreManager.TotalScoreValue:N0}";
+    }
+
+    void UpdateCredits()
+    {
+        Credits.Text = $"Credits Left: {Math.Max(GameManager.Credits, 0):N0}";
     }
 
     void UpdateBallQueue()
