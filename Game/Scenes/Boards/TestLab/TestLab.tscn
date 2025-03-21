@@ -540,6 +540,9 @@ position = Vector2(112, 112)
 script = ExtResource("18_pasr8")
 Group = "Targets"
 
+[node name="Timer" type="Timer" parent="Layer1/BumperTopTargetGroup"]
+one_shot = true
+
 [node name="RoundTarget1" parent="Layer1/BumperTopTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-57, 0)
 
@@ -613,6 +616,10 @@ position = Vector2(315, 163)
 script = ExtResource("18_pasr8")
 Group = "Rollovers"
 
+[node name="Timer" type="Timer" parent="Layer1/Entry"]
+wait_time = 5.0
+one_shot = true
+
 [node name="Rollover1" parent="Layer1/Entry" instance=ExtResource("9_u8226")]
 position = Vector2(-42, 0)
 
@@ -646,13 +653,13 @@ position = Vector2(0, 150)
 MaxLevel = 5
 MinLevel = 1
 
-[node name="Timer" parent="Layer1/Entry/Bumpers" index="1"]
-wait_time = 45.0
-
 [node name="LeftTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(97, 345)
 script = ExtResource("18_pasr8")
 Group = "Targets"
+
+[node name="Timer" type="Timer" parent="Layer1/LeftTargetGroup"]
+one_shot = true
 
 [node name="RoundTarget1" parent="Layer1/LeftTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(6, 26)
@@ -713,6 +720,9 @@ bus = &"Master"
 position = Vector2(444, 285)
 script = ExtResource("18_pasr8")
 Group = "Targets"
+
+[node name="Timer" type="Timer" parent="Layer1/RightTargetGroup"]
+one_shot = true
 
 [node name="RoundTarget1" parent="Layer1/RightTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(-10, -24)
@@ -1362,6 +1372,10 @@ position = Vector2(63, 622)
 script = ExtResource("18_pasr8")
 Group = "Rollovers"
 
+[node name="Timer" type="Timer" parent="Layer2/Lab"]
+wait_time = 5.0
+one_shot = true
+
 [node name="Rollover1" parent="Layer2/Lab" instance=ExtResource("9_u8226")]
 position = Vector2(-33, -69)
 
@@ -1439,9 +1453,6 @@ Strength = 500
 [node name="Leveler" parent="Layer2/Lab/DecayingLeveler" index="0"]
 MaxLevel = 5
 MinLevel = 1
-
-[node name="Timer" parent="Layer2/Lab/DecayingLeveler" index="1"]
-wait_time = 40.0
 
 [node name="LayerDrop" parent="Layer2" instance=ExtResource("15_uh8xy")]
 position = Vector2(87, 793)
@@ -1923,21 +1934,29 @@ offset_bottom = 983.0
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
-[connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllBlinking"]
+[connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup/Timer" method="start"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/Funds/Leveler" method="MaximizeLevel"]
+[connection signal="timeout" from="Layer1/BumperTopTargetGroup/Timer" to="Layer1/BumperTopTargetGroup" method="SetAllOff"]
 [connection signal="Toggled" from="Layer1/BumperTopTargetGroup/RoundTarget1/Hitbox/OnOffLight" to="Layer1/BumperTopTargetGroup/RoundTarget1/Hitbox" method="Activate"]
 [connection signal="Toggled" from="Layer1/BumperTopTargetGroup/RoundTarget2/Hitbox/OnOffLight" to="Layer1/BumperTopTargetGroup/RoundTarget2/Hitbox" method="Activate"]
 [connection signal="Toggled" from="Layer1/BumperTopTargetGroup/RoundTarget3/Hitbox/OnOffLight" to="Layer1/BumperTopTargetGroup/RoundTarget3/Hitbox" method="Activate"]
-[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Bumpers/Leveler" method="LevelUp"]
+[connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Timer" method="start"]
+[connection signal="timeout" from="Layer1/Entry/Timer" to="Layer1/Entry" method="SetAllOff"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/BumperTop" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
-[connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack/OnOffLight" method="TurnOn"]
-[connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup/Timer" method="start"]
+[connection signal="timeout" from="Layer1/LeftTargetGroup/Timer" to="Layer1/LeftTargetGroup" method="SetAllOff"]
+[connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightKickBack/OnOffLight" method="TurnOn"]
+[connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup/Timer" method="start"]
+[connection signal="timeout" from="Layer1/RightTargetGroup/Timer" to="Layer1/RightTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="OnLevelChange" from="Layer1/TopTargetGroup/DecayingLeveler/Leveler" to="." method="SetBoardMultLevel"]
@@ -1977,8 +1996,10 @@ offset_bottom = 983.0
 [connection signal="RolledOver" from="Layer1/Funds/Rollover4" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [4]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover5" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [5]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover6" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [6]]
-[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab" method="SetAllOff"]
+[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/DecayingLeveler/Leveler" method="LevelUp"]
+[connection signal="AllOn" from="Layer2/Lab" to="Layer2/Lab/Timer" method="start"]
+[connection signal="timeout" from="Layer2/Lab/Timer" to="Layer2/Lab" method="SetAllOff"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper3" method="SetLevel"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8083u3uwi53p"]
+[gd_scene load_steps=7 format=3 uid="uid://b8083u3uwi53p"]
 
+[ext_resource type="Script" uid="uid://biknm6y1ac7gf" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Target.cs" id="1_qcr3c"]
 [ext_resource type="PackedScene" uid="uid://dn1735yghpl7a" path="res://Game/Assets/CompositionComponents/Hitbox/Hitbox.tscn" id="2_8lukt"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="3_avehg"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_f5lic"]
@@ -9,7 +10,9 @@
 radius = 3.0
 height = 20.0
 
-[node name="Target" type="Node2D" groups=["Targets"]]
+[node name="Target" type="Node2D" node_paths=PackedStringArray("OnOffLight") groups=["Targets"]]
+script = ExtResource("1_qcr3c")
+OnOffLight = NodePath("Hitbox/OnOffLight")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_8lukt")]
 TriggerSpeed = 25
@@ -33,6 +36,6 @@ bus = &"BoardElements"
 Strength = 500
 
 [connection signal="Hit" from="Hitbox" to="Pusher" method="Push"]
-[connection signal="Hit" from="Hitbox" to="Hitbox/OnOffLight" method="TurnOn" unbinds=2]
+[connection signal="Hit" from="Hitbox" to="." method="OnHit" unbinds=2]
 [connection signal="Hit" from="Hitbox" to="Scorer" method="Score" unbinds=1]
 [connection signal="Hit" from="Hitbox" to="AudioStreamPlayer" method="play" unbinds=2]

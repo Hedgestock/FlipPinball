@@ -31,8 +31,11 @@ public partial class RolloverSwitch : Node2D
                 Scorer.Score(ball);
 
             EmitSignal(SignalName.LanePassed);
-            if (!SelfActivated && !OnOffLight.IsOn) return;
+
+            if ((!SelfActivated && !OnOffLight.IsOn) || OnOffLight.IsBlinking) return;
+
             OnOffLight.IsOn = !OnOffLight.IsOn;
+
             if (!OnOffLight.IsOn) EmitSignal(SignalName.Deactivating);
         }
     }

@@ -54,6 +54,12 @@ public partial class BoardElementsGroup : Node2D
             node.light.TurnOn();
     }
 
+    protected void SetAllBlinking()
+    {
+        foreach (var node in Nodes)
+            node.light.TurnBlinking();
+    }
+
     protected void SetAllOff()
     {
         foreach (var node in Nodes)
