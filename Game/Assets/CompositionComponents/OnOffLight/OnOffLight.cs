@@ -10,6 +10,9 @@ public partial class OnOffLight : AnimatedSprite2D
     public delegate void TurnedOnEventHandler();
 
     [Signal]
+    public delegate void TurnedBlinkingEventHandler();
+    
+    [Signal]
     public delegate void TurnedOffEventHandler();
 
     public bool IsOn
@@ -57,6 +60,7 @@ public partial class OnOffLight : AnimatedSprite2D
     public void TurnBlinking()
     {
         Animation = "blinking";
+        EmitSignal(SignalName.TurnedBlinking);
         Play();
     }
 }

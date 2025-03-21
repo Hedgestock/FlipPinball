@@ -29,6 +29,7 @@ target_position = Vector2(0, 20)
 collision_mask = 0
 
 [node name="SpitDelay" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 
 [node name="SpitterInSoundPlayer" type="AudioStreamPlayer2D" parent="."]
@@ -52,3 +53,4 @@ PushVariation = 10
 [connection signal="SwallowingBall" from="." to="SpitterInSoundPlayer" method="play" unbinds=1]
 [connection signal="area_entered" from="Area2D" to="." method="OnAreaEnter"]
 [connection signal="timeout" from="SpitDelay" to="." method="SpitBall"]
+[connection signal="timeout" from="SpitDelay" to="OnOffLight" method="TurnOff"]

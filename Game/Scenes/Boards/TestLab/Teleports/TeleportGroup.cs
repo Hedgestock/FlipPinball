@@ -45,12 +45,14 @@ public partial class TeleportGroup : BoardElementsGroup
         if (light.IsOn)
         {
             EmitSignal(SignalName.ShouldHold, ball);
+            light.TurnOff();
         }
         else
         {
-            EmitSignal(SignalName.Teleporting, ball, ((Node2D)Nodes.First(n => n.light.IsOn).node).GlobalPosition);
+            var active = Nodes.First(n => n.light.IsOn);
+            EmitSignal(SignalName.Teleporting, ball, ((Node2D)active.node).GlobalPosition);
+            active.light.TurnBlinking();
         }
-        SetAllOff();
     }
 
     void SpitFromAll(Array<Ball> HeldBalls)
@@ -60,6 +62,5 @@ public partial class TeleportGroup : BoardElementsGroup
         {
             CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.AddingBall, HeldBalls[i].Duplicate(), ((Node2D)Nodes[i].node).GlobalPosition);
         }
-        SetAllOff();
     }
 }
