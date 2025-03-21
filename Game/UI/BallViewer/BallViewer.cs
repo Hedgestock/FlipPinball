@@ -8,8 +8,8 @@ public partial class BallViewer : TextureRect
     [Export]
     PackedScene BallterationViewerScene;
 
-    [Export]
-    Window Tooltip;
+    BallTooltip Tooltip;
+
     [Export]
     SubViewport SubViewport;
 
@@ -18,7 +18,7 @@ public partial class BallViewer : TextureRect
     public Ball Ball
     {
         set
-        {   
+        {
             if (_ball != null)
                 _ball.QueueFree();
             _ball = value;
@@ -27,30 +27,41 @@ public partial class BallViewer : TextureRect
             value.GlobalPosition = Vector2.One * 12;
             SubViewport.AddChild(value);
 
-            VBoxContainer ballterationDisplayer = (VBoxContainer)Tooltip.FindChild("VBoxContainer");
-            var ballterations = value.GetChildren().OfType<Ballteration>();
+            Tooltip = GD.Load<PackedScene>("res://Game/UI/BallViewer/BallTooltip.tscn").Instantiate<BallTooltip>();
 
+            ViewportTexture ballMirror = new();
+            ballMirror.ViewportPath = "SubViewport";
+            Tooltip.BallMirror.Texture = ballMirror;
+
+            var ballterations = value.GetChildren().OfType<Ballteration>();
             if (ballterations.Any())
             {
                 foreach (var ballteration in ballterations)
                 {
                     BallterationViewer viewer = BallterationViewerScene.Instantiate<BallterationViewer>();
                     viewer.Ballteration = ballteration;
-                    ballterationDisplayer.AddChild(viewer);
+                    Tooltip.Content.AddChild(viewer);
                 }
             }
             else
             {
-                Label noBallterations = new ();
+                Label noBallterations = new();
                 noBallterations.Text = "Ball hasn't been altered, no ballterations yet.";
                 noBallterations.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-                ballterationDisplayer.AddChild(noBallterations);
+                Tooltip.Content.AddChild(noBallterations);
             }
         }
     }
 
-    void OnMouseEnter()
+    void TooltipHandler(InputEvent @event)
     {
-        Tooltip.Show();
+        if (@event is InputEventMouseButton eventMouseButton)
+        {
+            if (@event.IsActionPressed("screen_tap"))
+            {
+                AddChild(Tooltip);
+                Tooltip.Show();
+            }
+        }
     }
 }

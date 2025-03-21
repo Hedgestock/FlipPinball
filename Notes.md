@@ -22,7 +22,7 @@ Fix paddle position
 
 Fix multiple balls in spitter
 Check for teleport multi entry and weird behaviour
-
+Use one list of viewports for all ballviewers
 Split code for UI management (rn all in Game.cs)
 Maybe pool queue for like score bubbles
 Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
