@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgs5jt3kt7xw3"]
+[gd_scene load_steps=6 format=3 uid="uid://dgs5jt3kt7xw3"]
 
 [ext_resource type="Script" uid="uid://cfrijwhc6b4dh" path="res://Game/UI/BallViewer/BallViewer.cs" id="1_y3gcp"]
 [ext_resource type="Texture2D" uid="uid://cm3t8b8qctbws" path="res://Game/UI/BallViewer/Damier.png" id="2_01d5j"]
+[ext_resource type="PackedScene" uid="uid://8cpecxd12pj5" path="res://Game/UI/BallViewer/BallterationViewer.tscn" id="2_6rhaj"]
+[ext_resource type="PackedScene" uid="uid://6uswvopkq116" path="res://Game/UI/BallViewer/BallTooltip.tscn" id="3_cv6bd"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_q607d"]
 viewport_path = NodePath("SubViewport")
 
-[node name="BallViewer" type="TextureRect" node_paths=PackedStringArray("SubViewport")]
+[node name="BallViewer" type="TextureRect" node_paths=PackedStringArray("Tooltip", "SubViewport")]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -23,6 +25,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("ViewportTexture_q607d")
 script = ExtResource("1_y3gcp")
+BallterationViewerScene = ExtResource("2_6rhaj")
+Tooltip = NodePath("BallTooltip")
 SubViewport = NodePath("SubViewport")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -34,3 +38,8 @@ size = Vector2i(40, 40)
 [node name="Damier" type="Sprite2D" parent="SubViewport"]
 texture = ExtResource("2_01d5j")
 centered = false
+
+[node name="BallTooltip" parent="." instance=ExtResource("3_cv6bd")]
+visible = false
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]

@@ -7,8 +7,6 @@ using System.Linq;
 public partial class Game : Node
 {
     [Export]
-    Board CurrentBoard;
-    [Export]
     Viewport BoardViewport;
 
     [Export]
@@ -18,11 +16,11 @@ public partial class Game : Node
     BoxContainer MainContainer;
 
     [Export]
-    HFlowContainer BallQueue;
+    Container BallQueue;
     [Export]
-    HFlowContainer HeldBalls;
+    Container HeldBalls;
     [Export]
-    HFlowContainer LiveBalls;
+    Container LiveBalls;
     [Export]
     BallViewer LoadedBallViewer;
 

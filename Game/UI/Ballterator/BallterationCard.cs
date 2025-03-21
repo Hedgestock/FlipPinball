@@ -8,11 +8,11 @@ public partial class BallterationCard : PanelContainer
     public delegate void BallterationChosenEventHandler(Ballteration ballteration, long price);
 
     [Export]
-    VBoxContainer DescriptionContainer;
-    [Export]
     Label NameLabel;
     [Export]
     Button BuyButton;
+    [Export]
+    VBoxContainer DescriptionContainer;
 
     long _price = 0;
     public long Price

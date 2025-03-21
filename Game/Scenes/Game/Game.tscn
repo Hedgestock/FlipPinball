@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
 [ext_resource type="PackedScene" uid="uid://6aanashyb3dl" path="res://Game/UI/Ballterator/Ballterator.tscn" id="5_ueg0k"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ueg0k"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_x1rdj"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
@@ -82,6 +82,7 @@ text = "Ball queue"
 [node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/BallQueue"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 2
 
 [node name="LiveBalls" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
@@ -118,7 +119,7 @@ text = "Loaded ball"
 
 [node name="BallViewer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LoadedBall" instance=ExtResource("2_ttlp1")]
 layout_mode = 2
-texture = SubResource("ViewportTexture_ueg0k")
+texture = SubResource("ViewportTexture_x1rdj")
 
 [node name="TotalScoreLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
 layout_mode = 2

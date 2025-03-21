@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cw3uspn2sthsy"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cw3uspn2sthsy"]
 
 [ext_resource type="FontFile" uid="uid://bkcr2bf0r61kc" path="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf" id="1_6bbnb"]
 [ext_resource type="Texture2D" uid="uid://b3yvuvme4b57v" path="res://Game/Assets/BoardElements/TiltLight/TiltLightOn.png" id="1_qo6mh"]
@@ -22,9 +22,21 @@ expand_margin_left = 10.0
 expand_margin_top = 64.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
-shadow_color = Color(0, 0, 0, 1)
 shadow_size = 1
 shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qo6mh"]
+bg_color = Color(0.5, 0.5, 0.5, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 64.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 1
+shadow_offset = Vector2(5, 5)
 
 [resource]
 default_font = ExtResource("1_6bbnb")
@@ -41,5 +53,6 @@ PopupPanel/constants/title_height = 64
 PopupPanel/icons/close = ExtResource("1_qo6mh")
 PopupPanel/icons/close_pressed = ExtResource("2_a6qho")
 PopupPanel/styles/embedded_border = SubResource("StyleBoxFlat_nqpbp")
+PopupPanel/styles/embedded_unfocused_border = SubResource("StyleBoxFlat_qo6mh")
 ScoreBubble/base_type = &"Label"
 ScoreBubble/constants/outline_size = 10
