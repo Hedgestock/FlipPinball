@@ -30,6 +30,7 @@ SceneManager="*res://Game/Scripts/SceneManager.cs"
 
 window/size/viewport_width=600
 window/size/viewport_height=1080
+window/size/sharp_corners=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
@@ -58,6 +59,7 @@ Global=""
 
 theme/custom="res://Game/Themes/MainTheme.tres"
 theme/custom_font="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf"
+theme/default_font_antialiasing=0
 
 [input]
 
@@ -120,3 +122,7 @@ common/enable_object_picking=false
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+textures/default_filters/anisotropic_filtering_level=0
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+textures/decals/filter=0
+textures/light_projectors/filter=0

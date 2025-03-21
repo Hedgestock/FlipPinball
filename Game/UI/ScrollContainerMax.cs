@@ -22,6 +22,4 @@ public partial class ScrollContainerMax : ScrollContainer
         // of the balletration effects container in the ballteration card is wrong...
         CustomMinimumSize = new Vector2(Math.Min(CustomMaximumSize.X, Child.Size.X), Math.Min(CustomMaximumSize.Y, Child.Size.Y));
     }
-
-
 }

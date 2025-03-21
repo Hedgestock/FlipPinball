@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn1sj2vcg06w5"]
+[gd_scene load_steps=11 format=3 uid="uid://dn1sj2vcg06w5"]
 
 [ext_resource type="Script" uid="uid://cwnrqf6qri4h7" path="res://PhysicsTest/test1.cs" id="1_dde8p"]
 [ext_resource type="Script" uid="uid://cdivu7iitdiy3" path="res://PhysicsTest/Test.cs" id="1_leqod"]
 [ext_resource type="Script" uid="uid://d00jusen4j23v" path="res://PhysicsTest/test2.cs" id="2_8hvl4"]
 [ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="4_cx3p0"]
+[ext_resource type="PackedScene" uid="uid://desalmyy6b5on" path="res://Game/UI/Tutorial/TutorialPopup.tscn" id="5_pw1py"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fftow"]
 distance = -295.0
@@ -15,6 +16,19 @@ size = Vector2(20, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2pls"]
 size = Vector2(10000, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1h77"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 40.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("Paddles")]
 script = ExtResource("1_leqod")
@@ -109,3 +123,17 @@ shape = SubResource("RectangleShape2D_u2pls")
 
 [node name="Paddle" parent="testbox2" instance=ExtResource("4_cx3p0")]
 position = Vector2(183, 978)
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 107.0
+offset_top = 733.0
+offset_right = 347.0
+offset_bottom = 840.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x1h77")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+text = "test label
+"
+
+[node name="TutorialPopup" parent="." instance=ExtResource("5_pw1py")]

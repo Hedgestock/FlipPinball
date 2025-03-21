@@ -1784,8 +1784,7 @@ offset_right = 384.0
 offset_bottom = 816.0
 Title = "Magnet"
 Description = "Upon activation, the magnet will affect all balls in its vicinity.
-Activate the tunnel spitter when all 4 tunnel lights are lit to turn it on and reset the tunnel.
-"
+Activate the tunnel spitter when all 4 tunnel lights are lit to turn it on and reset the tunnel."
 
 [node name="FundsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 offset_left = 88.0
@@ -1929,10 +1928,10 @@ offset_bottom = 983.0
 [connection signal="body_entered" from="Boundaries" to="." method="DespawnBall" binds= [1]]
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
-[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
+[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup/Timer" method="start"]

@@ -2,13 +2,18 @@ Normal pinball macines usually are 130x72cm thus I'm basing the boards on a 72:1
 Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that avoids dealing with fraction of pixels, making the base board 600x1080px.
 
 
-Add target blink on hit
-Add tilt function timeout
-Add drag mode for plunger
-Add spinner sprites
 Add tooltip for balls
+Add spinner sprites
 Add pause
 Add actual mobile UI
+Add tilt function timeout
+Add target blink on hit
+Add drag mode for plunger
+Add settings
+Add saves/continue
+Add music
+Add achievements
+Add input mapping
 Add vibrations
 Add replay ball light fuctionality
 Add mission system

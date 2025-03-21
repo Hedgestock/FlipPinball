@@ -1,61 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://desalmyy6b5on"]
+[gd_scene load_steps=3 format=3 uid="uid://desalmyy6b5on"]
 
-[ext_resource type="Script" uid="uid://b5fyxy0ypguwt" path="res://Game/UI/ScrollContainerMax.cs" id="1_qlptu"]
+[ext_resource type="Script" uid="uid://b3vtaqus5ouq3" path="res://Game/UI/Tutorial/TutorialPopup.cs" id="1_4rec7"]
+[ext_resource type="Script" uid="uid://b5fyxy0ypguwt" path="res://Game/UI/ScrollContainerMax.cs" id="2_nrq8x"]
 
-[node name="TutorialPopup" type="Button"]
+[node name="TutorialPopup" type="PopupPanel"]
 process_mode = 3
-self_modulate = Color(1, 1, 1, 0)
+auto_translate_mode = 2
+disable_3d = true
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 0
+title = "Tutorial Popup"
+initial_position = 1
+size = Vector2i(500, 200)
+visible = true
+borderless = false
+always_on_top = true
+auto_translate = false
+script = ExtResource("1_4rec7")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-mouse_default_cursor_shape = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -264.0
-offset_top = -38.0
-offset_right = 264.0
-offset_bottom = 38.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"Card"
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Tutorial Popup"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 4
-script = ExtResource("1_qlptu")
+size_flags_vertical = 3
+script = ExtResource("2_nrq8x")
 CustomMaximumSize = Vector2(0, 800)
 
-[node name="Content" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
-custom_minimum_size = Vector2(500, 0)
+[node name="Content" type="Label" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "Tutorial popup can have a long description so I better write some text here."
+size_flags_vertical = 3
 autowrap_mode = 3
 
-[connection signal="pressed" from="." to="." method="queue_free"]
+[connection signal="popup_hide" from="." to="." method="queue_free"]

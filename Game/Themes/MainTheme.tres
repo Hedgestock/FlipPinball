@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cw3uspn2sthsy"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cw3uspn2sthsy"]
 
 [ext_resource type="FontFile" uid="uid://bkcr2bf0r61kc" path="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf" id="1_6bbnb"]
+[ext_resource type="Texture2D" uid="uid://b3yvuvme4b57v" path="res://Game/Assets/BoardElements/TiltLight/TiltLightOn.png" id="1_qo6mh"]
+[ext_resource type="Texture2D" uid="uid://cbmku5pqhdm4s" path="res://Game/Assets/BoardElements/TiltLight/TiltLightOff.png" id="2_a6qho"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axagp"]
 border_color = Color(0, 0, 0, 1)
@@ -8,6 +10,19 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqpbp"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 64.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(0, 0, 0, 1)
 shadow_size = 1
 shadow_offset = Vector2(10, 10)
 
@@ -20,5 +35,11 @@ MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
+PopupPanel/constants/close_h_offset = 30
+PopupPanel/constants/close_v_offset = 54
+PopupPanel/constants/title_height = 64
+PopupPanel/icons/close = ExtResource("1_qo6mh")
+PopupPanel/icons/close_pressed = ExtResource("2_a6qho")
+PopupPanel/styles/embedded_border = SubResource("StyleBoxFlat_nqpbp")
 ScoreBubble/base_type = &"Label"
 ScoreBubble/constants/outline_size = 10
