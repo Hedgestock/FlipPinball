@@ -28,12 +28,23 @@ public partial class BallViewer : TextureRect
             SubViewport.AddChild(value);
 
             VBoxContainer ballterationDisplayer = (VBoxContainer)Tooltip.FindChild("VBoxContainer");
+            var ballterations = value.GetChildren().OfType<Ballteration>();
 
-            foreach(var ballteration in value.GetChildren().OfType<Ballteration>())
+            if (ballterations.Any())
             {
-                BallterationViewer viewer = BallterationViewerScene.Instantiate<BallterationViewer>();
-                viewer.Ballteration = ballteration;
-                ballterationDisplayer.AddChild(viewer);
+                foreach (var ballteration in ballterations)
+                {
+                    BallterationViewer viewer = BallterationViewerScene.Instantiate<BallterationViewer>();
+                    viewer.Ballteration = ballteration;
+                    ballterationDisplayer.AddChild(viewer);
+                }
+            }
+            else
+            {
+                Label noBallterations = new ();
+                noBallterations.Text = "Ball hasn't been altered, no ballterations yet.";
+                noBallterations.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+                ballterationDisplayer.AddChild(noBallterations);
             }
         }
     }

@@ -7,6 +7,8 @@ public partial class BallTooltip : Window
     Container Content;
     void OnShow()
     {
-        Position = (Vector2I)((Control)GetParent()).GlobalPosition;
+        Position = new Vector2I(
+            (int)Math.Min(((Control)GetParent()).GlobalPosition.X, GetTree().Root.GetViewport().GetVisibleRect().Size.X - Size.X),
+            (int)Math.Min(((Control)GetParent()).GlobalPosition.Y, GetTree().Root.GetViewport().GetVisibleRect().Size.Y - Size.Y));
     }
 }

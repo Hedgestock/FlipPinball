@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgs5jt3kt7xw3"]
+[gd_scene load_steps=8 format=3 uid="uid://dgs5jt3kt7xw3"]
 
 [ext_resource type="Script" uid="uid://cfrijwhc6b4dh" path="res://Game/UI/BallViewer/BallViewer.cs" id="1_y3gcp"]
 [ext_resource type="Texture2D" uid="uid://cm3t8b8qctbws" path="res://Game/UI/BallViewer/Damier.png" id="2_01d5j"]
 [ext_resource type="PackedScene" uid="uid://8cpecxd12pj5" path="res://Game/UI/BallViewer/BallterationViewer.tscn" id="2_6rhaj"]
-[ext_resource type="PackedScene" uid="uid://6uswvopkq116" path="res://Game/UI/BallViewer/BallTooltip.tscn" id="3_cv6bd"]
+[ext_resource type="Script" uid="uid://dhualkwabhcdd" path="res://Game/UI/BallViewer/BallTooltip.cs" id="3_swulv"]
+[ext_resource type="Script" uid="uid://b5fyxy0ypguwt" path="res://Game/UI/ScrollContainerMax.cs" id="4_k0ulx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_q607d"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_swulv"]
 viewport_path = NodePath("SubViewport")
 
 [node name="BallViewer" type="TextureRect" node_paths=PackedStringArray("Tooltip", "SubViewport")]
@@ -39,7 +43,47 @@ size = Vector2i(40, 40)
 texture = ExtResource("2_01d5j")
 centered = false
 
-[node name="BallTooltip" parent="." instance=ExtResource("3_cv6bd")]
-visible = false
+[node name="BallTooltip" type="PopupPanel" parent="." node_paths=PackedStringArray("Content")]
+process_mode = 3
+auto_translate_mode = 2
+disable_3d = true
+canvas_item_default_texture_filter = 0
+title = "Ballterations"
+position = Vector2i(0, 64)
+size = Vector2i(508, 8)
+unresizable = false
+borderless = false
+always_on_top = true
+max_size = Vector2i(32768, 500)
+auto_translate = false
+theme_type_variation = &"BallTooltip"
+script = ExtResource("3_swulv")
+Content = NodePath("ScrollContainer/VBoxContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BallTooltip"]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 504.0
+offset_bottom = 4.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_k0ulx")
+CustomMaximumSize = Vector2(500, 500)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BallTooltip/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="BallTooltip/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("ViewportTexture_swulv")
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
+[connection signal="visibility_changed" from="BallTooltip" to="BallTooltip" method="OnShow"]
