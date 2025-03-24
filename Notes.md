@@ -19,6 +19,9 @@ Add mission system
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix paddle position
 
+Add smart regeneration on condition fail
+TEST GENERATION
+
 Fix multiple balls in spitter
 Check for teleport multi entry and weird behaviour
 Use one list of viewports for all ballviewers

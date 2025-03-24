@@ -77,6 +77,7 @@ public partial class ScoreModifier : Effect
 
         sm.Prio = (Priority)GD.RandRange(0, 3);
         sm.Value = (float)((int)sm.Prio <= 1 ? GD.RandRange(100, 2000) : Mathf.Snapped(GD.RandRange(1.1, 5), 0.1));
+        sm.Restrictive = GD.Randi() % 2 == 0;
         for (int i = 0; i < GD.RandRange(1, ScoringGroups.Length); i++)
             sm.AddToGroup(ScoringGroups[GD.RandRange(0, ScoringGroups.Length - 1)]);
 

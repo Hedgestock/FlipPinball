@@ -25,6 +25,7 @@ buses/default_bus_layout="res://Game/Audio/FlipPinball_bus_layout.tres"
 ScoreManager="*res://Game/Scripts/ScoreManager.cs"
 GameManager="*res://Game/Scripts/GameManager.cs"
 SceneManager="*res://Game/Scripts/SceneManager.cs"
+BallterationGenerator="*res://Game/Scripts/BallterationGenerator/BallterationGenerator.tscn"
 
 [display]
 
