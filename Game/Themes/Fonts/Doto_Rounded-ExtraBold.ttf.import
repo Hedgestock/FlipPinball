@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://7kowd3ca47j5"
-path="res://.godot/imported/RideTheFader-1XKg.ttf-ec0b5437e556f76e4a9b0ccb1cf24226.fontdata"
+uid="uid://cg2l7jr27gx8m"
+path="res://.godot/imported/Doto_Rounded-ExtraBold.ttf-880b6f49d219b7efac9b40c97fc80d55.fontdata"
 
 [deps]
 
-source_file="res://Game/Themes/Fonts/RideTheFader-1XKg.ttf"
-dest_files=["res://.godot/imported/RideTheFader-1XKg.ttf-ec0b5437e556f76e4a9b0ccb1cf24226.fontdata"]
+source_file="res://Game/Themes/Fonts/Doto_Rounded-ExtraBold.ttf"
+dest_files=["res://.godot/imported/Doto_Rounded-ExtraBold.ttf-880b6f49d219b7efac9b40c97fc80d55.fontdata"]
 
 [params]
 
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 hinting=1
-subpixel_positioning=1
+subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null

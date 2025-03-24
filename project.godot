@@ -58,7 +58,7 @@ Global=""
 [gui]
 
 theme/custom="res://Game/Themes/MainTheme.tres"
-theme/custom_font="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf"
+theme/custom_font="uid://bkcr2bf0r61kc"
 theme/default_font_antialiasing=0
 
 [input]

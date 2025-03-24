@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" format=3 uid="uid://cmrly38ha2lxu"]
+
+[resource]
+variation_opentype = {
+1380929092: 100,
+2003265652: 750
+}

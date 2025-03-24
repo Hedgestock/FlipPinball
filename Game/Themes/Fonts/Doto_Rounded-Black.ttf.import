@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://li52ocxtwnw3"
-path="res://.godot/imported/Ozone-xRRO.ttf-41f883e61fb2f8ed6d9fac452794d270.fontdata"
+uid="uid://c5yd1th2fwmon"
+path="res://.godot/imported/Doto_Rounded-Black.ttf-2bc6c7d475c5f1b9806d61cd7b26197b.fontdata"
 
 [deps]
 
-source_file="res://Game/Themes/Fonts/Ozone-xRRO.ttf"
-dest_files=["res://.godot/imported/Ozone-xRRO.ttf-41f883e61fb2f8ed6d9fac452794d270.fontdata"]
+source_file="res://Game/Themes/Fonts/Doto_Rounded-Black.ttf"
+dest_files=["res://.godot/imported/Doto_Rounded-Black.ttf-2bc6c7d475c5f1b9806d61cd7b26197b.fontdata"]
 
 [params]
 
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 hinting=1
-subpixel_positioning=1
+subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null

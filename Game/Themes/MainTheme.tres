@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cw3uspn2sthsy"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cw3uspn2sthsy"]
 
-[ext_resource type="FontFile" uid="uid://bkcr2bf0r61kc" path="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf" id="1_6bbnb"]
 [ext_resource type="Texture2D" uid="uid://b3yvuvme4b57v" path="res://Game/Assets/BoardElements/TiltLight/TiltLightOn.png" id="1_qo6mh"]
 [ext_resource type="Texture2D" uid="uid://cbmku5pqhdm4s" path="res://Game/Assets/BoardElements/TiltLight/TiltLightOff.png" id="2_a6qho"]
 
@@ -39,7 +38,6 @@ shadow_size = 1
 shadow_offset = Vector2(5, 5)
 
 [resource]
-default_font = ExtResource("1_6bbnb")
 default_font_size = 64
 Card/base_type = &"PanelContainer"
 Card/styles/panel = SubResource("StyleBoxFlat_axagp")

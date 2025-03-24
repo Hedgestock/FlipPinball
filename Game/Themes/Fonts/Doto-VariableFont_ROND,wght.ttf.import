@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bkcr2bf0r61kc"
-path="res://.godot/imported/JdLcdRoundedRegular-vXwE.ttf-fb7d60ba91aace9475c79a4035e3afc8.fontdata"
+uid="uid://ddi004lmt5qri"
+path="res://.godot/imported/Doto-VariableFont_ROND,wght.ttf-33360811432376102f2ec2fcbb0c5f8b.fontdata"
 
 [deps]
 
-source_file="res://Game/Themes/Fonts/JdLcdRoundedRegular-vXwE.ttf"
-dest_files=["res://.godot/imported/JdLcdRoundedRegular-vXwE.ttf-fb7d60ba91aace9475c79a4035e3afc8.fontdata"]
+source_file="res://Game/Themes/Fonts/Doto-VariableFont_ROND,wght.ttf"
+dest_files=["res://.godot/imported/Doto-VariableFont_ROND,wght.ttf-33360811432376102f2ec2fcbb0c5f8b.fontdata"]
 
 [params]
 
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 hinting=1
-subpixel_positioning=1
+subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null
@@ -34,8 +34,7 @@ preload=[{
 "glyphs": [],
 "name": "New Configuration",
 "size": Vector2i(16, 0),
-&"variation_embolden": 0.0,
-&"variation_opentype": {}
+&"variation_embolden": 0.0
 }]
 language_support={}
 script_support={}

@@ -10,8 +10,11 @@ public partial class SplashScreen : ColorRect
 
     public override void _Ready()
     {
-        if (SceneManager.PrevScene != "") return;
-        this.Visible = true;
+        Visible = SceneManager.PrevScene == "";
+
+        if (!Visible) return;
+
+        Wafflestock.Modulate = new Color("ffffff00");
         Logo.Play();
         Tween tween = GetTree().CreateTween();
         tween.TweenProperty(Wafflestock, "modulate", new Color("ffffff"), .5);

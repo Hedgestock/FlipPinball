@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cs5i0pqgaiv23"
-path="res://.godot/imported/MatrixtypeDisplayBold-6R4e6.ttf-3524988204394510521fd2d828b48800.fontdata"
+uid="uid://bhpcd4bjj5kb"
+path="res://.godot/imported/Doto_Rounded-Medium.ttf-6f175d2a56549c44e90953cbd355517c.fontdata"
 
 [deps]
 
-source_file="res://Game/Themes/Fonts/MatrixtypeDisplayBold-6R4e6.ttf"
-dest_files=["res://.godot/imported/MatrixtypeDisplayBold-6R4e6.ttf-3524988204394510521fd2d828b48800.fontdata"]
+source_file="res://Game/Themes/Fonts/Doto_Rounded-Medium.ttf"
+dest_files=["res://.godot/imported/Doto_Rounded-Medium.ttf-6f175d2a56549c44e90953cbd355517c.fontdata"]
 
 [params]
 
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 hinting=1
-subpixel_positioning=1
+subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null

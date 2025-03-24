@@ -2,7 +2,6 @@ Normal pinball macines usually are 130x72cm thus I'm basing the boards on a 72:1
 Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that avoids dealing with fraction of pixels, making the base board 600x1080px.
 
 
-Add tooltip for balls
 Add spinner sprites
 Add pause
 Add actual mobile UI
@@ -30,7 +29,7 @@ Maybe factorise the "OnMultiplier" thing
 Extra call args + unbind signal args
 Defaut values instead of overloading in signals callback
 
-MRP process mode of instanciated stuff
+MRP process mode of instantiated stuff
 
 Moving elements
 
@@ -45,16 +44,19 @@ Labo
 Pirate
 Middle Ages
 Dinosaurs
-Cyberpunk
 Racecar
 Food salty
 Food sweet
 Food healthy
 Circus
+Cyberpunk
 Steampunk
-FishTheFishes
+Solarpunk 
 Haunted
+Space
+Roma
 Double sided board
+FishTheFishes
 
 Lanes' land
 Bumpers' borough
@@ -154,3 +156,11 @@ Red
 Purple
 
 Yellow (Fixed)
+
+
+
+
+Stun
+Weak paddle
+Luck
+Paddle length

@@ -83,3 +83,6 @@ Holy trinity
 
 Deep pockets
     Allows for infinite rerolls
+
+YOLO
+    Broken ball but only one
