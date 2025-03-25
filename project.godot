@@ -49,12 +49,12 @@ Slingshots=""
 Targets=""
 Rollovers=""
 KickBacks=""
-ShapeSquare=""
-ShapeRound=""
 Spinners=""
 Spitters=""
 Walls=""
 Global=""
+"Shape Square"=""
+"Shape Round"=""
 
 [gui]
 

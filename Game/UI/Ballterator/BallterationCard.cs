@@ -58,7 +58,7 @@ public partial class BallterationCard : PanelContainer
 
     void PaintCard()
     {
-        StyleBox sb = (StyleBox)GetThemeStylebox("panel").Duplicate();
+        StyleBox sb = (StyleBox)GetThemeStylebox("panel", "Card").Duplicate();
 
         var lerpColors = (Color c1, Color c2, float amount) =>
         {

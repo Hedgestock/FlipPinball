@@ -95,8 +95,8 @@ public partial class Ballterator : Container
         };
 
 
-        Ballteration ballteration = BallterationGenerator.CreateSimpleScoreModifier();
-        BallterationGenerator.ConstrainRarity(ballteration, (float)Ballteration.Rarity.Green);
+        Ballteration ballteration = BallterationGenerator.CreateScoreModifier();
+        BallterationGenerator.ConstrainRarity(ballteration, (float)Ballteration.Rarity.Blue, false);
         card.Ballteration = ballteration;
 
 

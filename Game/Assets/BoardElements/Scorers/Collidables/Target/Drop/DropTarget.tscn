@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtee"]
 size = Vector2(6, 20)
 
-[node name="DropTarget" groups=["ShapeSquare"] instance=ExtResource("1_4c8g5")]
+[node name="DropTarget" groups=["Shape Square"] instance=ExtResource("1_4c8g5")]
 
 [node name="OnOffLight" parent="Hitbox" index="0"]
 position = Vector2(0, 0)

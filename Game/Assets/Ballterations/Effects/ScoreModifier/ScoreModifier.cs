@@ -112,7 +112,7 @@ public partial class ScoreModifier : Effect
         if (!IsSuper)
             Prio = (Priority)((int)Prio + (GD.Randi() % 2));
 
-        Value = (float)((int)Prio <= 1 ? GD.RandRange(Value, maxAdderValue) : Mathf.Snapped(GD.RandRange(Value, maxMultiplierValue), 0.1));
+        Value = (float)((int)Prio <= 1 ? GD.RandRange((int)Value, maxAdderValue) : Mathf.Snapped(GD.RandRange(Value, maxMultiplierValue), 0.1));
 
         if (Restrictive)
             Restrictive = GD.Randi() % 2 == 0;
@@ -125,7 +125,7 @@ public partial class ScoreModifier : Effect
         if (IsSuper)
             Prio = (Priority)((int)Prio - (GD.Randi() % 2));
 
-        Value = (float)((int)Prio <= 1 ? GD.RandRange(minAdderValue, Value) : Mathf.Snapped(GD.RandRange(minMultiplierValue, Value), 0.1));
+        Value = (float)((int)Prio <= 1 ? GD.RandRange(minAdderValue, (int)Value) : Mathf.Snapped(GD.RandRange(minMultiplierValue, Value), 0.1));
 
         if (!Restrictive && GetGroups().Count > 1)
             Restrictive = GD.Randi() % 2 == 0;
