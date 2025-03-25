@@ -1,7 +1,4 @@
 using Godot;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
 
 public partial class SceneManager : Node
 {

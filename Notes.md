@@ -130,13 +130,14 @@ Slow motion (Also in target)
 ## Meta
 - [ ] More options
 - [ ] More options persistent
-- [ ] More choice times
-- [ ] More choice times persistent
 - [ ] Resupply instead of rerolling
 - [x] New ball
+- [ ] New random ball
 - [ ] Extra timed ball
 - [x] Extra ball
 - [x] Replay ball
+- [ ] Ameliorates all ballterations
+- [ ] Worsen all ballterations
 
 ## Other
 - [ ] Remove ballteration
@@ -151,7 +152,7 @@ Slow motion (Also in target)
 
 # Rarity system
 
-Black
+Black (negative)
 Grey
 Green
 Blue

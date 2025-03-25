@@ -39,7 +39,7 @@ public partial class Ballteration : Node
             {
                 return GetChildren().OfType<Effect>().Select(e => e.AnalogRarity).Sum();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 GD.PrintErr(ex);
                 return 1;
@@ -49,6 +49,26 @@ public partial class Ballteration : Node
 
     [Export]
     public string DisplayName;
+
+    public void Ameliorate()
+    {
+        foreach (var effect in GetChildren().OfType<Effect>())
+        {
+            var betterEffect = effect.Ameliorate();
+            RemoveChild(effect);
+            AddChild(betterEffect);
+        }
+    }
+
+    public void Worsen()
+    {
+        foreach (var effect in GetChildren().OfType<Effect>())
+        {
+            var betterEffect = effect.Worsen();
+            RemoveChild(effect);
+            AddChild(betterEffect);
+        }
+    }
 
     //public Ballteration()
     //{

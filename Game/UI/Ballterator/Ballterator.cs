@@ -95,34 +95,38 @@ public partial class Ballterator : Container
         };
 
 
-        //card.Ballteration = BallterationGenerator.EnsureRarity(() => BallterationGenerator.EnsureRarity(BallterationGenerator.CreateSimpleScoreModifier, Ballteration.Rarity.Green, false), Ballteration.Rarity.Green);
+        Ballteration ballteration = BallterationGenerator.CreateSimpleScoreModifier();
+        BallterationGenerator.ConstrainRarity(ballteration, (float)Ballteration.Rarity.Green);
+        card.Ballteration = ballteration;
 
 
-        if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
-        {
-            var tmp = BallterationGenerator.CreateNewBall();
-            tmp.Color = Ballteration.Rarity.Yellow;
-            card.Ballteration = tmp;
-            card.Price = 0;
-        }
+        //if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
+        //{
+        //    var tmp = BallterationGenerator.CreateNewBall();
+        //    tmp.Color = Ballteration.Rarity.Yellow;
+        //    card.Ballteration = tmp;
+        //    card.Price = 0;
+        //}
+
         //else
         //{
         //    var tmp = BallterationGenerator.CreateSimpleScoreModifier();
         //    tmp.Color = Ballteration.Rarity.Blue;
         //    card.Ballteration = tmp;
         //}
-        else if (BallterationCycleNumber == 0)
-        {
-            card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
-        }
-        else if (BallterationCycleNumber == 1)
-        {
-            card.Ballteration = BallterationGenerator.CreateScoreModifier();
-        }
-        else
-        {
-            card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
-        }
+
+        //else if (BallterationCycleNumber == 0)
+        //{
+        //    card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
+        //}
+        //else if (BallterationCycleNumber == 1)
+        //{
+        //    card.Ballteration = BallterationGenerator.CreateScoreModifier();
+        //}
+        //else
+        //{
+        //    card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
+        //}
 
         cardMargin.AddChild(card);
         return cardMargin;

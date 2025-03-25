@@ -17,4 +17,14 @@ public partial class NewBall : MetaEffect
     {
         GameManager.AddExtraBall(Ball.GetFreshBall(), true);
     }
+
+    public override Effect Ameliorate()
+    {
+        return new ExtraBall();
+    }
+
+    public override Effect Worsen()
+    {
+        return this;
+    }
 }

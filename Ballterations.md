@@ -86,3 +86,6 @@ Deep pockets
 
 YOLO
     Broken ball but only one
+
+Bump up
+    Ameliorates all ballterations

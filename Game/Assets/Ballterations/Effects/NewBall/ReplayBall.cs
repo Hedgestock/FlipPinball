@@ -17,4 +17,14 @@ public partial class ReplayBall : MetaEffect
     {
         GameManager.AddExtraBall(GameManager.CurrentBoard.LoadedBall);
     }
+
+    public override Effect Ameliorate()
+    {
+        return this;
+    }
+
+    public override Effect Worsen()
+    {
+        return new ReplayBall();
+    }
 }

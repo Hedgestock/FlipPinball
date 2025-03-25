@@ -1,4 +1,5 @@
 using Godot;
+using Godot.FlipPinball;
 using System;
 using System.Linq;
 
@@ -20,14 +21,76 @@ public partial class BallterationGenerator : Node
     public override void _Ready()
     {
         base._Ready();
-        for (int i = 0; i < 2500; i++)
-        {
-            float source = GD.Randf();
-            GD.Print($"{GD.RandRange(0,RarityCurve.Sample(source)):N10}");
-            //GD.Print($"{RarityCurve.Sample(source):N10}");
-        }
+        //for (int i = 0; i < 2500; i++)
+        //{
+        //    float source = GD.Randf();
+        //    GD.Print($"{GD.RandRange(0,RarityCurve.Sample(source)):N10}");
+        //    //GD.Print($"{RarityCurve.Sample(source):N10}");
+        //}
     }
 
+     static WeightedItem<Func<Ballteration>>[] WeightedGenerators = [
+        new(CreateNewBall, 10),
+        new(CreateScoreModifier),
+        new(CreateSimpleScoreModifier),
+        new(CreateChaosScoreModifier),
+        ];
+
+    public static Ballteration GenerateToRarityCurve(Func<Ballteration> Creator)
+    {
+        // Use this one with EnsureRarity, but more prone to failure.
+        //float targetRarity = (float)GD.RandRange(0, Instance.RarityCurve.Sample(GD.Randf()));
+        float targetRarity = Instance.RarityCurve.Sample(GD.Randf());
+
+        Ballteration ballteration = WeightedItem<Func<Ballteration>>.ChooseFrom(WeightedGenerators)();
+
+        ConstrainRarity(ballteration, targetRarity);
+
+        return ballteration;
+    }
+
+
+    #region constrainers
+    public static bool ConstrainRarity(Ballteration ballteration, float targetRarity, bool max = true, int retries = 20)
+    {
+        for (int i = 0; i < retries; i++)
+        {
+            if ((max && ballteration.AnalogRarity <= targetRarity) || (!max && ballteration.AnalogRarity >= targetRarity))
+            {
+                GD.Print($"Ballteration fits in {i} retries (max: {max}, targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
+                return true;
+            }
+            GD.Print($"(generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})\nRetrying {i}...");
+            if (max)
+                ballteration.Worsen();
+            else
+                ballteration.Ameliorate();
+        }
+
+        GD.Print($"(generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})");
+        return false;
+    }
+
+    public static bool EnsureRarity(Ballteration ballteration, float targetRarity, int retries = 20)
+    {
+        for (int i = 0; i < retries; i++)
+        {
+            if (ballteration.AnalogRarity >= targetRarity - 0.5 && ballteration.AnalogRarity <= targetRarity + 0.5)
+            {
+                GD.Print($"Ballteration fits in {i} retries (targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
+                return true;
+            }
+            GD.Print($"(ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity} +-0.5)\nImproving {i}...");
+            ballteration.Ameliorate();
+        }
+
+        GD.Print($"(ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity} +-0.5)");
+        return false;
+    }
+    #endregion
+
+    #region generators
+    #region score_modifiers
     public static Ballteration CreateSimpleScoreModifier()
     {
         Ballteration ballteration = new();
@@ -52,7 +115,6 @@ public partial class BallterationGenerator : Node
 
         return ballteration;
     }
-
     public static Ballteration CreateChaosScoreModifier()
     {
         Ballteration ballteration = new();
@@ -68,6 +130,7 @@ public partial class BallterationGenerator : Node
 
         return ballteration;
     }
+    #endregion
 
     public static Ballteration CreateNewBall()
     {
@@ -81,39 +144,5 @@ public partial class BallterationGenerator : Node
                 return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool0Yellow/ReplayBall.tscn").Instantiate<Ballteration>();
         }
     }
-
-    public static Ballteration ConstrainRarity(Func<Ballteration> Creator, Ballteration.Rarity rarity, bool max = true, int retries = 20)
-    {
-        Ballteration ballteration = Creator();
-        for (int i = 0; i < retries; i++)
-        {
-            if ((max && ballteration.AnalogRarity <= (float)rarity) || (!max && ballteration.AnalogRarity >= (float)rarity))
-            {
-                //GD.Print($"Generated ballteration in {i} retries (max: {max}, rarity: {rarity})");
-                return ballteration;
-            }
-            ballteration = Creator();
-        }
-
-        GD.PrintErr($"Failed to generate ballteration meeting rarity criterias (max: {max}, rarity: {rarity})");
-        return ballteration;
-    }
-
-    public static Ballteration EnsureRarity(Func<Ballteration> Creator, Ballteration.Rarity rarity, int retries = 20)
-    {
-        Ballteration ballteration = Creator();
-        for (int i = 0; i < retries; i++)
-        {
-            if (ballteration.AnalogRarity >= (float)rarity - 0.5 && ballteration.AnalogRarity <= (float)rarity + 0.5)
-            {
-                //GD.Print($"Generated ballteration in {i} retries (rarity: {rarity})");
-                return ballteration;
-            }
-            ballteration = Creator();
-        }
-
-        GD.PrintErr($"Failed to generate ballteration meeting rarity criterias (rarity: {rarity})");
-        return ballteration;
-    }
-
+    #endregion
 }

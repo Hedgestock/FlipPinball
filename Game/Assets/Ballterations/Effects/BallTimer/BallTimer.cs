@@ -39,4 +39,25 @@ public partial class BallTimer : Effect
         Label.Text = Timer.TimeLeft.ToString("0.00");
         timeleft = Timer.TimeLeft;
     }
+
+    const int minTime = 40;
+    const int maxTime = 40;
+    static string ScenePath = "res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.tscn";
+
+    public static BallTimer CreateRandom(int minTime = minTime, int maxTime = maxTime)
+    {
+        BallTimer ballTimer = GD.Load<PackedScene>(ScenePath).Instantiate<BallTimer>();
+        ballTimer.timeleft = GD.RandRange(minTime, maxTime);
+        return ballTimer;
+    }
+
+    public override BallTimer Ameliorate()
+    {
+        return CreateRandom((int)this.timeleft);
+    }
+
+    public override BallTimer Worsen()
+    {
+        return CreateRandom(minTime, (int)this.timeleft);
+    }
 }
