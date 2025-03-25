@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmkbdop4uvqcv"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_21gwt"]
+
+[node name="Red" type="Node"]
+script = ExtResource("1_21gwt")
+IsRarityAnalog = false
+_rarity = 5
+DisplayName = "RED"

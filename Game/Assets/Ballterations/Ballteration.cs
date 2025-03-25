@@ -1,37 +1,29 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Linq;
 
 public partial class Ballteration : Node
 {
-    public enum Rarity
+    public enum RarityColor
     {
         Black = -1,
-        Yellow,
-        Grey,
+        Gray = 1,
         Green,
         Blue,
         Purple,
         Red,
-        Analog,
+        Fixed = 100,
     }
 
-    [Flags]
-    public enum Type
-    {
-        Score = 0001,
-        Physics = 0010,
-        Meta = 0100,
-        Other = 1000,
-    }
 
     [Export]
-    public Type Kind = Type.Other;
+    bool IsRarityAnalog = true;
 
     [Export]
-    public Rarity Color = Rarity.Analog;
+    RarityColor _rarity = RarityColor.Gray;
 
-    public float AnalogRarity
+    float AnalogRarity
     {
         get
         {
@@ -42,45 +34,49 @@ public partial class Ballteration : Node
             catch (Exception ex)
             {
                 GD.PrintErr(ex);
-                return 1;
+                return (float)_rarity;
             }
+        }
+    }
+
+    public float Rarity
+    {
+        get
+        {
+            if (IsRarityAnalog) return AnalogRarity;
+            return (float)_rarity;
         }
     }
 
     [Export]
     public string DisplayName;
 
-    public void Ameliorate()
+    public void Refine(Ballteration minimum = null, Ballteration maximum = null)
     {
-        foreach (var effect in GetChildren().OfType<Effect>())
+        if (minimum == null && maximum == null) return;
+
+        Effect[] children = GetChildren().OfType<Effect>().ToArray();
+        Effect[] minChildren = minimum?.GetChildren().OfType<Effect>().ToArray() ?? null;
+        Effect[] maxChildren = maximum?.GetChildren().OfType<Effect>().ToArray() ?? null;
+
+        if ((minChildren?.Length ?? children.Length) != children.Length || (maxChildren?.Length ?? children.Length) != children.Length)
         {
-            var betterEffect = effect.Ameliorate();
-            RemoveChild(effect);
+            GD.PrintErr($"Tried to refine ballterations with different number of children");
+            return;
+        }
+        for (int i = 0; i < children.Length; i++)
+        {
+            var betterEffect = children[i].Refine(minChildren?[i], maxChildren?[i]);
+            RemoveChild(children[i]);
             AddChild(betterEffect);
         }
     }
 
-    public void Worsen()
+    public bool Meta
     {
-        foreach (var effect in GetChildren().OfType<Effect>())
+        get
         {
-            var betterEffect = effect.Worsen();
-            RemoveChild(effect);
-            AddChild(betterEffect);
+            return GetChildren().All(c => c is MetaEffect);
         }
     }
-
-    //public Ballteration()
-    //{
-    //    Kind = 0000;
-    //    var children = GetChildren();
-    //    if (children.Any(c => c is MetaEffect))
-    //    {
-    //        Kind |= Type.Meta;
-    //    }
-    //    if (children.Any(c => c is ScoreModifier))
-    //    {
-    //        Kind |= Type.Score;
-    //    }
-    //}
 }

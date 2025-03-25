@@ -138,6 +138,7 @@ Slow motion (Also in target)
 - [ ] Extra timed ball
 - [x] Extra ball
 - [x] Replay ball
+- [ ] Duplicates any ball
 - [ ] Ameliorates all ballterations
 - [ ] Worsen all ballterations
 

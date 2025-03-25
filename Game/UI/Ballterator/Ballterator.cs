@@ -79,12 +79,13 @@ public partial class Ballterator : Container
 
             CreditsLeft -= price;
 
-            if (Ballteration.Type.Meta == ballteration.Kind)
+            foreach (var metaEffect in ballteration.GetChildren().OfType<MetaEffect>())
             {
-                foreach (var metaEffect in ballteration.GetChildren().OfType<MetaEffect>())
-                {
-                    metaEffect.Activate();
-                }
+                metaEffect.Activate();
+                ballteration.RemoveChild(metaEffect);
+            }
+            if (ballteration.GetChildren().Any())
+            {
                 BallterationCycleEnd();
             }
             else

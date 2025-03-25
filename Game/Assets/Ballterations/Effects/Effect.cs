@@ -7,6 +7,5 @@ public abstract partial class Effect : Node
 
     public abstract float AnalogRarity { get; }
 
-    public abstract Effect Ameliorate();
-    public abstract Effect Worsen();
+    public abstract Effect Refine(Effect minimum = null, Effect maximum = null);
 }

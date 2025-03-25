@@ -106,31 +106,23 @@ public partial class ScoreModifier : Effect
         return sm;
     }
 
-    public override ScoreModifier Ameliorate()
+    public override ScoreModifier Refine(Effect minimum, Effect maximum)
     {
-        if (!IsSuper)
-            Prio = (Priority)((int)Prio + (GD.Randi() % 2));
+        ScoreModifier minimumSM = minimum as ScoreModifier;
+        ScoreModifier maximumSM = maximum as ScoreModifier;
+        ScoreModifier refined = (ScoreModifier)Duplicate();
+        //if (!refined.IsSuper && maximumSM != null && maximumSM.IsSuper)
+        //    refined.Prio = (Priority)((int)refined.Prio + (GD.Randi() % 2));
 
-        Value = (float)((int)Prio <= 1 ? GD.RandRange((int)Value, maxAdderValue) : Mathf.Snapped(GD.RandRange(Value, maxMultiplierValue), 0.1));
 
-        //if (Restrictive)
-        //    Restrictive = false;
-        //    Restrictive = GD.Randi() % 2 == 0;
+        // We clamp the refined value between the minimum and maximum effect values, and use defaults if null
+        refined.Value = (float)((int)refined.Prio <= 1 ?
+            GD.RandRange((int?)minimumSM?.Value ?? minAdderValue, (int?)maximumSM?.Value ?? maxAdderValue) :
+            Mathf.Snapped(GD.RandRange(minimumSM?.Value ?? minMultiplierValue, maximumSM?.Value ?? maxMultiplierValue), 0.1));
 
-        return this;
-    }
+        //if (refined.Restrictive)
+        //    refined.Restrictive = GD.Randi() % 2 == 0;
 
-    public override ScoreModifier Worsen()
-    {
-        if (IsSuper)
-            Prio = (Priority)((int)Prio - (GD.Randi() % 2));
-
-        Value = (float)((int)Prio <= 1 ? GD.RandRange(minAdderValue, (int)Value) : Mathf.Snapped(GD.RandRange(minMultiplierValue, Value), 0.1));
-
-        //if (!Restrictive && GetGroups().Count > 1)
-        //    Restrictive = true;
-        //    Restrictive = GD.Randi() % 2 == 0;
-
-        return this;
+        return refined;
     }
 }

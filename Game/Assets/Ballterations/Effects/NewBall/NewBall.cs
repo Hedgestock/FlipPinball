@@ -11,20 +11,18 @@ public partial class NewBall : MetaEffect
         }
     }
 
-    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Green; } }
+    public override float AnalogRarity { get { return (float)Ballteration.RarityColor.Green; } }
 
     public override void Activate()
     {
         GameManager.AddExtraBall(Ball.GetFreshBall(), true);
     }
 
-    public override Effect Ameliorate()
+    public override Effect Refine(Effect minimum, Effect maximum)
     {
-        return new ExtraBall();
-    }
-
-    public override Effect Worsen()
-    {
-        return this;
+        // A new ball has no "worse" version, so if we are not worsening it, nothing changes
+        // TODO: Maybe look into timed balls
+        if (minimum != null && AnalogRarity <= minimum.AnalogRarity) return new ExtraBall();
+        return new NewBall();
     }
 }

@@ -30,14 +30,15 @@ public partial class BallterationGenerator : Node
         //}
     }
 
-    static WeightedItem<Func<Ballteration>>[] WeightedGeneratorsBase = [
-        new(CreateNewBall, 10),
-        new(CreateScoreModifier),
-        new(CreateSimpleScoreModifier),
-        new(CreateChaosScoreModifier),
+    static WeightedItem<Func<float, Ballteration>>[] WeightedPickersBase = [
+        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateNewBall), 10),
+        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateScoreModifier)),
+        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateSimpleScoreModifier)),
+        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateChaosScoreModifier)),
+        new(GetFromPool),
         ];
 
-    public static Ballteration GenerateToRarityCurve(List<WeightedItem<Func<Ballteration>>> WeightedGenerators = null)
+    public static Ballteration GenerateToRarityCurve(List<WeightedItem<Func<float, Ballteration>>> WeightedPickers = null)
     {
         // TODO: Maybe optimise that with a queue instead of doing .Except
         // not critical for now
@@ -51,18 +52,22 @@ public partial class BallterationGenerator : Node
 
         GD.Print($"Targetting {targetRarity}");
 
-        WeightedGenerators ??= WeightedGeneratorsBase.ToList();
+        WeightedPickers ??= BallterationGenerator.WeightedPickersBase.ToList();
 
-        WeightedItem<Func<Ballteration>> WeightedGenerator = WeightedItem<Func<Ballteration>>.GetFrom(WeightedGenerators);
-        WeightedGenerators.Remove(WeightedGenerator);
-        Ballteration ballteration = WeightedGenerator.Item();
+        WeightedItem<Func<float, Ballteration>> WeightedPicker = WeightedItem<Func<float, Ballteration>>.GetFrom(WeightedPickers);
+        WeightedPickers.Remove(WeightedPicker);
+        Ballteration ballteration = WeightedPicker.Item(targetRarity);
+
         GD.Print($"Generating {ballteration.GetType()}");
 
-        while (!(EnsureRarity(ballteration, out Ballteration betterFit, targetRarity) || WeightedGenerators.Count() == 0))
+        float minAllowedRarity = targetRarity - rarityVariance;
+        float maxAllowedRarity = targetRarity + rarityVariance;
+
+        while ((ballteration.Rarity < minAllowedRarity || maxAllowedRarity < ballteration.Rarity) && WeightedPickers.Count() != 0)
         {
-            WeightedGenerator = WeightedItem<Func<Ballteration>>.GetFrom(WeightedGenerators);
-            WeightedGenerators.Remove(WeightedGenerator);
-            ballteration = WeightedGenerator.Item();
+            WeightedPicker = WeightedItem<Func<float, Ballteration>>.GetFrom(WeightedPickers);
+            WeightedPickers.Remove(WeightedPicker);
+            ballteration = WeightedPicker.Item(targetRarity);
             GD.Print($"Generating {ballteration.DisplayName}");
         }
 
@@ -70,71 +75,81 @@ public partial class BallterationGenerator : Node
     }
 
 
-    #region 
+    #region constrainers
     const int defaultRetries = 10;
 
-    public static bool ConstrainRarity(Ballteration ballteration, float targetRarity, bool max = true, int retries = defaultRetries)
+    public static bool TryConstrainRarity(Ballteration ballteration, float targetRarity, bool targetIsMax = true, int retries = defaultRetries)
     {
         for (int i = 0; i < retries; i++)
         {
-            if ((max && ballteration.AnalogRarity <= targetRarity) || (!max && ballteration.AnalogRarity >= targetRarity))
+            if ((targetIsMax && ballteration.Rarity <= targetRarity) || (!targetIsMax && ballteration.Rarity >= targetRarity))
             {
-                GD.PrintRich($"[color=GREEN]Ballteration fits in {i} retries[/color] (max: {max}, targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
+                GD.PrintRich($"[color=GREEN]Ballteration fits in {i} retries[/color] (max: {targetIsMax}, targetRarity: {targetRarity}, ballteration {ballteration.Rarity})");
                 return true;
             }
-            GD.PrintRich($"[color=ORANGE]Not fitting[/color] (generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})\nRetrying {i}...");
-            if (max)
-                ballteration.Worsen();
+            GD.PrintRich($"[color=ORANGE]Not fitting[/color] (generated {ballteration.Rarity}, max: {targetIsMax}, targetRarity: {targetRarity})\nRetrying {i}...");
+            if (targetIsMax)
+                ballteration.Refine(maximum: ballteration);
             else
-                ballteration.Ameliorate();
+                ballteration.Refine(minimum: ballteration);
         }
 
-        GD.PrintRich($"[color=RED]Failed to fit target rarity[/color](generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})");
+        GD.PrintRich($"[color=RED]Failed to fit target rarity[/color](generated {ballteration.Rarity}, max: {targetIsMax}, targetRarity: {targetRarity})");
         return false;
     }
 
     const float rarityVariance = 0.5f;
 
-    public static bool EnsureRarity(Ballteration ballteration, out Ballteration betterFit, float targetRarity, int retries = defaultRetries)
+    public static bool TryEnsureRarity(Ballteration ballteration, out Ballteration bestFit, float targetRarity, int retries = defaultRetries)
     {
         float minAllowedRarity = targetRarity - rarityVariance;
         float maxAllowedRarity = targetRarity + rarityVariance;
 
-        betterFit = (Ballteration)ballteration.Duplicate();
+        bestFit = (Ballteration)ballteration.Duplicate();
 
         for (int i = 0; i < retries; i++)
         {
             // In case we find a closer ballteration, we keep it in memory
-            if (Math.Abs(ballteration.AnalogRarity - targetRarity) < Math.Abs(betterFit.AnalogRarity - targetRarity))
+            if (Math.Abs(ballteration.Rarity - targetRarity) < Math.Abs(bestFit.Rarity - targetRarity))
             {
-                betterFit = (Ballteration)ballteration.Duplicate();
+                bestFit = (Ballteration)ballteration.Duplicate();
             }
-            if (ballteration.AnalogRarity >= maxAllowedRarity)
+            if (ballteration.Rarity >= maxAllowedRarity)
             {
-                GD.PrintRich($"[color=GREEN]Above target[/color] (ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity}+-0.5)\nWorsening {i}...");
-                ballteration.Worsen();
+                GD.PrintRich($"[color=GREEN]Above target[/color] (ballteration {ballteration.Rarity}, targetRarity: {targetRarity}+-0.5)\nWorsening {i}...");
+                ballteration.Refine(maximum: ballteration);
             }
-            else if (ballteration.AnalogRarity <= minAllowedRarity)
+            else if (ballteration.Rarity <= minAllowedRarity)
             {
-                GD.PrintRich($"[color=RED]Below target[/color] target (ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity}+-0.5)\nImproving {i}...");
-                ballteration.Ameliorate();
+                GD.PrintRich($"[color=RED]Below target[/color] target (ballteration {ballteration.Rarity}, targetRarity: {targetRarity}+-0.5)\nImproving {i}...");
+                ballteration.Refine(minimum: ballteration);
             }
             else
             {
-                GD.PrintRich($"[color=GREEN]Ballteration fits in {i} retries[/color] (targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
-                // Ballteration fits the requirements, and is already stored in betterFit, we say that we are happy
+                GD.PrintRich($"[color=GREEN]Ballteration fits in {i} retries[/color] (targetRarity: {targetRarity}, ballteration {ballteration.Rarity})");
+                // Ballteration fits the requirements, and is already stored in bestFit, we say that we are happy
                 return true;
             }
 
         }
 
-        GD.PrintRich($"[color=RED]Failed to fit target rarity[/color](ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity} +-0.5)");
-        // Ballteration does not fit the requirements, but we have the betterFit, we say that we are unhappy
+        GD.PrintRich($"[color=RED]Failed to fit target rarity[/color](ballteration {ballteration.Rarity}, targetRarity: {targetRarity} +-0.5)");
+        // Ballteration does not fit the requirements, but we have the bestFit, we say that we are unhappy
         return false;
     }
     #endregion
 
     #region generators
+    public static Ballteration GeneratorWrapper(float targetRarity, Func<Ballteration> Generator)
+    {
+        Ballteration ballteration = Generator();
+
+        // TODO: Stop ignoring the return value and then re-testing for it
+        TryEnsureRarity(ballteration, out Ballteration bestFit, targetRarity);
+
+        return bestFit;
+    }
+
     #region score_modifiers
     public static Ballteration CreateSimpleScoreModifier()
     {
@@ -143,7 +158,6 @@ public partial class BallterationGenerator : Node
 
         ballteration.AddChild(modifier);
 
-        ballteration.Kind = Ballteration.Type.Score;
         ballteration.DisplayName = $"{modifier.GetGroups().First()} {((int)modifier.Prio % 2 == 1 ? "super " : "")}{((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
 
         return ballteration;
@@ -155,7 +169,6 @@ public partial class BallterationGenerator : Node
 
         ballteration.AddChild(modifier);
 
-        ballteration.Kind = Ballteration.Type.Score;
         ballteration.DisplayName = $"Score {((int)modifier.Prio % 2 == 1 ? "super " : "")}{((int)modifier.Prio <= 1 ? "adder" : "multiplier")}";
 
         return ballteration;
@@ -170,7 +183,6 @@ public partial class BallterationGenerator : Node
             ballteration.AddChild(modifier);
         }
 
-        ballteration.Kind = Ballteration.Type.Score;
         ballteration.DisplayName = $"Chaotic score modifier";
 
         return ballteration;
@@ -179,15 +191,26 @@ public partial class BallterationGenerator : Node
 
     public static Ballteration CreateNewBall()
     {
+        Ballteration ballteration = new();
         switch (GD.RandRange(1, 3))
         {
             default:
-                return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool0Yellow/NewBall.tscn").Instantiate<Ballteration>();
+                ballteration.AddChild(new NewBall());
+                break;
             case 2:
-                return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool0Yellow/ExtraBall.tscn").Instantiate<Ballteration>();
+                ballteration.AddChild(new ExtraBall());
+                break;
             case 3:
-                return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool0Yellow/ReplayBall.tscn").Instantiate<Ballteration>();
+                ballteration.AddChild(new ReplayBall());
+                break;
         }
+        return ballteration;
     }
+
     #endregion
+
+    public static Ballteration GetFromPool(float targetRarity)
+    {
+        return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool5Red/Red.tscn").Instantiate<Ballteration>();
+    }
 }

@@ -11,20 +11,17 @@ public partial class ExtraBall : MetaEffect
         }
     }
 
-    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Purple; } }
+    public override float AnalogRarity { get { return (float)Ballteration.RarityColor.Purple; } }
 
     public override void Activate()
     {
         GameManager.AddExtraBall(GameManager.CurrentBoard.LoadedBall, true);
     }
 
-    public override Effect Ameliorate()
+    public override Effect Refine(Effect minimum, Effect maximum)
     {
-        return new ReplayBall();
-    }
-
-    public override Effect Worsen()
-    {
-        return new NewBall();
+        if (minimum != null && AnalogRarity <= minimum.AnalogRarity) return new ReplayBall();
+        if (maximum != null && AnalogRarity >= maximum.AnalogRarity) return new NewBall();
+        return new ExtraBall();
     }
 }

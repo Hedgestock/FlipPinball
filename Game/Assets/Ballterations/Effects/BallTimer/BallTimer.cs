@@ -51,13 +51,10 @@ public partial class BallTimer : Effect
         return ballTimer;
     }
 
-    public override BallTimer Ameliorate()
+    public override Effect Refine(Effect minimum = null, Effect maximum = null)
     {
-        return CreateRandom((int)this.timeleft);
-    }
-
-    public override BallTimer Worsen()
-    {
-        return CreateRandom(minTime, (int)this.timeleft);
+        BallTimer minimumBT = minimum as BallTimer;
+        BallTimer maximumBT = maximum as BallTimer;
+        return CreateRandom((int?)minimumBT?.timeleft ?? minTime, (int?)maximumBT?.timeleft ?? maxTime);
     }
 }

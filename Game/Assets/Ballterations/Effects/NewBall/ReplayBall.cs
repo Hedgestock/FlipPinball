@@ -11,20 +11,17 @@ public partial class ReplayBall : MetaEffect
         }
     }
 
-    public override float AnalogRarity { get { return (float)Ballteration.Rarity.Red; } }
+    public override float AnalogRarity { get { return (float)Ballteration.RarityColor.Red; } }
 
     public override void Activate()
     {
         GameManager.AddExtraBall(GameManager.CurrentBoard.LoadedBall);
     }
 
-    public override Effect Ameliorate()
+    public override Effect Refine(Effect minimum, Effect maximum)
     {
-        return this;
-    }
-
-    public override Effect Worsen()
-    {
+        // A replay ball has no "better" version, so if we are not worsening it, nothing changes
+        if (maximum != null && AnalogRarity >= maximum.AnalogRarity) return new ExtraBall();
         return new ReplayBall();
     }
 }
