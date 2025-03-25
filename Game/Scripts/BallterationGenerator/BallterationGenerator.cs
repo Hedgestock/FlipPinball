@@ -1,6 +1,7 @@
 using Godot;
 using Godot.FlipPinball;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class BallterationGenerator : Node
@@ -29,62 +30,106 @@ public partial class BallterationGenerator : Node
         //}
     }
 
-     static WeightedItem<Func<Ballteration>>[] WeightedGenerators = [
+    static WeightedItem<Func<Ballteration>>[] WeightedGeneratorsBase = [
         new(CreateNewBall, 10),
         new(CreateScoreModifier),
         new(CreateSimpleScoreModifier),
         new(CreateChaosScoreModifier),
         ];
 
-    public static Ballteration GenerateToRarityCurve(Func<Ballteration> Creator)
+    public static Ballteration GenerateToRarityCurve(List<WeightedItem<Func<Ballteration>>> WeightedGenerators = null)
     {
-        // Use this one with EnsureRarity, but more prone to failure.
-        //float targetRarity = (float)GD.RandRange(0, Instance.RarityCurve.Sample(GD.Randf()));
-        float targetRarity = Instance.RarityCurve.Sample(GD.Randf());
+        // TODO: Maybe optimise that with a queue instead of doing .Except
+        // not critical for now
 
-        Ballteration ballteration = WeightedItem<Func<Ballteration>>.ChooseFrom(WeightedGenerators)();
+        // Use this one with ConstrainRarity, might fail less but less close to the curve.
+        //float targetRarity = Instance.RarityCurve.Sample(GD.Randf());
 
-        ConstrainRarity(ballteration, targetRarity);
+        // Use this one with EnsureRarity, prone to failing but sticks to the curve
+        // TODO: Change Ballteration.Ameliorate() to a clamping system, idem for effects
+        float targetRarity = (float)GD.RandRange(0, Instance.RarityCurve.Sample(GD.Randf()));
+
+        GD.Print($"Targetting {targetRarity}");
+
+        WeightedGenerators ??= WeightedGeneratorsBase.ToList();
+
+        WeightedItem<Func<Ballteration>> WeightedGenerator = WeightedItem<Func<Ballteration>>.GetFrom(WeightedGenerators);
+        WeightedGenerators.Remove(WeightedGenerator);
+        Ballteration ballteration = WeightedGenerator.Item();
+        GD.Print($"Generating {ballteration.GetType()}");
+
+        while (!(EnsureRarity(ballteration, out Ballteration betterFit, targetRarity) || WeightedGenerators.Count() == 0))
+        {
+            WeightedGenerator = WeightedItem<Func<Ballteration>>.GetFrom(WeightedGenerators);
+            WeightedGenerators.Remove(WeightedGenerator);
+            ballteration = WeightedGenerator.Item();
+            GD.Print($"Generating {ballteration.DisplayName}");
+        }
 
         return ballteration;
     }
 
 
-    #region constrainers
-    public static bool ConstrainRarity(Ballteration ballteration, float targetRarity, bool max = true, int retries = 20)
+    #region 
+    const int defaultRetries = 10;
+
+    public static bool ConstrainRarity(Ballteration ballteration, float targetRarity, bool max = true, int retries = defaultRetries)
     {
         for (int i = 0; i < retries; i++)
         {
             if ((max && ballteration.AnalogRarity <= targetRarity) || (!max && ballteration.AnalogRarity >= targetRarity))
             {
-                GD.Print($"Ballteration fits in {i} retries (max: {max}, targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
+                GD.PrintRich($"[color=GREEN]Ballteration fits in {i} retries[/color] (max: {max}, targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
                 return true;
             }
-            GD.Print($"(generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})\nRetrying {i}...");
+            GD.PrintRich($"[color=ORANGE]Not fitting[/color] (generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})\nRetrying {i}...");
             if (max)
                 ballteration.Worsen();
             else
                 ballteration.Ameliorate();
         }
 
-        GD.Print($"(generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})");
+        GD.PrintRich($"[color=RED]Failed to fit target rarity[/color](generated {ballteration.AnalogRarity}, max: {max}, targetRarity: {targetRarity})");
         return false;
     }
 
-    public static bool EnsureRarity(Ballteration ballteration, float targetRarity, int retries = 20)
+    const float rarityVariance = 0.5f;
+
+    public static bool EnsureRarity(Ballteration ballteration, out Ballteration betterFit, float targetRarity, int retries = defaultRetries)
     {
+        float minAllowedRarity = targetRarity - rarityVariance;
+        float maxAllowedRarity = targetRarity + rarityVariance;
+
+        betterFit = (Ballteration)ballteration.Duplicate();
+
         for (int i = 0; i < retries; i++)
         {
-            if (ballteration.AnalogRarity >= targetRarity - 0.5 && ballteration.AnalogRarity <= targetRarity + 0.5)
+            // In case we find a closer ballteration, we keep it in memory
+            if (Math.Abs(ballteration.AnalogRarity - targetRarity) < Math.Abs(betterFit.AnalogRarity - targetRarity))
             {
-                GD.Print($"Ballteration fits in {i} retries (targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
+                betterFit = (Ballteration)ballteration.Duplicate();
+            }
+            if (ballteration.AnalogRarity >= maxAllowedRarity)
+            {
+                GD.PrintRich($"[color=GREEN]Above target[/color] (ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity}+-0.5)\nWorsening {i}...");
+                ballteration.Worsen();
+            }
+            else if (ballteration.AnalogRarity <= minAllowedRarity)
+            {
+                GD.PrintRich($"[color=RED]Below target[/color] target (ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity}+-0.5)\nImproving {i}...");
+                ballteration.Ameliorate();
+            }
+            else
+            {
+                GD.PrintRich($"[color=GREEN]Ballteration fits in {i} retries[/color] (targetRarity: {targetRarity}, ballteration {ballteration.AnalogRarity})");
+                // Ballteration fits the requirements, and is already stored in betterFit, we say that we are happy
                 return true;
             }
-            GD.Print($"(ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity} +-0.5)\nImproving {i}...");
-            ballteration.Ameliorate();
+
         }
 
-        GD.Print($"(ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity} +-0.5)");
+        GD.PrintRich($"[color=RED]Failed to fit target rarity[/color](ballteration {ballteration.AnalogRarity}, targetRarity: {targetRarity} +-0.5)");
+        // Ballteration does not fit the requirements, but we have the betterFit, we say that we are unhappy
         return false;
     }
     #endregion

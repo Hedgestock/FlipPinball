@@ -95,9 +95,7 @@ public partial class Ballterator : Container
         };
 
 
-        Ballteration ballteration = BallterationGenerator.CreateScoreModifier();
-        BallterationGenerator.ConstrainRarity(ballteration, (float)Ballteration.Rarity.Blue, false);
-        card.Ballteration = ballteration;
+        card.Ballteration = BallterationGenerator.GenerateToRarityCurve();
 
 
         //if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)

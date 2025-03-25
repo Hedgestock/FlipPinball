@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Godot.FlipPinball
 {
@@ -14,7 +16,12 @@ namespace Godot.FlipPinball
         public uint Weight;
         public ItemType Item;
 
-        public static ItemType ChooseFrom(WeightedItem<ItemType>[] list)
+        public static ItemType ChooseFrom(IEnumerable<WeightedItem<ItemType>> list)
+        {
+            return GetFrom(list).Item;
+        }
+
+        public static WeightedItem<ItemType> GetFrom(IEnumerable<WeightedItem<ItemType>> list)
         {
             uint index = GD.Randi() % GetTotalWeight(list);
 
@@ -24,12 +31,13 @@ namespace Godot.FlipPinball
             {
                 currentWeight += weightedItem.Weight;
                 if (currentWeight > index)
-                    return weightedItem.Item;
+                    return weightedItem;
             }
-            return list[0].Item;
+            return list.ToArray()[0];
         }
 
-        static uint GetTotalWeight(WeightedItem<ItemType>[] list)
+
+        static uint GetTotalWeight(IEnumerable<WeightedItem<ItemType>> list)
         {
             uint totalWeight = 0;
 

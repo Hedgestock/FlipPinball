@@ -20,6 +20,8 @@ Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix paddle position
 
 Add smart regeneration on condition fail
+fix impossible restrictives
+clean duplicated groups in score ballterations
 TEST GENERATION
 
 Fix multiple balls in spitter

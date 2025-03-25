@@ -39,10 +39,9 @@ public partial class ScoreModifier : Effect
             if (GetGroups().Contains("Global"))
                 rarity++;
             else if (Restrictive)
-                rarity -= GetGroups().Count / 4f;
+                rarity -= Math.Max(GetGroups().Count / 4f, 1f);
             else
                 rarity += Math.Min(GetGroups().Count / 4f, 1f);
-            //GD.Print((GetGroups(), Prio, Value, rarity));
 
             return rarity;
         }
@@ -63,9 +62,9 @@ public partial class ScoreModifier : Effect
     public float Value = 1;
 
 
-    static StringName[] ScoringGroups = ["Bumpers", "Global", "Rollovers", "Slingshots", "Spinners", "Spitters", "Targets", "ShapeRound", "ShapeSquare"];
+    static StringName[] ScoringGroups = ["Bumpers", "Global", "Rollovers", "Slingshots", "Spinners", "Spitters", "Targets", "Shape Round", "Shape Square"];
 
-    const int minAdderValue = 100; 
+    const int minAdderValue = 100;
     const int maxAdderValue = 2000;
     const float minMultiplierValue = 1.1f;
     const float maxMultiplierValue = 5f;
@@ -101,8 +100,8 @@ public partial class ScoreModifier : Effect
             sm.AddToGroup("Global");
         }
 
-        if (sm.GetGroups().Count > 1)
-            sm.Restrictive = GD.Randi() % 2 == 0;
+        //if (sm.GetGroups().Count > 1)
+        //    sm.Restrictive = GD.Randi() % 2 == 0;
 
         return sm;
     }
@@ -114,8 +113,9 @@ public partial class ScoreModifier : Effect
 
         Value = (float)((int)Prio <= 1 ? GD.RandRange((int)Value, maxAdderValue) : Mathf.Snapped(GD.RandRange(Value, maxMultiplierValue), 0.1));
 
-        if (Restrictive)
-            Restrictive = GD.Randi() % 2 == 0;
+        //if (Restrictive)
+        //    Restrictive = false;
+        //    Restrictive = GD.Randi() % 2 == 0;
 
         return this;
     }
@@ -127,8 +127,9 @@ public partial class ScoreModifier : Effect
 
         Value = (float)((int)Prio <= 1 ? GD.RandRange(minAdderValue, (int)Value) : Mathf.Snapped(GD.RandRange(minMultiplierValue, Value), 0.1));
 
-        if (!Restrictive && GetGroups().Count > 1)
-            Restrictive = GD.Randi() % 2 == 0;
+        //if (!Restrictive && GetGroups().Count > 1)
+        //    Restrictive = true;
+        //    Restrictive = GD.Randi() % 2 == 0;
 
         return this;
     }
