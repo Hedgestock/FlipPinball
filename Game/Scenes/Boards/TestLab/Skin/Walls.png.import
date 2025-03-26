@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3qwwpkk5xppl"
-path="res://.godot/imported/PrizeBlob.png-b9069fd05964952e5516a99dc3b190f2.ctex"
+uid="uid://dkvsv2pcon1ol"
+path="res://.godot/imported/Walls.png-5a5dfd5efa6558675a2a58b6ad8d766d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Scenes/Boards/TestLab/PrizeBlob.png"
-dest_files=["res://.godot/imported/PrizeBlob.png-b9069fd05964952e5516a99dc3b190f2.ctex"]
+source_file="res://Game/Scenes/Boards/TestLab/Skin/Walls.png"
+dest_files=["res://.godot/imported/Walls.png-5a5dfd5efa6558675a2a58b6ad8d766d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doytpbeocn5xt"
-path="res://.godot/imported/SusTargetWall.png-a74ec36e9402b23f02f30e8e29c2372e.ctex"
+uid="uid://dwh7e2f7kemfr"
+path="res://.godot/imported/BumperPill.png-2c753870d186304f83f651018401e338.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Scenes/Boards/TestLab/SusTargetWall.png"
-dest_files=["res://.godot/imported/SusTargetWall.png-a74ec36e9402b23f02f30e8e29c2372e.ctex"]
+source_file="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperPill.png"
+dest_files=["res://.godot/imported/BumperPill.png-2c753870d186304f83f651018401e338.ctex"]
 
 [params]
 

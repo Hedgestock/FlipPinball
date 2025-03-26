@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2l8tdmsfoiia"
-path="res://.godot/imported/LabWalls.png-6d2538d2f114aa287a0eebe58d3191cd.ctex"
+uid="uid://dud8726i727j2"
+path="res://.godot/imported/flipper.png-b212e47d22088987120f9a8b948dc654.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Scenes/Boards/TestLab/LabWalls.png"
-dest_files=["res://.godot/imported/LabWalls.png-6d2538d2f114aa287a0eebe58d3191cd.ctex"]
+source_file="res://Game/Scenes/Boards/TestLab/Skin/Paddle/flipper.png"
+dest_files=["res://.godot/imported/flipper.png-b212e47d22088987120f9a8b948dc654.ctex"]
 
 [params]
 

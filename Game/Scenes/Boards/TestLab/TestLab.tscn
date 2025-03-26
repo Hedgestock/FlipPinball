@@ -1,18 +1,18 @@
-[gd_scene load_steps=80 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=84 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
-[ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Slingshots/SlingshotBody.png" id="3_6ad40"]
+[ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Skin/Slingshots/SlingshotBody.png" id="3_6ad40"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="3_50m14"]
-[ext_resource type="Texture2D" uid="uid://g7ly3when2mw" path="res://Game/Scenes/Boards/TestLab/BG 1 FTF.png" id="3_jj4cu"]
+[ext_resource type="Texture2D" uid="uid://g7ly3when2mw" path="res://Game/Scenes/Boards/TestLab/Skin/BG 1 FTF.png" id="3_jj4cu"]
 [ext_resource type="PackedScene" uid="uid://1jrg7mxwi5so" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Round/RoundTarget.tscn" id="4_2d0ue"]
 [ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="4_6e6jg"]
-[ext_resource type="Texture2D" uid="uid://doytpbeocn5xt" path="res://Game/Scenes/Boards/TestLab/SusTargetWall.png" id="4_av5ve"]
-[ext_resource type="Texture2D" uid="uid://c3qwwpkk5xppl" path="res://Game/Scenes/Boards/TestLab/PrizeBlob.png" id="4_n0irv"]
+[ext_resource type="Texture2D" uid="uid://doytpbeocn5xt" path="res://Game/Scenes/Boards/TestLab/Skin/SusTargetWall.png" id="4_av5ve"]
+[ext_resource type="Texture2D" uid="uid://c3qwwpkk5xppl" path="res://Game/Scenes/Boards/TestLab/Skin/PrizeBlob.png" id="4_n0irv"]
 [ext_resource type="PackedScene" uid="uid://bxgbd1q0e6fpk" path="res://Game/Assets/BoardElements/KickBack/KickBack.tscn" id="5_cw1tt"]
 [ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="5_dxs6n"]
 [ext_resource type="PackedScene" uid="uid://cn74ne78k7kod" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShot.tscn" id="6_3fbbc"]
 [ext_resource type="PackedScene" uid="uid://ckk4x5dhl1c0w" path="res://Game/Assets/BoardElements/Scorers/Collidables/Bumper/Bumper.tscn" id="6_awf70"]
-[ext_resource type="Texture2D" uid="uid://dkvsv2pcon1ol" path="res://Game/Scenes/Boards/TestLab/Walls.png" id="6_sw0pm"]
+[ext_resource type="Texture2D" uid="uid://dkvsv2pcon1ol" path="res://Game/Scenes/Boards/TestLab/Skin/Walls.png" id="6_sw0pm"]
 [ext_resource type="PackedScene" uid="uid://dxb6w1wy4dxrp" path="res://Game/Assets/CompositionComponents/OnOffLight/DecayingOnOffLight.tscn" id="7_166f2"]
 [ext_resource type="PackedScene" uid="uid://641jx1x1js2s" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotZone.tscn" id="7_rbrd7"]
 [ext_resource type="PackedScene" uid="uid://tm0n8wum3wb6" path="res://Game/Assets/BoardElements/Scorers/Collidables/Slingshot/Slingshot.tscn" id="8_8xkpc"]
@@ -24,18 +24,22 @@
 [ext_resource type="PackedScene" uid="uid://rbcr7e4wg3cr" path="res://Game/Assets/BoardElements/LayerDrop/LayerDrop.tscn" id="15_uh8xy"]
 [ext_resource type="PackedScene" uid="uid://dwc6ituqxs0yg" path="res://Game/Assets/BoardElements/Magnet/Magnet.tscn" id="16_2wkew"]
 [ext_resource type="AudioStream" uid="uid://dkkdt8s25yd2r" path="res://Game/Scenes/Boards/TestLab/BoardMultUp.wav" id="18_8x225"]
+[ext_resource type="Texture2D" uid="uid://bjuikkinaty4d" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperVirus.png" id="18_hec7w"]
 [ext_resource type="Script" uid="uid://c1hysxlnh0xyr" path="res://Game/Assets/CompositionComponents/BoardElementsGroup.cs" id="18_pasr8"]
 [ext_resource type="PackedScene" uid="uid://c08sduvfpdlky" path="res://Game/Assets/CompositionComponents/Leveler/DecayingLeveler.tscn" id="19_8g6kt"]
 [ext_resource type="AudioStream" uid="uid://cyphfp7ph37j6" path="res://Game/Scenes/Boards/TestLab/Tunnel/TunnelUp.wav" id="20_kbxw0"]
 [ext_resource type="AudioStream" uid="uid://1w3iwssvwwl0" path="res://Game/Scenes/Boards/TestLab/PrizeUp.wav" id="20_lxjrp"]
+[ext_resource type="Texture2D" uid="uid://dqodwddjw3j0n" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperHealth.png" id="20_rnvrq"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="21_63yue"]
+[ext_resource type="Texture2D" uid="uid://cytpvfwu8xymy" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperTape.png" id="21_napsr"]
+[ext_resource type="Texture2D" uid="uid://dwh7e2f7kemfr" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperPill.png" id="22_ypaio"]
 [ext_resource type="AudioStream" uid="uid://c5msprc2wjwl8" path="res://Game/Scenes/Boards/TestLab/ModeUp.wav" id="23_8d2nl"]
 [ext_resource type="Script" uid="uid://cilid584ymmwl" path="res://Game/Scenes/Boards/TestLab/Teleports/TeleportGroup.cs" id="23_tort8"]
 [ext_resource type="PackedScene" uid="uid://dxi7chpix50wp" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.tscn" id="24_6v5xs"]
 [ext_resource type="SpriteFrames" uid="uid://c1admrmm6460l" path="res://Game/Scenes/Boards/TestLab/Tunnel/TunnelLightAnimation.tres" id="25_2a2yf"]
 [ext_resource type="SpriteFrames" uid="uid://gnv41djl03gp" path="res://Game/Scenes/Boards/TestLab/Teleports/TeleportLightAnimation.tres" id="28_n3w53"]
-[ext_resource type="Texture2D" uid="uid://c0rnhvl8iwe60" path="res://Game/Scenes/Boards/TestLab/LabFloor.png" id="34_00wus"]
-[ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/LabWalls.png" id="34_ef6o4"]
+[ext_resource type="Texture2D" uid="uid://c0rnhvl8iwe60" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabFloor.png" id="34_00wus"]
+[ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabWalls.png" id="34_ef6o4"]
 [ext_resource type="PackedScene" uid="uid://dlc68ojsii7om" path="res://Game/Assets/BoardElements/TiltLight/TiltLight.tscn" id="34_qajmy"]
 [ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialInfo.cs" id="38_1b66e"]
 [ext_resource type="PackedScene" uid="uid://cpwjamahfvpu1" path="res://Game/UI/Tutorial/TutorialButton.tscn" id="38_a4afa"]
@@ -339,7 +343,7 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="TopLeftTeleport" type="CollisionPolygon2D" parent="Layer1/Walls"]
 position = Vector2(205, 121)
-polygon = PackedVector2Array(-20, 24, 19, -10, 50, 24, 50, 61, -16, 103, -26, 103, -42, 46, -39, 38, -30, 59, -8, 48)
+polygon = PackedVector2Array(-18, 25, 19, -10, 50, 24, 50, 61, -16, 103, -26, 103, -42, 46, -39, 38, -30, 59, -8, 48)
 
 [node name="LeftSplitterEntryLane" type="CollisionShape2D" parent="Layer1/Walls"]
 position = Vector2(293, 144)
@@ -594,6 +598,9 @@ position = Vector2(112, 112)
 [node name="Hitbox" parent="Layer1/BumperTop" index="0"]
 MSToOverheat = 1600
 
+[node name="Sprite2D" parent="Layer1/BumperTop/Hitbox" index="0"]
+texture = ExtResource("18_hec7w")
+
 [node name="Pusher" parent="Layer1/BumperTop" index="3"]
 Strength = 750
 
@@ -640,11 +647,20 @@ Value = 2000
 [node name="Bumper1" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
 position = Vector2(45, 120)
 
+[node name="Sprite2D" parent="Layer1/Entry/Bumper1/Hitbox" index="0"]
+texture = ExtResource("20_rnvrq")
+
 [node name="Bumper2" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
 position = Vector2(-49, 122)
 
+[node name="Sprite2D" parent="Layer1/Entry/Bumper2/Hitbox" index="0"]
+texture = ExtResource("21_napsr")
+
 [node name="Bumper3" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
 position = Vector2(-8, 222)
+
+[node name="Sprite2D" parent="Layer1/Entry/Bumper3/Hitbox" index="0"]
+texture = ExtResource("22_ypaio")
 
 [node name="Bumpers" parent="Layer1/Entry" instance=ExtResource("19_8g6kt")]
 position = Vector2(0, 150)
@@ -1928,10 +1944,10 @@ offset_bottom = 983.0
 [connection signal="body_entered" from="Boundaries" to="." method="DespawnBall" binds= [1]]
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
-[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
+[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup/Timer" method="start"]
@@ -2018,6 +2034,9 @@ offset_bottom = 983.0
 [editable path="Layer1/Entry/Rollover1"]
 [editable path="Layer1/Entry/Rollover2"]
 [editable path="Layer1/Entry/Rollover3"]
+[editable path="Layer1/Entry/Bumper1"]
+[editable path="Layer1/Entry/Bumper2"]
+[editable path="Layer1/Entry/Bumper3"]
 [editable path="Layer1/Entry/Bumpers"]
 [editable path="Layer1/Entry/Bumpers/Leveler"]
 [editable path="Layer1/LeftTargetGroup/RoundTarget1"]

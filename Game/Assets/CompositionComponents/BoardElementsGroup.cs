@@ -24,6 +24,10 @@ public partial class BoardElementsGroup : Node2D
 
     public void RotateStatus(int direction)
     {
+        // Blinking means in busy
+        if (Nodes.Any(n => n.light.IsBlinking)) 
+            return;
+
         bool[] statuses = Nodes.Select(n => n.light.IsOn).ToArray();
         //We do that to avoid triggering the "AllOn" Event by accident
         Nodes.ForEach(n => n.light.IsOn = false);

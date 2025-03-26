@@ -71,11 +71,12 @@ public partial class Ballterator : Container
     Control CreateBalterationCard(int i)
     {
         MarginContainer cardMargin = new();
+
+        // TODO: Look into optimisation maybe ? Not critical
         BallterationCard card = GD.Load<PackedScene>("res://Game/UI/Ballterator/BallterationCard.tscn").Instantiate<BallterationCard>();
         card.BallterationChosen += (Ballteration ballteration, long price) =>
         {
             Ballterations.Hide();
-            var children = ballteration.GetChildren();
 
             CreditsLeft -= price;
 
@@ -86,12 +87,12 @@ public partial class Ballterator : Container
             }
             if (ballteration.GetChildren().Any())
             {
-                BallterationCycleEnd();
+                SelectedBallteration = ballteration;
+                DisplayBallSelector();
             }
             else
             {
-                SelectedBallteration = ballteration;
-                DisplayBallSelector();
+                BallterationCycleEnd();
             }
         };
 
@@ -141,6 +142,7 @@ public partial class Ballterator : Container
         }
         foreach (var ball in GameManager.BallQueue)
         {
+            // TODO: Preload that
             BallSelector selector = GD.Load<PackedScene>("res://Game/UI/Ballterator/BallSelector.tscn").Instantiate<BallSelector>();
             selector.Ball = ball;
             selector.BallSelected += (Ball ball) =>

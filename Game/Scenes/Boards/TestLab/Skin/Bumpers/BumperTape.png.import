@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnmavc4gcjnvc"
-path="res://.godot/imported/SlingshotBody.png-d924f58ed3bee73dec00e67a7df161c2.ctex"
+uid="uid://cytpvfwu8xymy"
+path="res://.godot/imported/BumperTape.png-e2204a32abfbe9d46a7f4b8bbd58f5ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Scenes/Boards/TestLab/Slingshots/SlingshotBody.png"
-dest_files=["res://.godot/imported/SlingshotBody.png-d924f58ed3bee73dec00e67a7df161c2.ctex"]
+source_file="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperTape.png"
+dest_files=["res://.godot/imported/BumperTape.png-e2204a32abfbe9d46a7f4b8bbd58f5ad.ctex"]
 
 [params]
 
