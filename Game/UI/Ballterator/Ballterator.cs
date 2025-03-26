@@ -98,10 +98,6 @@ public partial class Ballterator : Container
             }
         };
 
-
-        card.Ballteration = BallterationGenerator.Generate();
-
-
         if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
         {
             var tmp = BallterationGenerator.CreateNewBall();

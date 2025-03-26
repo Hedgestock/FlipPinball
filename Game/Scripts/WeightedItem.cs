@@ -23,6 +23,8 @@ namespace Godot.FlipPinball
 
         public static WeightedItem<ItemType> GetFrom(IEnumerable<WeightedItem<ItemType>> list)
         {
+            if (list.Count() == 0) throw new ArgumentException("Weighted list cannot be empty", nameof(list));
+
             uint index = GD.Randi() % GetTotalWeight(list);
 
             uint currentWeight = 0;
@@ -33,6 +35,8 @@ namespace Godot.FlipPinball
                 if (currentWeight > index)
                     return weightedItem;
             }
+
+            // This mostly happens when all the weight are set to 0 and GetTotalWeight() returns 1
             return list.ToArray()[0];
         }
 
@@ -46,7 +50,8 @@ namespace Godot.FlipPinball
                 totalWeight += item.Weight;
             }
 
-            return totalWeight;
+            // Cheeky hack to avoid dividing by zero in case of only 0 weights
+            return totalWeight != 0 ? totalWeight: 1;
         }
 
     }

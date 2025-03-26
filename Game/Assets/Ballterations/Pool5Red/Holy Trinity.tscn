@@ -7,7 +7,7 @@
 
 [node name="Ballteration" type="Node"]
 script = ExtResource("1_wwcj2")
-DisplayName = "Step on the competition"
+DisplayName = "Holy trinity"
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("2_t85pn")

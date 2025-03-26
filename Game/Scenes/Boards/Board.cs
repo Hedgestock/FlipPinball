@@ -149,7 +149,10 @@ public partial class Board : Node2D
     void AddLiveBall(Ball ball, Vector2 position, bool inert = true)
     {
         if (inert)
+        {
             ball.LinearVelocity = Vector2.Zero;
+            ball.AngularVelocity = 0;
+        }
 
         ball.GlobalPosition = position;
 

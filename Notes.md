@@ -18,12 +18,12 @@ Add replay ball light fuctionality
 Add mission system
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix paddle position
+Fix multiple balls in spitter
+Check for teleport multi entry and weird behaviour
 
 fix impossible restrictives
 clean duplicated groups in score ballterations
 
-Fix multiple balls in spitter
-Check for teleport multi entry and weird behaviour
 Use one list of viewports for all ballviewers
 Split code for UI management (rn all in Game.cs)
 Maybe pool queue for like score bubbles
