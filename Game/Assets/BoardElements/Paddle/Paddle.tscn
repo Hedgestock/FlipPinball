@@ -15,7 +15,7 @@ collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_mvgij")
 RotationSpeed = 25
-AngleRange = 60
+AngleRange = 75
 SoundPlayer = NodePath("AudioStreamPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://db1rjr72mt5bh" path="res://Game/Assets/Ball/Ball.cs" id="1_sowmc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k5bk0"]
-friction = 0.1
 bounce = 0.25
 
 [sub_resource type="Curve" id="Curve_srid4"]
@@ -27,8 +26,6 @@ collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_k5bk0")
 can_sleep = false
-lock_rotation = true
-freeze_mode = 1
 continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 5
