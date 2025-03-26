@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using static Ballteration;
-using static Godot.HttpRequest;
 
 public partial class BallterationGenerator : Node
 {
@@ -21,16 +20,16 @@ public partial class BallterationGenerator : Node
     [Export]
     Curve RarityCurve;
 
-    public override void _Ready()
-    {
-        base._Ready();
-        //for (int i = 0; i < 2500; i++)
-        //{
-        //    float source = GD.Randf();
-        //    GD.Print($"{GD.RandRange(0,RarityCurve.Sample(source)):N10}");
-        //    //GD.Print($"{RarityCurve.Sample(source):N10}");
-        //}
-    }
+    //public override void _Ready()
+    //{
+    //    base._Ready();
+    //    //for (int i = 0; i < 2500; i++)
+    //    //{
+    //    //    float source = GD.Randf();
+    //    //    GD.Print($"{GD.RandRange(0,RarityCurve.Sample(source)):N10}");
+    //    //    //GD.Print($"{RarityCurve.Sample(source):N10}");
+    //    //}
+    //}
 
     static WeightedItem<Func<float, Ballteration>>[] WeightedPickersBase = [
         new((float targetRarity) => GeneratorWrapper(targetRarity, CreateNewBall), 10),
@@ -40,7 +39,7 @@ public partial class BallterationGenerator : Node
         new(GetFromPool,50),
         ];
 
-    public static Ballteration GenerateToRarityCurve(List<WeightedItem<Func<float, Ballteration>>> WeightedPickers = null)
+    public static Ballteration Generate(List<WeightedItem<Func<float, Ballteration>>> WeightedPickers = null)
     {
         // TODO: Maybe optimise that with a queue instead of doing .Except
         // not critical for now
@@ -54,6 +53,12 @@ public partial class BallterationGenerator : Node
 
         GD.Print($"Targetting {targetRarity}");
 
+        return Generate(targetRarity, WeightedPickers);
+    }
+
+    public static Ballteration Generate(float targetRarity, List<WeightedItem<Func<float, Ballteration>>> WeightedPickers = null)
+    {
+        // TODO: Use best fit instead of last fit
         WeightedPickers ??= WeightedPickersBase.ToList();
 
         WeightedItem<Func<float, Ballteration>> WeightedPicker = WeightedItem<Func<float, Ballteration>>.GetFrom(WeightedPickers);
@@ -75,7 +80,6 @@ public partial class BallterationGenerator : Node
 
         return ballteration;
     }
-
 
     #region constrainers
     const int defaultRetries = 10;

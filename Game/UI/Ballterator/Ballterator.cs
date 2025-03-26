@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Linq;
+using static Ballteration;
+
 
 public partial class Ballterator : Container
 {
@@ -97,36 +99,24 @@ public partial class Ballterator : Container
         };
 
 
-        card.Ballteration = BallterationGenerator.GenerateToRarityCurve();
+        card.Ballteration = BallterationGenerator.Generate();
 
 
-        //if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
-        //{
-        //    var tmp = BallterationGenerator.CreateNewBall();
-        //    tmp.Color = Ballteration.Rarity.Yellow;
-        //    card.Ballteration = tmp;
-        //    card.Price = 0;
-        //}
-
-        //else
-        //{
-        //    var tmp = BallterationGenerator.CreateSimpleScoreModifier();
-        //    tmp.Color = Ballteration.Rarity.Blue;
-        //    card.Ballteration = tmp;
-        //}
-
-        //else if (BallterationCycleNumber == 0)
-        //{
-        //    card.Ballteration = BallterationGenerator.CreateChaosScoreModifier();
-        //}
-        //else if (BallterationCycleNumber == 1)
-        //{
-        //    card.Ballteration = BallterationGenerator.CreateScoreModifier();
-        //}
-        //else
-        //{
-        //    card.Ballteration = BallterationGenerator.CreateSimpleScoreModifier();
-        //}
+        if ((BallterationCycleNumber == 0 && i == 0) || GameManager.BallQueue.Count == 0)
+        {
+            var tmp = BallterationGenerator.CreateNewBall();
+            tmp.Rarity = (float)RarityColor.Fixed;
+            card.Ballteration = tmp;
+            card.Price = 0;
+        }
+        else if (BallterationCycleNumber == 0)
+        {
+            card.Ballteration = BallterationGenerator.Generate((float)RarityColor.Red);
+        }
+        else
+        {
+            card.Ballteration = BallterationGenerator.Generate();
+        }
 
         cardMargin.AddChild(card);
         return cardMargin;

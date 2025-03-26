@@ -19,20 +19,20 @@ Add mission system
 Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix paddle position
 
-Add smart regeneration on condition fail
 fix impossible restrictives
 clean duplicated groups in score ballterations
-TEST GENERATION
 
 Fix multiple balls in spitter
 Check for teleport multi entry and weird behaviour
 Use one list of viewports for all ballviewers
 Split code for UI management (rn all in Game.cs)
 Maybe pool queue for like score bubbles
-Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 Maybe factorise the "OnMultiplier" thing
-Extra call args + unbind signal args
+
+Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
+
 Defaut values instead of overloading in signals callback
+Extra call args + unbind signal args
 
 MRP process mode of instantiated stuff
 MRP windows scaling
@@ -44,6 +44,7 @@ Tick rate
 Collision thing
 Trail Detail
 Particle effects
+Fluid simulation
 
 # Theme ideas
 Labo
