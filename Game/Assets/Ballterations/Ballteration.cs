@@ -16,11 +16,8 @@ public partial class Ballteration : Node
         Fixed = 100,
     }
 
-
-    [Export]
     bool IsRarityAnalog = true;
 
-    [Export]
     RarityColor _rarity = RarityColor.Gray;
 
     float AnalogRarity
@@ -41,6 +38,15 @@ public partial class Ballteration : Node
 
     public float Rarity
     {
+        // TODO: Add more checks to make sure that the value is allowed
+        set
+        {
+            if (Enum.IsDefined((RarityColor)Math.Round(value)))
+            {
+                _rarity = (RarityColor)value;
+                IsRarityAnalog = false;
+            }
+        }
         get
         {
             if (IsRarityAnalog) return AnalogRarity;

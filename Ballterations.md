@@ -1,5 +1,3 @@
-Extra ball sometimes freezes (hyper chute 4)
-
 Feather Weight
     -0.1 Weight
 
@@ -36,7 +34,7 @@ Square up
     Square shape x2
     Square hitbox
 
-Step on the competition
+//Step on the competition
     Rollovers x2
 
 (I) Love triangle
@@ -49,7 +47,7 @@ Never let the know your next move
     Exploding trail
     Random direction changes
 
-GG EZ
+//GG EZ
     Global *10 super
     Global +200 super
 
@@ -63,7 +61,8 @@ Black friday
     Exploding trail
     Growing trail on score
 
-the answer to life the universe and everything
+The answer to life the universe and everything
+    +42 global
     42s timed ball
     42 eploding ball trail for 42s
 

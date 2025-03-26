@@ -75,7 +75,7 @@ public partial class Game : Node
 
         base._Ready();
 
-        OpenBallterator();
+        //OpenBallterator(); //debug only
     }
 
     [Export]

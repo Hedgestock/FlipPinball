@@ -3,6 +3,8 @@ using Godot.FlipPinball;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Ballteration;
+using static Godot.HttpRequest;
 
 public partial class BallterationGenerator : Node
 {
@@ -35,7 +37,7 @@ public partial class BallterationGenerator : Node
         new((float targetRarity) => GeneratorWrapper(targetRarity, CreateScoreModifier)),
         new((float targetRarity) => GeneratorWrapper(targetRarity, CreateSimpleScoreModifier)),
         new((float targetRarity) => GeneratorWrapper(targetRarity, CreateChaosScoreModifier)),
-        new(GetFromPool),
+        new(GetFromPool,50),
         ];
 
     public static Ballteration GenerateToRarityCurve(List<WeightedItem<Func<float, Ballteration>>> WeightedPickers = null)
@@ -52,7 +54,7 @@ public partial class BallterationGenerator : Node
 
         GD.Print($"Targetting {targetRarity}");
 
-        WeightedPickers ??= BallterationGenerator.WeightedPickersBase.ToList();
+        WeightedPickers ??= WeightedPickersBase.ToList();
 
         WeightedItem<Func<float, Ballteration>> WeightedPicker = WeightedItem<Func<float, Ballteration>>.GetFrom(WeightedPickers);
         WeightedPickers.Remove(WeightedPicker);
@@ -204,13 +206,38 @@ public partial class BallterationGenerator : Node
                 ballteration.AddChild(new ReplayBall());
                 break;
         }
+
+        ballteration.DisplayName = "Ball UP";
         return ballteration;
     }
 
     #endregion
 
+    const string BallterationsPath = "res://Game/Assets/Ballterations/";
+
     public static Ballteration GetFromPool(float targetRarity)
     {
-        return GD.Load<PackedScene>("res://Game/Assets/Ballterations/Pool5Red/Red.tscn").Instantiate<Ballteration>();
+        int clampedRarity = (int)Math.Round(targetRarity);
+
+        //TODO: tell that we failed
+        if (clampedRarity < (int)RarityColor.Gray)
+            clampedRarity = (int)RarityColor.Gray;
+        else if (clampedRarity > (int)RarityColor.Red)
+            clampedRarity = (int)RarityColor.Red;
+
+
+        var dir = DirAccess.Open($"{BallterationsPath}Pool{clampedRarity}{(RarityColor)clampedRarity}");
+        List<WeightedItem<string>> validBallterationsPaths = new();
+        dir.ListDirBegin();
+
+        foreach (var fileName in dir.GetFiles())
+        {
+            if (!dir.CurrentIsDir() && fileName.GetExtension() == "tscn")
+                validBallterationsPaths.Add(new WeightedItem<string>(dir.GetCurrentDir() + "/" + fileName));
+        }
+
+        Ballteration ballteration = GD.Load<PackedScene>(WeightedItem<string>.ChooseFrom(validBallterationsPaths)).Instantiate<Ballteration>();
+        ballteration.Rarity = clampedRarity;
+        return ballteration;
     }
 }

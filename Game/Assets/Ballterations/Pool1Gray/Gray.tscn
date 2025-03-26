@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://csgvtqi5hm3bc"]
-
-[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_8tn8n"]
-
-[node name="Gray" type="Node"]
-script = ExtResource("1_8tn8n")
-DisplayName = "GREY"

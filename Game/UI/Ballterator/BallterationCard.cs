@@ -70,19 +70,19 @@ public partial class BallterationCard : PanelContainer
             return lerped;
         };
 
-        if (_ballteration.Rarity <= -1)
+        if (_ballteration.Rarity < -1)
             (sb as StyleBoxFlat).BgColor = Colors.Black;
-        else if (_ballteration.Rarity > -1 && _ballteration.Rarity <= 0)
+        else if (_ballteration.Rarity >= -1 && _ballteration.Rarity < 0)
             (sb as StyleBoxFlat).BgColor = lerpColors(Colors.Black, new Color("#999999"), _ballteration.Rarity - 1);
-        else if (_ballteration.Rarity > 1 && _ballteration.Rarity <= 2)
+        else if (_ballteration.Rarity >= 1 && _ballteration.Rarity < 2)
             (sb as StyleBoxFlat).BgColor = lerpColors(new Color("#999999"), Colors.DarkGreen, _ballteration.Rarity - 1);
-        else if (_ballteration.Rarity > 2 && _ballteration.Rarity <= 3)
+        else if (_ballteration.Rarity >= 2 && _ballteration.Rarity < 3)
             (sb as StyleBoxFlat).BgColor = lerpColors(Colors.DarkGreen, Colors.DarkBlue, _ballteration.Rarity - 2);
-        else if (_ballteration.Rarity > 3 && _ballteration.Rarity <= 4)
+        else if (_ballteration.Rarity >= 3 && _ballteration.Rarity < 4)
             (sb as StyleBoxFlat).BgColor = lerpColors(Colors.DarkBlue, Colors.RebeccaPurple, _ballteration.Rarity - 3);
-        else if (_ballteration.Rarity > 4 && _ballteration.Rarity <= 5)
+        else if (_ballteration.Rarity >= 4 && _ballteration.Rarity < 5)
             (sb as StyleBoxFlat).BgColor = lerpColors(Colors.RebeccaPurple, Colors.DarkRed, _ballteration.Rarity - 4);
-        else if (_ballteration.Rarity > 5)
+        else if (_ballteration.Rarity >= 5)
             (sb as StyleBoxFlat).BgColor = Colors.DarkRed;
 
         AddThemeStyleboxOverride("panel", sb);

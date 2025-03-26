@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://co5keqmftpnty"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_6wyes"]
+[ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_m5h3a"]
+
+[node name="Ballteration" type="Node"]
+script = ExtResource("1_6wyes")
+DisplayName = "Step on the competition"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_m5h3a")
+Prio = 2
+Value = 2.0

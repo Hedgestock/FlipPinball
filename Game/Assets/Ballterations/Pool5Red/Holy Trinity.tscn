@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw113cnivhed7"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_wwcj2"]
+[ext_resource type="Script" uid="uid://b5arri8jwddxy" path="res://Game/Assets/Ballterations/Effects/NewBall/NewBall.cs" id="2_t85pn"]
+[ext_resource type="Script" uid="uid://cyx08701jkjuv" path="res://Game/Assets/Ballterations/Effects/NewBall/ExtraBall.cs" id="3_hr8xr"]
+[ext_resource type="Script" uid="uid://c6dsyo55wj2ss" path="res://Game/Assets/Ballterations/Effects/NewBall/ReplayBall.cs" id="4_nhf77"]
+
+[node name="Ballteration" type="Node"]
+script = ExtResource("1_wwcj2")
+DisplayName = "Step on the competition"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_t85pn")
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("3_hr8xr")
+
+[node name="Node3" type="Node" parent="."]
+script = ExtResource("4_nhf77")
