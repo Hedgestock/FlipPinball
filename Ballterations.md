@@ -30,14 +30,14 @@ You spin me right round
     Spinner x2
     Each ball rotation gives 100 flat points
 
-Square up
+/Square up
     Square shape x2
     Square hitbox
 
 //Step on the competition
     Rollovers x2
 
-(I) Love triangle
+/(I) Love triangle
     Slingshots x2
     Triangle hitbox
 
@@ -55,14 +55,15 @@ Doomsday
     Invisible random timer between 1 and 4mn
     Global points are more multiplied the less time there is
 
-Black friday
+/Black friday
     2m timed ball
     Score *0.5
     Exploding trail
     Growing trail on score
 
-The answer to life the universe and everything
+/The answer to life the universe and everything
     +42 global
+    *42 gobal
     42s timed ball
     42 eploding ball trail for 42s
 
@@ -75,7 +76,7 @@ The more the merrier
 Safety first
     Multiplier grows with time except when you don't score
 
-Holy trinity
+//Holy trinity
     Replay ball
     Extra ball
     New ball

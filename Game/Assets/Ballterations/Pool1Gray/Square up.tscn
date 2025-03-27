@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c46qu1vnn3pdp"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_31d2j"]
+[ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_xoxme"]
+
+[node name="Ballteration" type="Node"]
+script = ExtResource("1_31d2j")
+DisplayName = "Square up"
+
+[node name="Node" type="Node" parent="." groups=["Shape Square"]]
+script = ExtResource("2_xoxme")
+Prio = 2
+Value = 2.0

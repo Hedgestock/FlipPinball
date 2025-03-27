@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb21i5arx33f8"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_l16ma"]
+[ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_qdx2n"]
+[ext_resource type="PackedScene" uid="uid://dahrdfuff3o8l" path="res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.tscn" id="3_l16ma"]
+
+[node name="Ballteration" type="Node"]
+script = ExtResource("1_l16ma")
+DisplayName = "The answer to life the universe and everything"
+
+[node name="+42" type="Node" parent="." groups=["Global"]]
+script = ExtResource("2_qdx2n")
+Value = 42.0
+
+[node name="*42" type="Node" parent="." groups=["Global"]]
+script = ExtResource("2_qdx2n")
+Prio = 2
+Value = 42.0
+
+[node name="BallTimer" parent="." instance=ExtResource("3_l16ma")]
+timeleft = 42.0

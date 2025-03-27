@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://casmuv13jbkmu"]
+[gd_scene load_steps=3 format=3 uid="uid://5328rc71dvtk"]
 
 [ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_uu74e"]
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_fo8fd"]
 
 [node name="Ballteration" type="Node"]
 script = ExtResource("1_uu74e")
-DisplayName = "Step on the competition"
+DisplayName = "(I) Love triangle"
 
-[node name="Node" type="Node" parent="." groups=["Rollovers"]]
+[node name="Node" type="Node" parent="." groups=["Slingshots"]]
 script = ExtResource("2_fo8fd")
 Prio = 2
 Value = 2.0

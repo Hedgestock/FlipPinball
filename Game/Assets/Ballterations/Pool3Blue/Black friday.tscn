@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://casmuv13jbkmu"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_uu74e"]
+[ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_fo8fd"]
+[ext_resource type="PackedScene" uid="uid://dahrdfuff3o8l" path="res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.tscn" id="3_er6wy"]
+
+[node name="Ballteration" type="Node"]
+script = ExtResource("1_uu74e")
+DisplayName = "Black friday"
+
+[node name="Node" type="Node" parent="." groups=["Global"]]
+script = ExtResource("2_fo8fd")
+Prio = 2
+Value = 0.5
+
+[node name="BallTimer" parent="." instance=ExtResource("3_er6wy")]
+timeleft = 120.0
