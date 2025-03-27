@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=91 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Skin/Slingshots/SlingshotBody.png" id="3_6ad40"]
@@ -31,13 +31,17 @@
 [ext_resource type="AudioStream" uid="uid://cyphfp7ph37j6" path="res://Game/Scenes/Boards/TestLab/Tunnel/TunnelUp.wav" id="20_kbxw0"]
 [ext_resource type="AudioStream" uid="uid://1w3iwssvwwl0" path="res://Game/Scenes/Boards/TestLab/PrizeUp.wav" id="20_lxjrp"]
 [ext_resource type="Texture2D" uid="uid://dqodwddjw3j0n" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperHealth.png" id="20_rnvrq"]
+[ext_resource type="Texture2D" uid="uid://im3gu5ubsh50" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOffGreyScale.png" id="20_xbh26"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="21_63yue"]
+[ext_resource type="Texture2D" uid="uid://dkih32e0hbbu5" path="res://Game/Assets/CompositionComponents/OnOffLight/LightOnGreyScale.png" id="21_fspxj"]
 [ext_resource type="Texture2D" uid="uid://cytpvfwu8xymy" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperTape.png" id="21_napsr"]
+[ext_resource type="Texture2D" uid="uid://d1itydl35eyn0" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperVirusLight.png" id="22_vapp5"]
 [ext_resource type="Texture2D" uid="uid://dwh7e2f7kemfr" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperPill.png" id="22_ypaio"]
 [ext_resource type="AudioStream" uid="uid://c5msprc2wjwl8" path="res://Game/Scenes/Boards/TestLab/ModeUp.wav" id="23_8d2nl"]
 [ext_resource type="Script" uid="uid://cilid584ymmwl" path="res://Game/Scenes/Boards/TestLab/Teleports/TeleportGroup.cs" id="23_tort8"]
 [ext_resource type="PackedScene" uid="uid://dxi7chpix50wp" path="res://Game/Assets/BoardElements/Scorers/Rollover/Rollover.tscn" id="24_6v5xs"]
 [ext_resource type="SpriteFrames" uid="uid://c1admrmm6460l" path="res://Game/Scenes/Boards/TestLab/Tunnel/TunnelLightAnimation.tres" id="25_2a2yf"]
+[ext_resource type="Texture2D" uid="uid://b1msnkb6f7bkf" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperTapeLight.png" id="26_fspxj"]
 [ext_resource type="SpriteFrames" uid="uid://gnv41djl03gp" path="res://Game/Scenes/Boards/TestLab/Teleports/TeleportLightAnimation.tres" id="28_n3w53"]
 [ext_resource type="Texture2D" uid="uid://c0rnhvl8iwe60" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabFloor.png" id="34_00wus"]
 [ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabWalls.png" id="34_ef6o4"]
@@ -122,6 +126,66 @@ size = Vector2(60, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5xv0"]
 size = Vector2(160, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kgfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_xbh26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fspxj")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_xbh26")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_vapp5")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vapp5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_xbh26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fspxj")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_xbh26")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_fspxj")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1b66e"]
 b = Vector2(67, 0)
@@ -608,6 +672,9 @@ MSToOverheat = 1600
 [node name="Sprite2D" parent="Layer1/BumperTop/Hitbox" index="0"]
 texture = ExtResource("18_hec7w")
 
+[node name="OnOffLight" parent="Layer1/BumperTop/Hitbox" index="1"]
+sprite_frames = SubResource("SpriteFrames_6kgfe")
+
 [node name="Pusher" parent="Layer1/BumperTop" index="3"]
 Strength = 750
 
@@ -662,6 +729,9 @@ position = Vector2(-49, 122)
 
 [node name="Sprite2D" parent="Layer1/Entry/Bumper2/Hitbox" index="0"]
 texture = ExtResource("21_napsr")
+
+[node name="OnOffLight" parent="Layer1/Entry/Bumper2/Hitbox" index="1"]
+sprite_frames = SubResource("SpriteFrames_vapp5")
 
 [node name="Bumper3" parent="Layer1/Entry" instance=ExtResource("6_awf70")]
 position = Vector2(-8, 222)

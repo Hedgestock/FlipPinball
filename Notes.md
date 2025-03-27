@@ -46,7 +46,6 @@ Tick rate
 Collision thing
 Trail Detail
 Particle effects
-Fluid simulation
 
 # Theme ideas
 Labo

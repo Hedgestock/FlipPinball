@@ -50,7 +50,13 @@ public partial class Bumper : Node2D
         tween.TweenProperty(Sprite, "scale", Vector2.One * 1.2f, .05)
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Elastic);
+        tween.Parallel().TweenProperty(OnOffLight, "scale", Vector2.One * 1.2f, .05)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Elastic);
         tween.TweenProperty(Sprite, "scale", Vector2.One, .05)
+           .SetEase(Tween.EaseType.In)
+           .SetTrans(Tween.TransitionType.Elastic);
+        tween.Parallel().TweenProperty(OnOffLight, "scale", Vector2.One, .05)
            .SetEase(Tween.EaseType.In)
            .SetTrans(Tween.TransitionType.Elastic);
     }
