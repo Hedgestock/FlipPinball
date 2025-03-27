@@ -56,7 +56,7 @@ public partial class Board : Node2D
         {
             Tilt();
         }
-        //return;
+        return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -232,11 +232,12 @@ public partial class Board : Node2D
     void Tilt()
     {
         float tiltAngle = (float)GD.RandRange(-MathF.PI / 4, MathF.PI / 4);
-        Vector2 tiltDirection = Vector2.Down;
+        Vector2 tiltDirection = Vector2.Up;
 
-        if (Input.IsActionPressed("paddle_left") && Input.IsActionPressed("paddle_right"))
-            tiltDirection = Vector2.Up;
-        else if (Input.IsActionPressed("paddle_left"))
+        //if (Input.IsActionPressed("paddle_left") && Input.IsActionPressed("paddle_right"))
+        //    tiltDirection = Vector2.Up;
+        //else
+        if (Input.IsActionPressed("paddle_left"))
             tiltDirection = Vector2.Right;
         else if (Input.IsActionPressed("paddle_right"))
             tiltDirection = Vector2.Left;

@@ -97,7 +97,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TiltControl"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Tilt"
+text = "Nudge table"
 
 [node name="ArrowUp" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/TiltControl"]
 texture_filter = 1
@@ -113,7 +113,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TutorialControl"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Tutorial
+text = "Documentation
 Overlay"
 
 [node name="Space" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/TutorialControl"]
@@ -124,14 +124,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("8_7vkef")
 expand_mode = 3
-
-[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Tilting while engaging either flipper or both will change the direction of the table nudge."
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="SplashScreen" type="ColorRect" parent="." node_paths=PackedStringArray("Wafflestock", "Logo")]
 visible = false

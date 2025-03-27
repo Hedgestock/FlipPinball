@@ -20,6 +20,7 @@ Fix freeze+tweening doing strange stuff on trail (Spitters)
 Fix paddle position
 Fix multiple balls in spitter
 Check for teleport multi entry and weird behaviour
+Fixed ball up on lose/win doesn't work
 
 fix impossible restrictives
 clean duplicated groups in score ballterations
@@ -36,6 +37,7 @@ Extra call args + unbind signal args
 
 MRP process mode of instantiated stuff
 MRP windows scaling
+MRP convert to binary is bigger
 
 Moving elements
 

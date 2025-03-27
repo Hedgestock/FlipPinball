@@ -229,15 +229,15 @@ public partial class BallterationGenerator : Node
         else if (clampedRarity > (int)RarityColor.Red)
             clampedRarity = (int)RarityColor.Red;
 
+        string PoolPath = $"{BallterationsPath}Pool{clampedRarity}{(RarityColor)clampedRarity}/";
 
-        var dir = DirAccess.Open($"{BallterationsPath}Pool{clampedRarity}{(RarityColor)clampedRarity}");
         List<WeightedItem<string>> validBallterationsPaths = new();
-        dir.ListDirBegin();
 
-        foreach (var fileName in dir.GetFiles())
+        foreach (var fileName in ResourceLoader.ListDirectory(PoolPath))
         {
-            if (!dir.CurrentIsDir() && fileName.GetExtension() == "tscn")
-                validBallterationsPaths.Add(new WeightedItem<string>(dir.GetCurrentDir() + "/" + fileName));
+            GD.Print($"File: {fileName} is tscn: {fileName.GetExtension() == "tscn"}");
+            if (fileName.GetExtension() == "tscn")
+                validBallterationsPaths.Add(new WeightedItem<string>(PoolPath + fileName));
         }
 
         Ballteration ballteration = GD.Load<PackedScene>(WeightedItem<string>.ChooseFrom(validBallterationsPaths)).Instantiate<Ballteration>();
