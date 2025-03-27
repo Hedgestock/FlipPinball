@@ -69,6 +69,8 @@ public partial class Board : Node2D
                 Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
                 ball.GlobalPosition = LaunchPos;
                 ball.LinearVelocity = (@eventMouseButton.Position - LaunchPos) * 10;
+                ball.Modulate = Colors.Black;
+                ball.GetNode<Line2D>("Trail").Modulate = Colors.Black;
                 AddLiveBall(ball, LaunchPos, false);
             }
             else if (@event.IsActionReleased("screen_tap_secondary"))

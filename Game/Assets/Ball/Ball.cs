@@ -52,7 +52,7 @@ public partial class Ball : RigidBody2D
     int TrailDetail = 60;
     void TrailProcessing(double delta)
     {
-        //Trail.GlobalRotation = 0;
+        Trail.GlobalRotation = 0;
         LastPoints[0] = Vector2.Zero;
         TimeSinceTrailProcessing += delta;
 
