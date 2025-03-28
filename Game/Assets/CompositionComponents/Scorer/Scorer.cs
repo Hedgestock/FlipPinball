@@ -41,21 +41,21 @@ public partial class Scorer : Node2D
         float adder = 0;
         float superMultiplier = 1;
 
-        foreach (ScoreModifier ballteration in ball.GetChildren().OfType<Ballteration>().SelectMany(p => p.GetChildren().Where(c => c is ScoreModifier sm && CheckEligibility(sm))))
+        foreach (ScoreModifier scoreModifier in ball.GetChildren().OfType<Ballteration>().SelectMany(p => p.GetChildren().Where(c => c is ScoreModifier sm && CheckEligibility(sm))))
         {
-            switch (ballteration.Prio)
+            switch (scoreModifier.Prio)
             {
                 case ScoreModifier.Priority.SuperAdder:
-                    superAdder += ballteration.Value;
+                    superAdder += scoreModifier.Value;
                     break;
                 case ScoreModifier.Priority.Multiplier:
-                    multiplier *= ballteration.Value;
+                    multiplier *= scoreModifier.Value;
                     break;
                 case ScoreModifier.Priority.Adder:
-                    adder += ballteration.Value;
+                    adder += scoreModifier.Value;
                     break;
                 case ScoreModifier.Priority.SuperMultiplier:
-                    superMultiplier *= ballteration.Value;
+                    superMultiplier *= scoreModifier.Value;
                     break;
             }
         }

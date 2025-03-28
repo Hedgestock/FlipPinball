@@ -7,18 +7,17 @@ public partial class BallTimer : Effect
     {
         get
         {
-            return $"Ball destroys itself after {timeleft:0.00} seconds";
+            return $"Ball destroys itself after {timeleft:N1} seconds";
         }
     }
 
     public override float AnalogRarity => throw new NotImplementedException();
 
-    [Export]
-    Timer Timer;
-    [Export]
-    Label Label;
 
-    // This is only Exported to keep state when duplicating
+    //Event with export, this doesn't seem to carry over duplication...
+    Timer Timer;
+
+    // This is also exported to keep state when duplicating
     [Export]
     double timeleft = 15;
 
@@ -26,18 +25,25 @@ public partial class BallTimer : Effect
     {
         base._Ready();
 
-        Timer.Start(timeleft);
-        Timer.Timeout += () =>
+        if (Timer == null) {
+            Timer = new Timer();
+            Timer.Timeout += () =>
             {
                 GetParent().GetParent().EmitSignal(Ball.SignalName.SelfDestruct);
             };
+            AddChild(Timer);
+            //Timer.WaitTime = 15;
+        }
+        Timer.Start(timeleft);
+
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
-        Label.Text = Timer.TimeLeft.ToString("0.00");
         timeleft = Timer.TimeLeft;
+        //Timer.WaitTime = Timer.TimeLeft;
+        //Label.Text = timeleft.ToString("0.00");
     }
 
     const int minTime = 40;

@@ -24,6 +24,7 @@ Review generated rarity
 Add destruct button to avoid softlocks
 Fix impossible restrictives
 Clean duplicated groups in score ballterations
+Checj if refine goes in the inherited effects
 Make trail global
 
 Use one list of viewports for all ballviewers

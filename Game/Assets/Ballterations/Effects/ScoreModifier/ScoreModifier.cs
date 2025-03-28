@@ -64,10 +64,10 @@ public partial class ScoreModifier : Effect
 
     static StringName[] ScoringGroups = ["Bumpers", "Global", "Rollovers", "Slingshots", "Spinners", "Spitters", "Targets", "Shape Round", "Shape Square"];
 
-    const int minAdderValue = 100;
-    const int maxAdderValue = 2000;
-    const float minMultiplierValue = 1.1f;
-    const float maxMultiplierValue = 5f;
+    protected const int minAdderValue = 100;
+    protected const int maxAdderValue = 2000;
+    protected const float minMultiplierValue = 1.1f;
+    protected const float maxMultiplierValue = 5f;
 
     public static ScoreModifier CreateRandomSimple()
     {

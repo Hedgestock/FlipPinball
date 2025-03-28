@@ -21,12 +21,12 @@ Last resort
 
 Bouncy ball
     Boucne more
-    Bumper more score
+    Bumper super adder 500
 
 Bullseye
     Round targets restrictive consecutive in the last .5s multiply more and more
 
-You spin me right round
+/You spin me right round
     Spinner x2
     Each ball rotation gives 100 flat points
 
@@ -67,7 +67,7 @@ Doomsday
     42s timed ball
     42 eploding ball trail for 42s
 
-Falling Hype
+//Falling Hype
     Crazy multiplier but decaying 1mn
 
 The more the merrier

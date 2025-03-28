@@ -20,7 +20,7 @@ public partial class BallterationCard : PanelContainer
         set
         {
             _price = value;
-            BuyButton.Text = $"Ballterate ({value})";
+            BuyButton.Text = $"Ballterate ({value:N0})";
         }
     }
 

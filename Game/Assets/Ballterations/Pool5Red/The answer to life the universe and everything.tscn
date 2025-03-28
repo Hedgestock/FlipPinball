@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_l16ma"]
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_qdx2n"]
-[ext_resource type="PackedScene" uid="uid://dahrdfuff3o8l" path="res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.tscn" id="3_l16ma"]
+[ext_resource type="Script" uid="uid://4t0qew48fx78" path="res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.cs" id="3_qdx2n"]
 
 [node name="Ballteration" type="Node"]
 script = ExtResource("1_l16ma")
@@ -17,5 +17,6 @@ script = ExtResource("2_qdx2n")
 Prio = 2
 Value = 42.0
 
-[node name="BallTimer" parent="." instance=ExtResource("3_l16ma")]
+[node name="BallTimer" type="Node" parent="."]
+script = ExtResource("3_qdx2n")
 timeleft = 42.0

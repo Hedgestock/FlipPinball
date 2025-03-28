@@ -51,16 +51,16 @@ text = "Start Game"
 script = ExtResource("1_57tko")
 Scene = ExtResource("3_r6hok")
 
-[node name="PlungerContro" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="PlungerControl" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerContro"]
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerControl"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Plunger"
 
-[node name="ArrowDown" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerContro"]
+[node name="ArrowDown" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerControl"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
