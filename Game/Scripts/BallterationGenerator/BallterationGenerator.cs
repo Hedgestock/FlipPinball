@@ -235,13 +235,22 @@ public partial class BallterationGenerator : Node
 
         foreach (var fileName in ResourceLoader.ListDirectory(PoolPath))
         {
-            GD.Print($"File: {fileName} is tscn: {fileName.GetExtension() == "tscn"}");
             if (fileName.GetExtension() == "tscn")
                 validBallterationsPaths.Add(new WeightedItem<string>(PoolPath + fileName));
         }
 
         Ballteration ballteration = GD.Load<PackedScene>(WeightedItem<string>.ChooseFrom(validBallterationsPaths)).Instantiate<Ballteration>();
         ballteration.Rarity = clampedRarity;
+        return ballteration;
+    }
+
+    public static Ballteration Test()
+    {
+
+        Ballteration  ballteration = new Ballteration();
+        
+        ballteration.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/Effects/ScoreModifier/DecayingScoreModifier.tscn").Instantiate<Node>());
+
         return ballteration;
     }
 }

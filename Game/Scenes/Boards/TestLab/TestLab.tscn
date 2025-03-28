@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://1uf453kusqfd"]
+[gd_scene load_steps=102 format=3 uid="uid://1uf453kusqfd"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Skin/Slingshots/SlingshotBody.png" id="3_6ad40"]
@@ -48,8 +48,14 @@
 [ext_resource type="Texture2D" uid="uid://c0rnhvl8iwe60" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabFloor.png" id="34_00wus"]
 [ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabWalls.png" id="34_ef6o4"]
 [ext_resource type="PackedScene" uid="uid://dlc68ojsii7om" path="res://Game/Assets/BoardElements/TiltLight/TiltLight.tscn" id="34_qajmy"]
+[ext_resource type="Texture2D" uid="uid://4yqw2lxsh288" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight1Off.png" id="36_gjxmk"]
+[ext_resource type="Texture2D" uid="uid://wund4rmklww0" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight1On.png" id="37_0ae5s"]
 [ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialInfo.cs" id="38_1b66e"]
 [ext_resource type="PackedScene" uid="uid://cpwjamahfvpu1" path="res://Game/UI/Tutorial/TutorialButton.tscn" id="38_a4afa"]
+[ext_resource type="Texture2D" uid="uid://c73t17gkvlrut" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight2Off.png" id="38_nqtq1"]
+[ext_resource type="Texture2D" uid="uid://oxt8gwhumun8" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight2On.png" id="39_2tusx"]
+[ext_resource type="Texture2D" uid="uid://ddusc4ivmljlp" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight3Off.png" id="40_nqtq1"]
+[ext_resource type="Texture2D" uid="uid://dvr6crutdpgf7" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight3On.png" id="41_2tusx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 
@@ -197,6 +203,96 @@ b = Vector2(67, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hwdub"]
 b = Vector2(67, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8s74d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_gjxmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_0ae5s")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_gjxmk")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_0ae5s")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3vo4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_nqtq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_2tusx")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_nqtq1")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_2tusx")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5d8tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_nqtq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_2tusx")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_nqtq1")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_2tusx")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3owd7"]
 
@@ -1007,16 +1103,20 @@ bus = &"Master"
 stream = ExtResource("20_lxjrp")
 
 [node name="OnOffLight1" parent="Layer1/BottomTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
-modulate = Color(0, 0, 0.862745, 1)
+modulate = Color(1, 1, 1, 1)
 position = Vector2(-6, 31)
+sprite_frames = SubResource("SpriteFrames_8s74d")
 
 [node name="OnOffLight2" parent="Layer1/BottomTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
-modulate = Color(0, 0.882353, 0, 1)
+modulate = Color(1, 1, 1, 1)
 position = Vector2(-6, 56)
+sprite_frames = SubResource("SpriteFrames_q3vo4")
 
 [node name="OnOffLight3" parent="Layer1/BottomTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
-modulate = Color(0.901961, 0, 0, 1)
-position = Vector2(-6, 81)
+modulate = Color(1, 1, 1, 1)
+position = Vector2(-6, 93)
+sprite_frames = SubResource("SpriteFrames_5d8tg")
+animation = &"blinking"
 
 [node name="TunnelSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
 position = Vector2(471, 421)
