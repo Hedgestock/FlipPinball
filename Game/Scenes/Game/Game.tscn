@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene load_steps=8 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" uid="uid://c6o8v1jksh0gh" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
 [ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
 [ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
+[ext_resource type="AudioStream" uid="uid://dq8sd3omrg1b2" path="res://Game/Scenes/Boards/TestLab/The Nightclub Loop.wav" id="5_p6c18"]
 [ext_resource type="PackedScene" uid="uid://6aanashyb3dl" path="res://Game/UI/Ballterator/Ballterator.tscn" id="5_ueg0k"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_x1rdj"]
@@ -181,5 +182,10 @@ action = "paddle_right"
 
 [node name="Ballterator" parent="." instance=ExtResource("5_ueg0k")]
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_p6c18")
+autoplay = true
+bus = &"Music"
 
 [connection signal="hidden" from="Ballterator" to="." method="ResetBoard"]

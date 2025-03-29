@@ -10,7 +10,6 @@ Add target blink on hit
 Add drag mode for plunger
 Add settings
 Add saves/continue
-Add music
 Add achievements
 Add input mapping
 Add vibrations
@@ -26,6 +25,7 @@ Fix impossible restrictives
 Clean duplicated groups in score ballterations
 Checj if refine goes in the inherited effects
 Make trail global
+Freeze reroll when in debt
 
 Use one list of viewports for all ballviewers
 Split code for UI management (rn all in Game.cs)

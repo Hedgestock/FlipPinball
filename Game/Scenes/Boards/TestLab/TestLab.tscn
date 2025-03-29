@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://p1e4ybuw74pb"]
+[gd_scene load_steps=108 format=3 uid="uid://p1e4ybuw74pb"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Skin/Slingshots/SlingshotBody.png" id="3_6ad40"]
@@ -58,6 +58,9 @@
 [ext_resource type="Texture2D" uid="uid://dvr6crutdpgf7" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight3On.png" id="41_2tusx"]
 [ext_resource type="Texture2D" uid="uid://boxb1kv483ord" path="res://Game/Scenes/Boards/TestLab/Skin/Magnet/MagnetLightOff.png" id="47_8s74d"]
 [ext_resource type="Texture2D" uid="uid://c82i80y34sg5v" path="res://Game/Scenes/Boards/TestLab/Skin/Magnet/MagnetLightOn.png" id="48_q3vo4"]
+[ext_resource type="Texture2D" uid="uid://buag7umm503cv" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/Plunger_dessous.png" id="53_5d8tg"]
+[ext_resource type="Texture2D" uid="uid://dd4mklyf2yg4f" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/Plunger_dessus.png" id="54_kf2jr"]
+[ext_resource type="AudioStream" uid="uid://dq8sd3omrg1b2" path="res://Game/Scenes/Boards/TestLab/The Nightclub Loop.wav" id="61_kf2jr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 
@@ -1538,6 +1541,15 @@ shape = SubResource("RectangleShape2D_qqomp")
 [node name="TiltLight" parent="Layer1" instance=ExtResource("34_qajmy")]
 position = Vector2(180, 741)
 
+[node name="PlungerDessous" type="Sprite2D" parent="Layer1"]
+z_index = 100
+position = Vector2(767, 1044)
+texture = ExtResource("53_5d8tg")
+
+[node name="PlungerDessus" type="Sprite2D" parent="Layer1"]
+position = Vector2(647, 955)
+texture = ExtResource("54_kf2jr")
+
 [node name="LayerChange1to2" parent="." instance=ExtResource("14_d61wx")]
 z_index = 11
 position = Vector2(230, 568)
@@ -2148,6 +2160,11 @@ offset_left = 489.0
 offset_top = 889.0
 offset_right = 541.0
 offset_bottom = 983.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("61_kf2jr")
+autoplay = true
+bus = &"Music"
 
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/OnOffLight" method="TurnBlinking"]
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/Timer" method="start"]
