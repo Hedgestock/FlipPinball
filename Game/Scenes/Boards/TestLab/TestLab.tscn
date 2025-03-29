@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://641jx1x1js2s" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotZone.tscn" id="7_rbrd7"]
 [ext_resource type="PackedScene" uid="uid://tm0n8wum3wb6" path="res://Game/Assets/BoardElements/Scorers/Collidables/Slingshot/Slingshot.tscn" id="8_8xkpc"]
 [ext_resource type="PackedScene" uid="uid://cl5k1huk7mxl1" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.tscn" id="9_u8226"]
+[ext_resource type="Script" uid="uid://m2fnpjorbuay" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/PlungerDessous.cs" id="12_kf2jr"]
 [ext_resource type="PackedScene" uid="uid://b2n7ugga7yovq" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTarget.tscn" id="12_rupeo"]
 [ext_resource type="PackedScene" uid="uid://c6lxuqoyg1314" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.tscn" id="13_ctosm"]
 [ext_resource type="PackedScene" uid="uid://clvc7nom5cigw" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.tscn" id="14_aoae7"]
@@ -60,7 +61,6 @@
 [ext_resource type="Texture2D" uid="uid://c82i80y34sg5v" path="res://Game/Scenes/Boards/TestLab/Skin/Magnet/MagnetLightOn.png" id="48_q3vo4"]
 [ext_resource type="Texture2D" uid="uid://buag7umm503cv" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/Plunger_dessous.png" id="53_5d8tg"]
 [ext_resource type="Texture2D" uid="uid://dd4mklyf2yg4f" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/Plunger_dessus.png" id="54_kf2jr"]
-[ext_resource type="AudioStream" uid="uid://dq8sd3omrg1b2" path="res://Game/Scenes/Boards/TestLab/The Nightclub Loop.wav" id="61_kf2jr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 
@@ -648,6 +648,20 @@ shape = SubResource("RectangleShape2D_yy6bf")
 [node name="Plunger" parent="Layer1" instance=ExtResource("4_6e6jg")]
 z_index = 9
 position = Vector2(562, 936)
+
+[node name="PlungerProgress" parent="Layer1/Plunger" index="0"]
+visible = false
+
+[node name="PlungerDessous" type="Sprite2D" parent="Layer1/Plunger"]
+z_index = 100
+position = Vector2(0, 80)
+texture = ExtResource("53_5d8tg")
+script = ExtResource("12_kf2jr")
+
+[node name="PlungerDessus" type="Sprite2D" parent="Layer1/Plunger"]
+z_index = 100
+position = Vector2(0, 55)
+texture = ExtResource("54_kf2jr")
 
 [node name="SaveBallLight" parent="Layer1" instance=ExtResource("7_166f2")]
 modulate = Color(1, 0.486104, 0.418607, 1)
@@ -1541,15 +1555,6 @@ shape = SubResource("RectangleShape2D_qqomp")
 [node name="TiltLight" parent="Layer1" instance=ExtResource("34_qajmy")]
 position = Vector2(180, 741)
 
-[node name="PlungerDessous" type="Sprite2D" parent="Layer1"]
-z_index = 100
-position = Vector2(767, 1044)
-texture = ExtResource("53_5d8tg")
-
-[node name="PlungerDessus" type="Sprite2D" parent="Layer1"]
-position = Vector2(647, 955)
-texture = ExtResource("54_kf2jr")
-
 [node name="LayerChange1to2" parent="." instance=ExtResource("14_d61wx")]
 z_index = 11
 position = Vector2(230, 568)
@@ -2161,16 +2166,12 @@ offset_top = 889.0
 offset_right = 541.0
 offset_bottom = 983.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("61_kf2jr")
-autoplay = true
-bus = &"Music"
-
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/OnOffLight" method="TurnBlinking"]
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/Timer" method="start"]
 [connection signal="body_entered" from="Boundaries" to="." method="DespawnBall" binds= [1]]
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
+[connection signal="value_changed" from="Layer1/Plunger/PlungerProgress" to="Layer1/Plunger/PlungerDessous" method="SetPosition"]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
@@ -2249,6 +2250,7 @@ bus = &"Music"
 
 [editable path="Layer1/UnderRampSlingshot"]
 [editable path="Layer1/TunnelSlingshot"]
+[editable path="Layer1/Plunger"]
 [editable path="Layer1/SaveBallLight"]
 [editable path="Layer1/SkillShot"]
 [editable path="Layer1/PaddleLeftMain"]
