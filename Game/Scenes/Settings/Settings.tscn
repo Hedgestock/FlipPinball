@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://y7yca16spn04"]
+[gd_scene load_steps=3 format=3 uid="uid://y7yca16spn04"]
 
-[ext_resource type="Script" uid="uid://dgsbm63myfhuc" path="res://Game/UI/SceneChanger.cs" id="1_11p1a"]
+[ext_resource type="Script" uid="uid://jbwy2v52m20s" path="res://Game/Scenes/Settings/BackButton.cs" id="1_11p1a"]
+[ext_resource type="Script" uid="uid://bi2rx3jxb8wh2" path="res://Game/Scenes/Settings/Settings.cs" id="1_s0rnh"]
 
-[node name="Settings" type="CanvasLayer"]
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("MusicVolume", "SFXVolume")]
+script = ExtResource("1_s0rnh")
+MusicVolume = NodePath("MarginContainer/VBoxContainer/MusicSlider")
+SFXVolume = NodePath("MarginContainer/VBoxContainer/SFXSlider")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -24,7 +28,7 @@ script = ExtResource("1_11p1a")
 layout_mode = 2
 text = "Music"
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
@@ -34,8 +38,11 @@ value = 1.0
 layout_mode = 2
 text = "Sound Effects"
 
-[node name="HSlider2" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSlider" to="." method="MusicVolumeChanged"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXSlider" to="." method="SFXVolumeChanged"]
