@@ -10,5 +10,4 @@ public partial class SceneChanger : Button
         base._Ready();
         Pressed += () => SceneManager.ChangeSceneToPacked(Scene);
     }
-
 }

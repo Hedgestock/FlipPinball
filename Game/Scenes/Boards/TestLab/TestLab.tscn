@@ -1568,7 +1568,6 @@ shape = SubResource("RectangleShape2D_orssv")
 z_index = 10
 
 [node name="LabFloor" type="Sprite2D" parent="Layer2"]
-modulate = Color(0.481789, 0.481789, 0.481789, 1)
 position = Vector2(132, 604)
 texture = ExtResource("34_00wus")
 
