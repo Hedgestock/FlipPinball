@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://641jx1x1js2s" path="res://Game/Assets/BoardElements/Scorers/SkillShot/SkillShotZone.tscn" id="7_rbrd7"]
 [ext_resource type="PackedScene" uid="uid://tm0n8wum3wb6" path="res://Game/Assets/BoardElements/Scorers/Collidables/Slingshot/Slingshot.tscn" id="8_8xkpc"]
 [ext_resource type="PackedScene" uid="uid://cl5k1huk7mxl1" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.tscn" id="9_u8226"]
-[ext_resource type="Script" uid="uid://m2fnpjorbuay" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/PlungerDessous.cs" id="12_kf2jr"]
+[ext_resource type="Script" uid="uid://m2fnpjorbuay" path="res://Game/Scenes/Boards/TestLab/Plunger/PlungerDessous.cs" id="12_kf2jr"]
 [ext_resource type="PackedScene" uid="uid://b2n7ugga7yovq" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Drop/DropTarget.tscn" id="12_rupeo"]
 [ext_resource type="PackedScene" uid="uid://c6lxuqoyg1314" path="res://Game/Assets/BoardElements/Scorers/Spitter/Spitter.tscn" id="13_ctosm"]
 [ext_resource type="PackedScene" uid="uid://clvc7nom5cigw" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.tscn" id="14_aoae7"]
@@ -59,8 +59,8 @@
 [ext_resource type="Texture2D" uid="uid://dvr6crutdpgf7" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight3On.png" id="41_2tusx"]
 [ext_resource type="Texture2D" uid="uid://boxb1kv483ord" path="res://Game/Scenes/Boards/TestLab/Skin/Magnet/MagnetLightOff.png" id="47_8s74d"]
 [ext_resource type="Texture2D" uid="uid://c82i80y34sg5v" path="res://Game/Scenes/Boards/TestLab/Skin/Magnet/MagnetLightOn.png" id="48_q3vo4"]
-[ext_resource type="Texture2D" uid="uid://buag7umm503cv" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/Plunger_dessous.png" id="53_5d8tg"]
-[ext_resource type="Texture2D" uid="uid://dd4mklyf2yg4f" path="res://Game/Scenes/Boards/TestLab/Skin/Plunger/Plunger_dessus.png" id="54_kf2jr"]
+[ext_resource type="Texture2D" uid="uid://buag7umm503cv" path="res://Game/Scenes/Boards/TestLab/Plunger/Plunger_dessous.png" id="53_5d8tg"]
+[ext_resource type="Texture2D" uid="uid://dd4mklyf2yg4f" path="res://Game/Scenes/Boards/TestLab/Plunger/Plunger_dessus.png" id="54_kf2jr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd4mklyf2yg4f"
-path="res://.godot/imported/Plunger_dessus.png-411fe113c2f1b137429a179ceff9d0bd.ctex"
+uid="uid://buag7umm503cv"
+path="res://.godot/imported/Plunger_dessous.png-510e7a792d056d9515b0d20d857df73d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Scenes/Boards/TestLab/Skin/Plunger/Plunger_dessus.png"
-dest_files=["res://.godot/imported/Plunger_dessus.png-411fe113c2f1b137429a179ceff9d0bd.ctex"]
+source_file="res://Game/Scenes/Boards/TestLab/Plunger/Plunger_dessous.png"
+dest_files=["res://.godot/imported/Plunger_dessous.png-510e7a792d056d9515b0d20d857df73d.ctex"]
 
 [params]
 
