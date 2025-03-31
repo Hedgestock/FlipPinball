@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g7ly3when2mw"
-path="res://.godot/imported/BG 1 FTF.png-c68646e70c9c549e579232ad4ee976e9.ctex"
+uid="uid://dxqmcwneanfd7"
+path="res://.godot/imported/Backboard.png-f6aa127fa11e3cb41176c0f36af37fa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Scenes/Boards/TestLab/Skin/BG 1 FTF.png"
-dest_files=["res://.godot/imported/BG 1 FTF.png-c68646e70c9c549e579232ad4ee976e9.ctex"]
+source_file="res://Game/Scenes/Boards/TestLab/Skin/Backboard.png"
+dest_files=["res://.godot/imported/Backboard.png-f6aa127fa11e3cb41176c0f36af37fa9.ctex"]
 
 [params]
 

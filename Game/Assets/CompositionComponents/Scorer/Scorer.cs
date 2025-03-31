@@ -49,7 +49,7 @@ public partial class Scorer : Node2D
                     superAdder += scoreModifier.Value;
                     break;
                 case ScoreModifier.Priority.Multiplier:
-                    multiplier *= scoreModifier.Value;
+                    multiplier += scoreModifier.Value;
                     break;
                 case ScoreModifier.Priority.Adder:
                     adder += scoreModifier.Value;

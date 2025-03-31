@@ -32,7 +32,7 @@ public partial class BallterationGenerator : Node
     //}
 
     static WeightedItem<Func<float, Ballteration>>[] WeightedPickersBase = [
-        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateNewBall), 10),
+        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateNewBall), 1),
         new((float targetRarity) => GeneratorWrapper(targetRarity, CreateScoreModifier)),
         new((float targetRarity) => GeneratorWrapper(targetRarity, CreateSimpleScoreModifier)),
         new((float targetRarity) => GeneratorWrapper(targetRarity, CreateChaosScoreModifier)),

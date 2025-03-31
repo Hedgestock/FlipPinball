@@ -1,9 +1,9 @@
-[gd_scene load_steps=108 format=3 uid="uid://p1e4ybuw74pb"]
+[gd_scene load_steps=110 format=3 uid="uid://p1e4ybuw74pb"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
+[ext_resource type="Texture2D" uid="uid://dxqmcwneanfd7" path="res://Game/Scenes/Boards/TestLab/Skin/Backboard.png" id="2_kf2jr"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Skin/Slingshots/SlingshotBody.png" id="3_6ad40"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="3_50m14"]
-[ext_resource type="Texture2D" uid="uid://g7ly3when2mw" path="res://Game/Scenes/Boards/TestLab/Skin/BG 1 FTF.png" id="3_jj4cu"]
 [ext_resource type="PackedScene" uid="uid://1jrg7mxwi5so" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Round/RoundTarget.tscn" id="4_2d0ue"]
 [ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="4_6e6jg"]
 [ext_resource type="Texture2D" uid="uid://doytpbeocn5xt" path="res://Game/Scenes/Boards/TestLab/Skin/SusTargetWall.png" id="4_av5ve"]
@@ -61,6 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://c82i80y34sg5v" path="res://Game/Scenes/Boards/TestLab/Skin/Magnet/MagnetLightOn.png" id="48_q3vo4"]
 [ext_resource type="Texture2D" uid="uid://buag7umm503cv" path="res://Game/Scenes/Boards/TestLab/Plunger/Plunger_dessous.png" id="53_5d8tg"]
 [ext_resource type="Texture2D" uid="uid://dd4mklyf2yg4f" path="res://Game/Scenes/Boards/TestLab/Plunger/Plunger_dessus.png" id="54_kf2jr"]
+[ext_resource type="Texture2D" uid="uid://cjymsu4jinqs7" path="res://Game/Scenes/Boards/TestLab/Skin/Rollover/Rollover.png" id="55_6hmrl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
 
@@ -329,6 +330,33 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ku5s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("55_6hmrl")
+}],
+"loop": true,
+"name": &"blinking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("55_6hmrl")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("55_6hmrl")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_3owd7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eetx4"]
@@ -379,7 +407,7 @@ TiltPusher = NodePath("TiltPusher")
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 600.0
 offset_bottom = 1080.0
-texture = ExtResource("3_jj4cu")
+texture = ExtResource("2_kf2jr")
 expand_mode = 1
 
 [node name="TiltPusher" parent="." instance=ExtResource("3_50m14")]
@@ -1444,6 +1472,8 @@ Value = 1000
 position = Vector2(138, 259)
 
 [node name="OnOffLight" parent="Layer1/Rollover/Area2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_8ku5s")
+animation = &"blinking"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" parent="Layer1/Rollover/Area2D" index="1"]
