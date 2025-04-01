@@ -68,7 +68,7 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_ji2d3")
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="Pusher" parent="." instance=ExtResource("3_54quy")]
 Strength = 2000

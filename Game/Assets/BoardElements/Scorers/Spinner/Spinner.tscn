@@ -28,7 +28,7 @@ Value = 500
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_0t70i")
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [connection signal="CompleteRotation" from="." to="AudioStreamPlayer" method="play"]
 [connection signal="body_entered" from="Area2D" to="." method="OnSpinnerBodyEnter"]

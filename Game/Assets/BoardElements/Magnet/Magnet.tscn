@@ -49,12 +49,12 @@ Strength = 2000
 stream = ExtResource("4_52v3k")
 volume_db = 5.2
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="MagnetEjectSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g5p1v")
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [connection signal="MagnetEject" from="." to="Pusher" method="Push"]
 [connection signal="body_entered" from="EffectZone" to="." method="OnEffectZoneBodyEnter"]

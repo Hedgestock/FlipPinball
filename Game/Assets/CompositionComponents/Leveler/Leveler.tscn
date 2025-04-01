@@ -9,6 +9,6 @@ MaxLevel = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_7t7tc")
-bus = &"BoardElements"
+bus = &"SFX"
 
 [connection signal="OnLevelUp" from="." to="AudioStreamPlayer" method="play" unbinds=1]

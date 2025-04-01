@@ -30,7 +30,7 @@ Value = 750
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="Pusher" parent="." instance=ExtResource("5_s16b8")]
 Strength = 500

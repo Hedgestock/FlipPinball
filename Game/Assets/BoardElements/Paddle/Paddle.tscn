@@ -31,4 +31,4 @@ shape = SubResource("CapsuleShape2D_2x465")
 stream = ExtResource("2_xcx2q")
 attenuation = 1e-05
 panning_strength = 0.3
-bus = &"BoardElements"
+bus = &"SFX"

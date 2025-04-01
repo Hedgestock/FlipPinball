@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Godot.FlipPinball
+namespace Wafflestock
 {
     public struct WeightedItem<ItemType>
     {

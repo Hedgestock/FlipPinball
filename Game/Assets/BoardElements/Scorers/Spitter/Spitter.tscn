@@ -34,12 +34,12 @@ one_shot = true
 [node name="SpitterInSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_uojt7")
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="SpitterOutSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_mhvfs")
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="Scorer" parent="." instance=ExtResource("4_4ynig")]
 

@@ -9,12 +9,6 @@
 - [ ] Add vibrations
 - [ ] Add destruct button to avoid softlocks
 - [ ] Add spinner sprites
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
 
 # Gameplay
 
@@ -29,10 +23,9 @@
 - [ ] Add saves/continue
 - [ ] Add drag mode for plunger
 - [ ] Add target blink on hit
-- [ ] 
-- [ ] 
-- [ ] 
-
+- [ ] Add board picker system
+- [ ] Change ballterator to stop refreshing
+- [ ] If ballterator refreshes, price must go up
 
 # Bug fixes
 
@@ -46,20 +39,13 @@
 - [ ] Maybe pool queue for like score bubbles
 - [ ] Maybe factorise the "OnMultiplier" thing
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+
 
 # Quality assurance
 
 - [ ] Check for teleport multi entry and weird behaviour
 - [ ] Check if refine goes in the inherited effects
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+
 
 # Ballterations effects
 

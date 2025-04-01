@@ -34,7 +34,7 @@ shape = SubResource("CircleShape2D_qmtc5")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_svyrr")
 attenuation = 1e-05
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="Pusher" parent="." instance=ExtResource("7_i7vyf")]
 

@@ -62,13 +62,13 @@ shape = SubResource("RectangleShape2D_ahhcf")
 stream = ExtResource("2_a28wm")
 attenuation = 1e-05
 panning_strength = 0.3
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="WindUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_mxsw7")
 attenuation = 1e-05
 panning_strength = 0.3
-bus = &"BoardElements"
+bus = &"SFX"
 
 [node name="Pusher" parent="." instance=ExtResource("4_t61ul")]
 
