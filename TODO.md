@@ -1,5 +1,6 @@
 # UI
 
+- [x] Add spinner sprites
 - [ ] Add pause button
 - [ ] Make UI mobile friendly
 - [ ] Add achievements and achievements page
@@ -8,7 +9,6 @@
 - [ ] Use one list of viewports for all ballviewers
 - [ ] Add vibrations
 - [ ] Add destruct button to avoid softlocks
-- [ ] Add spinner sprites
 
 # Gameplay
 

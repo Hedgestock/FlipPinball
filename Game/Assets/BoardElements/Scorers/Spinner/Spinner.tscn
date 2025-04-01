@@ -1,19 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://clvc7nom5cigw"]
+[gd_scene load_steps=11 format=3 uid="uid://clvc7nom5cigw"]
 
 [ext_resource type="Script" uid="uid://b08x7lrn78upq" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.cs" id="1_p8fa6"]
 [ext_resource type="AudioStream" uid="uid://da0ppe1ufp02w" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.wav" id="3_0t70i"]
 [ext_resource type="PackedScene" uid="uid://ldg25jc4i0rg" path="res://Game/Assets/CompositionComponents/Scorer/Scorer.tscn" id="3_3mptj"]
+[ext_resource type="Texture2D" uid="uid://b1ne642d8gogj" path="res://Game/Assets/BoardElements/Scorers/Spinner/Animation/image0000.png" id="3_4avd5"]
 [ext_resource type="PackedScene" uid="uid://2lxhflonuboy" path="res://Game/Assets/CompositionComponents/OnOffLight/OnOffLight.tscn" id="4_72wfm"]
+[ext_resource type="Texture2D" uid="uid://b2s41nukekn2x" path="res://Game/Assets/BoardElements/Scorers/Spinner/Animation/image0001.png" id="4_dwnak"]
+[ext_resource type="Texture2D" uid="uid://xwm8yq3tiesm" path="res://Game/Assets/BoardElements/Scorers/Spinner/Animation/image0002.png" id="5_xyp6m"]
+[ext_resource type="Texture2D" uid="uid://cjusjankqv5hr" path="res://Game/Assets/BoardElements/Scorers/Spinner/Animation/image0003.png" id="6_jugeq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i54c6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4avd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dwnak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xyp6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jugeq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioksq"]
 size = Vector2(60, 20)
 
-[node name="Spinner" type="Node2D" node_paths=PackedStringArray("OnOffLight", "Scorer") groups=["Shape Square", "Spinners"]]
+[node name="Spinner" type="Node2D" node_paths=PackedStringArray("Sprite", "OnOffLight", "Scorer") groups=["Shape Square", "Spinners"]]
 script = ExtResource("1_p8fa6")
+Sprite = NodePath("AnimatedSprite2D")
 OnOffLight = NodePath("OnOffLight")
 Scorer = NodePath("Scorer")
 
 [node name="OnOffLight" parent="." instance=ExtResource("4_72wfm")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i54c6")
+frame = 1
+frame_progress = 0.652059
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

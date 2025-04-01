@@ -7,6 +7,8 @@ public partial class Spinner : Node2D
     public delegate void CompleteRotationEventHandler();
 
     [Export]
+    AnimatedSprite2D Sprite;
+    [Export]
     OnOffLight OnOffLight;
     [Export]
     Scorer Scorer;
@@ -27,6 +29,7 @@ public partial class Spinner : Node2D
 
         Iterations += delta;
         double currentSpinSpeed = InitialSpinSpeed * Math.Pow(0.3, Iterations) - 0.7 ;
+        Sprite.SpeedScale = (float)currentSpinSpeed;
         int numberOfTurns = (int)(LastSpinSpeed - currentSpinSpeed);
         if (numberOfTurns >= 1)
         {
@@ -44,6 +47,7 @@ public partial class Spinner : Node2D
 
         if (currentSpinSpeed < 0)
         {
+            Sprite.Pause();
             Iterations = -1;
         }
     }
@@ -56,6 +60,7 @@ public partial class Spinner : Node2D
             Iterations = 0;
             InitialSpinSpeed = Math.Abs(Math.Cos(ball.LinearVelocity.AngleTo(Vector2.Down.Rotated(Rotation))) * ball.LinearVelocity.Length()) / 200;
             LastSpinSpeed = InitialSpinSpeed;
+            Sprite.Play();
         }
     }
 }

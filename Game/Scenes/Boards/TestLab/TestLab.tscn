@@ -1196,24 +1196,32 @@ sprite_frames = SubResource("SpriteFrames_5d8tg")
 animation = &"blinking"
 
 [node name="TunnelSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
-position = Vector2(471, 421)
+position = Vector2(474, 416)
 OnMultiplier = 5
 
 [node name="OnOffLight" parent="Layer1/TunnelSpinner" index="0"]
-position = Vector2(-12, 23)
+position = Vector2(-12, 29)
 
-[node name="Area2D" parent="Layer1/TunnelSpinner" index="1"]
+[node name="AnimatedSprite2D" parent="Layer1/TunnelSpinner" index="1"]
+position = Vector2(2, 2)
+rotation = 0.436332
+scale = Vector2(1.2, 1.2)
+
+[node name="Area2D" parent="Layer1/TunnelSpinner" index="2"]
 rotation = 0.436332
 
 [node name="CollisionShape2D" parent="Layer1/TunnelSpinner/Area2D" index="0"]
 position = Vector2(1.83044, -6.03087)
 
 [node name="LeftSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
-position = Vector2(57, 338)
+position = Vector2(59, 340)
 OnMultiplier = 5
 
 [node name="OnOffLight" parent="Layer1/LeftSpinner" index="0"]
 position = Vector2(4, 32)
+
+[node name="AnimatedSprite2D" parent="Layer1/LeftSpinner" index="1"]
+scale = Vector2(0.7, 0.7)
 
 [node name="TunnelTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(457, 578)
@@ -2201,10 +2209,10 @@ offset_bottom = 983.0
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
 [connection signal="value_changed" from="Layer1/Plunger/PlungerProgress" to="Layer1/Plunger/PlungerDessous" method="SetPosition"]
-[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
+[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup/Timer" method="start"]
