@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvq3tam8wcwug"]
+
+[ext_resource type="Script" uid="uid://jbwy2v52m20s" path="res://Game/UI/BackButton/BackButton.cs" id="1_c2m6b"]
+
+[node name="BackButton" type="Button"]
+size_flags_horizontal = 0
+text = "Back"
+script = ExtResource("1_c2m6b")

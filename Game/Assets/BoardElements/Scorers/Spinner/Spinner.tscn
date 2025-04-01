@@ -41,9 +41,9 @@ Scorer = NodePath("Scorer")
 [node name="OnOffLight" parent="." instance=ExtResource("4_72wfm")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 6
 sprite_frames = SubResource("SpriteFrames_i54c6")
-frame = 1
-frame_progress = 0.652059
+frame = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
