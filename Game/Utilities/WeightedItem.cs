@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Wafflestock
+namespace WaffleStock
 {
     public struct WeightedItem<ItemType>
     {

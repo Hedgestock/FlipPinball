@@ -39,6 +39,7 @@
 - [ ] Maybe pool queue for like score bubbles
 - [ ] Maybe factorise the "OnMultiplier" thing
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
+- [ ] Update assembly name
 
 
 # Quality assurance

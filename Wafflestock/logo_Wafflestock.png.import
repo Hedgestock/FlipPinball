@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhddglqp678li"
-path="res://.godot/imported/logo_Wafflestock.png-ca271f5395843db955ca058743880fe1.ctex"
+uid="uid://bytdcy0ae5lna"
+path="res://.godot/imported/logo_Wafflestock.png-56d2cbfd04ce297acd2cbb27572f3f13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Wafflestock/logo_Wafflestock.png"
-dest_files=["res://.godot/imported/logo_Wafflestock.png-ca271f5395843db955ca058743880fe1.ctex"]
+source_file="res://WaffleStock/logo_Wafflestock.png"
+dest_files=["res://.godot/imported/logo_Wafflestock.png-56d2cbfd04ce297acd2cbb27572f3f13.ctex"]
 
 [params]
 

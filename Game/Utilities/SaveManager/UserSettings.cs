@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Wafflestock
+namespace WaffleStock
 {
     public class UserSettings
     {
