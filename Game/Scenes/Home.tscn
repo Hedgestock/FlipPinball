@@ -148,6 +148,7 @@ script = ExtResource("1_57tko")
 Scene = ExtResource("10_0h3sr")
 
 [node name="SplashScreen" type="ColorRect" parent="." node_paths=PackedStringArray("WaffleStock", "Logo", "LastFrame")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -182,7 +183,7 @@ expand = true
 
 [node name="WaffleStock" type="Label" parent="SplashScreen"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

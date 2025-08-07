@@ -37,7 +37,7 @@ LeftPaddleButton = NodePath("LeftPaddleButton")
 RightPaddleButton = NodePath("RightPaddleButton")
 
 [node name="MainContainer" type="BoxContainer" parent="."]
-anchors_preset = 12
+anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -153,7 +153,8 @@ layout_mode = 2
 text = "Game time: 00:00"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 5
+process_mode = 3
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0

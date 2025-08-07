@@ -15,6 +15,12 @@ public partial class TutorialInfo : Control
         ProcessMode = ProcessModeEnum.Always;
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        GD.Print("processing");
+    }
+
     public void OnPressed()
     {
         if (GetParent() is TutorialInfo parent)

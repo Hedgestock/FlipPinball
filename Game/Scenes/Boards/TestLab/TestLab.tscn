@@ -390,6 +390,7 @@ b = Vector2(0, 34)
 size = Vector2(60, 20)
 
 [node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "OutLanesLights", "SpinnersLights", "Tutorial", "Plunger", "PaddlesLeft", "PaddlesRight", "SaveBallLight", "SkillShot", "TiltPusher")]
+process_mode = 3
 script = ExtResource("1_mse42")
 Entry = NodePath("Layer1/Entry")
 Lab = NodePath("Layer2/Lab")
@@ -405,6 +406,7 @@ SkillShot = NodePath("Layer1/SkillShot")
 TiltPusher = NodePath("TiltPusher")
 
 [node name="Background" type="TextureRect" parent="."]
+anchors_preset = -1
 offset_right = 600.0
 offset_bottom = 1080.0
 texture = ExtResource("2_kf2jr")
@@ -679,6 +681,7 @@ position = Vector2(562, 936)
 
 [node name="PlungerProgress" parent="Layer1/Plunger" index="0"]
 visible = false
+anchors_preset = -1
 
 [node name="PlungerDessous" type="Sprite2D" parent="Layer1/Plunger"]
 z_index = 100
@@ -1752,6 +1755,7 @@ Description = "Those are the main bumpers, they will score and bounce the ball o
 
 [node name="TutorialButton" parent="Tutorial/MainBumpersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 247.0
 offset_top = 266.0
 offset_right = 287.0
@@ -1759,6 +1763,7 @@ offset_bottom = 306.0
 
 [node name="TutorialButton2" parent="Tutorial/MainBumpersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 340.0
 offset_top = 264.0
 offset_right = 380.0
@@ -1766,6 +1771,7 @@ offset_bottom = 304.0
 
 [node name="TutorialButton3" parent="Tutorial/MainBumpersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 286.0
 offset_top = 365.0
 offset_right = 326.0
@@ -1835,6 +1841,7 @@ Description = "Light them all to fully recharge the funds rollover."
 
 [node name="TutorialButton" parent="Tutorial/TopBumperTargetsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 43.0
 offset_top = 96.0
 offset_right = 83.0
@@ -1842,6 +1849,7 @@ offset_bottom = 136.0
 
 [node name="TutorialButton2" parent="Tutorial/TopBumperTargetsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 73.0
 offset_top = 48.0
 offset_right = 113.0
@@ -1849,6 +1857,7 @@ offset_bottom = 88.0
 
 [node name="TutorialButton3" parent="Tutorial/TopBumperTargetsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 129.0
 offset_top = 55.0
 offset_right = 169.0
@@ -1899,6 +1908,7 @@ Each rotation of the spinner also rotate the lit teleport if there is one."
 
 [node name="TutorialButton" parent="Tutorial/SpinnersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 38.0
 offset_top = 317.0
 offset_right = 78.0
@@ -1906,6 +1916,7 @@ offset_bottom = 357.0
 
 [node name="TutorialButton2" parent="Tutorial/SpinnersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 452.0
 offset_top = 398.0
 offset_right = 492.0
@@ -1924,6 +1935,7 @@ Pass through the spinners to rotate which teleport is currently lit."
 
 [node name="TutorialButton" parent="Tutorial/TeleportsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 161.0
 offset_top = 142.0
 offset_right = 201.0
@@ -1931,6 +1943,7 @@ offset_bottom = 182.0
 
 [node name="TutorialButton2" parent="Tutorial/TeleportsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 379.0
 offset_top = 179.0
 offset_right = 419.0
@@ -1938,6 +1951,7 @@ offset_bottom = 219.0
 
 [node name="TutorialButton3" parent="Tutorial/TeleportsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 462.0
 offset_top = 605.0
 offset_right = 502.0
@@ -1994,6 +2008,7 @@ Description = "Those are the lab bumpers, they will score and bounce the ball on
 
 [node name="TutorialButton" parent="Tutorial/LabBumpersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 13.0
 offset_top = 608.0
 offset_right = 53.0
@@ -2001,6 +2016,7 @@ offset_bottom = 648.0
 
 [node name="TutorialButton2" parent="Tutorial/LabBumpersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 82.0
 offset_top = 627.0
 offset_right = 122.0
@@ -2008,6 +2024,7 @@ offset_bottom = 667.0
 
 [node name="TutorialButton3" parent="Tutorial/LabBumpersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 37.0
 offset_top = 663.0
 offset_right = 77.0
@@ -2023,6 +2040,7 @@ Roll over the top rollover to light the return lanes."
 
 [node name="TutorialButton" parent="Tutorial/ReturnLaneTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 118.0
 offset_top = 781.0
 offset_right = 158.0
@@ -2030,6 +2048,7 @@ offset_bottom = 849.0
 
 [node name="TutorialButton2" parent="Tutorial/ReturnLaneTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 455.0
 offset_top = 781.0
 offset_right = 495.0
@@ -2045,6 +2064,7 @@ Lighting the 4th tunnel light also lights those lanes."
 
 [node name="TutorialButton" parent="Tutorial/OutLaneTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 34.0
 offset_top = 781.0
 offset_right = 74.0
@@ -2052,6 +2072,7 @@ offset_bottom = 849.0
 
 [node name="TutorialButton2" parent="Tutorial/OutLaneTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 494.0
 offset_top = 781.0
 offset_right = 534.0
@@ -2085,6 +2106,7 @@ Description = "Those elements will bounce away any ball that come in contact wit
 
 [node name="TutorialButton" parent="Tutorial/SlingshotTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 152.0
 offset_top = 771.0
 offset_right = 215.0
@@ -2092,6 +2114,7 @@ offset_bottom = 902.0
 
 [node name="TutorialButton2" parent="Tutorial/SlingshotTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 399.0
 offset_top = 771.0
 offset_right = 462.0
@@ -2099,6 +2122,7 @@ offset_bottom = 902.0
 
 [node name="TutorialButton3" parent="Tutorial/SlingshotTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 430.0
 offset_top = 353.0
 offset_right = 461.0
@@ -2107,6 +2131,7 @@ rotation = 0.418879
 
 [node name="TutorialButton4" parent="Tutorial/SlingshotTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 134.0
 offset_top = 382.0
 offset_right = 215.0
@@ -2123,6 +2148,7 @@ Try to not let the ball drain."
 
 [node name="TutorialButton" parent="Tutorial/FlippersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 216.0
 offset_top = 958.0
 offset_right = 284.0
@@ -2130,6 +2156,7 @@ offset_bottom = 1016.0
 
 [node name="TutorialButton2" parent="Tutorial/FlippersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 334.0
 offset_top = 958.0
 offset_right = 402.0
@@ -2191,6 +2218,7 @@ They will then close themselves, preventing any further save unless you lit all 
 
 [node name="TutorialButton" parent="Tutorial/KickBacksTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 22.0
 offset_top = 889.0
 offset_right = 74.0
@@ -2198,6 +2226,7 @@ offset_bottom = 983.0
 
 [node name="TutorialButton2" parent="Tutorial/KickBacksTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 489.0
 offset_top = 889.0
 offset_right = 541.0

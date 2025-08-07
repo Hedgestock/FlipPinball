@@ -76,7 +76,7 @@ public partial class GameManager : Node
     {
         if (@event.IsActionPressed("pause"))
         {
-            //GetTree().Paused = !GetTree().Paused;
+            GetTree().Paused = !GetTree().Paused;
             if (CurrentBoard != null)
                 CurrentBoard.Tutorial.Visible = !CurrentBoard.Tutorial.Visible;
         }
