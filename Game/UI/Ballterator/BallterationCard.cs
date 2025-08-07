@@ -21,6 +21,12 @@ public partial class BallterationCard : PanelContainer
         {
             _price = value;
             BuyButton.Text = $"Ballterate ({value:N0})";
+            GD.Print($"ballteration credits {value} > {GameManager.Credits} {value > GameManager.Credits}");
+            BuyButton.Modulate = value > GameManager.Credits ? Colors.Red : Colors.White;
+        }
+        get
+        {
+            return _price;
         }
     }
 

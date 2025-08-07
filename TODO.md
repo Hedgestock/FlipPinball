@@ -5,7 +5,6 @@
 - [ ] Make UI mobile friendly
 - [ ] Add achievements and achievements page
 - [ ] Add input mapping
-- [ ] Add input mapping
 - [ ] Use one list of viewports for all ballviewers
 - [ ] Add vibrations
 - [ ] Add destruct button to avoid softlocks
@@ -18,6 +17,7 @@
 - [ ] Review drop rates
 - [ ] Make trail global
 - [ ] Adjust physics to rolling instead of sliding
+- [x] Red prices when in debt
 - [ ] Freeze reroll when in debt
 - [ ] Add tilt function timeout
 - [ ] Add saves/continue
@@ -39,7 +39,7 @@
 - [ ] Maybe pool queue for like score bubbles
 - [ ] Maybe factorise the "OnMultiplier" thing
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
-- [ ] Update assembly name
+- [x] Update assembly name
 
 
 # Quality assurance

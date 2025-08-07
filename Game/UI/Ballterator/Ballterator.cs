@@ -22,14 +22,13 @@ public partial class Ballterator : Container
     Label CreditsLabel;
 
     int BallterationCount = 3;
-    long _creditsLeft = 0;
     long RerollPrice = 0;
     long CreditsLeft
     {
-        get { return _creditsLeft; }
+        get { return GameManager.Credits; }
         set
         {
-            _creditsLeft = value;
+            GameManager.Credits = value;
             if (value >= 0)
                 CreditsLabel.Text = $"Credits: ({CreditsLeft:N0})";
             else
@@ -113,6 +112,7 @@ public partial class Ballterator : Container
         {
             card.Ballteration = BallterationGenerator.Generate();
         }
+        card.Price *= (long)Math.Pow(1.2, BallterationCycleNumber);
 
         cardMargin.AddChild(card);
         return cardMargin;
@@ -159,7 +159,6 @@ public partial class Ballterator : Container
 
     void Close()
     {
-        GameManager.Credits = CreditsLeft;
         GameManager.AdvanceLevel();
 
         Hide();
