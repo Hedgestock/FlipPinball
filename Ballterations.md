@@ -30,14 +30,14 @@ Bullseye
     Spinner x2
     Each ball rotation gives 100 flat points
 
-/Square up
+//Square up
     Square shape x2
     Square hitbox
 
 //Step on the competition
     Rollovers x2
 
-/(I) Love triangle
+//(I) Love triangle
     Slingshots x2
     Triangle hitbox
 

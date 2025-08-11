@@ -133,7 +133,15 @@ public partial class Ballterator : Container
             selector.Ball = ball;
             selector.BallSelected += (Ball ball) =>
             {
-                ball.AddChild(SelectedBallteration);
+                foreach (var shapeShift in SelectedBallteration.GetChildren().OfType<ShapeShift>())
+                {
+                    shapeShift.Morph(ball);
+                    SelectedBallteration.RemoveChild(shapeShift);
+                }
+                if (SelectedBallteration.GetChildren().Any())
+                {
+                    ball.AddChild(SelectedBallteration);
+                }
                 Balls.Hide();
                 BallterationCycleEnd();
             };

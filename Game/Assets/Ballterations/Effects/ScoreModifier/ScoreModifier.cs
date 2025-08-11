@@ -26,22 +26,22 @@ public partial class ScoreModifier : Effect
             float rarity = 0;
             if (Prio <= Priority.SuperAdder)
             {
-                rarity += Value / 700;
+                rarity += Value / 800;
             }
             else
             {
-                rarity += Value / 1.7f;
+                rarity += Value / 1.6f;
             }
 
             if (IsSuper)
-                rarity += 0.5f;
+                rarity += 0.3f;
 
             if (GetGroups().Contains("Global"))
                 rarity++;
             else if (Restrictive)
-                rarity -= Math.Max(GetGroups().Count / 4f, 1f);
+                rarity -= Math.Max(GetGroups().Count / (ScoringGroups.Length / 2), 1f);
             else
-                rarity += Math.Min(GetGroups().Count / 4f, 1f);
+                rarity += Math.Min(GetGroups().Count / (ScoringGroups.Length / 2), 1f);
 
             return rarity;
         }

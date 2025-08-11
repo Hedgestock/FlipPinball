@@ -57,6 +57,7 @@ Walls=""
 Global=""
 "Shape Square"=""
 "Shape Round"=""
+Bosses=""
 
 [gui]
 

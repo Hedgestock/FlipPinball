@@ -67,9 +67,9 @@
 - [ ] Weight down
 - [ ] Random direction changes
 - [ ] Bounciness
-- [ ] Square hitbox ?
-- [ ] Triangle hitbox ?
-- [ ] Capsule hitbox ?
+- [ ] Square hitbox
+- [ ] Triangle hitbox
+- [ ] Capsule hitbox
 - [ ] Count ball rotation ?
 - [ ] Slow motion on the ball ?
 - [ ] Slow motion on the ball on flipper approach ?

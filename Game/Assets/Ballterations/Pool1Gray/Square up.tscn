@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c46qu1vnn3pdp"]
+[gd_scene load_steps=4 format=3 uid="uid://c46qu1vnn3pdp"]
 
 [ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_31d2j"]
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_xoxme"]
+[ext_resource type="PackedScene" uid="uid://bk6dvr47cdiyo" path="res://Game/Assets/Ballterations/Effects/ShapeShift/ShapeShiftSquare.tscn" id="3_xoxme"]
 
 [node name="Ballteration" type="Node"]
 script = ExtResource("1_31d2j")
@@ -11,3 +12,5 @@ DisplayName = "Square up"
 script = ExtResource("2_xoxme")
 Prio = 2
 Value = 2.0
+
+[node name="ShapeShiftTriangle" parent="." instance=ExtResource("3_xoxme")]

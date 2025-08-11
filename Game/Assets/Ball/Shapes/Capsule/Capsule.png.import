@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s4ju6ifcgx4u"
-path="res://.godot/imported/Ball.png-421fa689a33c7bf6c5139033f1915d0a.ctex"
+uid="uid://cv2nmjr56yss0"
+path="res://.godot/imported/Capsule.png-21c209e7bc189c403ea2c8e4451be534.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Assets/Ball/Ball.png"
-dest_files=["res://.godot/imported/Ball.png-421fa689a33c7bf6c5139033f1915d0a.ctex"]
+source_file="res://Game/Assets/Ball/Shapes/Capsule/Capsule.png"
+dest_files=["res://.godot/imported/Capsule.png-21c209e7bc189c403ea2c8e4451be534.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

@@ -1,11 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dr0mugi8okm00"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://beh6uiwl2tmbn" path="res://Game/Assets/Ball/Shapes/Round/RoundPhysics.tres" id="1_66dhr"]
 [ext_resource type="Script" uid="uid://db1rjr72mt5bh" path="res://Game/Assets/Ball/Ball.cs" id="1_sowmc"]
-[ext_resource type="Texture2D" uid="uid://ccohwwtupivj0" path="res://Game/Assets/Ball/Ball clean.png" id="2_1scip"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k5bk0"]
-friction = 0.0
-bounce = 0.25
+[ext_resource type="Texture2D" uid="uid://s4ju6ifcgx4u" path="res://Game/Assets/Ball/Shapes/Round/Ball.png" id="2_1scip"]
+[ext_resource type="Shape2D" uid="uid://b2527f3c2e8r5" path="res://Game/Assets/Ball/Shapes/Round/RoundCollision.tres" id="4_j8eik"]
 
 [sub_resource type="Curve" id="Curve_srid4"]
 _data = [Vector2(0.00271739, 0.980223), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -13,8 +11,6 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_7h7m5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5w72v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g1s2t"]
 radius = 1.0
@@ -25,9 +21,8 @@ process_physics_priority = -1
 z_index = 3
 collision_layer = 2
 collision_mask = 2
-physics_material_override = SubResource("PhysicsMaterial_k5bk0")
+physics_material_override = ExtResource("1_66dhr")
 can_sleep = false
-lock_rotation = true
 continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 5
@@ -37,6 +32,7 @@ Trail = NodePath("Trail")
 Center = NodePath("Center")
 
 [node name="Trail" type="Line2D" parent="."]
+visible = false
 z_index = 1
 points = PackedVector2Array(0, 0, 20, 20)
 width = 20.0
@@ -52,7 +48,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_1scip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5w72v")
+shape = ExtResource("4_j8eik")
 
 [node name="Center" type="Area2D" parent="."]
 collision_layer = 2

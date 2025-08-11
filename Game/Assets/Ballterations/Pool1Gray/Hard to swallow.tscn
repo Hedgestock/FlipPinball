@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://clfn3u1sa0d6l"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_45e5u"]
+[ext_resource type="PackedScene" uid="uid://dgixkpnptr0l" path="res://Game/Assets/Ballterations/Effects/ShapeShift/ShapeShiftCapsule.tscn" id="2_rmg3b"]
+
+[node name="HardToSwallow" type="Node"]
+script = ExtResource("1_45e5u")
+DisplayName = "Hard to swallow"
+
+[node name="ShapeShiftCapsule" parent="." instance=ExtResource("2_rmg3b")]

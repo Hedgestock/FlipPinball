@@ -40,7 +40,7 @@ public partial class Ball : RigidBody2D
 
         LastVelocity = LinearVelocity;
 
-        TrailProcessing(delta);
+        //TrailProcessing(delta);
     }
 
 

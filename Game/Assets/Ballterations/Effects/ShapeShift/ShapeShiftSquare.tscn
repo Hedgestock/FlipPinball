@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk6dvr47cdiyo"]
+
+[ext_resource type="Script" uid="uid://brvm4dfi7am1u" path="res://Game/Assets/Ballterations/Effects/ShapeShift/ShapeShift.cs" id="1_6021j"]
+[ext_resource type="Texture2D" uid="uid://bkux07luakc8e" path="res://Game/Assets/Ball/Shapes/Square/Square.png" id="2_1gelq"]
+[ext_resource type="Shape2D" uid="uid://85dhbboic513" path="res://Game/Assets/Ball/Shapes/Square/SquareCollision.tres" id="3_pvcqh"]
+[ext_resource type="PhysicsMaterial" uid="uid://b8eyek24eobdw" path="res://Game/Assets/Ball/Shapes/Square/SquarePhysics.tres" id="4_hbg8k"]
+
+[node name="ShapeShiftSquare" type="Node"]
+script = ExtResource("1_6021j")
+Texture = ExtResource("2_1gelq")
+Shape = ExtResource("3_pvcqh")
+PhysicsMaterial = ExtResource("4_hbg8k")

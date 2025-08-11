@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://p6dt57tivxcg"]
+
+[ext_resource type="Script" uid="uid://brvm4dfi7am1u" path="res://Game/Assets/Ballterations/Effects/ShapeShift/ShapeShift.cs" id="1_teqev"]
+[ext_resource type="Texture2D" uid="uid://cj8l3883w4e0d" path="res://Game/Assets/Ball/Shapes/Triangle/Triangle.png" id="2_k8qfy"]
+[ext_resource type="Shape2D" uid="uid://cb7v4pbq422jg" path="res://Game/Assets/Ball/Shapes/Triangle/TriangleCollision.tres" id="3_wftov"]
+[ext_resource type="PhysicsMaterial" uid="uid://0gk3u2sthp6d" path="res://Game/Assets/Ball/Shapes/Triangle/TrianglePhysics.tres" id="4_loy7o"]
+
+[node name="ShapeShiftTriangle" type="Node"]
+script = ExtResource("1_teqev")
+Texture = ExtResource("2_k8qfy")
+Shape = ExtResource("3_wftov")
+PhysicsMaterial = ExtResource("4_loy7o")
+ShapeName = "Triangle"
