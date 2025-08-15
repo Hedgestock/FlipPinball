@@ -10,6 +10,9 @@ public partial class Board : Node2D
     public delegate void BoardTiltedEventHandler();
 
     [Export]
+    private AudioStream Music;
+
+    [Export]
     public CanvasLayer Tutorial;
 
     [Export]
@@ -39,6 +42,8 @@ public partial class Board : Node2D
         if (OS.GetName() == "Android" || OS.GetName() == "iOS")
             lastAccel = Enumerable.Repeat(Input.GetAccelerometer().Length(), 50).ToArray();
 
+        AudioManager.PlayMusic(Music);
+
         CallDeferred(MethodName.LoadBall);
     }
 
@@ -56,7 +61,7 @@ public partial class Board : Node2D
         {
             Tilt();
         }
-        //return;
+        return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {

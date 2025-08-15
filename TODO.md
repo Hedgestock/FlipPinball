@@ -41,6 +41,7 @@
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 - [x] Update assembly name
 - [ ] Add loading screen
+- [ ] Remove close button when ball up is the only option
 
 
 # Quality assurance

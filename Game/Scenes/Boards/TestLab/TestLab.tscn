@@ -1,6 +1,7 @@
-[gd_scene load_steps=110 format=3 uid="uid://p1e4ybuw74pb"]
+[gd_scene load_steps=111 format=3 uid="uid://p1e4ybuw74pb"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
+[ext_resource type="AudioStream" uid="uid://dq8sd3omrg1b2" path="res://Game/Scenes/Boards/TestLab/The Nightclub Loop.wav" id="2_8ku5s"]
 [ext_resource type="Texture2D" uid="uid://dxqmcwneanfd7" path="res://Game/Scenes/Boards/TestLab/Skin/Backboard.png" id="2_kf2jr"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Skin/Slingshots/SlingshotBody.png" id="3_6ad40"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="3_50m14"]
@@ -397,6 +398,7 @@ Lab = NodePath("Layer2/Lab")
 MagicPostLight = NodePath("Layer1/MagicPost/DecayingOnOffLight")
 OutLanesLights = [NodePath("Layer1/RightOutLaneRollover/OnOffLight"), NodePath("Layer1/LeftOutLaneRollover/OnOffLight")]
 SpinnersLights = [NodePath("Layer1/TunnelSpinner/OnOffLight"), NodePath("Layer1/LeftSpinner/OnOffLight")]
+Music = ExtResource("2_8ku5s")
 Tutorial = NodePath("Tutorial")
 Plunger = NodePath("Layer1/Plunger")
 PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
@@ -1785,7 +1787,7 @@ offset_bottom = 185.0
 Title = "Entry Lanes"
 Description = "The lanes through which balls will (re)enter the playfield.
 Lit all off them by triggering the rollover switches to upgrade the main bumpers.
-Engaging the left/right paddle will respectively rotate the lights left/right."
+Engaging the left/right flipper will respectively rotate the lights left/right."
 
 [node name="SkillShotTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 offset_left = 540.0
@@ -1997,7 +1999,7 @@ rotation = 0.351317
 Title = "Lab Entry Lanes"
 Description = "The lanes through which balls will (re)enter the lab.
 Lit all off them by triggering the rollover switches to upgrade the lab bumpers.
-Engaging the left/right paddle will respectively rotate the lights left/right."
+Engaging the left/right flipper will respectively rotate the lights left/right."
 
 [node name="LabBumpersTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
@@ -2168,8 +2170,7 @@ offset_top = 951.0
 offset_right = 582.0
 offset_bottom = 1053.0
 Title = "Plunger"
-Description = "This elements launches balls into play.
-Hold down on the keyboard to wind it up."
+Description = "This element launches balls into play."
 
 [node name="MagicPostTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 offset_left = 289.0
@@ -2238,10 +2239,10 @@ offset_bottom = 983.0
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
 [connection signal="value_changed" from="Layer1/Plunger/PlungerProgress" to="Layer1/Plunger/PlungerDessous" method="SetPosition"]
-[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
+[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup/Timer" method="start"]

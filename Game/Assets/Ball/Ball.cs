@@ -111,8 +111,8 @@ public partial class Ball : RigidBody2D
     public static Ball GetFreshBall()
     {
         Ball ball = GD.Load<PackedScene>("res://Game/Assets/Ball/Ball.tscn").Instantiate<Ball>();
-        ball.GetNode<Sprite2D>("Sprite2D").Modulate = new(new Color(GD.Randi()), 1);
-        ball.GetNode<Line2D>("Trail").Modulate = new(new Color(GD.Randi()), 1);
+        //ball.GetNode<Sprite2D>("Sprite2D").Modulate = new(new Color(GD.Randi()), 1);
+        //ball.GetNode<Line2D>("Trail").Modulate = new(new Color(GD.Randi()), 1);
         return ball;
     }
 }

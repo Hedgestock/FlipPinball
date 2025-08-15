@@ -28,6 +28,7 @@ ScoreManager="*res://Game/Utilities/ScoreManager.cs"
 GameManager="*res://Game/Utilities/GameManager.cs"
 SceneManager="*res://Game/Utilities/SceneManager.cs"
 BallterationGenerator="*res://Game/Utilities/BallterationGenerator/BallterationGenerator.tscn"
+AudioManager="*res://Game/Utilities/AudioManager/AudioManager.tscn"
 
 [display]
 
