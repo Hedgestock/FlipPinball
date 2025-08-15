@@ -1,36 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene load_steps=5 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" uid="uid://c6o8v1jksh0gh" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
-[ext_resource type="PackedScene" uid="uid://c4edkv81n13el" path="res://Game/Assets/CompositionComponents/ScoreBubble/PhysicsScoreBubble.tscn" id="2_d708p"]
-[ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="2_ttlp1"]
+[ext_resource type="PackedScene" uid="uid://b5qb47ixu0ned" path="res://Game/Scenes/Game/InfoBox/InfoBox.tscn" id="4_ueg0k"]
 [ext_resource type="PackedScene" uid="uid://6aanashyb3dl" path="res://Game/UI/Ballterator/Ballterator.tscn" id="5_ueg0k"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_x1rdj"]
-viewport_path = NodePath("SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
 size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "Score", "TargetScore", "Credits", "TotalScore", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
+[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
-BallViewerScene = ExtResource("2_ttlp1")
 MainContainer = NodePath("MainContainer")
-BallQueue = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/BallQueue/HFlowContainer")
-HeldBalls = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/HeldBalls/HFlowContainer")
-LiveBalls = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LiveBalls/HFlowContainer")
-LoadedBallViewer = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LoadedBall/BallViewer")
-Score = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/ScoreLabel")
-TargetScore = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/TargetScoreLabel")
-Credits = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/CreditsLabel")
-TotalScore = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox/TotalScoreLabel")
 InfoBox = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox")
 Placeholder = NodePath("MainContainer/Placeholder")
 StatusScrollContainer = NodePath("MainContainer/StatusScrollContainer")
 StatusBox = NodePath("MainContainer/StatusScrollContainer/Status")
 FPS = NodePath("MainContainer/StatusScrollContainer/Status/FPS")
 Ballterator = NodePath("Ballterator")
-ScoreBubbleScene = ExtResource("2_d708p")
 GameTimerLabel = NodePath("MainContainer/StatusScrollContainer/Status/GameTime")
 LeftPaddleButton = NodePath("LeftPaddleButton")
 RightPaddleButton = NodePath("RightPaddleButton")
@@ -57,79 +43,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InfoBox" type="VBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer"]
+[node name="InfoBox" parent="MainContainer/MarginContainer/InfoScrollContainer" instance=ExtResource("4_ueg0k")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="TargetScoreLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-text = "Target score: 0"
-autowrap_mode = 3
-
-[node name="ScoreLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-text = "Score: 0"
-autowrap_mode = 3
-
-[node name="BallQueue" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/BallQueue"]
-layout_mode = 2
-text = "Ball queue"
-
-[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/BallQueue"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-alignment = 2
-
-[node name="LiveBalls" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LiveBalls"]
-layout_mode = 2
-text = "Live balls"
-
-[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LiveBalls"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="HeldBalls" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/HeldBalls"]
-layout_mode = 2
-text = "Held balls"
-
-[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/HeldBalls"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="LoadedBall" type="HBoxContainer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LoadedBall"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Loaded ball"
-
-[node name="BallViewer" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox/LoadedBall" instance=ExtResource("2_ttlp1")]
-layout_mode = 2
-texture = SubResource("ViewportTexture_x1rdj")
-
-[node name="TotalScoreLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-text = "Total Score: 0"
-autowrap_mode = 3
-
-[node name="CreditsLabel" type="Label" parent="MainContainer/MarginContainer/InfoScrollContainer/InfoBox"]
-layout_mode = 2
-text = "Credits Left: 0"
-autowrap_mode = 3
 
 [node name="Placeholder" type="Control" parent="MainContainer"]
 custom_minimum_size = Vector2(600, 1080)

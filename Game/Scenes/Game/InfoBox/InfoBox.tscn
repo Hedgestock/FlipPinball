@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5qb47ixu0ned"]
+
+[ext_resource type="PackedScene" uid="uid://dgs5jt3kt7xw3" path="res://Game/UI/BallViewer/BallViewer.tscn" id="1_70umg"]
+[ext_resource type="Script" uid="uid://b1xk8gyd8u5kb" path="res://Game/Scenes/Game/InfoBox/InfoBox.cs" id="1_cadew"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x1rdj"]
+viewport_path = NodePath("SubViewport")
+
+[node name="InfoBox" type="VBoxContainer" node_paths=PackedStringArray("BallQueue", "HeldBalls", "LiveBalls", "LoadedBallViewer", "Score", "TargetScore", "Credits", "TotalScore")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_cadew")
+BallViewerScene = ExtResource("1_70umg")
+BallQueue = NodePath("BallQueue/HFlowContainer")
+HeldBalls = NodePath("HeldBalls/HFlowContainer")
+LiveBalls = NodePath("LiveBalls/HFlowContainer")
+LoadedBallViewer = NodePath("LoadedBall/BallViewer")
+Score = NodePath("ScoreLabel")
+TargetScore = NodePath("TargetScoreLabel")
+Credits = NodePath("CreditsLabel")
+TotalScore = NodePath("TotalScoreLabel")
+
+[node name="TargetScoreLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Target score: 0"
+autowrap_mode = 3
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Score: 0"
+autowrap_mode = 3
+
+[node name="BallQueue" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BallQueue"]
+layout_mode = 2
+text = "Ball queue"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="BallQueue"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 2
+
+[node name="LiveBalls" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LiveBalls"]
+layout_mode = 2
+text = "Live balls"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="LiveBalls"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HeldBalls" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HeldBalls"]
+layout_mode = 2
+text = "Held balls"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="HeldBalls"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="LoadedBall" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LoadedBall"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Loaded ball"
+
+[node name="BallViewer" parent="LoadedBall" instance=ExtResource("1_70umg")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_x1rdj")
+
+[node name="TotalScoreLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Total Score: 0"
+autowrap_mode = 3
+
+[node name="CreditsLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Credits Left: 0"
+autowrap_mode = 3
