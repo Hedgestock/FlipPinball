@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_mcajf"]
 [ext_resource type="Script" uid="uid://cfmi250vtue4k" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/DecayingScoreModifier.cs" id="2_r33uk"]
 
-[node name="Ballteration" type="Node"]
+[node name="FallingHype" type="Node"]
 script = ExtResource("1_mcajf")
 DisplayName = "Black friday"
 
-[node name="Node" type="Node" parent="." groups=["Global"]]
+[node name="GlobalDecayingSuperScoreMultiplier" type="Node" parent="." groups=["Global"]]
 script = ExtResource("2_r33uk")
 timeleft = 60.0
 Prio = 3

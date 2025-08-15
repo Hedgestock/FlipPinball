@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_qdx2n"]
 [ext_resource type="Script" uid="uid://4t0qew48fx78" path="res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.cs" id="3_qdx2n"]
 
-[node name="Ballteration" type="Node"]
+[node name="TheAnswerToLifeTheUniverseAndEverything" type="Node"]
 script = ExtResource("1_l16ma")
 DisplayName = "The answer to life the universe and everything"
 

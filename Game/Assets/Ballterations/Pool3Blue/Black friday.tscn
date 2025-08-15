@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_fo8fd"]
 [ext_resource type="Script" uid="uid://4t0qew48fx78" path="res://Game/Assets/Ballterations/Effects/BallTimer/BallTimer.cs" id="3_er6wy"]
 
-[node name="Ballteration" type="Node"]
+[node name="BlackFriday" type="Node"]
 script = ExtResource("1_uu74e")
 DisplayName = "Black friday"
 
-[node name="Node" type="Node" parent="." groups=["Global"]]
+[node name="GlobalScoreMultiplier" type="Node" parent="." groups=["Global"]]
 script = ExtResource("2_fo8fd")
 Prio = 2
 Value = 0.5

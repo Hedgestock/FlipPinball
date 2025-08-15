@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfr4hc8u4l7hj"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_o2j4d"]
+[ext_resource type="Script" uid="uid://d20ye6jj0j7c" path="res://Game/Assets/Ballterations/Effects/MassChange/MassChange.cs" id="2_kt0lh"]
+
+[node name="FeatherWeight" type="Node"]
+script = ExtResource("1_o2j4d")
+
+[node name="MassChange" type="Node" parent="."]
+script = ExtResource("2_kt0lh")
+Value = -0.09999999999126885

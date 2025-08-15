@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_xoxme"]
 [ext_resource type="PackedScene" uid="uid://bk6dvr47cdiyo" path="res://Game/Assets/Ballterations/Effects/ShapeShift/ShapeShiftSquare.tscn" id="3_xoxme"]
 
-[node name="Ballteration" type="Node"]
+[node name="SquareUp" type="Node"]
 script = ExtResource("1_31d2j")
 DisplayName = "Square up"
 
-[node name="Node" type="Node" parent="." groups=["Shape Square"]]
+[node name="SquareScoreMultiplier" type="Node" parent="." groups=["Shape Square"]]
 script = ExtResource("2_xoxme")
 Prio = 2
 Value = 2.0
 
-[node name="ShapeShiftTriangle" parent="." instance=ExtResource("3_xoxme")]
+[node name="ShapeShiftSquare" parent="." instance=ExtResource("3_xoxme")]

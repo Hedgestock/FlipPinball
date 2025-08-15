@@ -74,8 +74,6 @@ public partial class Game : Node
         ResetBoard();
 
         base._Ready();
-
-        //OpenBallterator(); //debug only
     }
 
     [Export]

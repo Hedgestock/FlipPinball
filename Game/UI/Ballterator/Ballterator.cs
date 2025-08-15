@@ -133,10 +133,10 @@ public partial class Ballterator : Container
             selector.Ball = ball;
             selector.BallSelected += (Ball ball) =>
             {
-                foreach (var shapeShift in SelectedBallteration.GetChildren().OfType<ShapeShift>())
+                foreach (var physicsEffect in SelectedBallteration.GetChildren().OfType<PhysicsEffect>())
                 {
-                    shapeShift.Morph(ball);
-                    SelectedBallteration.RemoveChild(shapeShift);
+                    physicsEffect.Affect(ball);
+                    SelectedBallteration.RemoveChild(physicsEffect);
                 }
                 if (SelectedBallteration.GetChildren().Any())
                 {

@@ -1,7 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmkbdop4uvqcv"]
+[gd_scene load_steps=3 format=3 uid="uid://dmkbdop4uvqcv"]
 
 [ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_rd7o7"]
+[ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_rd7o7"]
 
-[node name="Ballteration" type="Node"]
+[node name="GGEZ" type="Node"]
 script = ExtResource("1_rd7o7")
 DisplayName = "GG EZ"
+
+[node name="GlobalSuperScoreMultiplier" type="Node" parent="." groups=["Global"]]
+script = ExtResource("2_rd7o7")
+Prio = 3
+Value = 10.0
+
+[node name="GlobalSuperScoreAdder" type="Node" parent="." groups=["Global"]]
+script = ExtResource("2_rd7o7")
+Prio = 1
+Value = 200.0

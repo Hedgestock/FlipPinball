@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_np2hj"]
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_o4em4"]
 
-[node name="Ballteration" type="Node"]
+[node name="YouSpinMeRightRound" type="Node"]
 script = ExtResource("1_np2hj")
 DisplayName = "You spin me right round"
 
-[node name="Node" type="Node" parent="." groups=["Spinners"]]
+[node name="RoundScoreMultiplier" type="Node" parent="." groups=["Spinners"]]
 script = ExtResource("2_o4em4")
 Prio = 2
 Value = 2.0

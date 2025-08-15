@@ -10,3 +10,4 @@ script = ExtResource("1_somox")
 Texture = ExtResource("2_csn56")
 Shape = ExtResource("3_r044k")
 PhysicsMaterial = ExtResource("4_50rib")
+ShapeName = "Capsule"

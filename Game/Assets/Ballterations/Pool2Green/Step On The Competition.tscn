@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_0ea3n"]
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_yqgs5"]
 
-[node name="Ballteration" type="Node"]
+[node name="StepOnTheCompetition" type="Node"]
 script = ExtResource("1_0ea3n")
 DisplayName = "Step on the competition"
 
-[node name="Node" type="Node" parent="." groups=["Rollovers"]]
+[node name="RolloverScoreMultiplier" type="Node" parent="." groups=["Rollovers"]]
 script = ExtResource("2_yqgs5")
 Prio = 2
 Value = 2.0

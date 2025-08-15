@@ -1,12 +1,22 @@
-Feather Weight
+//Bounce up
+    +0.1 bounce
+
+//Bounce down
+    -0.1 bounce
+
+//Feather Weight
     -0.1 Weight
 
 Chaos
     X random effects
 
-Nano tech
+//Nano tech
     -0.5 size
     -0.5 weight
+
+Bulking
+    +0.5 size
+    +0.5 weight
 
 Meteor shower
     Exploding trail

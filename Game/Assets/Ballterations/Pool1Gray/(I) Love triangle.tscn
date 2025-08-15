@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://dukv4omqlb7ov" path="res://Game/Assets/Ballterations/Effects/ScoreModifier/ScoreModifier.cs" id="2_fo8fd"]
 [ext_resource type="PackedScene" uid="uid://p6dt57tivxcg" path="res://Game/Assets/Ballterations/Effects/ShapeShift/ShapeShiftTriangle.tscn" id="3_qh8bi"]
 
-[node name="Ballteration" type="Node"]
+[node name="(I)LoveTriangle" type="Node"]
 script = ExtResource("1_uu74e")
 DisplayName = "(I) Love triangle"
 
-[node name="Node" type="Node" parent="." groups=["Slingshots"]]
+[node name="TriangleScoreMultiplier" type="Node" parent="." groups=["Slingshots"]]
 script = ExtResource("2_fo8fd")
 Prio = 2
 Value = 2.0

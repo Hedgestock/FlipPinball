@@ -11,6 +11,8 @@ public partial class Ball : RigidBody2D
     [Export]
     Area2D Center;
 
+    public float Size = 1f;
+
     public override void _Ready()
     {
         base._Ready();
@@ -23,6 +25,11 @@ public partial class Ball : RigidBody2D
         else
         {
             Trail.Points = [new(0, 0), new(20, 20)];
+        }
+
+        foreach (var child in GetChildren().OfType<Node2D>())
+        {
+            child.Scale = Vector2.One * Size;
         }
     }
 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ShapeShift : Effect
+public partial class ShapeShift : PhysicsEffect
 {
     [Export]
     Texture2D Texture;
@@ -27,7 +27,7 @@ public partial class ShapeShift : Effect
         return this;
     }
 
-    public void Morph(Ball ball)
+    override public void Affect(Ball ball)
     {
         ball.GetNode<Sprite2D>("Sprite2D").Texture = Texture;
         ball.GetNode<CollisionShape2D>("CollisionShape2D").Shape = Shape;

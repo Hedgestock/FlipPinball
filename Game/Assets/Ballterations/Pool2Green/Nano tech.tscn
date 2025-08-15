@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh63d2jnn8gj6"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_2i80i"]
+[ext_resource type="Script" uid="uid://d20ye6jj0j7c" path="res://Game/Assets/Ballterations/Effects/MassChange/MassChange.cs" id="2_l0wgh"]
+[ext_resource type="Script" uid="uid://cmvfrplfpmb0p" path="res://Game/Assets/Ballterations/Effects/SizeChange/SizeChange.cs" id="3_ap8ic"]
+
+[node name="NanoTech" type="Node"]
+script = ExtResource("1_2i80i")
+
+[node name="MassChange" type="Node" parent="."]
+script = ExtResource("2_l0wgh")
+Value = -0.5
+
+[node name="SizeChange" type="Node" parent="."]
+script = ExtResource("3_ap8ic")
+Value = -0.5

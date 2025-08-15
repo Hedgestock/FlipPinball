@@ -22,7 +22,6 @@ script = ExtResource("1_leqod")
 Paddles = [NodePath("testbox1/Paddle"), NodePath("testbox2/Paddle")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(300, 700)
 collision_layer = 255
 collision_mask = 255
@@ -36,7 +35,6 @@ shape = SubResource("WorldBoundaryShape2D_bv30g")
 disabled = true
 
 [node name="Impulse" type="Area2D" parent="."]
-visible = false
 position = Vector2(264, 986)
 collision_layer = 255
 collision_mask = 255
@@ -46,7 +44,7 @@ script = ExtResource("1_dde8p")
 shape = SubResource("RectangleShape2D_vaco4")
 
 [node name="Label" type="Label" parent="Impulse"]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -21.0
@@ -58,7 +56,6 @@ text = "Impulse"
 metadata/_edit_use_anchors_ = true
 
 [node name="Velocity" type="Area2D" parent="."]
-visible = false
 position = Vector2(335, 986)
 collision_layer = 255
 collision_mask = 255
@@ -68,7 +65,7 @@ script = ExtResource("2_8hvl4")
 shape = SubResource("RectangleShape2D_vaco4")
 
 [node name="Label" type="Label" parent="Velocity"]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
@@ -117,7 +114,9 @@ shape = SubResource("RectangleShape2D_u2pls")
 position = Vector2(183, 978)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = -1
 offset_right = 600.0
 offset_bottom = 1080.0
 size_flags_horizontal = 0

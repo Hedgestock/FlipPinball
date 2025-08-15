@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://css6swmq250cu"]
+
+[ext_resource type="Script" uid="uid://biou8u0m0jp8b" path="res://Game/Assets/Ballterations/Ballteration.cs" id="1_w5qhq"]
+[ext_resource type="Script" uid="uid://dr254jv2jmiy" path="res://Game/Assets/Ballterations/Effects/BounceChange/BounceChange.cs" id="2_c0l5j"]
+
+[node name="BounceDown" type="Node"]
+script = ExtResource("1_w5qhq")
+
+[node name="BounceChange" type="Node" parent="."]
+script = ExtResource("2_c0l5j")
+Value = -0.09999999999126885

@@ -40,6 +40,7 @@
 - [ ] Maybe factorise the "OnMultiplier" thing
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 - [x] Update assembly name
+- [ ] Add loading screen
 
 
 # Quality assurance
@@ -63,13 +64,13 @@
 
 ## Ball Physics
 - [x] Timed ball
-- [ ] Size down
-- [ ] Weight down
+- [x] Size down
+- [x] Weight down
 - [ ] Random direction changes
-- [ ] Bounciness
-- [ ] Square hitbox
-- [ ] Triangle hitbox
-- [ ] Capsule hitbox
+- [x] Bounciness
+- [x] Square hitbox
+- [x] Triangle hitbox
+- [x] Capsule hitbox
 - [ ] Count ball rotation ?
 - [ ] Slow motion on the ball ?
 - [ ] Slow motion on the ball on flipper approach ?
@@ -111,7 +112,7 @@
 # Board ideas
 
 ## Standard
-- [ ] Labo
+- [x] Labo
 - [ ] Pirate
 - [ ] Middle Ages
 - [ ] Dinosaurs

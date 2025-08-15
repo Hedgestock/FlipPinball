@@ -2,7 +2,7 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://beh6uiwl2tmbn" path="res://Game/Assets/Ball/Shapes/Round/RoundPhysics.tres" id="1_66dhr"]
 [ext_resource type="Script" uid="uid://db1rjr72mt5bh" path="res://Game/Assets/Ball/Ball.cs" id="1_sowmc"]
-[ext_resource type="Texture2D" uid="uid://s4ju6ifcgx4u" path="res://Game/Assets/Ball/Shapes/Round/Ball.png" id="2_1scip"]
+[ext_resource type="Texture2D" uid="uid://ccohwwtupivj0" path="res://Game/Assets/Ball/Shapes/Round/Round.png" id="3_j8eik"]
 [ext_resource type="Shape2D" uid="uid://b2527f3c2e8r5" path="res://Game/Assets/Ball/Shapes/Round/RoundCollision.tres" id="4_j8eik"]
 
 [sub_resource type="Curve" id="Curve_srid4"]
@@ -43,9 +43,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_1scip")
+texture = ExtResource("3_j8eik")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("4_j8eik")

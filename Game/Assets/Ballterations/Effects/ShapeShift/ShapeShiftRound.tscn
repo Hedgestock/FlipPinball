@@ -10,3 +10,4 @@ script = ExtResource("1_a743g")
 Texture = ExtResource("2_gsun4")
 Shape = ExtResource("3_6drtg")
 PhysicsMaterial = ExtResource("4_uwe3m")
+ShapeName = "Ball"
