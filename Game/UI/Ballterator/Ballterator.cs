@@ -19,6 +19,8 @@ public partial class Ballterator : Container
     [Export]
     Button RerollButton;
     [Export]
+    Button CloseButton;
+    [Export]
     Label CreditsLabel;
 
     int BallterationCount = 3;
@@ -66,6 +68,7 @@ public partial class Ballterator : Container
         {
             BallterationsContainer.AddChild(CreateBalterationCard(i));
         }
+        CloseButton.Disabled = GameManager.BallQueue.Count == 0;
         Ballterations.Show();
     }
 

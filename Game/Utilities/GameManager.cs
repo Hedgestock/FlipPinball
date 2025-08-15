@@ -103,7 +103,8 @@ public partial class GameManager : Node
         if (BallQueue.Count == 0)
         {
             Instance.EmitSignal(SignalName.GameOver);
-            SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "res://Game/Scenes/Home.tscn");
+            AudioManager.StopMusic();
+            SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "uid://b8iu65a2xswru");
             return null;
         }
         Ball ball = BallQueue.First.Value;

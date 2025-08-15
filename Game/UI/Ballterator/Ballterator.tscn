@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1y2vydb0dwx7" path="res://Game/UI/Ballterator/Ballterator.cs" id="1_7uc8g"]
 
-[node name="Ballterator" type="PanelContainer" node_paths=PackedStringArray("Ballterations", "Balls", "BallterationsContainer", "BallSelectionContainer", "RerollButton", "CreditsLabel")]
+[node name="Ballterator" type="PanelContainer" node_paths=PackedStringArray("Ballterations", "Balls", "BallterationsContainer", "BallSelectionContainer", "RerollButton", "CloseButton", "CreditsLabel")]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,7 @@ Balls = NodePath("ScrollContainer/Balls")
 BallterationsContainer = NodePath("ScrollContainer/Ballterations/BallterationsContainer")
 BallSelectionContainer = NodePath("ScrollContainer/Balls/BallsContainer")
 RerollButton = NodePath("ScrollContainer/Ballterations/HFlowContainer/RerollButton")
+CloseButton = NodePath("ScrollContainer/Ballterations/HFlowContainer/CloseButton")
 CreditsLabel = NodePath("ScrollContainer/Ballterations/Credits")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]

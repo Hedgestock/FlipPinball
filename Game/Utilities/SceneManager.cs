@@ -33,4 +33,4 @@ public partial class SceneManager : Node
         _instance.GetTree().ChangeSceneToFile(PrevScene);
         PrevScene = _tmpPrevScene;
     }
-       }
+}
