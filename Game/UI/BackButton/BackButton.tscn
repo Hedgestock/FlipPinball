@@ -4,5 +4,7 @@
 
 [node name="BackButton" type="Button"]
 size_flags_horizontal = 0
+focus_mode = 3
+mouse_default_cursor_shape = 2
 text = "Back"
 script = ExtResource("1_c2m6b")

@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://cvro2rx1r4nyh" path="res://Game/UI/CustomCheckBox/CustomCheckBox.cs" id="1_3mvsk"]
 
 [node name="CheckBox" type="Button"]
+anchors_preset = -1
 offset_right = 8.0
 offset_bottom = 8.0
+focus_mode = 3
+mouse_default_cursor_shape = 2
 toggle_mode = true
 flat = true
 alignment = 0

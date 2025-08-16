@@ -24,4 +24,20 @@ public partial class StatusBox : VBoxContainer
         //}
         FPS.Text = $"{Engine.GetFramesPerSecond()} FPS";
     }
+
+    private void Pause()
+    {
+        InputEventAction pauseEvent = new();
+        pauseEvent.Action = "pause";
+        pauseEvent.Pressed = true;
+        Input.ParseInputEvent(pauseEvent);
+    }
+
+    private void Delete()
+    {
+        InputEventAction deleteEvent = new();
+        deleteEvent.Action = "delete";
+        deleteEvent.Pressed = true;
+        Input.ParseInputEvent(deleteEvent);
+    }
 }

@@ -13,6 +13,7 @@ corner_radius_bottom_left = 10
 viewport_path = NodePath("SubViewport")
 
 [node name="BallSelector" type="PanelContainer" node_paths=PackedStringArray("BallViewer")]
+anchors_preset = -1
 offset_right = 60.0
 offset_bottom = 60.0
 size_flags_horizontal = 4
@@ -32,6 +33,7 @@ texture = SubResource("ViewportTexture_olou3")
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+focus_mode = 3
 mouse_default_cursor_shape = 2
 
 [connection signal="pressed" from="Button" to="." method="OnClick"]

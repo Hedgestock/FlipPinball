@@ -41,11 +41,15 @@ alignment = 1
 [node name="RerollButton" type="Button" parent="ScrollContainer/Ballterations/HFlowContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_mode = 3
+mouse_default_cursor_shape = 2
 text = "Reroll"
 
 [node name="CloseButton" type="Button" parent="ScrollContainer/Ballterations/HFlowContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_mode = 3
+mouse_default_cursor_shape = 2
 text = "Close"
 
 [node name="Credits" type="Label" parent="ScrollContainer/Ballterations"]

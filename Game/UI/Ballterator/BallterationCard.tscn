@@ -43,6 +43,7 @@ autowrap_mode = 3
 [node name="BuyButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 3
 mouse_default_cursor_shape = 2
 text = "Ballterate"
 

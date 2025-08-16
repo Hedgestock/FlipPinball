@@ -2,9 +2,15 @@
 
 [ext_resource type="Script" uid="uid://be1tripj5xybt" path="res://Game/Scenes/Game/StatusBox/StatusBox.cs" id="1_ac3n4"]
 
-[node name="StatusBox" type="VBoxContainer" node_paths=PackedStringArray("FPS")]
+[node name="StatusBox" type="VBoxContainer" node_paths=PackedStringArray("FPS", "GameTimerLabel")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ac3n4")
 FPS = NodePath("FPS")
+GameTimerLabel = NodePath("GameTime")
 
 [node name="FPS" type="Label" parent="."]
 layout_mode = 2
@@ -13,3 +19,21 @@ text = "FPS"
 [node name="GameTime" type="Label" parent="."]
 layout_mode = 2
 text = "Game time: 00:00"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PauseButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 3
+mouse_default_cursor_shape = 2
+text = "PAUSE"
+
+[node name="DeleteButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 3
+mouse_default_cursor_shape = 2
+text = "DELETE"
+
+[connection signal="pressed" from="HBoxContainer/PauseButton" to="." method="Pause"]
+[connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="Delete"]
