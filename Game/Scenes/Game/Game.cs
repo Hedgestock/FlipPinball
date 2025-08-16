@@ -19,9 +19,7 @@ public partial class Game : Node
     [Export]
     Container StatusScrollContainer;
     [Export]
-    VBoxContainer StatusBox;
-    [Export]
-    Label FPS;
+    StatusBox StatusBox;
 
     [Export]
     Container Ballterator;
@@ -34,9 +32,6 @@ public partial class Game : Node
         GameManager.Instance.Connect(GameManager.SignalName.NewBall, new Callable(this, MethodName.ResetBoard));
         GameManager.Instance.Connect(GameManager.SignalName.LevelCleared, new Callable(this, MethodName.OpenBallterator));
 
-
-        GameStart = DateTime.Now;
-
         GameManager.SetGame();
 
         ResetBoard();
@@ -44,21 +39,10 @@ public partial class Game : Node
         base._Ready();
     }
 
-    [Export]
-    Label GameTimerLabel;
-    Label BallTimerLabel;
-    DateTime GameStart;
-    DateTime BallStart;
 
     public override void _Process(double delta)
     {
         base._Process(delta);
-        GameTimerLabel.Text = $"Game time: {DateTime.Now - GameStart:mm\\:ss}";
-        if (BallTimerLabel != null)
-        {
-            BallTimerLabel.Text = $"Ball time: {DateTime.Now - BallStart:mm\\:ss}";
-        }
-        FPS.Text = $"{Engine.GetFramesPerSecond()} FPS";
     }
 
     void OpenBallterator()

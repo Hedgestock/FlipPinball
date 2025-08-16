@@ -1,23 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene load_steps=6 format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" uid="uid://c6o8v1jksh0gh" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
+[ext_resource type="PackedScene" uid="uid://dfsdn5spl1lm1" path="res://Game/Scenes/Game/StatusBox/StatusBox.tscn" id="3_x1rdj"]
 [ext_resource type="PackedScene" uid="uid://b5qb47ixu0ned" path="res://Game/Scenes/Game/InfoBox/InfoBox.tscn" id="4_ueg0k"]
 [ext_resource type="PackedScene" uid="uid://6aanashyb3dl" path="res://Game/UI/Ballterator/Ballterator.tscn" id="5_ueg0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
 size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "FPS", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
+[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
 MainContainer = NodePath("MainContainer")
 InfoBox = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox")
 Placeholder = NodePath("MainContainer/Placeholder")
 StatusScrollContainer = NodePath("MainContainer/StatusScrollContainer")
-StatusBox = NodePath("MainContainer/StatusScrollContainer/Status")
-FPS = NodePath("MainContainer/StatusScrollContainer/Status/FPS")
+StatusBox = NodePath("")
 Ballterator = NodePath("Ballterator")
-GameTimerLabel = NodePath("MainContainer/StatusScrollContainer/Status/GameTime")
+GameTimerLabel = NodePath("")
 LeftPaddleButton = NodePath("LeftPaddleButton")
 RightPaddleButton = NodePath("RightPaddleButton")
 
@@ -55,16 +55,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Status" type="VBoxContainer" parent="MainContainer/StatusScrollContainer"]
+[node name="Status" parent="MainContainer/StatusScrollContainer" instance=ExtResource("3_x1rdj")]
 layout_mode = 2
-
-[node name="FPS" type="Label" parent="MainContainer/StatusScrollContainer/Status"]
-layout_mode = 2
-text = "FPS"
-
-[node name="GameTime" type="Label" parent="MainContainer/StatusScrollContainer/Status"]
-layout_mode = 2
-text = "Game time: 00:00"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 process_mode = 3

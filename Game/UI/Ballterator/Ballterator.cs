@@ -115,7 +115,7 @@ public partial class Ballterator : Container
         {
             card.Ballteration = BallterationGenerator.Generate();
         }
-        card.Price *= (long)Math.Pow(1.2, BallterationCycleNumber);
+        card.Price *= (long)Math.Pow(1.3, BallterationCycleNumber);
 
         cardMargin.AddChild(card);
         return cardMargin;

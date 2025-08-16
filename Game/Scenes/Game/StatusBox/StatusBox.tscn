@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfsdn5spl1lm1"]
+
+[ext_resource type="Script" uid="uid://be1tripj5xybt" path="res://Game/Scenes/Game/StatusBox/StatusBox.cs" id="1_ac3n4"]
+
+[node name="StatusBox" type="VBoxContainer" node_paths=PackedStringArray("FPS")]
+script = ExtResource("1_ac3n4")
+FPS = NodePath("FPS")
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 2
+text = "FPS"
+
+[node name="GameTime" type="Label" parent="."]
+layout_mode = 2
+text = "Game time: 00:00"
