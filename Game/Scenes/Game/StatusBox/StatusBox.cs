@@ -5,14 +5,20 @@ public partial class StatusBox : VBoxContainer
 {
     [Export]
     Label FPS;
-
     [Export]
     Label GameTimerLabel;
+    [Export]
+    Label StatusLabel;
 
     Label BallTimerLabel;
     DateTime GameStart;
     DateTime BallStart;
 
+    public override void _Ready()
+    {
+        base._Ready();
+        StatusManager.Instance.Connect(StatusManager.SignalName.StatusChanged, new Callable(this, MethodName.UpdateStatus));
+    }
 
     public override void _Process(double delta)
     {
@@ -39,5 +45,10 @@ public partial class StatusBox : VBoxContainer
         deleteEvent.Action = "delete";
         deleteEvent.Pressed = true;
         Input.ParseInputEvent(deleteEvent);
+    }
+
+    private void UpdateStatus(string status)
+    {
+        StatusLabel.Text = status;
     }
 }

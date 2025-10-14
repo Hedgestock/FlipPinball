@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://p1e4ybuw74pb"]
+[gd_scene load_steps=112 format=3 uid="uid://p1e4ybuw74pb"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="AudioStream" uid="uid://dq8sd3omrg1b2" path="res://Game/Scenes/Boards/TestLab/The Nightclub Loop.wav" id="2_8ku5s"]
@@ -51,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabWalls.png" id="34_ef6o4"]
 [ext_resource type="PackedScene" uid="uid://dlc68ojsii7om" path="res://Game/Assets/BoardElements/TiltLight/TiltLight.tscn" id="34_qajmy"]
 [ext_resource type="Texture2D" uid="uid://4yqw2lxsh288" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight1Off.png" id="36_gjxmk"]
+[ext_resource type="PackedScene" uid="uid://w2jfxtwgt44w" path="res://Game/Assets/CompositionComponents/StatusEmitter/StatusEmitter.tscn" id="36_ut8pv"]
 [ext_resource type="Texture2D" uid="uid://wund4rmklww0" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight1On.png" id="37_0ae5s"]
 [ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialInfo.cs" id="38_1b66e"]
 [ext_resource type="PackedScene" uid="uid://cpwjamahfvpu1" path="res://Game/UI/Tutorial/TutorialButton.tscn" id="38_a4afa"]
@@ -408,7 +409,6 @@ SkillShot = NodePath("Layer1/SkillShot")
 TiltPusher = NodePath("TiltPusher")
 
 [node name="Background" type="TextureRect" parent="."]
-anchors_preset = -1
 offset_right = 600.0
 offset_bottom = 1080.0
 texture = ExtResource("2_kf2jr")
@@ -924,6 +924,9 @@ position = Vector2(0, 150)
 MaxLevel = 5
 MinLevel = 1
 
+[node name="StatusEmitter" parent="Layer1/Entry/Bumpers" instance=ExtResource("36_ut8pv")]
+StatusMessage = "First aid kit upgraded"
+
 [node name="LeftTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(97, 345)
 script = ExtResource("18_pasr8")
@@ -986,6 +989,9 @@ position = Vector2(2, -68)
 
 [node name="AudioStreamPlayer" parent="Layer1/LeftKickBack" index="5"]
 bus = &"Master"
+
+[node name="StatusEmitter" parent="Layer1/LeftKickBack" instance=ExtResource("36_ut8pv")]
+StatusMessage = "Kicking ball back in play"
 
 [node name="RightTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(444, 285)
@@ -1056,6 +1062,9 @@ position = Vector2(-1, 31)
 
 [node name="OnOffLight" parent="Layer1/RightKickBack" index="3"]
 position = Vector2(1, -36)
+
+[node name="StatusEmitter" parent="Layer1/RightKickBack" instance=ExtResource("36_ut8pv")]
+StatusMessage = "Kicking ball back in play"
 
 [node name="TopTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(223, 202)
@@ -1199,6 +1208,8 @@ modulate = Color(1, 1, 1, 1)
 position = Vector2(-6, 93)
 sprite_frames = SubResource("SpriteFrames_5d8tg")
 animation = &"blinking"
+
+[node name="StatusEmitter" parent="Layer1/BottomTargetGroup/DecayingLeveler" instance=ExtResource("36_ut8pv")]
 
 [node name="TunnelSpinner" parent="Layer1" instance=ExtResource("14_aoae7")]
 position = Vector2(474, 416)
@@ -1401,6 +1412,9 @@ position = Vector2(308, 749)
 [node name="OnOffLight" parent="Layer1/Magnet" index="2"]
 modulate = Color(1, 1, 1, 1)
 sprite_frames = SubResource("SpriteFrames_nqtq1")
+
+[node name="StatusEmitter" parent="Layer1/Magnet" instance=ExtResource("36_ut8pv")]
+StatusMessage = "Antidote solution spilled"
 
 [node name="TeleportGroup" type="Node2D" parent="Layer1"]
 position = Vector2(398, 195)
@@ -1746,13 +1760,12 @@ position = Vector2(87, 793)
 collision_mask = 4
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="MainBumpersTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Main Bumpers"
+Title = "First Aid Kit"
 Description = "Those are the main bumpers, they will score and bounce the ball on impact."
 
 [node name="TutorialButton" parent="Tutorial/MainBumpersTutorial" instance=ExtResource("38_a4afa")]
@@ -1780,16 +1793,18 @@ offset_right = 326.0
 offset_bottom = 405.0
 
 [node name="EntryLaneTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 251.0
 offset_top = 125.0
 offset_right = 374.0
 offset_bottom = 185.0
 Title = "Entry Lanes"
 Description = "The lanes through which balls will (re)enter the playfield.
-Lit all off them by triggering the rollover switches to upgrade the main bumpers.
+Lit all off them by triggering the rollover switches to upgrade the first aid kit.
 Engaging the left/right flipper will respectively rotate the lights left/right."
 
 [node name="SkillShotTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 540.0
 offset_top = 287.0
 offset_right = 580.0
@@ -1799,6 +1814,7 @@ Description = "Plunge the ball through it to get it into play.
 You can score skill shot points on new balls by lighting only a set amount of lights instead of plunging the ball to the entry lanes."
 
 [node name="BoardMultiplierTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 172.0
 offset_top = 227.0
 offset_right = 270.0
@@ -1812,6 +1828,7 @@ Description = "Take all 3 drop targets down to activate the board multiplier cor
 4 - Score x10"
 
 [node name="TunnelTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 414.0
 offset_top = 149.0
 offset_right = 471.0
@@ -1827,18 +1844,19 @@ Each light gives a different payout.
 Overflow - Reset the tunnel and activates the magnet"
 
 [node name="TopBumperTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 93.0
 offset_top = 95.0
 offset_right = 133.0
 offset_bottom = 135.0
-Title = "Top Bumper"
+Title = "Virus"
 Description = "The top bumper, gets upgraded alongside the main ones."
 
 [node name="TopBumperTargetsTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Top Bumper Targets"
+Title = "Virus Targets"
 Description = "Light them all to fully recharge the funds rollover."
 
 [node name="TutorialButton" parent="Tutorial/TopBumperTargetsTutorial" instance=ExtResource("38_a4afa")]
@@ -1866,6 +1884,7 @@ offset_right = 169.0
 offset_bottom = 95.0
 
 [node name="TopRolloverTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 119.0
 offset_top = 240.0
 offset_right = 159.0
@@ -1874,6 +1893,7 @@ Title = "Top Rollover"
 Description = "Roll over it to light the return lanes up."
 
 [node name="TunnelTargetTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 397.0
 offset_top = 418.0
 offset_right = 437.0
@@ -1882,6 +1902,7 @@ Title = "Tunnel Target"
 Description = "Light this target to light a random teleport up."
 
 [node name="LeftKickbackTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 90.0
 offset_top = 305.0
 offset_right = 130.0
@@ -1890,6 +1911,7 @@ Title = "Left Kickback Targets"
 Description = "Light all targets to reopen the left kickback."
 
 [node name="RightKickbackTargetsTutorial2" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 409.0
 offset_top = 250.0
 offset_right = 449.0
@@ -1901,12 +1923,10 @@ Description = "Light all targets to reopen the right kickback."
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Spinners"
-Description = "NO SPRITE YET BUT FUNCTIONAL
-
-Launch the ball through them to score points on each rotation.
+Title = "Centrifuges"
+Description = "Launch the ball through them to score points on each rotation.
 Score more points if the spinner light is lit by activating the first reward on the rewards target bank.
-Each rotation of the spinner also rotate the lit teleport if there is one."
+Each rotation of the centrifuge also rotate the lit teleport if there is one."
 
 [node name="TutorialButton" parent="Tutorial/SpinnersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
@@ -1960,6 +1980,7 @@ offset_right = 502.0
 offset_bottom = 645.0
 
 [node name="PrizesTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 259.0
 offset_top = 405.0
 offset_right = 332.0
@@ -1971,18 +1992,20 @@ Description = "Take all 3 drop targets down to gain a prize corresponding to the
 3 - Gain an extra ball"
 
 [node name="RewardsTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 417.0
 offset_top = 523.0
 offset_right = 457.0
 offset_bottom = 644.0
 Title = "Rewards Targets"
 Description = "Take all 3 drop targets down to gain a reward corresponding to the number of lit lights.
-1 - Spinners upgraded
+1 - Centrifuges upgraded
 2 - Activate jackpot (NOT YET IMPLEMENTED)
 3 - Activate bonus (NOT YET IMPLEMENTED)
 4 - Hold bonus (NOT YET IMPLEMENTED)"
 
 [node name="MissionTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 130.0
 offset_top = 621.0
 offset_right = 170.0
@@ -1991,6 +2014,7 @@ Title = "Mission Targets"
 Description = "Hit those target when no mission is active to select one. (NOT YET IMPLEMENTED)"
 
 [node name="LabLaneTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 20.0
 offset_top = 512.0
 offset_right = 143.0
@@ -2081,6 +2105,7 @@ offset_right = 534.0
 offset_bottom = 849.0
 
 [node name="MagnetTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 231.0
 offset_top = 681.0
 offset_right = 384.0
@@ -2090,6 +2115,7 @@ Description = "Upon activation, the magnet will affect all balls in its vicinity
 Activate the tunnel spitter when all 4 tunnel lights are lit to turn it on and reset the tunnel."
 
 [node name="FundsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 88.0
 offset_top = 390.0
 offset_right = 311.0
@@ -2165,6 +2191,7 @@ offset_right = 402.0
 offset_bottom = 1016.0
 
 [node name="PlungerTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 542.0
 offset_top = 951.0
 offset_right = 582.0
@@ -2172,18 +2199,20 @@ offset_bottom = 1053.0
 Title = "Plunger"
 Description = "This element launches balls into play."
 
-[node name="MagicPostTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+[node name="MagicPillTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 289.0
 offset_top = 972.0
 offset_right = 329.0
 offset_bottom = 1032.0
-Title = "Magic Post"
+Title = "Magic Pill"
 Description = "NO SPRITE YET BUT FUNCTIONAL
 
 This post helps preventing the draining of the ball.
 It comes up for 60s when lighting up the third tunnel light."
 
 [node name="SaveBallTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 402.0
 offset_top = 950.0
 offset_right = 442.0
@@ -2193,6 +2222,7 @@ Description = "If the ball drain while this light is on or blinking, it will be 
 The light comes on whenever a new ball rolls out of the plunger chute."
 
 [node name="ReplayBallTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 176.0
 offset_top = 950.0
 offset_right = 216.0
@@ -2202,6 +2232,7 @@ Description = "If the ball drain while this light is on or blinking, it will be 
 You can activate replay ball by completing missions. (NOT YET IMPLEMENTED)"
 
 [node name="DrainHoleTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+anchors_preset = 0
 offset_left = 225.0
 offset_top = 1038.0
 offset_right = 388.0
@@ -2239,10 +2270,10 @@ offset_bottom = 983.0
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
 [connection signal="value_changed" from="Layer1/Plunger/PlungerProgress" to="Layer1/Plunger/PlungerDessous" method="SetPosition"]
-[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
-[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
+[connection signal="Cancel" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOff"]
+[connection signal="Validate" from="Layer1/SkillShot" to="Layer1/SaveBallLight" method="TurnOn" flags=3]
 [connection signal="body_entered" from="Layer1/Drain" to="." method="DespawnBall" binds= [0]]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/BumperTopTargetGroup" to="Layer1/BumperTopTargetGroup/Timer" method="start"]
@@ -2259,14 +2290,19 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
+[connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup/Timer" method="start"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/LeftTargetGroup/Timer" to="Layer1/LeftTargetGroup" method="SetAllOff"]
+[connection signal="KickingBall" from="Layer1/LeftKickBack" to="Layer1/LeftKickBack/StatusEmitter" method="Emit" unbinds=2]
+[connection signal="TurnedOn" from="Layer1/LeftKickBack/OnOffLight" to="Layer1/LeftKickBack/StatusEmitter" method="Emit" binds= ["Left kickback open"]]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup/Timer" method="start"]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightKickBack/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/RightTargetGroup/Timer" to="Layer1/RightTargetGroup" method="SetAllOff"]
+[connection signal="KickingBall" from="Layer1/RightKickBack" to="Layer1/LeftKickBack/StatusEmitter" method="Emit" unbinds=2]
+[connection signal="TurnedOn" from="Layer1/RightKickBack/OnOffLight" to="Layer1/RightKickBack/StatusEmitter" method="Emit" binds= ["Right kickback open"]]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="OnLevelChange" from="Layer1/TopTargetGroup/DecayingLeveler/Leveler" to="." method="SetBoardMultLevel"]
@@ -2289,6 +2325,7 @@ offset_bottom = 983.0
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Tunnel/Leveler" method="MinimizeLevel"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Magnet/OnOffLight" method="TurnOn"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="." method="Score" binds= [150000]]
+[connection signal="TurnedOn" from="Layer1/Magnet/OnOffLight" to="Layer1/Magnet/StatusEmitter" method="Emit"]
 [connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="ClearHeldBalls" unbinds=2]
 [connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="AddLiveBall" binds= [true]]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="." method="HoldBall"]

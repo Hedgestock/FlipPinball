@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w2jfxtwgt44w"]
+
+[ext_resource type="Script" uid="uid://d38omtepn341a" path="res://Game/Assets/CompositionComponents/StatusEmitter/StatusEmitter.cs" id="1_xnwfd"]
+
+[node name="StatusEmitter" type="Node"]
+script = ExtResource("1_xnwfd")

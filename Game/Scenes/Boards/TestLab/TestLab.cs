@@ -43,6 +43,7 @@ public partial class TestLab : Board
                 BoardMult = 10;
                 break;
         }
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, $"Board multiplier x{BoardMult}");
     }
 
     void GetPrizes(int level)
@@ -53,12 +54,15 @@ public partial class TestLab : Board
                 break;
             case 1:
                 Score(10000);
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Received research reward prize");
                 break;
             case 2:
                 Score(50000);
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Received breakthrough prize");
                 break;
             case 3:
                 GiveExtraBall();
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Extra ball granted for receiving a Nobel prize");
                 break;
         }
     }
@@ -75,16 +79,20 @@ public partial class TestLab : Board
                 break;
             case 1:
                 Score(10000);
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "A step towards the antidote");
                 break;
             case 2:
                 Score(20000); // Add jackpot ???
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "The research continues");
                 break;
             case 3:
                 Score(20000);
                 MagicPostLight.TurnOn();
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Magic pill deployed");
                 break;
             case 4:
                 Score(50000);
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Extra ball chance in the out lanes");
                 foreach (var light in OutLanesLights) light.TurnOn();
                 break;
         }
@@ -103,7 +111,10 @@ public partial class TestLab : Board
                 break;
             case 1:
                 if (up)
+                {
                     foreach (var light in SpinnersLights) light.TurnOn();
+                    StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Centrifuges upgraded");
+                }
                 else
                 { }
                 break;
