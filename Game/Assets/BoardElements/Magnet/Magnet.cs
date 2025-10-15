@@ -78,6 +78,6 @@ public partial class Magnet : Node2D
             ball.LinearDamp = 0;
 
         foreach (Ball ball in MagnetZone.GetOverlappingBodies().Where(b => b is Ball))
-            EmitSignal(SignalName.MagnetEject, ball, Vector2.Left.Rotated((float)GD.RandRange(0, MathF.PI)));
+            EmitSignalMagnetEject(ball, Vector2.Left.Rotated((float)GD.RandRange(0, MathF.PI)));
     }
 }

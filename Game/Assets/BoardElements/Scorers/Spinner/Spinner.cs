@@ -39,7 +39,7 @@ public partial class Spinner : Node2D
                     Scorer.Score(RotationInitiator, Scorer.Value * OnMultiplier);
                 else
                     Scorer.Score(RotationInitiator);
-                EmitSignal(SignalName.CompleteRotation);
+                EmitSignalCompleteRotation();
             }
 
             LastSpinSpeed = currentSpinSpeed;

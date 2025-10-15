@@ -22,7 +22,7 @@ public partial class Rollover : Node2D
                 Scorer.Score(ball);
             else
                 Scorer.Score(ball, Scorer.Value * OnMultiplier);
-            EmitSignal(SignalName.RolledOver);
+            EmitSignalRolledOver();
         }
     }
 }

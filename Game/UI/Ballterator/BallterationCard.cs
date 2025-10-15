@@ -59,7 +59,7 @@ public partial class BallterationCard : PanelContainer
 
     void OnClick()
     {
-        EmitSignal(SignalName.BallterationChosen, _ballteration, _price);
+        EmitSignalBallterationChosen(_ballteration, _price);
     }
 
     void PaintCard()

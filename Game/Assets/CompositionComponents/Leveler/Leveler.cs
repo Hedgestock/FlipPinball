@@ -17,6 +17,11 @@ public partial class Leveler : Node2D
     [Signal]
     public delegate void OnLevelChangeEventHandler(int level);
 
+    [Signal]
+    public delegate void OnMaximizeLevelEventHandler();
+    [Signal]
+    public delegate void OnMinimizeLevelEventHandler();
+
     [Export]
     public int MaxLevel;
     [Export]
@@ -31,19 +36,19 @@ public partial class Leveler : Node2D
             if (value == _currentLevel) return;
             else if (value < MinLevel)
             {
-                EmitSignal(SignalName.OnLevelUnderflow);
+                EmitSignalOnLevelUnderflow();
                 return;
             }
             else if (value > MaxLevel)
             {
-                EmitSignal(SignalName.OnLevelOverflow);
+                EmitSignalOnLevelOverflow();
                 return;
             }
             else if (value > _currentLevel)
-                EmitSignal(SignalName.OnLevelUp, value);
+                EmitSignalOnLevelUp(value);
             else
-                EmitSignal(SignalName.OnLevelDown, value);
-            EmitSignal(SignalName.OnLevelChange, value);
+                EmitSignalOnLevelDown(value);
+            EmitSignalOnLevelChange(value);
             _currentLevel = value;
         }
     }
@@ -85,10 +90,12 @@ public partial class Leveler : Node2D
     public void MaximizeLevel()
     {
         CurrentLevel = MaxLevel;
+        EmitSignalOnMaximizeLevel();
     }
 
     public void MinimizeLevel()
     {
         CurrentLevel = MinLevel;
+        EmitSignalOnMinimizeLevel();
     }
 }

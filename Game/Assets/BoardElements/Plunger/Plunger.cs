@@ -44,7 +44,7 @@ public partial class Plunger : Node2D
         if (AutoFire) return;
         if (@event.IsActionPressed("plunger"))
         {
-            EmitSignal(SignalName.WindingUp);
+            EmitSignalWindingUp();
         }
         if (@event.IsActionReleased("plunger"))
         {
@@ -63,7 +63,7 @@ public partial class Plunger : Node2D
 
     void ReleasePlunger()
     {
-        EmitSignal(SignalName.Releasing);
+        EmitSignalReleasing();
         foreach (Ball ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
             Pusher.Strength = (uint)PlungerProgress.Value;

@@ -30,7 +30,7 @@ public partial class Spitter : Node2D
                 .SetTrans(Tween.TransitionType.Elastic);
             ball.SetDeferred(RigidBody2D.PropertyName.Freeze, true);
             SpitDelay.Start();
-            EmitSignal(SignalName.SwallowingBall, ball);
+            EmitSignalSwallowingBall(ball);
             StoredBall = ball;
         }
     }

@@ -22,6 +22,6 @@ public partial class BallSelector : PanelContainer
 
     void OnClick()
     {
-        EmitSignal(SignalName.BallSelected, _ball);
+        EmitSignalBallSelected(_ball);
     }
 }

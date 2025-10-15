@@ -39,7 +39,7 @@ public partial class SkillShot : Node2D
     {
         if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
-        EmitSignal(SignalName.Cancel);
+        EmitSignalCancel();
 
         TurnOff();
     }
@@ -49,7 +49,7 @@ public partial class SkillShot : Node2D
         if (!(body is Ball) || InboundZone.OverlapsBody(body)) return;
 
         Scorer.Score((Ball)body, Scorer.Value * Multiplier);
-        EmitSignal(SignalName.Validate);
+        EmitSignalValidate();
 
         TurnOff();
     }

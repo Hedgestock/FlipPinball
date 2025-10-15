@@ -44,13 +44,13 @@ public partial class TeleportGroup : BoardElementsGroup
         if (!Activated) return;
         if (light.IsOn)
         {
-            EmitSignal(SignalName.ShouldHold, ball);
+            EmitSignalShouldHold(ball);
             light.TurnOff();
         }
         else
         {
             var active = Nodes.First(n => n.light.IsOn);
-            EmitSignal(SignalName.Teleporting, ball, ((Node2D)active.node).GlobalPosition);
+            EmitSignalTeleporting(ball, ((Node2D)active.node).GlobalPosition);
             active.light.TurnBlinking();
         }
     }

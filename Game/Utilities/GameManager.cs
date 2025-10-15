@@ -48,7 +48,7 @@ public partial class GameManager : Node
         set
         {
             _credits = value;
-            Instance.EmitSignal(SignalName.CreditsChanged);
+            Instance.EmitSignalCreditsChanged();
         }
     }
     public static long TargetScore { get { return 200_000 * (long)Math.Pow((CurrentLevel + 1), (CurrentLevel + 1f) / 2f) - Math.Min(_credits, 0); } }
@@ -85,10 +85,10 @@ public partial class GameManager : Node
     public static void BallDiedHandler()
     {
         if (ScoreManager.ScoreValue < TargetScore)
-            Instance.EmitSignal(SignalName.NewBall);
+            Instance.EmitSignalNewBall();
         else
         {
-            Instance.EmitSignal(SignalName.LevelCleared);
+            Instance.EmitSignalLevelCleared();
         }
     }
 
@@ -102,14 +102,14 @@ public partial class GameManager : Node
     {
         if (BallQueue.Count == 0)
         {
-            Instance.EmitSignal(SignalName.GameOver);
+            Instance.EmitSignalGameOver();
             AudioManager.StopMusic();
             SceneManager.Instance.CallDeferred(SceneManager.MethodName.ChangeSceneToFile, "uid://b8iu65a2xswru");
             return null;
         }
         Ball ball = BallQueue.First.Value;
         BallQueue.RemoveFirst();
-        Instance.EmitSignal(SignalName.BallQueueChanged);
+        Instance.EmitSignalBallQueueChanged();
         return ball;
     }
 
@@ -119,13 +119,6 @@ public partial class GameManager : Node
             BallQueue.AddLast(ball);
         else
             BallQueue.AddFirst(ball);
-        Instance.EmitSignal(SignalName.BallQueueChanged);
-    }
-
-    void ClearHeldBalls()
-    {
-        if (HeldBalls.Count == 0) return;
-        HeldBalls.Clear();
-        Instance.EmitSignal(SignalName.HeldBallsChanged, HeldBalls.ToArray());
+        Instance.EmitSignalBallQueueChanged();
     }
 }

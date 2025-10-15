@@ -61,7 +61,7 @@ public partial class Board : Node2D
         {
             Tilt();
         }
-        return;
+        //return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -251,6 +251,6 @@ public partial class Board : Node2D
 
         LiveBalls.ForEach(b => TiltPusher.Push(b, tiltDirection.Rotated(tiltAngle)));
 
-        EmitSignal(SignalName.BoardTilted);
+        EmitSignalBoardTilted();
     }
 }

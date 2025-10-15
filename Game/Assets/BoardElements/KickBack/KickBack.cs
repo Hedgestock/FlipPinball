@@ -26,9 +26,9 @@ public partial class KickBack : Node2D
 
     void KickBall()
     {
-        foreach (RigidBody2D ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
+        foreach (Ball ball in DetectionZone.GetOverlappingBodies().Where(b => b is Ball))
         {
-            EmitSignal(SignalName.KickingBall, ball, Vector2.Up);
+            EmitSignalKickingBall(ball, Vector2.Up);
         }
     }
 }

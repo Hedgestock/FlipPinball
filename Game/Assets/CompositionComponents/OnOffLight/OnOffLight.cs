@@ -25,15 +25,15 @@ public partial class OnOffLight : AnimatedSprite2D
             {
                 if (Animation == "on") return;
                 Animation = "on";
-                EmitSignal(SignalName.TurnedOn);
+                EmitSignalTurnedOn();
             }
             else
             {
                 if (Animation == "off") return;
                 Animation = "off";
-                EmitSignal(SignalName.TurnedOff);
+                EmitSignalTurnedOff();
             }
-            EmitSignal(SignalName.Toggled, value);
+            EmitSignalToggled(value);
         }
     }
 

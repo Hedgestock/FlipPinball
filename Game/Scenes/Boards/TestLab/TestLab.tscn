@@ -1495,23 +1495,26 @@ animation = &"off"
 [node name="Scorer" parent="Layer1/MissionTargetGroup/RoundTarget3" index="1"]
 Value = 1000
 
-[node name="Rollover" parent="Layer1" instance=ExtResource("24_6v5xs")]
+[node name="SampleRollover" parent="Layer1" instance=ExtResource("24_6v5xs")]
 position = Vector2(138, 259)
 
-[node name="OnOffLight" parent="Layer1/Rollover/Area2D" index="0"]
+[node name="OnOffLight" parent="Layer1/SampleRollover/Area2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_8ku5s")
 animation = &"blinking"
 speed_scale = 2.0
 
-[node name="CollisionShape2D" parent="Layer1/Rollover/Area2D" index="1"]
+[node name="CollisionShape2D" parent="Layer1/SampleRollover/Area2D" index="1"]
 shape = SubResource("CircleShape2D_3owd7")
 
-[node name="Scorer" parent="Layer1/Rollover" index="1"]
+[node name="Scorer" parent="Layer1/SampleRollover" index="1"]
 Value = 0
 
-[node name="Timer" type="Timer" parent="Layer1/Rollover"]
+[node name="Timer" type="Timer" parent="Layer1/SampleRollover"]
 wait_time = 0.7
 one_shot = true
+
+[node name="StatusEmitter" parent="Layer1/SampleRollover" instance=ExtResource("36_ut8pv")]
+StatusMessage = "STATUS_SAMPLE_COLLECTED_TESTLAB"
 
 [node name="Funds" parent="Layer1" instance=ExtResource("19_8g6kt")]
 position = Vector2(97, 476)
@@ -1752,6 +1755,9 @@ Strength = 500
 [node name="Leveler" parent="Layer2/Lab/DecayingLeveler" index="0"]
 MaxLevel = 5
 MinLevel = 1
+
+[node name="StatusEmitter" parent="Layer2/Lab/DecayingLeveler" instance=ExtResource("36_ut8pv")]
+StatusMessage = "STATUS_LAB_UPGRADE"
 
 [node name="LayerDrop" parent="Layer2" instance=ExtResource("15_uh8xy")]
 position = Vector2(87, 793)
@@ -2294,11 +2300,12 @@ offset_bottom = 983.0
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=1]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="." method="TeleportLiveBall" binds= [true]]
-[connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
-[connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
-[connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/Rollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]
-[connection signal="body_entered" from="Layer1/Rollover/Area2D" to="Layer1/Rollover/Timer" method="start" unbinds=1]
-[connection signal="timeout" from="Layer1/Rollover/Timer" to="Layer1/Rollover/Area2D/OnOffLight" method="TurnOff"]
+[connection signal="RolledOver" from="Layer1/SampleRollover" to="Layer1/SampleRollover/StatusEmitter" method="Emit"]
+[connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
+[connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
+[connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/SampleRollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]
+[connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/SampleRollover/Timer" method="start" unbinds=1]
+[connection signal="timeout" from="Layer1/SampleRollover/Timer" to="Layer1/SampleRollover/Area2D/OnOffLight" method="TurnOff"]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover1" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [1]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover2" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [2]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover3" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [3]]
@@ -2312,6 +2319,7 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
+[connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/DecayingLeveler/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Layer1/Funds/Leveler" method="MaximizeLevel" unbinds=1]
 
 [editable path="Layer1/UnderRampSlingshot"]
@@ -2379,7 +2387,7 @@ offset_bottom = 983.0
 [editable path="Layer1/MissionTargetGroup/RoundTarget1"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget2"]
 [editable path="Layer1/MissionTargetGroup/RoundTarget3"]
-[editable path="Layer1/Rollover"]
+[editable path="Layer1/SampleRollover"]
 [editable path="Layer1/Funds"]
 [editable path="Layer1/Funds/Leveler"]
 [editable path="Layer1/Funds/Rollover1"]

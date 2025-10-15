@@ -41,7 +41,7 @@ public partial class Hitbox : StaticBody2D
 
         AddHit();
 
-        EmitSignal(SignalName.Hit, ball, collisionNormal);
+        EmitSignalHit(ball, collisionNormal);
     }
 
     // This system ensures that no ball gets softlocked between Hitboxes and/or walls
@@ -55,9 +55,9 @@ public partial class Hitbox : StaticBody2D
 
         if ((DateTime.Now - OldestValue).TotalMilliseconds > MSToOverheat) return;
 
-        EmitSignal(SignalName.Overheat);
+        EmitSignalOverheat();
         _isActive = false;
 
-        GetTree().CreateTimer(OverheatDuration).Timeout += () => { _isActive = true; EmitSignal(SignalName.OverheatEnd); };
+        GetTree().CreateTimer(OverheatDuration).Timeout += () => { _isActive = true; EmitSignalOverheatEnd(); };
     }
 }

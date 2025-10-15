@@ -14,7 +14,7 @@ public partial class SkillShotZone : Area2D
         if (body is Ball)
         {
             GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-            EmitSignal(SignalName.BallEntered);
+            EmitSignalBallEntered();
         }
     }
 }
