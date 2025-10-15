@@ -61,7 +61,7 @@ public partial class Board : Node2D
         {
             Tilt();
         }
-        //return;
+        return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
         {
@@ -176,7 +176,7 @@ public partial class Board : Node2D
         RemoveChild(ball);
     }
 
-    void TelportLiveBall(Ball ball, Vector2 destination, bool inert = true)
+    void TeleportLiveBall(Ball ball, Vector2 destination, bool inert = true)
     {
         RemoveLiveBall(ball);
         CallDeferred(MethodName.AddLiveBall, ball.Duplicate(), destination, inert);

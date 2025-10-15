@@ -1,34 +1,37 @@
 # UI
 
 - [x] Add spinner sprites
-- [ ] Add pause button
+- [x] Add pause button
 - [ ] Make UI mobile friendly
 - [ ] Add achievements and achievements page
 - [ ] Add input mapping
 - [ ] Use one list of viewports for all ballviewers
 - [ ] Add vibrations
 - [ ] Add destruct button to avoid softlocks
+- [ ] Add loading screen
 
 # Gameplay
 
+- [x] Make trail global
+- [x] Adjust physics to rolling instead of sliding
+- [x] Red prices when in debt
+- [x] Freeze reroll when in debt
 - [ ] Add replay ball light fuctionality
 - [ ] Add mission system
 - [ ] Review generated rarity rating
 - [ ] Review drop rates
-- [ ] Make trail global
-- [ ] Adjust physics to rolling instead of sliding
-- [x] Red prices when in debt
-- [ ] Freeze reroll when in debt
 - [ ] Add tilt function timeout
 - [ ] Add saves/continue
-- [ ] Add drag mode for plunger
-- [ ] Add target blink on hit
 - [ ] Add board picker system
+- [ ] Add drag mode for plunger
 - [ ] Change ballterator to stop refreshing
 - [ ] If ballterator refreshes, price must go up
+- [ ] Add target blink on hit
 
 # Bug fixes
 
+- [x] Update assembly name
+- [x] Remove close button when ball up is the only option
 - [ ] Fix freeze+tweening doing strange stuff on trail (Spitters)
 - [ ] Fix paddle position
 - [ ] Fix multiple balls in spitter
@@ -36,12 +39,9 @@
 - [ ] Fix impossible restrictives in score modifier ballterations
 - [ ] Fix self destructing ball cloning
 - [ ] Split code for UI management (rn all in Game.cs)
-- [ ] Maybe pool queue for like score bubbles
+- [ ] Maybe pool queue for nodes like score bubbles
 - [ ] Maybe factorise the "OnMultiplier" thing
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
-- [x] Update assembly name
-- [ ] Add loading screen
-- [x] Remove close button when ball up is the only option
 
 
 # Quality assurance

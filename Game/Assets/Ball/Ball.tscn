@@ -32,8 +32,7 @@ Trail = NodePath("Trail")
 Center = NodePath("Center")
 
 [node name="Trail" type="Line2D" parent="."]
-visible = false
-z_index = 1
+top_level = true
 points = PackedVector2Array(0, 0, 20, 20)
 width = 20.0
 width_curve = SubResource("Curve_srid4")

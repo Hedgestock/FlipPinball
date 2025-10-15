@@ -47,7 +47,7 @@ public partial class Ball : RigidBody2D
 
         LastVelocity = LinearVelocity;
 
-        //TrailProcessing(delta);
+        TrailProcessing(delta);
     }
 
 
@@ -59,7 +59,7 @@ public partial class Ball : RigidBody2D
     int TrailDetail = 60;
     void TrailProcessing(double delta)
     {
-        //Trail.GlobalRotation = 0;
+        Trail.GlobalPosition = GlobalPosition;
         LastPoints[0] = Vector2.Zero;
         TimeSinceTrailProcessing += delta;
 
@@ -93,13 +93,11 @@ public partial class Ball : RigidBody2D
         SetCollisionMaskValue(layer, value);
         Center.SetCollisionLayerValue(layer, value);
 
-
         // Kinda magic but I look at the possition of the most significant bit to get the "height" of the ball
         int highestSetLayer = 32 - System.Numerics.BitOperations.LeadingZeroCount(CollisionLayer);
         // -2 because the lowest board layer is 2
         ZIndex = (highestSetLayer - 2) * 10 + 3;
-
-        //GD.Print($"ZIndex:{ZIndex} {(value? "set": "unset")}layer:{layer} hsl:{highestSetLayer} cl:{CollisionLayer}");
+        Trail.ZIndex = ZIndex - 1;
     }
 
     public void ResetTrail()
