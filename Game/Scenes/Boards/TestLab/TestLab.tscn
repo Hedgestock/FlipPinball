@@ -1522,6 +1522,9 @@ position = Vector2(97, 476)
 [node name="AudioStreamPlayer" parent="Layer1/Funds/Leveler" index="0"]
 stream = null
 
+[node name="StatusEmitter" parent="Layer1/Funds/Leveler" index="1" instance=ExtResource("36_ut8pv")]
+StatusMessage = "STATUS_FUNDS_RECHARGED_TESTLAB"
+
 [node name="Timer" parent="Layer1/Funds" index="1"]
 wait_time = 20.0
 
@@ -2306,6 +2309,7 @@ offset_bottom = 983.0
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/SampleRollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/SampleRollover/Timer" method="start" unbinds=1]
 [connection signal="timeout" from="Layer1/SampleRollover/Timer" to="Layer1/SampleRollover/Area2D/OnOffLight" method="TurnOff"]
+[connection signal="OnMaximizeLevel" from="Layer1/Funds/Leveler" to="Layer1/Funds/Leveler/StatusEmitter" method="Emit"]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover1" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [1]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover2" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [2]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover3" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [3]]

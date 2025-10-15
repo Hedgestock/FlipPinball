@@ -37,6 +37,7 @@ public partial class TeleportGroup : BoardElementsGroup
     {
         if (Activated) return;
         Nodes[GD.RandRange(0, Nodes.Count - 1)].light.TurnOn();
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_QUANTUM_TUNNELING_ACTIVATED_TESTLAB");
     }
 
     void SpitFromActive(Ball ball, OnOffLight light)
