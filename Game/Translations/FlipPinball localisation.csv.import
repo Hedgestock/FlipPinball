@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://era2tb8hip0d"
+
+[deps]
+
+files=["res://Game/Translations/FlipPinball localisation.en.translation", "res://Game/Translations/FlipPinball localisation.fr.translation"]
+
+source_file="res://Game/Translations/FlipPinball localisation.csv"
+dest_files=["res://Game/Translations/FlipPinball localisation.en.translation", "res://Game/Translations/FlipPinball localisation.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0

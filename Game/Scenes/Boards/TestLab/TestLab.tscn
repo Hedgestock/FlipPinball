@@ -925,7 +925,7 @@ MaxLevel = 5
 MinLevel = 1
 
 [node name="StatusEmitter" parent="Layer1/Entry/Bumpers" instance=ExtResource("36_ut8pv")]
-StatusMessage = "First aid kit upgraded"
+StatusMessage = "STATUS_FIRST_AID_KIT_UPGRADE"
 
 [node name="LeftTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(97, 345)
@@ -991,7 +991,7 @@ position = Vector2(2, -68)
 bus = &"Master"
 
 [node name="StatusEmitter" parent="Layer1/LeftKickBack" instance=ExtResource("36_ut8pv")]
-StatusMessage = "Kicking ball back in play"
+StatusMessage = "STATUS_KICKBACK"
 
 [node name="RightTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(444, 285)
@@ -1064,7 +1064,7 @@ position = Vector2(-1, 31)
 position = Vector2(1, -36)
 
 [node name="StatusEmitter" parent="Layer1/RightKickBack" instance=ExtResource("36_ut8pv")]
-StatusMessage = "Kicking ball back in play"
+StatusMessage = "STATUS_KICKBACK"
 
 [node name="TopTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(223, 202)
@@ -1414,7 +1414,7 @@ modulate = Color(1, 1, 1, 1)
 sprite_frames = SubResource("SpriteFrames_nqtq1")
 
 [node name="StatusEmitter" parent="Layer1/Magnet" instance=ExtResource("36_ut8pv")]
-StatusMessage = "Antidote solution spilled"
+StatusMessage = "STATUS_ANTIDOTE_SPILLED"
 
 [node name="TeleportGroup" type="Node2D" parent="Layer1"]
 position = Vector2(398, 195)
@@ -1760,15 +1760,16 @@ position = Vector2(87, 793)
 collision_mask = 4
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="MainBumpersTutorial" type="Control" parent="Tutorial"]
+[node name="FirstAidKitTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "First Aid Kit"
-Description = "Those are the main bumpers, they will score and bounce the ball on impact."
+Title = "FIRST_AID_KIT"
+Description = "TUTO_FIRST_AID_KIT"
 
-[node name="TutorialButton" parent="Tutorial/MainBumpersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton" parent="Tutorial/FirstAidKitTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 247.0
@@ -1776,7 +1777,7 @@ offset_top = 266.0
 offset_right = 287.0
 offset_bottom = 306.0
 
-[node name="TutorialButton2" parent="Tutorial/MainBumpersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton2" parent="Tutorial/FirstAidKitTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 340.0
@@ -1784,7 +1785,7 @@ offset_top = 264.0
 offset_right = 380.0
 offset_bottom = 304.0
 
-[node name="TutorialButton3" parent="Tutorial/MainBumpersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton3" parent="Tutorial/FirstAidKitTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 286.0
@@ -1798,10 +1799,8 @@ offset_left = 251.0
 offset_top = 125.0
 offset_right = 374.0
 offset_bottom = 185.0
-Title = "Entry Lanes"
-Description = "The lanes through which balls will (re)enter the playfield.
-Lit all off them by triggering the rollover switches to upgrade the first aid kit.
-Engaging the left/right flipper will respectively rotate the lights left/right."
+Title = "ENTRY_LANES"
+Description = "TUTO_ENTRY_LANES_TESTLAB"
 
 [node name="SkillShotTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -1809,9 +1808,8 @@ offset_left = 540.0
 offset_top = 287.0
 offset_right = 580.0
 offset_bottom = 934.0
-Title = "Skill Shot"
-Description = "Plunge the ball through it to get it into play.
-You can score skill shot points on new balls by lighting only a set amount of lights instead of plunging the ball to the entry lanes."
+Title = "SKILL_SHOT"
+Description = "TUTO_SKILL_SHOT_TESTLAB"
 
 [node name="BoardMultiplierTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -1820,46 +1818,36 @@ offset_top = 227.0
 offset_right = 270.0
 offset_bottom = 267.0
 rotation = -0.605629
-Title = "Board Multiplier Targets"
-Description = "Take all 3 drop targets down to activate the board multiplier corresponding to the number of lit lights.
-1 - Score x2
-2 - Score x3
-3 - Score x5
-4 - Score x10"
+Title = "BOARD_MULT_TARGETS_TESTLAB"
+Description = "TUTO_BOARD_MULT_TARGETS_TESTLAB"
 
-[node name="TunnelTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+[node name="AntidoteTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
 offset_left = 414.0
 offset_top = 149.0
 offset_right = 471.0
 offset_bottom = 395.0
 rotation = -0.261799
-Title = "Tunnel"
-Description = "Reach the end of the tunnel to activate a tunnel light.
-Each light gives a different payout.
-1 - Score 10 000 board points
-2 - Score 20 000 board points and activate jackpot (NOT YET IMPLEMENTED)
-3 - Score 20 000 board points and turn magic post on
-4 - Score 50 000 board points and turn out lanes on for a chance at an extra ball
-Overflow - Reset the tunnel and activates the magnet"
+Title = "ANTIDOTE_TESTLAB"
+Description = "TUTO_ANTIDOTE_TESTLAB"
 
-[node name="TopBumperTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+[node name="VirusTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
 offset_left = 93.0
 offset_top = 95.0
 offset_right = 133.0
 offset_bottom = 135.0
-Title = "Virus"
-Description = "The top bumper, gets upgraded alongside the main ones."
+Title = "VIRUS_TESTLAB"
+Description = "TUTO_VIRUS_TESTLAB"
 
-[node name="TopBumperTargetsTutorial" type="Control" parent="Tutorial"]
+[node name="VirusTargetsTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Virus Targets"
-Description = "Light them all to fully recharge the funds rollover."
+Title = "VIRUS_TARGETS_TESTLAB"
+Description = "TUTO_VIRUS_TARGETS_TESTLAB"
 
-[node name="TutorialButton" parent="Tutorial/TopBumperTargetsTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton" parent="Tutorial/VirusTargetsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 43.0
@@ -1867,7 +1855,7 @@ offset_top = 96.0
 offset_right = 83.0
 offset_bottom = 136.0
 
-[node name="TutorialButton2" parent="Tutorial/TopBumperTargetsTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton2" parent="Tutorial/VirusTargetsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 73.0
@@ -1875,7 +1863,7 @@ offset_top = 48.0
 offset_right = 113.0
 offset_bottom = 88.0
 
-[node name="TutorialButton3" parent="Tutorial/TopBumperTargetsTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton3" parent="Tutorial/VirusTargetsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 129.0
@@ -1889,17 +1877,17 @@ offset_left = 119.0
 offset_top = 240.0
 offset_right = 159.0
 offset_bottom = 280.0
-Title = "Top Rollover"
-Description = "Roll over it to light the return lanes up."
+Title = "SAMPLE_TESTLAB"
+Description = "TUTO_SAMPLE_TESTLAB"
 
-[node name="TunnelTargetTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+[node name="AntidoteTargetTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
 offset_left = 397.0
 offset_top = 418.0
 offset_right = 437.0
 offset_bottom = 458.0
-Title = "Tunnel Target"
-Description = "Light this target to light a random teleport up."
+Title = "ANTIDOTE_TARGET"
+Description = "TUTO_ANTIDOTE_TARGET"
 
 [node name="LeftKickbackTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -1907,8 +1895,8 @@ offset_left = 90.0
 offset_top = 305.0
 offset_right = 130.0
 offset_bottom = 380.0
-Title = "Left Kickback Targets"
-Description = "Light all targets to reopen the left kickback."
+Title = "LEFT_KICKBAK_TARGETS"
+Description = "TUTO_LEFT_KICKBAK_TARGETS"
 
 [node name="RightKickbackTargetsTutorial2" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -1916,19 +1904,17 @@ offset_left = 409.0
 offset_top = 250.0
 offset_right = 449.0
 offset_bottom = 325.0
-Title = "Right Kickback Targets"
-Description = "Light all targets to reopen the right kickback."
+Title = "RIGHT_KICKBACK_TARGETS"
+Description = "TUTO_RIGHT_KICKBACK_TARGETS"
 
-[node name="SpinnersTutorial" type="Control" parent="Tutorial"]
+[node name="CentrifugesTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Centrifuges"
-Description = "Launch the ball through them to score points on each rotation.
-Score more points if the spinner light is lit by activating the first reward on the rewards target bank.
-Each rotation of the centrifuge also rotate the lit teleport if there is one."
+Title = "CENTRIFUGES_TESTLAB"
+Description = "TUTO_CENTRIFUGES_TESTLAB"
 
-[node name="TutorialButton" parent="Tutorial/SpinnersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton" parent="Tutorial/CentrifugesTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 38.0
@@ -1936,7 +1922,7 @@ offset_top = 317.0
 offset_right = 78.0
 offset_bottom = 357.0
 
-[node name="TutorialButton2" parent="Tutorial/SpinnersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton2" parent="Tutorial/CentrifugesTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 452.0
@@ -1944,18 +1930,14 @@ offset_top = 398.0
 offset_right = 492.0
 offset_bottom = 438.0
 
-[node name="TeleportsTutorial" type="Control" parent="Tutorial"]
+[node name="QuantumTunnelsTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Teleports"
-Description = "Entering a teleport when its light is lit will hold (lock) the ball. Hold 3 balls to activate multiball.
-Entering a teleport when another teleport light is lit will teleport the ball to the latter.
-Entering a teleport otherwise will just spit back the ball.
-Hit the tunnel target to light a random teleport light.
-Pass through the spinners to rotate which teleport is currently lit."
+Title = "QUANTUM_TUNNELS_TESTLAB"
+Description = "TUTO_QUANTUM_TUNNELS_TESTLAB"
 
-[node name="TutorialButton" parent="Tutorial/TeleportsTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton" parent="Tutorial/QuantumTunnelsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 161.0
@@ -1963,7 +1945,7 @@ offset_top = 142.0
 offset_right = 201.0
 offset_bottom = 182.0
 
-[node name="TutorialButton2" parent="Tutorial/TeleportsTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton2" parent="Tutorial/QuantumTunnelsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 379.0
@@ -1971,7 +1953,7 @@ offset_top = 179.0
 offset_right = 419.0
 offset_bottom = 219.0
 
-[node name="TutorialButton3" parent="Tutorial/TeleportsTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton3" parent="Tutorial/QuantumTunnelsTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 462.0
@@ -1985,11 +1967,8 @@ offset_left = 259.0
 offset_top = 405.0
 offset_right = 332.0
 offset_bottom = 511.0
-Title = "Prizes Targets"
-Description = "Take all 3 drop targets down to gain a prize corresponding to the number of  lit lights.
-1 - Score 10 000 board points
-2 - Score 50 000 board points
-3 - Gain an extra ball"
+Title = "PRIZE_TARGETS"
+Description = "TUTO_PRIZE_TARGETS"
 
 [node name="RewardsTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -1997,12 +1976,8 @@ offset_left = 417.0
 offset_top = 523.0
 offset_right = 457.0
 offset_bottom = 644.0
-Title = "Rewards Targets"
-Description = "Take all 3 drop targets down to gain a reward corresponding to the number of lit lights.
-1 - Centrifuges upgraded
-2 - Activate jackpot (NOT YET IMPLEMENTED)
-3 - Activate bonus (NOT YET IMPLEMENTED)
-4 - Hold bonus (NOT YET IMPLEMENTED)"
+Title = "REWARDS_TARGETS_TESTLAB"
+Description = "TUTO_REWARDS_TARGETS_TESTLAB"
 
 [node name="MissionTargetsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -2010,8 +1985,8 @@ offset_left = 130.0
 offset_top = 621.0
 offset_right = 170.0
 offset_bottom = 699.0
-Title = "Mission Targets"
-Description = "Hit those target when no mission is active to select one. (NOT YET IMPLEMENTED)"
+Title = "MISSION_TARGETS"
+Description = "TUTO_MISSION_TARGETS"
 
 [node name="LabLaneTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -2020,17 +1995,15 @@ offset_top = 512.0
 offset_right = 143.0
 offset_bottom = 572.0
 rotation = 0.351317
-Title = "Lab Entry Lanes"
-Description = "The lanes through which balls will (re)enter the lab.
-Lit all off them by triggering the rollover switches to upgrade the lab bumpers.
-Engaging the left/right flipper will respectively rotate the lights left/right."
+Title = "LAB_LANES_TESTLAB"
+Description = "TUTO_LAB_LANES_TESTLAB"
 
 [node name="LabBumpersTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Lab Bumpers"
-Description = "Those are the lab bumpers, they will score and bounce the ball on impact."
+Title = "LAB_BUMPERS_TESTLAB"
+Description = "TUTO_LAB_BUMPERS_TESTLAB"
 
 [node name="TutorialButton" parent="Tutorial/LabBumpersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
@@ -2060,9 +2033,8 @@ offset_bottom = 703.0
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Return Lanes"
-Description = "Pass through these lanes when lit to score 25 000 point in base score.
-Roll over the top rollover to light the return lanes."
+Title = "RETURN_LANES_TESTLAB"
+Description = "TUTO_RETURN_LANES_TESTLAB"
 
 [node name="TutorialButton" parent="Tutorial/ReturnLaneTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
@@ -2084,9 +2056,8 @@ offset_bottom = 849.0
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Out Lanes"
-Description = "Pass through these lanes when lit to gain an extra ball.
-Lighting the 4th tunnel light also lights those lanes."
+Title = "OUT_LANES_TEST_LAB"
+Description = "TUTO_OUT_LANES_TEST_LAB"
 
 [node name="TutorialButton" parent="Tutorial/OutLaneTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
@@ -2104,15 +2075,14 @@ offset_top = 781.0
 offset_right = 534.0
 offset_bottom = 849.0
 
-[node name="MagnetTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
+[node name="AntidoteSpillTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
 offset_left = 231.0
 offset_top = 681.0
 offset_right = 384.0
 offset_bottom = 816.0
-Title = "Magnet"
-Description = "Upon activation, the magnet will affect all balls in its vicinity.
-Activate the tunnel spitter when all 4 tunnel lights are lit to turn it on and reset the tunnel."
+Title = "ANTIDOTE_SPILL_TESTLAB"
+Description = "TUTO_ANTIDOTE_SPILL_TESTLAB"
 
 [node name="FundsTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -2121,16 +2091,15 @@ offset_top = 390.0
 offset_right = 311.0
 offset_bottom = 443.0
 rotation = 1.0889
-Title = "Funds Rollover"
-Description = "Roll over them to get more fundings for your missions. (NOT YET IMPLEMENTED)
-Funds will decay over time."
+Title = "FUNDS_ROLLOVER_TESTLAB"
+Description = "TUTO_FUNDS_ROLLOVER_TESTLAB"
 
 [node name="SlingshotTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Slingshots"
-Description = "Those elements will bounce away any ball that come in contact with a little bit of speed."
+Title = "SLINGSHOTS"
+Description = "TUTO_SLINGSHOTS"
 
 [node name="TutorialButton" parent="Tutorial/SlingshotTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
@@ -2170,9 +2139,8 @@ rotation = 0.47822
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Flippers"
-Description = "Use left and right on your keyboard to engage the flippers and launch balls into the playfield. Try to aim for different objectives to score the most points.
-Try to not let the ball drain."
+Title = "FLIPPERS"
+Description = "TUTO_FLIPPERS"
 
 [node name="TutorialButton" parent="Tutorial/FlippersTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
@@ -2196,8 +2164,8 @@ offset_left = 542.0
 offset_top = 951.0
 offset_right = 582.0
 offset_bottom = 1053.0
-Title = "Plunger"
-Description = "This element launches balls into play."
+Title = "PLUNGER"
+Description = "TUTO_PLUNGER"
 
 [node name="MagicPillTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -2205,11 +2173,8 @@ offset_left = 289.0
 offset_top = 972.0
 offset_right = 329.0
 offset_bottom = 1032.0
-Title = "Magic Pill"
-Description = "NO SPRITE YET BUT FUNCTIONAL
-
-This post helps preventing the draining of the ball.
-It comes up for 60s when lighting up the third tunnel light."
+Title = "MAGIC_PILL_TESTLAB"
+Description = "TUTO_MAGIC_PILL_TESTLAB"
 
 [node name="SaveBallTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -2217,9 +2182,8 @@ offset_left = 402.0
 offset_top = 950.0
 offset_right = 442.0
 offset_bottom = 990.0
-Title = "Save Ball Light"
-Description = "If the ball drain while this light is on or blinking, it will be saved and loaded to plunged again.
-The light comes on whenever a new ball rolls out of the plunger chute."
+Title = "SAVE_BALL_LIGHT"
+Description = "TUTO_SAVE_BALL_LIGHT"
 
 [node name="ReplayBallTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -2227,9 +2191,8 @@ offset_left = 176.0
 offset_top = 950.0
 offset_right = 216.0
 offset_bottom = 990.0
-Title = "Save Ball Light"
-Description = "If the ball drain while this light is on or blinking, it will be saved and loaded to plunge again.
-You can activate replay ball by completing missions. (NOT YET IMPLEMENTED)"
+Title = "REPLAY_BALL_LIGHT"
+Description = "TUTO_REPLAY_BALL_LIGHT"
 
 [node name="DrainHoleTutorial" parent="Tutorial" instance=ExtResource("38_a4afa")]
 anchors_preset = 0
@@ -2237,16 +2200,15 @@ offset_left = 225.0
 offset_top = 1038.0
 offset_right = 388.0
 offset_bottom = 1083.0
-Title = "Drain"
-Description = "If the ball ever fall here, it will be drained and a new ball will come in play if available."
+Title = "DRAIN_HOLE"
+Description = "TUTO_DRAIN_HOLE"
 
 [node name="KickBacksTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
-Title = "Kickbacks"
-Description = "The kickbacks can save a ball from draining by kicking it back into play.
-They will then close themselves, preventing any further save unless you lit all the target from the corresponding target bank."
+Title = "KICKBACKS"
+Description = "TUTO_KICKBACKS"
 
 [node name="TutorialButton" parent="Tutorial/KickBacksTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
@@ -2296,13 +2258,13 @@ offset_bottom = 983.0
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/LeftTargetGroup/Timer" to="Layer1/LeftTargetGroup" method="SetAllOff"]
 [connection signal="KickingBall" from="Layer1/LeftKickBack" to="Layer1/LeftKickBack/StatusEmitter" method="Emit" unbinds=2]
-[connection signal="TurnedOn" from="Layer1/LeftKickBack/OnOffLight" to="Layer1/LeftKickBack/StatusEmitter" method="Emit" binds= ["Left kickback open"]]
+[connection signal="TurnedOn" from="Layer1/LeftKickBack/OnOffLight" to="Layer1/LeftKickBack/StatusEmitter" method="Emit" binds= ["STATUS_LEFT_KICKBACK_OPEN"]]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightTargetGroup/Timer" method="start"]
 [connection signal="AllOn" from="Layer1/RightTargetGroup" to="Layer1/RightKickBack/OnOffLight" method="TurnOn"]
 [connection signal="timeout" from="Layer1/RightTargetGroup/Timer" to="Layer1/RightTargetGroup" method="SetAllOff"]
 [connection signal="KickingBall" from="Layer1/RightKickBack" to="Layer1/LeftKickBack/StatusEmitter" method="Emit" unbinds=2]
-[connection signal="TurnedOn" from="Layer1/RightKickBack/OnOffLight" to="Layer1/RightKickBack/StatusEmitter" method="Emit" binds= ["Right kickback open"]]
+[connection signal="TurnedOn" from="Layer1/RightKickBack/OnOffLight" to="Layer1/RightKickBack/StatusEmitter" method="Emit" binds= ["STATUS_RIGHT_KICKBACK_OPEN"]]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="OnLevelChange" from="Layer1/TopTargetGroup/DecayingLeveler/Leveler" to="." method="SetBoardMultLevel"]

@@ -8,6 +8,6 @@ public partial class Home : CanvasLayer
     public override void _Ready()
     {
         base._Ready();
-        ScoreLabel.Text = $"Score: {ScoreManager.TotalScoreValue:N0}\nLost on level: {GameManager.CurrentLevel}";
+        ScoreLabel.Text = Tr("MENU_SCORE").Replace("{score}", $"{ScoreManager.TotalScoreValue:N0}").Replace("{level}", $"{GameManager.CurrentLevel}");
     }
 }

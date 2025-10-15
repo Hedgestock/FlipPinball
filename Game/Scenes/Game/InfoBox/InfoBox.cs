@@ -45,8 +45,8 @@ public partial class InfoBox : VBoxContainer
 
     public void Reset()
     {
-        TargetScore.Text = $"Target score: {GameManager.TargetScore:N0} ({GameManager.CurrentLevel})";
-        Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
+        TargetScore.Text = Tr("TARGET_SCORE").Replace("{target_score}", $"{GameManager.TargetScore:N0}").Replace("{current_level}", $"{GameManager.CurrentLevel}");
+        Score.Text = Tr("SCORE").Replace("{score}", $"{ScoreManager.ScoreValue:N0}");
     }
 
     void UpdateScore(int currentlyScoring)
@@ -57,13 +57,13 @@ public partial class InfoBox : VBoxContainer
         //scoreBubble.GlobalPosition = Score.GlobalPosition + (Score.Size / 2);
         //GD.Print(scoreBubble.ProcessMode);
         //AddChild(scoreBubble);
-        Score.Text = $"Score: {ScoreManager.ScoreValue:N0}";
-        TotalScore.Text = $"Total Score: {ScoreManager.TotalScoreValue:N0}";
+        Score.Text = Tr("SCORE").Replace("{score}", $"{ScoreManager.ScoreValue:N0}");
+        TotalScore.Text = Tr("TOTAL_SCORE").Replace("{total_score}", $"{ScoreManager.TotalScoreValue:N0}");
     }
 
     void UpdateCredits()
     {
-        Credits.Text = $"Credits Left: {Math.Max(GameManager.Credits, 0):N0}";
+        Credits.Text = Tr("CREDITS_LEFT").Replace("{credits_left}", $"{Math.Max(GameManager.Credits, 0):N0}");
     }
 
     void UpdateBallQueue()

@@ -121,7 +121,7 @@ sensors/enable_accelerometer=true
 
 [internationalization]
 
-rendering/root_node_auto_translate=false
+locale/translations=PackedStringArray("res://Game/Translations/FlipPinball localisation.en.translation", "res://Game/Translations/FlipPinball localisation.fr.translation")
 
 [physics]
 

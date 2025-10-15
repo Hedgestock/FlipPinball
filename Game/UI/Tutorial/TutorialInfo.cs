@@ -24,8 +24,8 @@ public partial class TutorialInfo : Control
         else
         {
             var popup = GD.Load<PackedScene>("uid://desalmyy6b5on").Instantiate<Window>();
-            popup.Title = Title;
-            ((Label)popup.FindChild("Content")).Text = Description;
+            popup.Title = Tr(Title);
+            ((Label)popup.FindChild("Content")).Text = Tr(Description);
             GetParent().AddChild(popup);
         }
     }

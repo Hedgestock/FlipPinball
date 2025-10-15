@@ -40,7 +40,7 @@ alignment = 1
 
 [node name="Score" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Score: 0 "
+text = "SCORE"
 horizontal_alignment = 1
 
 [node name="StartGameButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
@@ -49,7 +49,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_gypbg")
 shortcut_in_tooltip = false
-text = "Start Game"
+text = "START_GAME"
 script = ExtResource("1_57tko")
 Scene = ExtResource("3_r6hok")
 
@@ -60,7 +60,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerControl"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Plunger"
+text = "CTRL_PLUNGER"
 
 [node name="ArrowDown" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PlungerControl"]
 texture_filter = 1
@@ -76,7 +76,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PaddleControls"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Flippers"
+text = "CTRL_FLIPPERS"
 
 [node name="ArrowLeft" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PaddleControls"]
 texture_filter = 1
@@ -99,7 +99,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TiltControl"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Nudge table"
+text = "CTRL_NUDGE"
 
 [node name="ArrowUp" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/TiltControl"]
 texture_filter = 1
@@ -115,8 +115,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TutorialControl"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Documentation
-Overlay"
+text = "CTRL_DOC_OVERLAY"
 
 [node name="Space" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/TutorialControl"]
 texture_filter = 1
@@ -133,7 +132,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_gypbg")
 shortcut_in_tooltip = false
-text = "Settings"
+text = "SETTINGS"
 script = ExtResource("1_57tko")
 Scene = ExtResource("9_gypbg")
 
@@ -143,7 +142,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_gypbg")
 shortcut_in_tooltip = false
-text = "Credits"
+text = "CREDITS"
 script = ExtResource("1_57tko")
 Scene = ExtResource("10_0h3sr")
 

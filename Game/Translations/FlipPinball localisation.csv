@@ -1,0 +1,137 @@
+key,en,fr
+START_GAME,Start Game,
+SETTINGS,Settings,
+CREDITS,Credits,
+CTRL_PLUNGER,Plunger,
+CTRL_FLIPPERS,Flippers,
+CTRL_NUDGE,Nudge table,
+CTRL_DOC_OVERLAY,"Documentation
+overlay",
+MENU_SCORE,"Score: {score}
+Lost on level: {level}",
+TARGET_SCORE,Target score: {target_score} ({current_level}),
+SCORE,Score: {score},
+TOTAL_SCORE,Total score: {total_score},
+CREDITS_LEFT,Credits left: {credits_left},
+BALL_QUEUE,Ball queue,
+LIVE_BALLS,Live balls,
+HELD_BALLS,Held balls,
+LOADED_BALLS,Loaded ball,
+FPS_COUNTER,{fps} FPS,
+Statuses,,
+STATUS_KICKBACK,Kicking ball back in play,
+STATUS_RIGHT_KICKBACK_OPEN,Right kickback open,
+STATUS_LEFT_KICKBACK_OPEN,Left kickback open,
+TestLab,,
+STATUS_FIRST_AID_KIT_UPGRADE,First aid kit upgraded,
+STATUS_CENTRIFUGES_UPGRADE,Centrifuges upgraded,
+STATUS_ANTIDOTE_SPILLED,Antidote solution spilled,
+STATUS_TUNNEL_1,A step towards the antidote,
+STATUS_TUNNEL_2,The research continues,
+STATUS_TUNNEL_3,Magic pill deployed,
+STATUS_TUNNEL_4,Extra ball chance in the out lanes,
+STATUS_RESEARCH_REWARD,Received research reward prize,
+STATUS_BREAKTHROUGH,Received breakthrough prize,
+STATUS_NOBEL_PRIZE,Extra ball granted for receiving a Nobel prize,
+STATUS_BOARD_MULT,Board multiplier x{board_mult},
+Tutorials,,
+SLINGSHOTS,Slingshots,
+TUTO_SLINGSHOTS,Those elements will bounce away any ball that come in contact with a little bit of speed,
+FLIPPERS,Flippers,
+TUTO_FLIPPERS,"Use left and right on your keyboard to engage the flippers and launch balls into the playfield. Try to aim for different objectives to score the most points.
+Try to not let the ball drain.",
+PLUNGER,Plunger,
+TUTO_PLUNGER,This element launches balls into play.,
+SAVE_BALL_LIGHT,Save Ball Light,
+TUTO_SAVE_BALL_LIGHT,"If the ball drain while this light is on or blinking, it will be saved and loaded to plunged again.
+The light comes on whenever a new ball rolls out of the plunger chute.",
+REPLAY_BALL_LIGHT,Replay Ball Light,
+TUTO_REPLAY_BALL_LIGHT,"If the ball drain while this light is on or blinking, it will be saved and loaded to plunge again.
+You can activate replay ball by completing missions. (NOT YET IMPLEMENTED)",
+DRAIN_HOLE,Drain,
+TUTO_DRAIN_HOLE,"If the ball ever fall here, it will be drained and a new ball will come in play if available.",
+KICKBACKS,Kickbacks,
+TUTO_KICKBACKS,"The kickbacks can save a ball from draining by kicking it back into play.
+They will then close themselves, preventing any further save unless you lit all the target from the corresponding target bank.",
+TestLab,,
+FIRST_AID_KIT,First Aid Kit,
+TUTO_FIRST_AID_KIT,"Those are the main bumpers, they will score and bounce the ball on impact.",
+ENTRY_LANES,Entry Lanes,
+TUTO_ENTRY_LANES_TESTLAB,"The lanes through which balls will (re)enter the playfield.
+Lit all off them by triggering the rollover switches to upgrade the first aid kit.
+Engaging the left/right flipper will respectively rotate the lights left/right.",
+SKILL_SHOT,Skill Shot,
+TUTO_SKILL_SHOT_TESTLAB,"Plunge the ball through it to get it into play.
+You can score skill shot points on new balls by lighting only a set amount of lights instead of plunging the ball to the entry lanes.",
+BOARD_MULT_TARGETS_TESTLAB,Board Multiplier Targets,
+TUTO_BOARD_MULT_TARGETS_TESTLAB,"Take all 3 drop targets down to activate the board multiplier corresponding to the number of lit lights.
+1 - Score x2
+2 - Score x3
+3 - Score x5
+4 - Score x10",
+ANTIDOTE_TESTLAB,Antidote Solution,
+TUTO_ANTIDOTE_TESTLAB,"Reach the end of the tube to activate a tube light.
+Each light gives a different payout.
+1 - Score 10 000 board points
+2 - Score 20 000 board points and activate jackpot (NOT YET IMPLEMENTED)
+3 - Score 20 000 board points and activate the magic pill
+4 - Score 50 000 board points and turn out lanes on for a chance at an extra ball
+Overflow - Reset the tunnel and spills the antidote",
+VIRUS_TESTLAB,Virus,
+TUTO_VIRUS_TESTLAB,"The top bumper, gets upgraded alongside the main ones.",
+VIRUS_TARGETS_TESTLAB,Virus Targets,
+TUTO_VIRUS_TARGETS_TESTLAB,Light them all to fully recharge the funds rollover.,
+SAMPLE_TESTLAB,Sample,
+TUTO_SAMPLE_TESTLAB,Collect a sample by rolling over it to light the return lanes up.,
+ANTIDOTE_TARGET,Antidote Target,
+TUTO_ANTIDOTE_TARGET,Light this target to light a random quantum tunnel up.,
+LEFT_KICKBACK_TARGETS,Left Kickback Targets,
+TUTO_LEFT_KICKBACK_TARGETS,Light all targets to reopen the left kickback.,
+RIGHT_KICKBACK_TARGETS,Right Kickback Targets,
+TUTO_RIGHT_KICKBACK_TARGETS,Light all targets to reopen the right kickback.,
+CENTRIFUGES_TESTLAB,Centrifuges,
+TUTO_CENTRIFUGES_TESTLAB,"Launch the ball through them to score points on each rotation.
+Score more points if the centrifuge light is lit by activating the first reward on the rewards target bank.
+Each rotation of the centrifuge also rotate the lit quantum tunnel if there is one.",
+QUANTUM_TUNNELS_TESTLAB,Quantum Tunnels,
+TUTO_QUANTUM_TUNNELS_TESTLAB,"Entering a quantum tunnel when its light is lit will hold (lock) the ball. Hold 3 balls to activate multiball.
+Entering a quantum tunnel when another quantum tunnel light is lit will teleport the ball to the latter.
+Entering a quantum tunnel otherwise will just spit back the ball.
+Hit the quantum tunnel target to light a random quantum tunnel light.
+Pass through the centrifuges to rotate which quantum tunnel is currently lit.",
+PRIZE_TARGETS_TESTLAB,Prize Targets,
+TUTO_PRIZE_TARGETS_TESTLAB,"Take all 3 drop targets down to gain a prize corresponding to the number of  lit lights.
+1 - Score 10 000 board points
+2 - Score 50 000 board points
+3 - Gain an extra ball",
+REWARDS_TARGETS_TESTLAB,Rewards Targets,
+TUTO_REWARDS_TARGETS_TESTLAB,"Take all 3 drop targets down to gain a reward corresponding to the number of lit lights.
+1 - Centrifuges upgraded
+2 - Activate jackpot (NOT YET IMPLEMENTED)
+3 - Activate bonus (NOT YET IMPLEMENTED)
+4 - Hold bonus (NOT YET IMPLEMENTED)",
+MISSION_TARGETS,Mission Targets,
+TUTO_MISSION_TARGETS,Hit those target when no mission is active to select one. (NOT YET IMPLEMENTED),
+LAB_LANES_TESTLAB,Lab Entry Lanes,
+TUTO_LAB_LANES_TESTLAB,"The lanes through which balls will (re)enter the lab.
+Lit all off them by triggering the rollover switches to upgrade the lab bumpers.
+Engaging the left/right flipper will respectively rotate the lights left/right.",
+LAB_BUMPERS_TESTLAB,Lab Bumpers,
+TUTO_LAB_BUMPERS_TESTLAB,"Those are the lab bumpers, they will score and bounce the ball on impact.",
+RETURN_LANES_TESTLAB,Return Lanes,
+TUTO_RETURN_LANES_TESTLAB,"Pass through these lanes when lit to score 25 000 point in base score.
+Roll over the top rollover to light the return lanes.",
+OUT_LANES_TEST_LAB,Out Lanes,
+TUTO_OUT_LANES_TEST_LAB,"Pass through these lanes when lit to gain an extra ball.
+Lighting the 4th antidote light also lights those lanes.",
+ANTIDOTE_SPILL_TESTLAB,Antidote Spill,
+TUTO_ANTIDOTE_SPILL_TESTLAB,"Upon activation, the spill will attract all balls in its vicinity.
+Activate the antidote tube when all 4 antidote lights are lit to turn it on and reset the tube.",
+FUNDS_ROLLOVER_TESTLAB,Funds Rollover,
+TUTO_FUNDS_ROLLOVER_TESTLAB,"Roll over them to get more fundings for your missions. (NOT YET IMPLEMENTED)
+Funds will decay over time.",
+MAGIC_PILL_TESTLAB,Magic Pill,
+TUTO_MAGIC_PILL_TESTLAB,"NO SPRITE YET BUT FUNCTIONAL
+
+This post helps preventing the draining of the ball.
+It comes up for 60s when lighting up the third tunnel light.",

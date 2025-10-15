@@ -27,12 +27,12 @@ TotalScore = NodePath("TotalScoreLabel")
 
 [node name="TargetScoreLabel" type="Label" parent="."]
 layout_mode = 2
-text = "Target score: 0"
+text = "TARGET_SCORE"
 autowrap_mode = 3
 
 [node name="ScoreLabel" type="Label" parent="."]
 layout_mode = 2
-text = "Score: 0"
+text = "SCORE"
 autowrap_mode = 3
 
 [node name="BallQueue" type="HBoxContainer" parent="."]
@@ -40,7 +40,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BallQueue"]
 layout_mode = 2
-text = "Ball queue"
+text = "BALL_QUEUE"
 
 [node name="HFlowContainer" type="HFlowContainer" parent="BallQueue"]
 layout_mode = 2
@@ -53,7 +53,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="LiveBalls"]
 layout_mode = 2
-text = "Live balls"
+text = "LIVE_BALLS"
 
 [node name="HFlowContainer" type="HFlowContainer" parent="LiveBalls"]
 layout_mode = 2
@@ -65,7 +65,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HeldBalls"]
 layout_mode = 2
-text = "Held balls"
+text = "HELD_BALLS"
 
 [node name="HFlowContainer" type="HFlowContainer" parent="HeldBalls"]
 layout_mode = 2
@@ -78,7 +78,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="LoadedBall"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Loaded ball"
+text = "LOADED_BALL"
 
 [node name="BallViewer" parent="LoadedBall" instance=ExtResource("1_70umg")]
 layout_mode = 2
@@ -86,10 +86,10 @@ texture = SubResource("ViewportTexture_x1rdj")
 
 [node name="TotalScoreLabel" type="Label" parent="."]
 layout_mode = 2
-text = "Total Score: 0"
+text = "TOTAL_SCORE"
 autowrap_mode = 3
 
 [node name="CreditsLabel" type="Label" parent="."]
 layout_mode = 2
-text = "Credits Left: 0"
+text = "CREDITS_LEFT"
 autowrap_mode = 3

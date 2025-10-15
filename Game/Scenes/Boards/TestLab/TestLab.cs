@@ -43,7 +43,7 @@ public partial class TestLab : Board
                 BoardMult = 10;
                 break;
         }
-        StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, $"Board multiplier x{BoardMult}");
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, Tr("STATUS_BOARD_MULT").Replace("{board_mult}", $"{BoardMult}"));
     }
 
     void GetPrizes(int level)
@@ -54,15 +54,15 @@ public partial class TestLab : Board
                 break;
             case 1:
                 Score(10000);
-                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Received research reward prize");
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_RESEARCH_REWARD");
                 break;
             case 2:
                 Score(50000);
-                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Received breakthrough prize");
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_BREAKTHROUGH");
                 break;
             case 3:
                 GiveExtraBall();
-                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Extra ball granted for receiving a Nobel prize");
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_NOBEL_PRIZE");
                 break;
         }
     }
@@ -79,20 +79,20 @@ public partial class TestLab : Board
                 break;
             case 1:
                 Score(10000);
-                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "A step towards the antidote");
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_TUNNEL_1");
                 break;
             case 2:
                 Score(20000); // Add jackpot ???
-                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "The research continues");
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_TUNNEL_2");
                 break;
             case 3:
                 Score(20000);
                 MagicPostLight.TurnOn();
-                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Magic pill deployed");
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_TUNNEL_3");
                 break;
             case 4:
                 Score(50000);
-                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Extra ball chance in the out lanes");
+                StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_TUNNEL_4");
                 foreach (var light in OutLanesLights) light.TurnOn();
                 break;
         }
@@ -113,7 +113,7 @@ public partial class TestLab : Board
                 if (up)
                 {
                     foreach (var light in SpinnersLights) light.TurnOn();
-                    StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "Centrifuges upgraded");
+                    StatusManager.Instance.EmitSignal(StatusManager.SignalName.StatusChanged, "STATUS_CENTRIFUGES_UPGRADE");
                 }
                 else
                 { }

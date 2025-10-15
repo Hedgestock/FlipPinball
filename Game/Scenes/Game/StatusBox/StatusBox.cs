@@ -28,7 +28,7 @@ public partial class StatusBox : VBoxContainer
         //{
         //    BallTimerLabel.Text = $"Ball time: {DateTime.Now - BallStart:mm\\:ss}";
         //}
-        FPS.Text = $"{Engine.GetFramesPerSecond()} FPS";
+        FPS.Text = Tr("FPS_COUNTER").Replace("{fps}", $"{Engine.GetFramesPerSecond()}");
     }
 
     private void Pause()
@@ -49,6 +49,6 @@ public partial class StatusBox : VBoxContainer
 
     private void UpdateStatus(string status)
     {
-        StatusLabel.Text = status;
+        StatusLabel.Text = Tr(status);
     }
 }
