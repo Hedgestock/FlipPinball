@@ -393,7 +393,7 @@ b = Vector2(0, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttt3n"]
 size = Vector2(60, 20)
 
-[node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "OutLanesLights", "SpinnersLights", "MissionTargets", "Tutorial", "Plunger", "PaddlesLeft", "PaddlesRight", "SaveBallLight", "SkillShot", "TiltPusher", "MissionContainer")]
+[node name="TestLab" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "OutLanesLights", "SpinnersLights", "MissionTargets", "Tutorial", "Plunger", "PaddlesLeft", "PaddlesRight", "SaveBallLight", "SkillShot", "TiltPusher", "MissionContainer")]
 process_mode = 3
 script = ExtResource("1_mse42")
 Entry = NodePath("Layer1/Entry")
@@ -430,12 +430,12 @@ StatusRunning = "MISSION_GOAL_LAB_TESTLAB"
 StatusCompleted = "MISSION_GOAL_COMPLETE_LAB_TESTLAB"
 Remains = 3
 
-[node name="UpgradeLab" type="Node" parent="Missions/Goals"]
+[node name="LabUpgrade" type="Node" parent="Missions/Goals"]
 script = ExtResource("4_88qlh")
 StatusRunning = "MISSION_GOAL_LAB_UPGRADE_TESTLAB"
 StatusCompleted = "MISSION_GOAL_COMPLETE_LAB_UPGRADE_TESTLAB"
 
-[node name="UpgradeFirstAidKit" type="Node" parent="Missions/Goals"]
+[node name="FirstAidKitUpgrade" type="Node" parent="Missions/Goals"]
 script = ExtResource("4_88qlh")
 StatusRunning = "MISSION_GOAL_FIRST_AID_KIT_UPGRADE"
 StatusCompleted = "MISSION_GOAL_COMPLETE_FIRST_AID_KIT_UPGRADE"
@@ -480,45 +480,31 @@ StatusCompleted = "MISSION_GOAL_COMPLETED_SPILL_SOLUTION_TESTLAB"
 
 [node name="SampleCollection" type="Node" parent="Missions"]
 script = ExtResource("3_stu2j")
-MissionName = "MISSION_SAMPLE_COLLECTION_TESTLAB"
-StatusCompleted = "MISSION_COMPLETED_SAMPLE_COLLECTION_TESTLAB"
 Goals = Array[Array]([[NodePath("../Goals/CollectSample")]])
 
 [node name="LabResearch" type="Node" parent="Missions"]
 script = ExtResource("3_stu2j")
-MissionName = "MISSION_LAB_RESEARCH_TESTLAB"
-StatusCompleted = "MISSION_COMPLETED_LAB_RESEARCH_TESTLAB"
-Goals = Array[Array]([[NodePath("../Goals/GoThroughLab"), NodePath("../Goals/UpgradeLab")]])
+Goals = Array[Array]([[NodePath("../Goals/GoThroughLab"), NodePath("../Goals/LabUpgrade")]])
 
 [node name="FieldResearch" type="Node" parent="Missions"]
 script = ExtResource("3_stu2j")
-MissionName = "MISSION_FIELD_RESEARCH_TESTLAB"
-StatusCompleted = "MISSION_COMPLETED_FIELD_RESEARCH_TESTLAB"
-Goals = Array[Array]([[NodePath("../Goals/UpgradeFirstAidKit")], [NodePath("../Goals/FirstAid")]])
+Goals = Array[Array]([[NodePath("../Goals/FirstAidKitUpgrade")], [NodePath("../Goals/FirstAid")]])
 
 [node name="UnknownScience" type="Node" parent="Missions"]
 script = ExtResource("3_stu2j")
-MissionName = "MISSION_UNKNOWN_SCIENCE_TESTLAB"
-StatusCompleted = "MISSION_COMPLETE_UNKNOWN_SCIENCE_TESTLAB"
 Goals = Array[Array]([[NodePath("../Goals/ForeignContaminant"), NodePath("../Goals/QuantumTeleport")]])
 
 [node name="LookingForPrizes" type="Node" parent="Missions"]
 script = ExtResource("3_stu2j")
-MissionName = "MISSION_LOOKING_FOR_PRIZES_TESTLAB"
-StatusCompleted = "MISSION_COMPLETE_LOOKING_FOR_PRIZES_TESTLAB"
 Goals = Array[Array]([[NodePath("../Goals/PrizeObtention"), NodePath("../Goals/MicroscopeHits")]])
 
 [node name="Upgrades" type="Node" parent="Missions"]
 script = ExtResource("3_stu2j")
-MissionName = "MISSION_UPGRADES_TESTLAB"
-StatusCompleted = "MISSION_COMPLETED_UPGRADES_TESTLAB"
-Goals = Array[Array]([[NodePath("../Goals/UpgradeLab"), NodePath("../Goals/UpgradeFirstAidKit")], [NodePath("../Goals/PrizeObtention"), NodePath("../Goals/ForScience")]])
+Goals = Array[Array]([[NodePath("../Goals/LabUpgrade"), NodePath("../Goals/FirstAidKitUpgrade")], [NodePath("../Goals/PrizeObtention"), NodePath("../Goals/ForScience")]])
 
 [node name="HugeAdvancement" type="Node" parent="Missions"]
 script = ExtResource("3_stu2j")
-MissionName = "MISSION_HUGE_ADVANCEMENT_TESTLAB"
-StatusCompleted = "MISSION_COMPLETED_HUGE_ADVANCEMENT_TESTLAB"
-Goals = Array[Array]([[NodePath("../Goals/UpgradeLab"), NodePath("../Goals/UpgradeFirstAidKit")], [NodePath("../Goals/ForeignContaminant"), NodePath("../Goals/FirstAid"), NodePath("../Goals/CollectSample")], [NodePath("../Goals/ForScience"), NodePath("../Goals/SpillSolution")]])
+Goals = Array[Array]([[NodePath("../Goals/LabUpgrade"), NodePath("../Goals/FirstAidKitUpgrade")], [NodePath("../Goals/ForeignContaminant"), NodePath("../Goals/FirstAid"), NodePath("../Goals/CollectSample")], [NodePath("../Goals/ForScience"), NodePath("../Goals/SpillSolution")]])
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 600.0
@@ -2387,7 +2373,7 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Missions/Goals/UpgradeFirstAidKit" method="Update" unbinds=1]
+[connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Missions/Goals/FirstAidKitUpgrade" method="Update" unbinds=1]
 [connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup/Timer" method="start"]
@@ -2456,7 +2442,7 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Missions/Goals/UpgradeLab" method="Update" unbinds=1]
+[connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Missions/Goals/LabUpgrade" method="Update" unbinds=1]
 [connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/DecayingLeveler/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Missions/Goals/GoThroughLab" method="Update" unbinds=1]
 [connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Layer1/Funds/Leveler" method="MaximizeLevel" unbinds=1]

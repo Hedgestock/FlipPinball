@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Text.RegularExpressions;
 
 public partial class MissionGoal : Node
 {
@@ -10,13 +11,12 @@ public partial class MissionGoal : Node
     public delegate void CompletedEventHandler();
 
     [Export]
-    private string StatusRunning;
-    [Export]
-    private string StatusCompleted;
-
-    [Export]
     int Remains = 1;
     int _remains = 1;
+
+     string StatusRunning;
+     string StatusCompleted;
+
 
     public string Status
     {
@@ -25,6 +25,15 @@ public partial class MissionGoal : Node
 
     public bool IsComplete = false;
     bool IsActive = false;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        string tmp = Regex.Replace(Name + GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
+        StatusRunning = "MISSION_GOAL_" + tmp;
+        StatusCompleted = "MISSION_GOAL_COMPLETE_" + tmp;
+    }
+
 
     public void Init()
     {

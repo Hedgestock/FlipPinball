@@ -45,10 +45,10 @@
 
 # Quality assurance
 
+- [x] Automatically generate translation keys from nodes name
 - [ ] Attach scripts to nodes (missions and board element groups)
 - [ ] Maybe factorise the "OnMultiplier" thing
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
-- [ ] Automatically generate translation keys from nodes name
 - [ ] Check for teleport multi entry and weird behaviour
 - [ ] Check if refine goes in the inherited effects
 

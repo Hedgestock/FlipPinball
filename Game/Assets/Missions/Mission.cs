@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 public partial class Mission : Node
 {
@@ -10,13 +11,20 @@ public partial class Mission : Node
     public delegate void CompletedEventHandler();
 
     [Export]
-    public string MissionName;
-    [Export]
-    public string StatusCompleted;
-    [Export]
     private Array<Array<NodePath>> Goals;
 
+    public string MissionName;
+    public string StatusCompleted;
+
     int CurrentStep = 0;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        string tmp = Regex.Replace(Name + GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
+        MissionName = "MISSION_" + tmp;
+        StatusCompleted = "MISSION_COMPLETED_" + tmp;
+    }
 
     public MissionGoal[] CurrentGoals
     {
