@@ -16,8 +16,8 @@
 - [x] Adjust physics to rolling instead of sliding
 - [x] Red prices when in debt
 - [x] Freeze reroll when in debt
+- [x] Add mission system
 - [ ] Add replay ball light fuctionality
-- [ ] Add mission system
 - [ ] Review generated rarity rating
 - [ ] Review drop rates
 - [ ] Add tilt function timeout
@@ -27,6 +27,7 @@
 - [ ] Change ballterator to stop refreshing
 - [ ] If ballterator refreshes, price must go up
 - [ ] Add target blink on hit
+- [ ] Add screen shaking on nudge
 
 # Bug fixes
 

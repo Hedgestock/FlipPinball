@@ -9,6 +9,10 @@ public partial class StatusBox : VBoxContainer
     Label GameTimerLabel;
     [Export]
     Label StatusLabel;
+    [Export]
+    Label CurrentMissionLabel; 
+    [Export]
+    Label MissionStatusLabel;
 
     Label BallTimerLabel;
     DateTime GameStart;
@@ -18,6 +22,8 @@ public partial class StatusBox : VBoxContainer
     {
         base._Ready();
         StatusManager.Instance.Connect(StatusManager.SignalName.StatusChanged, new Callable(this, MethodName.UpdateStatus));
+        StatusManager.Instance.Connect(StatusManager.SignalName.MissionChanged, new Callable(this, MethodName.UpdateMissionTitle));
+        StatusManager.Instance.Connect(StatusManager.SignalName.MissionStatusChanged, new Callable(this, MethodName.UpdateMissionStatus));
     }
 
     public override void _Process(double delta)
@@ -47,8 +53,18 @@ public partial class StatusBox : VBoxContainer
         Input.ParseInputEvent(deleteEvent);
     }
 
-    private void UpdateStatus(string status)
+    public void UpdateStatus(string status)
     {
         StatusLabel.Text = Tr(status);
+    }
+
+    public void UpdateMissionTitle(string title)
+    {
+        CurrentMissionLabel.Text = Tr(title);
+    }
+
+    public void UpdateMissionStatus(string status)
+    {
+        MissionStatusLabel.Text = Tr(status);
     }
 }

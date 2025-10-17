@@ -3,7 +3,7 @@ using System;
 
 public partial class StatusEmitter : Node
 {
-    [Export(PropertyHint.MultilineText)]
+    [Export]
     string StatusMessage;
 
     private void Emit()

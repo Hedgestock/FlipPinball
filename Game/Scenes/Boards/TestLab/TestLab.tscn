@@ -1,12 +1,14 @@
-[gd_scene load_steps=112 format=3 uid="uid://p1e4ybuw74pb"]
+[gd_scene load_steps=114 format=3 uid="uid://p1e4ybuw74pb"]
 
 [ext_resource type="Script" uid="uid://4p8xfgi0b10j" path="res://Game/Scenes/Boards/TestLab/TestLab.cs" id="1_mse42"]
 [ext_resource type="AudioStream" uid="uid://dq8sd3omrg1b2" path="res://Game/Scenes/Boards/TestLab/The Nightclub Loop.wav" id="2_8ku5s"]
 [ext_resource type="Texture2D" uid="uid://dxqmcwneanfd7" path="res://Game/Scenes/Boards/TestLab/Skin/Backboard.png" id="2_kf2jr"]
 [ext_resource type="Texture2D" uid="uid://dnmavc4gcjnvc" path="res://Game/Scenes/Boards/TestLab/Skin/Slingshots/SlingshotBody.png" id="3_6ad40"]
 [ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="3_50m14"]
+[ext_resource type="Script" uid="uid://wmii7qk7mf8o" path="res://Game/Assets/Missions/Mission.cs" id="3_stu2j"]
 [ext_resource type="PackedScene" uid="uid://1jrg7mxwi5so" path="res://Game/Assets/BoardElements/Scorers/Collidables/Target/Round/RoundTarget.tscn" id="4_2d0ue"]
 [ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="4_6e6jg"]
+[ext_resource type="Script" uid="uid://588dbbkvow4n" path="res://Game/Assets/Missions/MissionGoal.cs" id="4_88qlh"]
 [ext_resource type="Texture2D" uid="uid://doytpbeocn5xt" path="res://Game/Scenes/Boards/TestLab/Skin/SusTargetWall.png" id="4_av5ve"]
 [ext_resource type="Texture2D" uid="uid://c3qwwpkk5xppl" path="res://Game/Scenes/Boards/TestLab/Skin/PrizeBlob.png" id="4_n0irv"]
 [ext_resource type="PackedScene" uid="uid://bxgbd1q0e6fpk" path="res://Game/Assets/BoardElements/KickBack/KickBack.tscn" id="5_cw1tt"]
@@ -51,7 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://b2l8tdmsfoiia" path="res://Game/Scenes/Boards/TestLab/Skin/Lab/LabWalls.png" id="34_ef6o4"]
 [ext_resource type="PackedScene" uid="uid://dlc68ojsii7om" path="res://Game/Assets/BoardElements/TiltLight/TiltLight.tscn" id="34_qajmy"]
 [ext_resource type="Texture2D" uid="uid://4yqw2lxsh288" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight1Off.png" id="36_gjxmk"]
-[ext_resource type="PackedScene" uid="uid://w2jfxtwgt44w" path="res://Game/Assets/CompositionComponents/StatusEmitter/StatusEmitter.tscn" id="36_ut8pv"]
+[ext_resource type="PackedScene" uid="uid://w2jfxtwgt44w" path="res://Game/Assets/BoardElements/StatusEmitter/StatusEmitter.tscn" id="36_ut8pv"]
 [ext_resource type="Texture2D" uid="uid://wund4rmklww0" path="res://Game/Scenes/Boards/TestLab/Skin/Prizes/MedalLight1On.png" id="37_0ae5s"]
 [ext_resource type="Script" uid="uid://bxjr8dcknfqlt" path="res://Game/UI/Tutorial/TutorialInfo.cs" id="38_1b66e"]
 [ext_resource type="PackedScene" uid="uid://cpwjamahfvpu1" path="res://Game/UI/Tutorial/TutorialButton.tscn" id="38_a4afa"]
@@ -391,7 +393,7 @@ b = Vector2(0, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttt3n"]
 size = Vector2(60, 20)
 
-[node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "OutLanesLights", "SpinnersLights", "Tutorial", "Plunger", "PaddlesLeft", "PaddlesRight", "SaveBallLight", "SkillShot", "TiltPusher")]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "OutLanesLights", "SpinnersLights", "MissionTargets", "Tutorial", "Plunger", "PaddlesLeft", "PaddlesRight", "SaveBallLight", "SkillShot", "TiltPusher", "MissionContainer")]
 process_mode = 3
 script = ExtResource("1_mse42")
 Entry = NodePath("Layer1/Entry")
@@ -399,6 +401,7 @@ Lab = NodePath("Layer2/Lab")
 MagicPostLight = NodePath("Layer1/MagicPost/DecayingOnOffLight")
 OutLanesLights = [NodePath("Layer1/RightOutLaneRollover/OnOffLight"), NodePath("Layer1/LeftOutLaneRollover/OnOffLight")]
 SpinnersLights = [NodePath("Layer1/TunnelSpinner/OnOffLight"), NodePath("Layer1/LeftSpinner/OnOffLight")]
+MissionTargets = NodePath("Layer1/MissionTargetGroup")
 Music = ExtResource("2_8ku5s")
 Tutorial = NodePath("Tutorial")
 Plunger = NodePath("Layer1/Plunger")
@@ -407,6 +410,57 @@ PaddlesRight = [NodePath("Layer1/PaddleRightMain")]
 SaveBallLight = NodePath("Layer1/SaveBallLight")
 SkillShot = NodePath("Layer1/SkillShot")
 TiltPusher = NodePath("TiltPusher")
+MissionSelectMessage = "MISSION_SELECT"
+MissionContainer = NodePath("Missions")
+
+[node name="Missions" type="Node" parent="."]
+
+[node name="Goals" type="Node" parent="Missions"]
+
+[node name="CollectSamples" type="Node" parent="Missions/Goals"]
+script = ExtResource("4_88qlh")
+StatusRunning = "MISSION_GOAL_SAMPLE_COLLECTION_TESTLAB"
+StatusCompleted = "MISSION_GOAL_COMPLETE_SAMPLE_COLLECTION_TESTLAB"
+
+[node name="GoThroughLab" type="Node" parent="Missions/Goals"]
+script = ExtResource("4_88qlh")
+StatusRunning = "MISSION_GOAL_LAB_TESTLAB"
+StatusCompleted = "MISSION_GOAL_COMPLETE_LAB_TESTLAB"
+Remains = 3
+
+[node name="UpgradeLab" type="Node" parent="Missions/Goals"]
+script = ExtResource("4_88qlh")
+StatusRunning = "MISSION_GOAL_LAB_UPGRADE_TESTLAB"
+StatusCompleted = "MISSION_GOAL_COMPLETE_LAB_UPGRADE_TESTLAB"
+
+[node name="UpgradeFirstAidKit" type="Node" parent="Missions/Goals"]
+script = ExtResource("4_88qlh")
+StatusRunning = "MISSION_GOAL_FIRST_AID_KIT_UPGRADE"
+StatusCompleted = "MISSION_GOAL_COMPLETE_FIRST_AID_KIT_UPGRADE"
+
+[node name="FirstAid" type="Node" parent="Missions/Goals"]
+script = ExtResource("4_88qlh")
+StatusRunning = "MISSION_GOAL_FIRST_AID"
+StatusCompleted = "MISSION_GOAL_COMPLETE_FIRST_AID"
+Remains = 10
+
+[node name="SampleCollection" type="Node" parent="Missions"]
+script = ExtResource("3_stu2j")
+MissionName = "MISSION_SAMPLE_COLLECTION_TESTLAB"
+StatusCompleted = "MISSION_COMPLETED_SAMPLE_COLLECTION_TESTLAB"
+Goals = Array[Array]([[NodePath("../Goals/CollectSamples")]])
+
+[node name="LabResearch" type="Node" parent="Missions"]
+script = ExtResource("3_stu2j")
+MissionName = "MISSION_LAB_RESEARCH_TESTLAB"
+StatusCompleted = "MISSION_COMPLETED_LAB_RESEARCH_TESTLAB"
+Goals = Array[Array]([[NodePath("../Goals/GoThroughLab"), NodePath("../Goals/UpgradeLab")]])
+
+[node name="FieldResearch" type="Node" parent="Missions"]
+script = ExtResource("3_stu2j")
+MissionName = "MISSION_FIELD_RESEARCH_TESTLAB"
+StatusCompleted = "MISSION_COMPLETED_FIELD_RESEARCH_TESTLAB"
+Goals = Array[Array]([[NodePath("../Goals/UpgradeFirstAidKit")], [NodePath("../Goals/FirstAid")]])
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 600.0
@@ -1456,6 +1510,8 @@ target_position = Vector2(-41, -95)
 
 [node name="MissionTargetGroup" type="Node2D" parent="Layer1"]
 position = Vector2(136, 659)
+script = ExtResource("18_pasr8")
+Group = "Targets"
 
 [node name="RoundTarget1" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(0, -25)
@@ -1666,9 +1722,15 @@ points = PackedVector2Array(0, 0, 0, 38)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="LabOneWay" type="CollisionShape2D" parent="Layer2/Walls"]
+[node name="LabOneWayEntry" type="CollisionShape2D" parent="Layer2/Walls"]
 position = Vector2(64, 429)
 rotation = -2.27644
+shape = SubResource("RectangleShape2D_ttt3n")
+one_way_collision = true
+
+[node name="LabOneWayExit" type="CollisionShape2D" parent="Layer2/Walls"]
+position = Vector2(86, 759)
+rotation = 3.1415927
 shape = SubResource("RectangleShape2D_ttt3n")
 one_way_collision = true
 
@@ -2007,14 +2069,14 @@ rotation = 0.351317
 Title = "LAB_LANES_TESTLAB"
 Description = "TUTO_LAB_LANES_TESTLAB"
 
-[node name="LabBumpersTutorial" type="Control" parent="Tutorial"]
+[node name="LabEquipmentTutorial" type="Control" parent="Tutorial"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("38_1b66e")
 Title = "LAB_BUMPERS_TESTLAB"
 Description = "TUTO_LAB_BUMPERS_TESTLAB"
 
-[node name="TutorialButton" parent="Tutorial/LabBumpersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton" parent="Tutorial/LabEquipmentTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 13.0
@@ -2022,7 +2084,7 @@ offset_top = 608.0
 offset_right = 53.0
 offset_bottom = 648.0
 
-[node name="TutorialButton2" parent="Tutorial/LabBumpersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton2" parent="Tutorial/LabEquipmentTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 82.0
@@ -2030,7 +2092,7 @@ offset_top = 627.0
 offset_right = 122.0
 offset_bottom = 667.0
 
-[node name="TutorialButton3" parent="Tutorial/LabBumpersTutorial" instance=ExtResource("38_a4afa")]
+[node name="TutorialButton3" parent="Tutorial/LabEquipmentTutorial" instance=ExtResource("38_a4afa")]
 layout_mode = 0
 anchors_preset = 0
 offset_left = 37.0
@@ -2257,11 +2319,15 @@ offset_bottom = 983.0
 [connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Timer" method="start"]
 [connection signal="AllOn" from="Layer1/Entry" to="Layer1/Entry/Bumpers/Leveler" method="LevelUp"]
 [connection signal="timeout" from="Layer1/Entry/Timer" to="Layer1/Entry" method="SetAllOff"]
+[connection signal="Hit" from="Layer1/Entry/Bumper1/Hitbox" to="Missions/Goals/FirstAid" method="Update" unbinds=2]
+[connection signal="Hit" from="Layer1/Entry/Bumper2/Hitbox" to="Missions/Goals/FirstAid" method="Update" unbinds=2]
+[connection signal="Hit" from="Layer1/Entry/Bumper3/Hitbox" to="Missions/Goals/FirstAid" method="Update" unbinds=2]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/BumperTop" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
 [connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/StatusEmitter" method="Emit" unbinds=1]
+[connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Missions/Goals/UpgradeFirstAidKit" method="Update" unbinds=1]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup/Timer" method="start"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack/OnOffLight" method="TurnOn"]
@@ -2303,7 +2369,9 @@ offset_bottom = 983.0
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=1]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="." method="TeleportLiveBall" binds= [true]]
+[connection signal="AnyToggled" from="Layer1/MissionTargetGroup" to="." method="SelectMission"]
 [connection signal="RolledOver" from="Layer1/SampleRollover" to="Layer1/SampleRollover/StatusEmitter" method="Emit"]
+[connection signal="RolledOver" from="Layer1/SampleRollover" to="Missions/Goals/CollectSamples" method="Update"]
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/SampleRollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]
@@ -2324,7 +2392,10 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
 [connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/DecayingLeveler/StatusEmitter" method="Emit" unbinds=1]
+[connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Missions/Goals/UpgradeLab" method="Update" unbinds=1]
 [connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Layer1/Funds/Leveler" method="MaximizeLevel" unbinds=1]
+[connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Missions/Goals/GoThroughLab" method="Update" unbinds=1]
+[connection signal="body_exited" from="Layer2/LayerDrop/Area2D" to="." method="AcceptMission" unbinds=1]
 
 [editable path="Layer1/UnderRampSlingshot"]
 [editable path="Layer1/TunnelSlingshot"]

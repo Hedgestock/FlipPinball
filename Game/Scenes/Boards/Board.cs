@@ -26,7 +26,6 @@ public partial class Board : Node2D
     [Export]
     SkillShot SkillShot;
 
-
     List<Ball> LiveBalls = new();
 
     public Ball LoadedBall = null;
@@ -37,7 +36,10 @@ public partial class Board : Node2D
     public override void _Ready()
     {
         base._Ready();
+
         ScoreManager.BoardScore = Score;
+
+        InitMissions();
 
         if (OS.GetName() == "Android" || OS.GetName() == "iOS")
             lastAccel = Enumerable.Repeat(Input.GetAccelerometer().Length(), 50).ToArray();
@@ -252,5 +254,50 @@ public partial class Board : Node2D
         LiveBalls.ForEach(b => TiltPusher.Push(b, tiltDirection.Rotated(tiltAngle)));
 
         EmitSignalBoardTilted();
+    }
+
+    [Export]
+    string MissionSelectMessage;
+    [Export]
+    Node MissionContainer;
+
+    protected Mission[] Missions;
+
+    void InitMissions()
+    {
+        Missions = MissionContainer.GetChildren().OfType<Mission>().ToArray();
+
+        foreach (Mission mission in Missions)
+        {
+            mission.Connect(Mission.SignalName.Completed, Callable.From(EndMission));
+            foreach (MissionGoal goal in mission.AllGoals)
+            {
+                goal.Connect(MissionGoal.SignalName.Updated, Callable.From(mission.GoalUpdated));
+                goal.Connect(MissionGoal.SignalName.Completed, Callable.From(mission.GoalCompleted));
+            }
+        }
+    }
+
+    protected bool IsMissionActive = false;
+    protected Mission CurrentMission = null;
+    protected virtual void SelectMission()
+    {
+        if (CurrentMission == null || IsMissionActive) return;
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionChanged, CurrentMission.MissionName);
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionStatusChanged, MissionSelectMessage);
+    }
+
+    protected virtual void AcceptMission()
+    {
+        if (CurrentMission == null || IsMissionActive) return;
+        IsMissionActive = true;
+        CurrentMission.Init();
+    }
+
+    protected virtual void EndMission()
+    {
+        if (CurrentMission == null || !IsMissionActive) return;
+        CurrentMission = null;
+        IsMissionActive = false;
     }
 }

@@ -6,7 +6,7 @@ public partial class TutorialInfo : Control
     [Export]
     public string Title;
 
-    [Export(PropertyHint.MultilineText)]
+    [Export]
     public string Description;
 
     public override void _Ready()

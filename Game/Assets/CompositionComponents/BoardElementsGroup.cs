@@ -6,14 +6,16 @@ public partial class BoardElementsGroup : Node2D
 {
     [Signal]
     public delegate void AllOnEventHandler();
-
     [Signal]
     public delegate void AllOffEventHandler();
+
+    [Signal]
+    public delegate void AnyToggledEventHandler();
 
     [Export]
     protected string Group;
 
-    protected List<(Node node, OnOffLight light)> Nodes;
+    public List<(Node node, OnOffLight light)> Nodes;
 
     public override void _Ready()
     {
@@ -40,10 +42,11 @@ public partial class BoardElementsGroup : Node2D
 
     void CheckGroupStatus(bool status)
     {
-        foreach (var node in Nodes)
+        EmitSignalAnyToggled();
+        foreach (var node in Nodes) // Maybe do an Any for readbiblity
             if (node.light.IsOn != status) return;
 
-        // We call deferred here otherwise the on or off signal arrives before the triggerring signal
+        // We call deferred here otherwise the on or off signal arrives before the triggering signal
         // in the cases where the group resets itself
         // MIGHT BE BULLSHIT I NEED TO TRY AGAIN
         if (status)
@@ -52,19 +55,19 @@ public partial class BoardElementsGroup : Node2D
             CallDeferred(MethodName.EmitSignal, SignalName.AllOff);
     }
 
-    protected void SetAllOn()
+    public void SetAllOn()
     {
         foreach (var node in Nodes)
             node.light.TurnOn();
     }
 
-    protected void SetAllBlinking()
+    public void SetAllBlinking()
     {
         foreach (var node in Nodes)
             node.light.TurnBlinking();
     }
 
-    protected void SetAllOff()
+    public void SetAllOff()
     {
         foreach (var node in Nodes)
             node.light.TurnOff();

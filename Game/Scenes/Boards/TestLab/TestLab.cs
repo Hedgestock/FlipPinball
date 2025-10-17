@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Linq;
 
 public partial class TestLab : Board
 {
@@ -119,5 +120,34 @@ public partial class TestLab : Board
                 { }
                 break;
         }
+    }
+
+    [Export]
+    BoardElementsGroup MissionTargets;
+
+    protected override void SelectMission()
+    {
+        if (IsMissionActive) return;
+        bool[] table = MissionTargets.Nodes.Select(n => n.light.IsOn).ToArray();
+        switch (table)
+        {
+            case [true, false, false]:
+                CurrentMission = Missions[0];
+                break;
+            case [false, true, false]:
+                CurrentMission = Missions[1];
+                break;
+            case [false, false, true]:
+                CurrentMission = Missions[2];
+                break;
+        }
+        base.SelectMission();
+    }
+
+    protected override void AcceptMission()
+    {
+        if (CurrentMission == null || IsMissionActive) return;
+        base.AcceptMission();
+        MissionTargets.SetAllOff();
     }
 }

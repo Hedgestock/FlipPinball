@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MissionGoal" load_steps=2 format=3 uid="uid://bk6p5s15r24md"]
+
+[ext_resource type="Script" uid="uid://588dbbkvow4n" path="res://Game/Assets/Missions/MissionGoal.cs" id="1_1o8le"]
+
+[resource]
+script = ExtResource("1_1o8le")
+StatusRunning = "MISSION_GOAL_SAMPLE_COLLECTION_TESTLAB"
+StatusCompleted = "MISSION_GOAL_SAMPLE_COLLECTION_TESTLAB"
+metadata/_custom_type_script = "uid://588dbbkvow4n"
