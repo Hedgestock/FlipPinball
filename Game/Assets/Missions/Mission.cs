@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Linq;
+using System.Reflection;
 
 public partial class Mission : Node
 {
@@ -42,7 +43,6 @@ public partial class Mission : Node
     {
         CurrentStep = 0;
         InitGoals();
-        GoalUpdated();
     }
 
     private void InitGoals()
@@ -50,7 +50,10 @@ public partial class Mission : Node
         foreach (MissionGoal goal in CurrentGoals)
         {
             goal.Init();
+            goal.Connect(MissionGoal.SignalName.Updated, Callable.From(GoalUpdated));
+            goal.Connect(MissionGoal.SignalName.Completed, Callable.From(GoalCompleted));
         }
+        GoalUpdated();
     }
 
     public void GoalUpdated()
@@ -63,6 +66,11 @@ public partial class Mission : Node
     {
         if (CurrentGoals.All(g => g.IsComplete))
         {
+            foreach (MissionGoal goal in CurrentGoals)
+            {
+                goal.Disconnect(MissionGoal.SignalName.Updated, Callable.From(GoalUpdated));
+                goal.Disconnect(MissionGoal.SignalName.Completed, Callable.From(GoalCompleted));
+            }
             if (CurrentStep + 1 >= Goals.Count)
             {
                 StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionStatusChanged, StatusCompleted);

@@ -8,21 +8,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
 size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "Ballterator", "GameTimerLabel", "LeftPaddleButton", "RightPaddleButton")]
+[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "Ballterator", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
 MainContainer = NodePath("MainContainer")
 InfoBox = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox")
 Placeholder = NodePath("MainContainer/Placeholder")
 StatusScrollContainer = NodePath("MainContainer/StatusScrollContainer")
-StatusBox = NodePath("")
+StatusBox = NodePath("MainContainer/StatusScrollContainer/Status")
 Ballterator = NodePath("Ballterator")
-GameTimerLabel = NodePath("")
 LeftPaddleButton = NodePath("LeftPaddleButton")
 RightPaddleButton = NodePath("RightPaddleButton")
 
 [node name="MainContainer" type="BoxContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,7 +59,7 @@ layout_mode = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 process_mode = 3
-anchors_preset = -1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0

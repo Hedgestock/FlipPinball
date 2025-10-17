@@ -87,9 +87,7 @@ public partial class GameManager : Node
         if (ScoreManager.ScoreValue < TargetScore)
             Instance.EmitSignalNewBall();
         else
-        {
             Instance.EmitSignalLevelCleared();
-        }
     }
 
     public static void AdvanceLevel()

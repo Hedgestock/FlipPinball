@@ -54,6 +54,7 @@ public partial class Game : Node
     void ResetBoard()
     {
         InfoBox.Reset();
+        StatusBox.Reset();
         foreach (var child in BoardViewport.GetChildren())
         {
             child.QueueFree();

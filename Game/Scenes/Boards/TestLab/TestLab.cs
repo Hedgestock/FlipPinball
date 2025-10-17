@@ -140,6 +140,21 @@ public partial class TestLab : Board
             case [false, false, true]:
                 CurrentMission = Missions[2];
                 break;
+            case [false, true, true]:
+                CurrentMission = Missions[3];
+                break;
+            case [true, false, true]:
+                CurrentMission = Missions[4];
+                break;
+            case [true, true, false]:
+                CurrentMission = Missions[5];
+                break;
+            case [true, true, true]:
+                CurrentMission = Missions[6];
+                break;
+            default:
+                FailMission();
+                break;
         }
         base.SelectMission();
     }

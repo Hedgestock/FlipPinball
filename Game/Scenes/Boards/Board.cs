@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 public partial class Board : Node2D
@@ -23,6 +24,8 @@ public partial class Board : Node2D
     public Array<Paddle> PaddlesRight = new();
     [Export]
     OnOffLight SaveBallLight;
+    [Export]
+    OnOffLight ReplayBallLight;
     [Export]
     SkillShot SkillShot;
 
@@ -223,10 +226,11 @@ public partial class Board : Node2D
 
             if (LiveBalls.Count != 0) return;
 
-            if (type == DespawnType.Drain && SaveBallLight.IsOnOrBlinking)
+            if (type == DespawnType.Drain && (SaveBallLight.IsOnOrBlinking || ReplayBallLight.IsOnOrBlinking))
             {
                 CallDeferred(MethodName.AddLiveBall, ball.Duplicate(), Plunger.GlobalPosition, true);
                 SaveBallLight.TurnOff();
+                ReplayBallLight.TurnOff();
             }
             else
             {
@@ -259,6 +263,10 @@ public partial class Board : Node2D
     [Export]
     string MissionSelectMessage;
     [Export]
+    string MissionSelectionFailedMessage;
+    [Export]
+    string MissionFailedMessage;
+    [Export]
     Node MissionContainer;
 
     protected Mission[] Missions;
@@ -270,16 +278,23 @@ public partial class Board : Node2D
         foreach (Mission mission in Missions)
         {
             mission.Connect(Mission.SignalName.Completed, Callable.From(EndMission));
-            foreach (MissionGoal goal in mission.AllGoals)
-            {
-                goal.Connect(MissionGoal.SignalName.Updated, Callable.From(mission.GoalUpdated));
-                goal.Connect(MissionGoal.SignalName.Completed, Callable.From(mission.GoalCompleted));
-            }
         }
     }
 
     protected bool IsMissionActive = false;
-    protected Mission CurrentMission = null;
+    private Mission _current = null;
+    protected Mission CurrentMission
+    {
+        get { return _current; }
+        set
+        {
+            _current = value;
+            if (value != null)
+                GD.PrintErr($"Setting mission {value.Name}");
+            else
+                GD.PrintErr($"Setting mission nulle {value}");
+        }
+    }
     protected virtual void SelectMission()
     {
         if (CurrentMission == null || IsMissionActive) return;
@@ -292,6 +307,19 @@ public partial class Board : Node2D
         if (CurrentMission == null || IsMissionActive) return;
         IsMissionActive = true;
         CurrentMission.Init();
+    }
+
+    protected void FailMission()
+    {
+        if (CurrentMission == null) return;
+        if (!IsMissionActive)
+        {
+            StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionStatusChanged, MissionSelectionFailedMessage);
+            CurrentMission = null;
+            return;
+        }
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionStatusChanged, MissionFailedMessage);
+        EndMission();
     }
 
     protected virtual void EndMission()

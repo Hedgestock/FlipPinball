@@ -28,7 +28,6 @@ public partial class MissionGoal : Node
 
     public void Init()
     {
-        GD.Print($"SINIT {Name} {IsComplete} {Status}");
         IsActive = true;
         IsComplete = false;
         _remains = Remains;
@@ -38,18 +37,15 @@ public partial class MissionGoal : Node
     {
 
         if (!IsActive) return;
-        GD.Print($"UPDATE {Name} {IsComplete} {Status}");
         _remains--;
         if (_remains <= 0)
             Complete();
         EmitSignalUpdated();
-
     }
 
     private void Complete()
     {
         if (!IsActive) return;
-        GD.Print($"COMPLETE {Name} {IsComplete} {Status}");
         IsActive = false;
         IsComplete = true;
         EmitSignalCompleted();

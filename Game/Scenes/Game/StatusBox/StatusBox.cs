@@ -37,6 +37,23 @@ public partial class StatusBox : VBoxContainer
         FPS.Text = Tr("FPS_COUNTER").Replace("{fps}", $"{Engine.GetFramesPerSecond()}");
     }
 
+    public void Reset()
+    {
+        ResetStatus();
+        ResetMission();
+    }
+
+    public void ResetStatus()
+    {
+        UpdateStatus("STATUS_PLACEHOLDER");
+    }
+
+    public void ResetMission()
+    {
+        UpdateMissionTitle("STATUS_MISSION_PLACEHOLDER");
+        UpdateMissionStatus("STATUS_MISSION_GOALS_PLACEHOLDER");
+    }
+
     private void Pause()
     {
         InputEventAction pauseEvent = new();
@@ -65,6 +82,7 @@ public partial class StatusBox : VBoxContainer
 
     public void UpdateMissionStatus(string status)
     {
+        GD.Print(status);
         MissionStatusLabel.Text = Tr(status);
     }
 }
