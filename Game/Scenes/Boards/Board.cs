@@ -69,6 +69,10 @@ public partial class Board : Node2D
         {
             Tilt();
         }
+        if (@event.IsActionPressed("delete_live_balls"))
+        {
+            DeleteAllLiveBalls(DespawnType.SoftLockSafeGuard);
+        }
         //return;
         // This is for testing purposes
         if (@event is InputEventMouseButton eventMouseButton)
@@ -222,7 +226,17 @@ public partial class Board : Node2D
     {
         Drain,
         OOB,
-        SelfDestruct
+        SelfDestruct,
+        SoftLockSafeGuard
+    }
+
+    void DeleteAllLiveBalls(DespawnType type)
+    {
+        List<Ball> tmp = new(LiveBalls);
+        foreach (Ball ball in tmp)
+        {
+            DespawnBall(ball, type);
+        }
     }
 
     void DespawnBall(Node2D body, DespawnType type)
