@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://dwc6ituqxs0yg" path="res://Game/Assets/BoardElements/Magnet/Magnet.tscn" id="16_2wkew"]
 [ext_resource type="AudioStream" uid="uid://dkkdt8s25yd2r" path="res://Game/Scenes/Boards/TestLab/BoardMultUp.wav" id="18_8x225"]
 [ext_resource type="Texture2D" uid="uid://bjuikkinaty4d" path="res://Game/Scenes/Boards/TestLab/Skin/Bumpers/BumperVirus.png" id="18_hec7w"]
-[ext_resource type="Script" uid="uid://c1hysxlnh0xyr" path="res://Game/Assets/CompositionComponents/BoardElementsGroup.cs" id="18_pasr8"]
+[ext_resource type="Script" uid="uid://c1hysxlnh0xyr" path="res://Game/Assets/CompositionComponents/BoardElementsGroup/BoardElementsGroup.cs" id="18_pasr8"]
 [ext_resource type="PackedScene" uid="uid://c08sduvfpdlky" path="res://Game/Assets/CompositionComponents/Leveler/DecayingLeveler.tscn" id="19_8g6kt"]
 [ext_resource type="AudioStream" uid="uid://cyphfp7ph37j6" path="res://Game/Scenes/Boards/TestLab/Tunnel/TunnelUp.wav" id="20_kbxw0"]
 [ext_resource type="AudioStream" uid="uid://1w3iwssvwwl0" path="res://Game/Scenes/Boards/TestLab/PrizeUp.wav" id="20_lxjrp"]
@@ -846,7 +846,6 @@ shape = SubResource("RectangleShape2D_o5xv0")
 [node name="BumperTopTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(112, 112)
 script = ExtResource("18_pasr8")
-Group = "Targets"
 
 [node name="Timer" type="Timer" parent="Layer1/BumperTopTargetGroup"]
 one_shot = true
@@ -928,7 +927,6 @@ rotation = -1.20428
 [node name="Entry" type="Node2D" parent="Layer1" groups=["Rollovers"]]
 position = Vector2(315, 163)
 script = ExtResource("18_pasr8")
-Group = "Rollovers"
 
 [node name="Timer" type="Timer" parent="Layer1/Entry"]
 wait_time = 5.0
@@ -985,7 +983,6 @@ StatusMessage = "STATUS_FIRST_AID_KIT_UPGRADE"
 [node name="LeftTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(97, 345)
 script = ExtResource("18_pasr8")
-Group = "Targets"
 
 [node name="Timer" type="Timer" parent="Layer1/LeftTargetGroup"]
 one_shot = true
@@ -1051,7 +1048,6 @@ StatusMessage = "STATUS_KICKBACK"
 [node name="RightTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(444, 285)
 script = ExtResource("18_pasr8")
-Group = "Targets"
 
 [node name="Timer" type="Timer" parent="Layer1/RightTargetGroup"]
 one_shot = true
@@ -1124,7 +1120,6 @@ StatusMessage = "STATUS_KICKBACK"
 [node name="TopTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(223, 202)
 script = ExtResource("18_pasr8")
-Group = "Targets"
 
 [node name="DropTarget1" parent="Layer1/TopTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-19, 12)
@@ -1194,7 +1189,6 @@ position = Vector2(35, -3)
 [node name="BottomTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(296, 419)
 script = ExtResource("18_pasr8")
-Group = "Targets"
 
 [node name="DropTarget1" parent="Layer1/BottomTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(-22, -8)
@@ -1297,7 +1291,6 @@ scale = Vector2(0.7, 0.7)
 [node name="TunnelTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(457, 578)
 script = ExtResource("18_pasr8")
-Group = "Targets"
 
 [node name="DropTarget1" parent="Layer1/TunnelTargetGroup" instance=ExtResource("12_rupeo")]
 position = Vector2(0, -25)
@@ -1474,6 +1467,7 @@ StatusMessage = "STATUS_ANTIDOTE_SPILLED"
 [node name="TeleportGroup" type="Node2D" parent="Layer1" groups=["Spitters"]]
 position = Vector2(398, 195)
 script = ExtResource("23_tort8")
+Group = null
 
 [node name="BottomTeleport" parent="Layer1/TeleportGroup" instance=ExtResource("13_ctosm")]
 position = Vector2(82, 427)
@@ -1512,7 +1506,6 @@ target_position = Vector2(-41, -95)
 [node name="MissionTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(136, 659)
 script = ExtResource("18_pasr8")
-Group = "Targets"
 
 [node name="RoundTarget1" parent="Layer1/MissionTargetGroup" instance=ExtResource("4_2d0ue")]
 position = Vector2(0, -25)
@@ -1738,7 +1731,6 @@ one_way_collision = true
 [node name="Lab" type="Node2D" parent="Layer2" groups=["Rollovers"]]
 position = Vector2(63, 622)
 script = ExtResource("18_pasr8")
-Group = "Rollovers"
 
 [node name="Timer" type="Timer" parent="Layer2/Lab"]
 wait_time = 5.0
