@@ -393,7 +393,7 @@ b = Vector2(0, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttt3n"]
 size = Vector2(60, 20)
 
-[node name="TestLab" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "OutLanesLights", "SpinnersLights", "MissionTargets", "Tutorial", "Plunger", "PaddlesLeft", "PaddlesRight", "SaveBallLight", "ReplayBallLight", "SkillShot", "TiltPusher", "MissionContainer")]
+[node name="TestLab" type="Node2D" node_paths=PackedStringArray("Entry", "Lab", "MagicPostLight", "OutLanesLights", "SpinnersLights", "MissionTargets", "PaddlesLeft", "PaddlesRight")]
 process_mode = 3
 script = ExtResource("1_mse42")
 Entry = NodePath("Layer1/Entry")
@@ -403,18 +403,8 @@ OutLanesLights = [NodePath("Layer1/RightOutLaneRollover/OnOffLight"), NodePath("
 SpinnersLights = [NodePath("Layer1/TunnelSpinner/OnOffLight"), NodePath("Layer1/LeftSpinner/OnOffLight")]
 MissionTargets = NodePath("Layer1/MissionTargetGroup")
 Music = ExtResource("2_8ku5s")
-Tutorial = NodePath("Tutorial")
-Plunger = NodePath("Layer1/Plunger")
 PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
 PaddlesRight = [NodePath("Layer1/PaddleRightMain")]
-SaveBallLight = NodePath("Layer1/SaveBallLight")
-ReplayBallLight = NodePath("Layer1/ReplayBallLight")
-SkillShot = NodePath("Layer1/SkillShot")
-TiltPusher = NodePath("TiltPusher")
-MissionSelectMessage = "MISSION_SELECT_TESTLAB"
-MissionSelectionFailedMessage = "MISSION_SELECTION_FAILED_TESTLAB"
-MissionFailedMessage = "MISSION_FAILED_TESTLAB"
-MissionContainer = NodePath("Missions")
 
 [node name="Missions" type="Node" parent="."]
 
@@ -450,21 +440,27 @@ Remains = 6
 Goals = Array[Array]([[NodePath("../Goals/CollectSample")]])
 
 [node name="LabResearch" parent="Missions" instance=ExtResource("4_stu2j")]
+CompletionValue = 20000
 Goals = Array[Array]([[NodePath("../Goals/LabUpgrade"), NodePath("../Goals/GoThroughLab")]])
 
 [node name="FieldResearch" parent="Missions" instance=ExtResource("4_stu2j")]
+CompletionValue = 20000
 Goals = Array[Array]([[NodePath("../Goals/FirstAidKitUpgrade")], [NodePath("../Goals/FirstAid")]])
 
 [node name="UnknownScience" parent="Missions" instance=ExtResource("4_stu2j")]
+CompletionValue = 40000
 Goals = Array[Array]([[NodePath("../Goals/ForeignContaminant"), NodePath("../Goals/QuantumTeleport")]])
 
 [node name="LookingForPrizes" parent="Missions" instance=ExtResource("4_stu2j")]
+CompletionValue = 50000
 Goals = Array[Array]([[NodePath("../Goals/PrizeObtention"), NodePath("../Goals/MicroscopeHits")]])
 
 [node name="Upgrades" parent="Missions" instance=ExtResource("4_stu2j")]
+CompletionValue = 100000
 Goals = Array[Array]([[NodePath("../Goals/LabUpgrade"), NodePath("../Goals/FirstAidKitUpgrade")], [NodePath("../Goals/PrizeObtention"), NodePath("../Goals/TubeCleaning")]])
 
 [node name="HugeAdvancement" parent="Missions" instance=ExtResource("4_stu2j")]
+CompletionValue = 200000
 Goals = Array[Array]([[NodePath("../Goals/LabUpgrade"), NodePath("../Goals/FirstAidKitUpgrade")], [NodePath("../Goals/ForeignContaminant"), NodePath("../Goals/FirstAid"), NodePath("../Goals/CollectSample")], [NodePath("../Goals/TubeCleaning"), NodePath("../Goals/SpillSolution")]])
 
 [node name="Background" type="TextureRect" parent="."]
@@ -2304,6 +2300,7 @@ offset_bottom = 983.0
 
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/OnOffLight" method="TurnBlinking"]
 [connection signal="BoardTilted" from="." to="Layer1/TiltLight/Timer" method="start"]
+[connection signal="Completed" from="Missions/HugeAdvancement" to="Layer1/ReplayBallLight" method="TurnOn"]
 [connection signal="body_entered" from="Boundaries" to="." method="DespawnBall" binds= [1]]
 [connection signal="TurnedOff" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [true]]
 [connection signal="TurnedOn" from="Layer1/MagicPost/DecayingOnOffLight" to="Layer1/MagicPost/CollisionShape2D" method="set_disabled" flags=3 binds= [false]]
@@ -2334,8 +2331,8 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumper3" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Missions/Goals/FirstAidKitUpgrade" method="Update" unbinds=1]
+[connection signal="OnLevelUp" from="Layer1/Entry/Bumpers/Leveler" to="Layer1/Entry/Bumpers/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup" method="SetAllBlinking"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftTargetGroup/Timer" method="start"]
 [connection signal="AllOn" from="Layer1/LeftTargetGroup" to="Layer1/LeftKickBack/OnOffLight" method="TurnOn"]
@@ -2351,9 +2348,9 @@ offset_bottom = 983.0
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/TopTargetGroup" to="Layer1/TopTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
 [connection signal="OnLevelChange" from="Layer1/TopTargetGroup/DecayingLeveler/Leveler" to="." method="SetBoardMultLevel"]
+[connection signal="AllOn" from="Layer1/BottomTargetGroup" to="Missions/Goals/PrizeObtention" method="Update"]
 [connection signal="AllOn" from="Layer1/BottomTargetGroup" to="Layer1/BottomTargetGroup" method="SetAllOff"]
 [connection signal="AllOn" from="Layer1/BottomTargetGroup" to="Layer1/BottomTargetGroup/DecayingLeveler/Leveler" method="LevelUp"]
-[connection signal="AllOn" from="Layer1/BottomTargetGroup" to="Missions/Goals/PrizeObtention" method="Update"]
 [connection signal="OnLevelUp" from="Layer1/BottomTargetGroup/DecayingLeveler/Leveler" to="." method="GetPrizes"]
 [connection signal="CompleteRotation" from="Layer1/TunnelSpinner" to="Layer1/TeleportGroup" method="RotateStatus" binds= [1]]
 [connection signal="CompleteRotation" from="Layer1/LeftSpinner" to="Layer1/TeleportGroup" method="RotateStatus" binds= [-1]]
@@ -2366,24 +2363,24 @@ offset_bottom = 983.0
 [connection signal="TurnedOff" from="Layer1/RightOutLaneRollover/OnOffLight" to="Layer1/LeftOutLaneRollover/OnOffLight" method="TurnOff"]
 [connection signal="Deactivating" from="Layer1/LeftOutLaneRollover" to="." method="GiveExtraBall"]
 [connection signal="TurnedOff" from="Layer1/LeftOutLaneRollover/OnOffLight" to="Layer1/RightOutLaneRollover/OnOffLight" method="TurnOff"]
-[connection signal="SwallowingBall" from="Layer1/TunnelSpitter" to="Layer1/Tunnel/Leveler" method="LevelUp" unbinds=1]
 [connection signal="SwallowingBall" from="Layer1/TunnelSpitter" to="Missions/Goals/TubeCleaning" method="Update" unbinds=1]
+[connection signal="SwallowingBall" from="Layer1/TunnelSpitter" to="Layer1/Tunnel/Leveler" method="LevelUp" unbinds=1]
 [connection signal="OnLevelChange" from="Layer1/Tunnel/Leveler" to="." method="TunnelEntered"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Tunnel/Leveler" method="MinimizeLevel"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="Layer1/Magnet/OnOffLight" method="TurnOn"]
 [connection signal="OnLevelOverflow" from="Layer1/Tunnel/Leveler" to="." method="Score" binds= [150000]]
-[connection signal="TurnedOn" from="Layer1/Magnet/OnOffLight" to="Layer1/Magnet/StatusEmitter" method="Emit"]
 [connection signal="TurnedOn" from="Layer1/Magnet/OnOffLight" to="Missions/Goals/SpillSolution" method="Update"]
+[connection signal="TurnedOn" from="Layer1/Magnet/OnOffLight" to="Layer1/Magnet/StatusEmitter" method="Emit"]
 [connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="ClearHeldBalls" unbinds=2]
 [connection signal="AddingBall" from="Layer1/TeleportGroup" to="." method="AddLiveBall" binds= [true]]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="." method="HoldBall"]
 [connection signal="ShouldHold" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=1]
-[connection signal="Teleporting" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="Missions/Goals/QuantumTeleport" method="Update" unbinds=2]
+[connection signal="Teleporting" from="Layer1/TeleportGroup" to="Layer1/TunnelRoundTarget/Hitbox/OnOffLight" method="TurnOff" unbinds=2]
 [connection signal="Teleporting" from="Layer1/TeleportGroup" to="." method="TeleportLiveBall" binds= [true]]
 [connection signal="AnyToggled" from="Layer1/MissionTargetGroup" to="." method="SelectMission"]
-[connection signal="RolledOver" from="Layer1/SampleRollover" to="Layer1/SampleRollover/StatusEmitter" method="Emit"]
 [connection signal="RolledOver" from="Layer1/SampleRollover" to="Missions/Goals/CollectSample" method="Update"]
+[connection signal="RolledOver" from="Layer1/SampleRollover" to="Layer1/SampleRollover/StatusEmitter" method="Emit"]
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/RightInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/LeftInLaneRollover/OnOffLight" method="TurnOn" unbinds=1]
 [connection signal="body_entered" from="Layer1/SampleRollover/Area2D" to="Layer1/SampleRollover/Area2D/OnOffLight" method="TurnBlinking" unbinds=1]
@@ -2403,10 +2400,10 @@ offset_bottom = 983.0
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper1" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper2" method="SetLevel"]
 [connection signal="OnLevelChange" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/Bumper3" method="SetLevel"]
-[connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/DecayingLeveler/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Missions/Goals/LabUpgrade" method="Update" unbinds=1]
-[connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Layer1/Funds/Leveler" method="MaximizeLevel" unbinds=1]
+[connection signal="OnLevelUp" from="Layer2/Lab/DecayingLeveler/Leveler" to="Layer2/Lab/DecayingLeveler/StatusEmitter" method="Emit" unbinds=1]
 [connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Missions/Goals/GoThroughLab" method="Update" unbinds=1]
+[connection signal="body_entered" from="Layer2/LayerDrop/Area2D" to="Layer1/Funds/Leveler" method="MaximizeLevel" unbinds=1]
 [connection signal="body_exited" from="Layer2/LayerDrop/Area2D" to="." method="AcceptMission" unbinds=1]
 
 [editable path="Layer1/UnderRampSlingshot"]

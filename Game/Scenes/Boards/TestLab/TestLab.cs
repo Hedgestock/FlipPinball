@@ -165,4 +165,11 @@ public partial class TestLab : Board
         base.AcceptMission();
         MissionTargets.SetAllOff();
     }
+
+    protected override void EndMission()
+    {
+        if (CurrentMission == null || !IsMissionActive) return;
+        base.EndMission();
+        MissionTargets.SetAllOff();
+    }
 }

@@ -4,11 +4,15 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using static System.Formats.Asn1.AsnWriter;
 
 public partial class Mission : Node
 {
     [Signal]
     public delegate void CompletedEventHandler();
+
+    [Export]
+    int CompletionValue = 10000;
 
     [Export]
     private Array<Array<NodePath>> Goals;
@@ -82,6 +86,7 @@ public partial class Mission : Node
             if (CurrentStep + 1 >= Goals.Count)
             {
                 StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionStatusChanged, StatusCompleted);
+                ScoreManager.BoardScore(CompletionValue);
                 EmitSignalCompleted();
             }
             else

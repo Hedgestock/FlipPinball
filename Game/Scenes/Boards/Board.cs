@@ -196,6 +196,12 @@ public partial class Board : Node2D
         GameManager.AddExtraBall((Ball)LoadedBall.Duplicate());
     }
 
+    protected void HoldLoadedBall()
+    {
+        GameManager.HeldBalls.Add((Ball)LoadedBall.Duplicate());
+        GameManager.Instance.EmitSignal(GameManager.SignalName.HeldBallsChanged, GameManager.HeldBalls.ToArray());
+    }
+
     protected void HoldBall(Ball ball)
     {
         GameManager.HeldBalls.Add(ball);
