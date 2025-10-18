@@ -12,15 +12,12 @@ public partial class BoardElementsGroup : Node2D
     [Signal]
     public delegate void AnyToggledEventHandler();
 
-    [Export]
-    protected string Group;
-
     public List<(Node node, OnOffLight light)> Nodes;
 
     public override void _Ready()
     {
         base._Ready();
-        Nodes = GetChildren().Where(c => c.IsInGroup(Group)).Select(c => (c, (OnOffLight)c.FindChild("OnOffLight"))).ToList();
+        Nodes = GetChildren().Where(c => c.GetGroups().Intersect(GetGroups()).Any()).Select(c => (c, (OnOffLight)c.FindChild("OnOffLight"))).ToList();
         Nodes.ForEach(n => n.light.Toggled +=  CheckGroupStatus);
     }
 

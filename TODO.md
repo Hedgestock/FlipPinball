@@ -34,6 +34,7 @@
 - [x] Update assembly name
 - [x] Remove close button when ball up is the only option
 - [x] Fix paddle position
+- [x] Use actual groups instead of strings for board element groups
 - [ ] Fix freeze+tweening doing strange stuff on trail (Spitters)
 - [ ] Fix multiple balls in spitter
 - [ ] Clean duplicated groups in score modifier ballterations
@@ -41,7 +42,6 @@
 - [ ] Fix self destructing ball cloning
 - [ ] Split code for UI management (rn all in Game.cs)
 - [ ] Maybe pool queue for nodes like score bubbles
-- [ ] Use actual groups instead of strings for board element groups
 
 # Quality assurance
 
@@ -52,7 +52,6 @@
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 - [ ] Check for teleport multi entry and weird behaviour
 - [ ] Check if refine goes in the inherited effects
-
 
 # Ballterations effects
 

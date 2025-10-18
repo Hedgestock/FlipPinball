@@ -7,15 +7,14 @@
 process_mode = 3
 auto_translate_mode = 2
 disable_3d = true
-anisotropic_filtering_level = 0
 canvas_item_default_texture_filter = 0
-title = "Tutorial Popup"
+oversampling_override = 1.0
+title = "TUTORIAL_POPUP"
 initial_position = 1
 size = Vector2i(500, 200)
 visible = true
 borderless = false
 always_on_top = true
-auto_translate = false
 script = ExtResource("1_4rec7")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]

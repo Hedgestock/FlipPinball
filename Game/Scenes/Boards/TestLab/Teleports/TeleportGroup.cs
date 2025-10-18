@@ -16,7 +16,6 @@ public partial class TeleportGroup : BoardElementsGroup
 
     public override void _Ready()
     {
-        Group = "Spitters";
         base._Ready();
         foreach (var node in Nodes)
             ((Spitter)node.node).SwallowingBall += (ball) => SpitFromActive(ball, node.light);

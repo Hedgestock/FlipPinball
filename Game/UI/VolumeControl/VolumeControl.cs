@@ -35,7 +35,7 @@ public partial class VolumeControl : VBoxContainer
     {
         base._Ready();
         MuteCheckBox.ButtonPressed = !AudioServer.IsBusMute((int)Bus);
-        MuteCheckBox.Text = AudioServer.GetBusName((int)Bus) + " Volume";
+        MuteCheckBox.Text = Tr("BUS_VOLUME").Replace("{bus}", AudioServer.GetBusName((int)Bus));
         VolumeSlider.Value = AudioServer.GetBusVolumeLinear((int)Bus);
     }
 

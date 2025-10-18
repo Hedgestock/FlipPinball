@@ -15,7 +15,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="BalterationCard" type="PanelContainer" node_paths=PackedStringArray("NameLabel", "BuyButton", "DescriptionContainer")]
-anchors_preset = -1
 offset_right = 452.0
 offset_bottom = 296.0
 size_flags_horizontal = 4
@@ -36,7 +35,7 @@ layout_mode = 2
 
 [node name="Name" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Ballteration"
+text = "BALLTERATION"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -45,7 +44,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 3
 mouse_default_cursor_shape = 2
-text = "Ballterate"
+text = "BALLTERATE"
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

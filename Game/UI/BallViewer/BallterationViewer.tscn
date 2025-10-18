@@ -25,7 +25,7 @@ DescriptionContainer = NodePath("PanelContainer/MarginContainer/VBoxContainer")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 2
-text = "Ballteration"
+text = "BALLTERATION"
 autowrap_mode = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

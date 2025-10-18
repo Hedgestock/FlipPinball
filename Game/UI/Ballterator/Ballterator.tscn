@@ -31,7 +31,7 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="ScrollContainer/Ballterations"]
 layout_mode = 2
-text = "Select a ballteration"
+text = "BALLTERATION_SELECT"
 horizontal_alignment = 1
 
 [node name="HFlowContainer" type="HFlowContainer" parent="ScrollContainer/Ballterations"]
@@ -43,14 +43,14 @@ layout_mode = 2
 size_flags_vertical = 4
 focus_mode = 3
 mouse_default_cursor_shape = 2
-text = "Reroll"
+text = "REROLL"
 
 [node name="CloseButton" type="Button" parent="ScrollContainer/Ballterations/HFlowContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 focus_mode = 3
 mouse_default_cursor_shape = 2
-text = "Close"
+text = "CLOSE"
 
 [node name="Credits" type="Label" parent="ScrollContainer/Ballterations"]
 custom_minimum_size = Vector2(500, 0)
@@ -73,7 +73,7 @@ size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="ScrollContainer/Balls"]
 layout_mode = 2
-text = "Apply ballteration"
+text = "BALLTERATION_APPLY"
 horizontal_alignment = 1
 
 [node name="BallsContainer" type="FlowContainer" parent="ScrollContainer/Balls"]

@@ -32,9 +32,9 @@ public partial class Ballterator : Container
         {
             GameManager.Credits = value;
             if (value >= 0)
-                CreditsLabel.Text = $"Credits: ({CreditsLeft:N0})";
+                CreditsLabel.Text = Tr("CREDITS_CREDITS").Replace("{credits_left}",$"{CreditsLeft:N0}");
             else
-                CreditsLabel.Text = $"Debt: ({CreditsLeft:N0})";
+                CreditsLabel.Text = Tr("CREDITS_DEBT").Replace("{credits_left}", $"{CreditsLeft:N0}");
         }
     }
 

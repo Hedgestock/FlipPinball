@@ -843,7 +843,7 @@ collision_mask = 255
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layer1/Drain"]
 shape = SubResource("RectangleShape2D_o5xv0")
 
-[node name="BumperTopTargetGroup" type="Node2D" parent="Layer1"]
+[node name="BumperTopTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(112, 112)
 script = ExtResource("18_pasr8")
 Group = "Targets"
@@ -925,7 +925,7 @@ position = Vector2(426, 835)
 [node name="Hitbox" parent="Layer1/RightSlingshot" index="0"]
 rotation = -1.20428
 
-[node name="Entry" type="Node2D" parent="Layer1"]
+[node name="Entry" type="Node2D" parent="Layer1" groups=["Rollovers"]]
 position = Vector2(315, 163)
 script = ExtResource("18_pasr8")
 Group = "Rollovers"
@@ -982,7 +982,7 @@ MinLevel = 1
 [node name="StatusEmitter" parent="Layer1/Entry/Bumpers" instance=ExtResource("36_ut8pv")]
 StatusMessage = "STATUS_FIRST_AID_KIT_UPGRADE"
 
-[node name="LeftTargetGroup" type="Node2D" parent="Layer1"]
+[node name="LeftTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(97, 345)
 script = ExtResource("18_pasr8")
 Group = "Targets"
@@ -1048,7 +1048,7 @@ bus = &"Master"
 [node name="StatusEmitter" parent="Layer1/LeftKickBack" instance=ExtResource("36_ut8pv")]
 StatusMessage = "STATUS_KICKBACK"
 
-[node name="RightTargetGroup" type="Node2D" parent="Layer1"]
+[node name="RightTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(444, 285)
 script = ExtResource("18_pasr8")
 Group = "Targets"
@@ -1121,7 +1121,7 @@ position = Vector2(1, -36)
 [node name="StatusEmitter" parent="Layer1/RightKickBack" instance=ExtResource("36_ut8pv")]
 StatusMessage = "STATUS_KICKBACK"
 
-[node name="TopTargetGroup" type="Node2D" parent="Layer1"]
+[node name="TopTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(223, 202)
 script = ExtResource("18_pasr8")
 Group = "Targets"
@@ -1191,7 +1191,7 @@ position = Vector2(15, 10)
 [node name="OnOffLight4" parent="Layer1/TopTargetGroup/DecayingLeveler" instance=ExtResource("21_63yue")]
 position = Vector2(35, -3)
 
-[node name="BottomTargetGroup" type="Node2D" parent="Layer1"]
+[node name="BottomTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(296, 419)
 script = ExtResource("18_pasr8")
 Group = "Targets"
@@ -1294,7 +1294,7 @@ position = Vector2(4, 32)
 [node name="AnimatedSprite2D" parent="Layer1/LeftSpinner" index="1"]
 scale = Vector2(0.7, 0.7)
 
-[node name="TunnelTargetGroup" type="Node2D" parent="Layer1"]
+[node name="TunnelTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(457, 578)
 script = ExtResource("18_pasr8")
 Group = "Targets"
@@ -1471,7 +1471,7 @@ sprite_frames = SubResource("SpriteFrames_nqtq1")
 [node name="StatusEmitter" parent="Layer1/Magnet" instance=ExtResource("36_ut8pv")]
 StatusMessage = "STATUS_ANTIDOTE_SPILLED"
 
-[node name="TeleportGroup" type="Node2D" parent="Layer1"]
+[node name="TeleportGroup" type="Node2D" parent="Layer1" groups=["Spitters"]]
 position = Vector2(398, 195)
 script = ExtResource("23_tort8")
 
@@ -1509,7 +1509,7 @@ sprite_frames = ExtResource("28_n3w53")
 [node name="RayCast2D" parent="Layer1/TeleportGroup/TopTeleport" index="2"]
 target_position = Vector2(-41, -95)
 
-[node name="MissionTargetGroup" type="Node2D" parent="Layer1"]
+[node name="MissionTargetGroup" type="Node2D" parent="Layer1" groups=["Targets"]]
 position = Vector2(136, 659)
 script = ExtResource("18_pasr8")
 Group = "Targets"
@@ -1735,7 +1735,7 @@ rotation = 3.1415927
 shape = SubResource("RectangleShape2D_ttt3n")
 one_way_collision = true
 
-[node name="Lab" type="Node2D" parent="Layer2"]
+[node name="Lab" type="Node2D" parent="Layer2" groups=["Rollovers"]]
 position = Vector2(63, 622)
 script = ExtResource("18_pasr8")
 Group = "Rollovers"
