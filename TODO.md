@@ -33,8 +33,8 @@
 
 - [x] Update assembly name
 - [x] Remove close button when ball up is the only option
+- [x] Fix paddle position
 - [ ] Fix freeze+tweening doing strange stuff on trail (Spitters)
-- [ ] Fix paddle position
 - [ ] Fix multiple balls in spitter
 - [ ] Clean duplicated groups in score modifier ballterations
 - [ ] Fix impossible restrictives in score modifier ballterations

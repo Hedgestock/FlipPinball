@@ -808,7 +808,7 @@ position = Vector2(-85, -557)
 rotation = -0.801413
 
 [node name="PaddleLeftMain" parent="Layer1" instance=ExtResource("5_dxs6n")]
-position = Vector2(224, 968)
+position = Vector2(224, 969)
 rotation = 0.645772
 scale = Vector2(-1, 1)
 
@@ -816,7 +816,7 @@ scale = Vector2(-1, 1)
 texture = ExtResource("14_rnvrq")
 
 [node name="PaddleRightMain" parent="Layer1" instance=ExtResource("5_dxs6n")]
-position = Vector2(394, 968)
+position = Vector2(394, 969.00006)
 rotation = -0.645772
 
 [node name="Sprite2D" parent="Layer1/PaddleRightMain" index="0"]
