@@ -15,19 +15,13 @@ public partial class Board : Node2D
     private AudioStream Music;
 
     [Export]
-    public CanvasLayer Tutorial;
-
-    [Export]
-    Plunger Plunger;
-    [Export]
     public Array<Paddle> PaddlesLeft = new();
     [Export]
     public Array<Paddle> PaddlesRight = new();
-    [Export]
+    public CanvasLayer Tutorial;
+    Plunger Plunger;
     OnOffLight SaveBallLight;
-    [Export]
     OnOffLight ReplayBallLight;
-    [Export]
     SkillShot SkillShot;
 
     List<Ball> LiveBalls = new();
@@ -42,6 +36,14 @@ public partial class Board : Node2D
         base._Ready();
 
         ScoreManager.BoardScore = Score;
+
+        Tutorial = (CanvasLayer)FindChild(nameof(Tutorial));
+        Plunger = (Plunger)FindChild(nameof(Plunger));
+        SaveBallLight = (OnOffLight)FindChild(nameof(SaveBallLight));
+        ReplayBallLight = (OnOffLight)FindChild(nameof(ReplayBallLight));
+        SkillShot = (SkillShot)FindChild(nameof(SkillShot));
+
+        TiltPusher = (Pusher)FindChild(nameof(TiltPusher));
 
         InitMissions();
 
@@ -240,7 +242,6 @@ public partial class Board : Node2D
         }
     }
 
-    [Export]
     Pusher TiltPusher;
 
     void Tilt()
@@ -264,19 +265,19 @@ public partial class Board : Node2D
     string MissionSelectMessage;
     string MissionSelectionFailedMessage;
     string MissionFailedMessage;
-    [Export]
-    Node MissionContainer;
 
     protected Mission[] Missions;
 
     void InitMissions()
     {
-        Missions = MissionContainer.GetChildren().OfType<Mission>().ToArray();
+        Missions = FindChild(nameof(Missions)).GetChildren().OfType<Mission>().ToArray();
 
         string tmp = Regex.Replace(GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
         MissionSelectMessage = "MISSION_SELECT_" + tmp;
         MissionSelectionFailedMessage = "MISSION_SELECTION_FAILED_" + tmp;
         MissionFailedMessage = "MISSION_FAILED_" + tmp;
+
+
 
         foreach (Mission mission in Missions)
         {
