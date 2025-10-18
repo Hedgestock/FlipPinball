@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc1mtrfp0nhfa"]
+
+[ext_resource type="Script" uid="uid://wmii7qk7mf8o" path="res://Game/Assets/CompositionComponents/Missions/Mission.cs" id="1_hb0am"]
+
+[node name="Mission" type="Node"]
+script = ExtResource("1_hb0am")

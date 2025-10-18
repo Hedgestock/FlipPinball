@@ -46,7 +46,8 @@
 # Quality assurance
 
 - [x] Automatically generate translation keys from nodes name
-- [ ] Attach scripts to nodes (missions and board element groups)
+- [x] Attach scripts to mission nodes
+- [ ] Attach scripts to board element group nodes
 - [ ] Maybe factorise the "OnMultiplier" thing
 - [ ] Think of a way to make levels generic (think bumper with more/less than 5, or spinners etc)
 - [ ] Check for teleport multi entry and weird behaviour

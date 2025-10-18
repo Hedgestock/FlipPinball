@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public partial class Board : Node2D
 {
@@ -260,11 +261,8 @@ public partial class Board : Node2D
         EmitSignalBoardTilted();
     }
 
-    [Export]
     string MissionSelectMessage;
-    [Export]
     string MissionSelectionFailedMessage;
-    [Export]
     string MissionFailedMessage;
     [Export]
     Node MissionContainer;
@@ -274,6 +272,11 @@ public partial class Board : Node2D
     void InitMissions()
     {
         Missions = MissionContainer.GetChildren().OfType<Mission>().ToArray();
+
+        string tmp = Regex.Replace(GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
+        MissionSelectMessage = "MISSION_SELECT_" + tmp;
+        MissionSelectionFailedMessage = "MISSION_SELECTION_FAILED_" + tmp;
+        MissionFailedMessage = "MISSION_FAILED_" + tmp;
 
         foreach (Mission mission in Missions)
         {
