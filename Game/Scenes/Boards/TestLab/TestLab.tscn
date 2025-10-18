@@ -2388,6 +2388,7 @@ offset_bottom = 983.0
 [connection signal="timeout" from="Layer1/SampleRollover/Timer" to="Layer1/SampleRollover/Area2D/OnOffLight" method="TurnOff"]
 [connection signal="OnMaximizeLevel" from="Layer1/Funds/Leveler" to="Layer1/Funds/Leveler/StatusEmitter" method="Emit"]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover1" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [1]]
+[connection signal="TurnedOff" from="Layer1/Funds/Rollover1/Area2D/OnOffLight" to="." method="FailMission"]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover2" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [2]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover3" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [3]]
 [connection signal="RolledOver" from="Layer1/Funds/Rollover4" to="Layer1/Funds/Leveler" method="BumpLevel" binds= [4]]

@@ -82,7 +82,6 @@ public partial class StatusBox : VBoxContainer
 
     public void UpdateMissionStatus(string status)
     {
-        GD.Print(status);
         MissionStatusLabel.Text = Tr(status);
     }
 }

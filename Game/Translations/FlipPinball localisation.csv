@@ -55,28 +55,28 @@ MISSION_COMPLETED_FIELD_RESEARCH_TEST_LAB,Research complete,
 MISSION_UNKNOWN_SCIENCE_TEST_LAB,Unknown Science,
 MISSION_COMPLETE_UNKNOWN_SCIENCE_TEST_LAB,You scienced hard,
 MISSION_LOOKING_FOR_PRIZES_TEST_LAB,Looking For Prizes,
-MISSION_COMPLETE_LOOKING_FOR_PRIZES_TEST_LAB,You are now famous,
+MISSION_COMPLETED_LOOKING_FOR_PRIZES_TEST_LAB,You are now famous,
 MISSION_UPGRADES_TEST_LAB,Upgrades,
 MISSION_COMPLETED_UPGRADES_TEST_LAB,All the equipment has been checked,
 MISSION_HUGE_ADVANCEMENT_TEST_LAB,Huge Advancement,
 MISSION_COMPLETED_HUGE_ADVANCEMENT_TEST_LAB,Welcome to the future,
 Goals,,
-MISSION_GOAL_SAMPLE_COLLECTION_TEST_LAB,Collect sample,
-MISSION_GOAL_COMPLETE_SAMPLE_COLLECTION_TEST_LAB,Sample collected,
-MISSION_GOAL_LAB_TEST_LAB,"Go through the lab 3 times
+MISSION_GOAL_COLLECT_SAMPLE_TEST_LAB,Collect sample,
+MISSION_GOAL_COMPLETE_COLLECT_SAMPLE_TEST_LAB,Sample collected,
+MISSION_GOAL_GO_THROUGH_LAB_TEST_LAB,"Go through the lab 3 times
 (remains {remains})",
-MISSION_GOAL_COMPLETE_LAB_TEST_LAB,Went through the lab 3 times,
+MISSION_GOAL_COMPLETE_GO_THROUGH_LAB_TEST_LAB,Went through the lab 3 times,
 MISSION_GOAL_LAB_UPGRADE_TEST_LAB,Upgrade lab equipment,
 MISSION_GOAL_COMPLETE_LAB_UPGRADE_TEST_LAB,Lab equipment upgraded,
-MISSION_GOAL_FIRST_AID_KIT_UPGRADE,Upgrade the first aid kit,
-MISSION_GOAL_COMPLETE_FIRST_AID_KIT_UPGRADE,First aid kit upgraded,
+MISSION_GOAL_FIRST_AID_KIT_UPGRADE_TEST_LAB,Upgrade the first aid kit,
+MISSION_GOAL_COMPLETE_FIRST_AID_KIT_UPGRADE_TEST_LAB,First aid kit upgraded,
 MISSION_GOAL_FIRST_AID_TEST_LAB,"Use the first aid kit 10 times
 (remains {remains})",
 MISSION_GOAL_COMPLETE_FIRST_AID_TEST_LAB,Used the first aid kit 10 times,
 MISSION_GOAL_TUBE_CLEANING_TEST_LAB,Reach the end of the tube,
-MISSION_GOAL_COMPLETED_TUBE_CLEANING_TEST_LAB,Tube cleaned,
+MISSION_GOAL_COMPLETE_TUBE_CLEANING_TEST_LAB,Tube cleaned,
 MISSION_GOAL_QUANTUM_TELEPORT_TEST_LAB,Use a quantum teleport to teleport a ball,
-MISSION_GOAL_COMPLETED_QUANTUM_TELEPORT_TEST_LAB,Ball teleported,
+MISSION_GOAL_COMPLETE_QUANTUM_TELEPORT_TEST_LAB,Ball teleported,
 MISSION_GOAL_FOREIGN_CONTAMINANT_TEST_LAB,"Hit the virus 5 times
 (remains {remains})",
 MISSION_GOAL_COMPLETED_FOREIGN_CONTAMINANT_TEST_LAB,Foreign contaminant analyzed,
@@ -84,9 +84,9 @@ MISSION_GOAL_PRIZE_OBTENTION_TEST_LAB,Get a prize,
 MISSION_GOAL_COMPLETED_PRIZE_OBTENTION_TEST_LAB,Prize obtained,
 MISSION_GOAL_MICROSCOPE_HITS_TEST_LAB,"Hit the microscope slingshots 6 times
 (remains {remains})",
-MISSION_GOAL_COMPLETED_MICROSCOPE_HITS_TEST_LAB,Microscopes used,
+MISSION_GOAL_COMPLETE_MICROSCOPE_HITS_TEST_LAB,Microscopes used,
 MISSION_GOAL_SPILL_SOLUTION_TEST_LAB,Spill the antidote solution,
-MISSION_GOAL_COMPLETED_SPILL_SOLUTION_TEST_LAB,Antidote solution spilled,
+MISSION_GOAL_COMPLETE_SPILL_SOLUTION_TEST_LAB,Antidote solution spilled,
 Tutorials,,
 SLINGSHOTS,Slingshots,
 TUTO_SLINGSHOTS,Those elements will bounce away any ball that come in contact with a little bit of speed,
@@ -100,7 +100,7 @@ TUTO_SAVE_BALL_LIGHT,"If the ball drain while this light is on or blinking, it w
 The light comes on whenever a new ball rolls out of the plunger chute.",
 REPLAY_BALL_LIGHT,Replay Ball Light,
 TUTO_REPLAY_BALL_LIGHT,"If the ball drain while this light is on or blinking, it will be saved and loaded to plunge again.
-You can activate replay ball by completing missions. (NOT YET IMPLEMENTED)",
+You can activate replay ball by completing missions.",
 DRAIN_HOLE,Drain,
 TUTO_DRAIN_HOLE,"If the ball ever fall here, it will be drained and a new ball will come in play if available.",
 KICKBACKS,Kickbacks,
@@ -164,7 +164,7 @@ TUTO_REWARDS_TARGETS_TESTLAB,"Take all 3 drop targets down to gain a reward corr
 3 - Activate bonus (NOT YET IMPLEMENTED)
 4 - Hold bonus (NOT YET IMPLEMENTED)",
 MISSION_TARGETS,Mission Targets,
-TUTO_MISSION_TARGETS,Hit those target when no mission is active to select one. (NOT YET IMPLEMENTED),
+TUTO_MISSION_TARGETS,Hit those target when no mission is active to select one.,
 LAB_LANES_TESTLAB,Lab Entry Lanes,
 TUTO_LAB_LANES_TESTLAB,"The lanes through which balls will (re)enter the lab.
 Lit all off them by triggering the rollover switches to upgrade the lab equipment.
@@ -181,7 +181,7 @@ ANTIDOTE_SPILL_TESTLAB,Antidote Spill,
 TUTO_ANTIDOTE_SPILL_TESTLAB,"Upon activation, the spill will attract all balls in its vicinity.
 Activate the antidote tube when all 4 antidote lights are lit to turn it on and reset the tube.",
 FUNDS_ROLLOVER_TESTLAB,Funds Rollover,
-TUTO_FUNDS_ROLLOVER_TESTLAB,"Roll over them to get more fundings for your missions. (NOT YET IMPLEMENTED)
+TUTO_FUNDS_ROLLOVER_TESTLAB,"Roll over them to get more fundings for your missions.
 Funds will decay over time.",
 MAGIC_PILL_TESTLAB,Magic Pill,
 TUTO_MAGIC_PILL_TESTLAB,"NO SPRITE YET BUT FUNCTIONAL

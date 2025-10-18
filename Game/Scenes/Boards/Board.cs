@@ -292,19 +292,7 @@ public partial class Board : Node2D
     }
 
     protected bool IsMissionActive = false;
-    private Mission _current = null;
-    protected Mission CurrentMission
-    {
-        get { return _current; }
-        set
-        {
-            _current = value;
-            if (value != null)
-                GD.PrintErr($"Setting mission {value.Name}");
-            else
-                GD.PrintErr($"Setting mission nulle {value}");
-        }
-    }
+    protected Mission CurrentMission = null;
     protected virtual void SelectMission()
     {
         if (CurrentMission == null || IsMissionActive) return;
