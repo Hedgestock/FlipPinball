@@ -5,15 +5,10 @@ using System.Linq;
 
 namespace WaffleStock
 {
-    public struct WeightedItem<ItemType>
+    public partial class WeightedItem<ItemType> : Resource
     {
-        public WeightedItem(ItemType item, uint weight = 100)
-        {
-            Weight = weight;
-            Item = item;
-        }
-
-        public uint Weight;
+        [Export]
+        public uint Weight = 100;
         public ItemType Item;
 
         public static ItemType ChooseFrom(IEnumerable<WeightedItem<ItemType>> list)

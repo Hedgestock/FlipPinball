@@ -1,15 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfnn6iuv460e"]
+[gd_scene format=3 uid="uid://bfnn6iuv460e"]
 
 [ext_resource type="Script" uid="uid://c6o8v1jksh0gh" path="res://Game/Scenes/Game/Game.cs" id="1_ems3e"]
+[ext_resource type="PackedScene" uid="uid://p1e4ybuw74pb" path="res://Game/Scenes/Boards/TestLab/TestLab.tscn" id="2_d6nr8"]
+[ext_resource type="Script" uid="uid://58mimgs1t8y4" path="res://Game/Utilities/Weighted/WeightedBoard.cs" id="3_sbmws"]
 [ext_resource type="PackedScene" uid="uid://dfsdn5spl1lm1" path="res://Game/Scenes/Game/StatusBox/StatusBox.tscn" id="3_x1rdj"]
+[ext_resource type="PackedScene" uid="uid://d0tjo0826pxr" path="res://Game/Scenes/Boards/Pirates/Pirates.tscn" id="4_aoxvl"]
 [ext_resource type="PackedScene" uid="uid://b5qb47ixu0ned" path="res://Game/Scenes/Game/InfoBox/InfoBox.tscn" id="4_ueg0k"]
 [ext_resource type="PackedScene" uid="uid://6aanashyb3dl" path="res://Game/UI/Ballterator/Ballterator.tscn" id="5_ueg0k"]
+
+[sub_resource type="Resource" id="Resource_d6nr8"]
+script = ExtResource("3_sbmws")
+Item = ExtResource("2_d6nr8")
+metadata/_custom_type_script = "uid://58mimgs1t8y4"
+
+[sub_resource type="Resource" id="Resource_sbmws"]
+script = ExtResource("3_sbmws")
+Item = ExtResource("4_aoxvl")
+metadata/_custom_type_script = "uid://58mimgs1t8y4"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
 size = Vector2(300, 1080)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("BoardViewport", "MainContainer", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "Ballterator", "LeftPaddleButton", "RightPaddleButton")]
+[node name="Game" type="Node" unique_id=2112799745 node_paths=PackedStringArray("BoardViewport", "MainContainer", "InfoBox", "Placeholder", "StatusScrollContainer", "StatusBox", "Ballterator", "LeftPaddleButton", "RightPaddleButton")]
 script = ExtResource("1_ems3e")
+Boards = Array[Object]([SubResource("Resource_d6nr8"), SubResource("Resource_sbmws")])
 BoardViewport = NodePath("SubViewportContainer/SubViewport")
 MainContainer = NodePath("MainContainer")
 InfoBox = NodePath("MainContainer/MarginContainer/InfoScrollContainer/InfoBox")
@@ -20,7 +34,7 @@ Ballterator = NodePath("Ballterator")
 LeftPaddleButton = NodePath("LeftPaddleButton")
 RightPaddleButton = NodePath("RightPaddleButton")
 
-[node name="MainContainer" type="BoxContainer" parent="."]
+[node name="MainContainer" type="BoxContainer" parent="." unique_id=778848463]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -31,33 +45,33 @@ grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer" unique_id=1998719321]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="InfoScrollContainer" type="ScrollContainer" parent="MainContainer/MarginContainer"]
+[node name="InfoScrollContainer" type="ScrollContainer" parent="MainContainer/MarginContainer" unique_id=2139319479]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InfoBox" parent="MainContainer/MarginContainer/InfoScrollContainer" instance=ExtResource("4_ueg0k")]
+[node name="InfoBox" parent="MainContainer/MarginContainer/InfoScrollContainer" unique_id=1946064308 instance=ExtResource("4_ueg0k")]
 layout_mode = 2
 
-[node name="Placeholder" type="Control" parent="MainContainer"]
+[node name="Placeholder" type="Control" parent="MainContainer" unique_id=1390677416]
 custom_minimum_size = Vector2(600, 1080)
 layout_mode = 2
 
-[node name="StatusScrollContainer" type="ScrollContainer" parent="MainContainer"]
+[node name="StatusScrollContainer" type="ScrollContainer" parent="MainContainer" unique_id=803801014]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Status" parent="MainContainer/StatusScrollContainer" instance=ExtResource("3_x1rdj")]
+[node name="Status" parent="MainContainer/StatusScrollContainer" unique_id=1884694126 instance=ExtResource("3_x1rdj")]
 layout_mode = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=939463760]
 process_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -67,26 +81,26 @@ offset_right = 300.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1732492014]
 disable_3d = true
 handle_input_locally = false
 audio_listener_enable_2d = true
 size = Vector2i(600, 1080)
 render_target_update_mode = 4
 
-[node name="LeftPaddleButton" type="TouchScreenButton" parent="."]
+[node name="LeftPaddleButton" type="TouchScreenButton" parent="." unique_id=883847068]
 z_index = 100
 position = Vector2(150, 540)
 shape = SubResource("RectangleShape2D_n7y7i")
 action = "paddle_left"
 
-[node name="RightPaddleButton" type="TouchScreenButton" parent="."]
+[node name="RightPaddleButton" type="TouchScreenButton" parent="." unique_id=227266191]
 z_index = 100
 position = Vector2(450, 540)
 shape = SubResource("RectangleShape2D_n7y7i")
 action = "paddle_right"
 
-[node name="Ballterator" parent="." instance=ExtResource("5_ueg0k")]
+[node name="Ballterator" parent="." unique_id=587381557 instance=ExtResource("5_ueg0k")]
 visible = false
 
 [connection signal="hidden" from="Ballterator" to="." method="ResetBoard"]

@@ -1,11 +1,12 @@
 using Godot;
 using Godot.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using WaffleStock;
 
 public partial class Game : Node
 {
+    [Export]
+    Array<WeightedBoard> Boards;
+
     [Export]
     Viewport BoardViewport;
 
@@ -59,7 +60,7 @@ public partial class Game : Node
         {
             child.QueueFree();
         }
-        GameManager.CurrentBoard = GD.Load<PackedScene>("res://Game/Scenes/Boards/TestLab/TestLab.tscn").Instantiate<Board>();
+        GameManager.CurrentBoard = WeightedBoard.ChooseFrom(Boards).Instantiate<Board>();
         BoardViewport.CallDeferred(Node.MethodName.AddChild, GameManager.CurrentBoard);
     }
 

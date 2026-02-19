@@ -32,11 +32,11 @@ public partial class BallterationGenerator : Node
     //}
 
     static WeightedItem<Func<float, Ballteration>>[] WeightedPickersBase = [
-        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateNewBall), 1),
-        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateScoreModifier)),
-        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateSimpleScoreModifier)),
-        new((float targetRarity) => GeneratorWrapper(targetRarity, CreateChaosScoreModifier),0),
-        new(GetFromPool, 200),
+        new() {Item = (float targetRarity) => GeneratorWrapper(targetRarity, CreateNewBall), Weight= 1 },
+        new() {Item = (float targetRarity) => GeneratorWrapper(targetRarity, CreateScoreModifier) },
+        new() {Item = (float targetRarity) => GeneratorWrapper(targetRarity, CreateSimpleScoreModifier)},
+        new() {Item = (float targetRarity) => GeneratorWrapper(targetRarity, CreateChaosScoreModifier), Weight = 0},
+        new() {Item = GetFromPool, Weight = 200 },
         ];
 
     public static Ballteration Generate(List<WeightedItem<Func<float, Ballteration>>> WeightedPickers = null)
@@ -236,7 +236,7 @@ public partial class BallterationGenerator : Node
         foreach (var fileName in ResourceLoader.ListDirectory(PoolPath))
         {
             if (fileName.GetExtension() == "tscn")
-                validBallterationsPaths.Add(new WeightedItem<string>(PoolPath + fileName));
+                validBallterationsPaths.Add(new() { Item = PoolPath + fileName });
         }
 
         Ballteration ballteration = GD.Load<PackedScene>(WeightedItem<string>.ChooseFrom(validBallterationsPaths)).Instantiate<Ballteration>();
@@ -247,8 +247,8 @@ public partial class BallterationGenerator : Node
     public static Ballteration Test()
     {
 
-        Ballteration  ballteration = new Ballteration();
-        
+        Ballteration ballteration = new Ballteration();
+
         ballteration.AddChild(GD.Load<PackedScene>("res://Game/Assets/Ballterations/Effects/ScoreModifier/DecayingScoreModifier.tscn").Instantiate<Node>());
 
         return ballteration;
