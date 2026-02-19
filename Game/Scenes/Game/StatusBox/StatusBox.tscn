@@ -6,7 +6,7 @@
 color = Color(0.49803922, 0.49803922, 0.49803922, 1)
 thickness = 6
 
-[node name="StatusBox" type="VBoxContainer" unique_id=1197409020 node_paths=PackedStringArray("FPS", "GameTimerLabel", "StatusLabel", "CurrentMissionLabel", "MissionStatusLabel")]
+[node name="StatusBox" type="VBoxContainer" unique_id=1197409020 node_paths=PackedStringArray("FPS", "GameTimerLabel", "StatusLabel", "CurrentMissionLabel", "MissionStatusLabel", "MissionResetTimer", "StatusResetTimer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,6 +19,8 @@ GameTimerLabel = NodePath("GameTime")
 StatusLabel = NodePath("Status")
 CurrentMissionLabel = NodePath("CurrentMission")
 MissionStatusLabel = NodePath("MissionStatus")
+MissionResetTimer = NodePath("MissionResetTimer")
+StatusResetTimer = NodePath("StatusResetTimer")
 
 [node name="FPS" type="Label" parent="." unique_id=1229310283]
 layout_mode = 2
@@ -44,6 +46,10 @@ focus_mode = 3
 mouse_default_cursor_shape = 2
 text = "DELETE"
 
+[node name="StatusResetTimer" type="Timer" parent="." unique_id=253100077]
+wait_time = 1.5
+one_shot = true
+
 [node name="Status" type="Label" parent="." unique_id=995359076]
 layout_mode = 2
 autowrap_mode = 2
@@ -52,6 +58,10 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxLine_ac3n4")
+
+[node name="MissionResetTimer" type="Timer" parent="." unique_id=1080104760]
+wait_time = 3.0
+one_shot = true
 
 [node name="CurrentMission" type="Label" parent="." unique_id=2007152265]
 layout_mode = 2

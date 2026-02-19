@@ -12,6 +12,9 @@ public partial class StatusManager : Node
     [Signal]
     public delegate void MissionStatusChangedEventHandler(string status);
 
+    [Signal]
+    public delegate void ResetMissionEventHandler();
+
     protected static StatusManager _instance;
     public static StatusManager Instance { get { return _instance; } }
 

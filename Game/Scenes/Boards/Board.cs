@@ -300,9 +300,9 @@ public partial class Board : Node2D
         Missions = FindChild(nameof(Missions)).GetChildren().OfType<Mission>().ToArray();
 
         string tmp = Regex.Replace(GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
-        MissionSelectMessage = "MISSION_SELECT_" + tmp;
-        MissionSelectionFailedMessage = "MISSION_SELECTION_FAILED_" + tmp;
-        MissionFailedMessage = "MISSION_FAILED_" + tmp;
+        MissionSelectMessage = $"[color=yellow]{Tr("MISSION_SELECT_" + tmp)}[/color]";
+        MissionSelectionFailedMessage = $"[color=red]{Tr("MISSION_SELECTION_FAILED_" + tmp)}[/color]";
+        MissionFailedMessage = $"[color=red]{Tr("MISSION_FAILED_" + tmp)}[/color]";
 
 
 
@@ -346,5 +346,6 @@ public partial class Board : Node2D
         if (CurrentMission == null || !IsMissionActive) return;
         CurrentMission = null;
         IsMissionActive = false;
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.ResetMission);
     }
 }

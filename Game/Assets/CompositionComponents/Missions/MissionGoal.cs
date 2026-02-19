@@ -46,7 +46,6 @@ public partial class MissionGoal : Node
 
     private void Update()
     {
-
         if (!IsActive) return;
         _remains--;
         if (_remains <= 0)

@@ -11,20 +11,28 @@ public partial class StatusBox : VBoxContainer
     [Export]
     Label StatusLabel;
     [Export]
-    Label CurrentMissionLabel; 
+    Label CurrentMissionLabel;
     [Export]
     RichTextLabel MissionStatusLabel;
+    [Export]
+    Timer MissionResetTimer;
+    [Export]
+    Timer StatusResetTimer;
 
     Label BallTimerLabel;
     DateTime GameStart;
     DateTime BallStart;
 
+
     public override void _Ready()
     {
         base._Ready();
+        MissionResetTimer.Connect(Timer.SignalName.Timeout, Callable.From(ResetMission));
+        StatusResetTimer.Connect(Timer.SignalName.Timeout, Callable.From(ResetStatus));
         StatusManager.Instance.Connect(StatusManager.SignalName.StatusChanged, new Callable(this, MethodName.UpdateStatus));
         StatusManager.Instance.Connect(StatusManager.SignalName.MissionChanged, new Callable(this, MethodName.UpdateMissionTitle));
         StatusManager.Instance.Connect(StatusManager.SignalName.MissionStatusChanged, new Callable(this, MethodName.UpdateMissionStatus));
+        StatusManager.Instance.Connect(StatusManager.SignalName.ResetMission, Callable.From(() => MissionResetTimer.Start()));
     }
 
     public override void _Process(double delta)
@@ -73,16 +81,22 @@ public partial class StatusBox : VBoxContainer
 
     public void UpdateStatus(string status)
     {
+        GD.Print("up status");
+        StatusResetTimer.Stop();
         StatusLabel.Text = Tr(status);
+        if (status != "STATUS_PLACEHOLDER")
+            StatusResetTimer.Start();
     }
 
     public void UpdateMissionTitle(string title)
     {
+        MissionResetTimer.Stop();
         CurrentMissionLabel.Text = Tr(title);
     }
 
     public void UpdateMissionStatus(string status)
     {
+        MissionResetTimer.Stop();
         MissionStatusLabel.Text = Tr(status);
     }
 }
