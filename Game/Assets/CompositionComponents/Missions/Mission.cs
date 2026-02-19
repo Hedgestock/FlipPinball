@@ -24,7 +24,7 @@ public partial class Mission : Node
         base._Ready();
         string tmp = Regex.Replace(Name + GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
         MissionName = "MISSION_" + tmp;
-        StatusCompleted = "MISSION_COMPLETED_" + tmp;
+        StatusCompleted = $"[color=green]{Tr("MISSION_COMPLETED_" + tmp)}[/color]";
     }
 
     public MissionGoal[] CurrentGoals
@@ -62,6 +62,7 @@ public partial class Mission : Node
             goal.Connect(MissionGoal.SignalName.Updated, Callable.From(GoalUpdated));
             goal.Connect(MissionGoal.SignalName.Completed, Callable.From(GoalCompleted));
         }
+        StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionChanged, Tr(MissionName) + $" ({CurrentStep + 1}/{Goals.Count})");
         GoalUpdated();
     }
 

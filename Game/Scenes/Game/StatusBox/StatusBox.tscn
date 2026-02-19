@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfsdn5spl1lm1"]
+[gd_scene format=3 uid="uid://dfsdn5spl1lm1"]
 
 [ext_resource type="Script" uid="uid://be1tripj5xybt" path="res://Game/Scenes/Game/StatusBox/StatusBox.cs" id="1_ac3n4"]
 
@@ -6,7 +6,7 @@
 color = Color(0.49803922, 0.49803922, 0.49803922, 1)
 thickness = 6
 
-[node name="StatusBox" type="VBoxContainer" node_paths=PackedStringArray("FPS", "GameTimerLabel", "StatusLabel", "CurrentMissionLabel", "MissionStatusLabel")]
+[node name="StatusBox" type="VBoxContainer" unique_id=1197409020 node_paths=PackedStringArray("FPS", "GameTimerLabel", "StatusLabel", "CurrentMissionLabel", "MissionStatusLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,48 +20,50 @@ StatusLabel = NodePath("Status")
 CurrentMissionLabel = NodePath("CurrentMission")
 MissionStatusLabel = NodePath("MissionStatus")
 
-[node name="FPS" type="Label" parent="."]
+[node name="FPS" type="Label" parent="." unique_id=1229310283]
 layout_mode = 2
 text = "FPS"
 
-[node name="GameTime" type="Label" parent="."]
+[node name="GameTime" type="Label" parent="." unique_id=1456790572]
 layout_mode = 2
 text = "Game time: 00:00"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2033224939]
 layout_mode = 2
 
-[node name="PauseButton" type="Button" parent="HBoxContainer"]
+[node name="PauseButton" type="Button" parent="HBoxContainer" unique_id=1725172907]
 process_mode = 3
 layout_mode = 2
 focus_mode = 3
 mouse_default_cursor_shape = 2
 text = "PAUSE"
 
-[node name="DeleteButton" type="Button" parent="HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="HBoxContainer" unique_id=739825416]
 layout_mode = 2
 focus_mode = 3
 mouse_default_cursor_shape = 2
 text = "DELETE"
 
-[node name="Status" type="Label" parent="."]
+[node name="Status" type="Label" parent="." unique_id=995359076]
 layout_mode = 2
 autowrap_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=222022942]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxLine_ac3n4")
 
-[node name="CurrentMission" type="Label" parent="."]
+[node name="CurrentMission" type="Label" parent="." unique_id=2007152265]
 layout_mode = 2
 autowrap_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="."]
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=243797742]
 layout_mode = 2
 
-[node name="MissionStatus" type="Label" parent="."]
+[node name="MissionStatus" type="RichTextLabel" parent="." unique_id=1458098879]
 layout_mode = 2
+bbcode_enabled = true
+fit_content = true
 autowrap_mode = 2
 
 [connection signal="pressed" from="HBoxContainer/PauseButton" to="." method="Pause"]

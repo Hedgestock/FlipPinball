@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 public partial class StatusBox : VBoxContainer
 {
@@ -12,7 +13,7 @@ public partial class StatusBox : VBoxContainer
     [Export]
     Label CurrentMissionLabel; 
     [Export]
-    Label MissionStatusLabel;
+    RichTextLabel MissionStatusLabel;
 
     Label BallTimerLabel;
     DateTime GameStart;
@@ -65,7 +66,7 @@ public partial class StatusBox : VBoxContainer
     private void Delete()
     {
         InputEventAction deleteEvent = new();
-        deleteEvent.Action = "delete";
+        deleteEvent.Action = "delete_live_balls";
         deleteEvent.Pressed = true;
         Input.ParseInputEvent(deleteEvent);
     }

@@ -47,6 +47,7 @@ public partial class InfoBox : VBoxContainer
     {
         TargetScore.Text = Tr("TARGET_SCORE").Replace("{target_score}", $"{GameManager.TargetScore:N0}").Replace("{current_level}", $"{GameManager.CurrentLevel}");
         Score.Text = Tr("SCORE").Replace("{score}", $"{ScoreManager.ScoreValue:N0}");
+        TotalScore.Text = Tr("TOTAL_SCORE").Replace("{total_score}", $"{ScoreManager.TotalScoreValue:N0}");
     }
 
     void UpdateScore(int currentlyScoring)

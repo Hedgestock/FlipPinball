@@ -12,13 +12,17 @@ public partial class MissionGoal : Node
     int Remains = 1;
     int _remains = 1;
 
-     string StatusRunning;
-     string StatusCompleted;
+    string StatusRunning;
+    string StatusCompleted;
 
 
     public string Status
     {
-        get { return Tr(IsComplete ? StatusCompleted : Tr(StatusRunning).Replace("{remains}", $"{_remains}")); }
+        get
+        {
+            return IsComplete ? $"[color=green]{Tr(StatusCompleted)}[/color]" :
+                StatusRunning.Replace("{remains}", $"{_remains}");
+        }
     }
 
     public bool IsComplete = false;
@@ -28,8 +32,8 @@ public partial class MissionGoal : Node
     {
         base._Ready();
         string tmp = Regex.Replace(Name + GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
-        StatusRunning = "MISSION_GOAL_" + tmp;
-        StatusCompleted = "MISSION_GOAL_COMPLETE_" + tmp;
+        StatusRunning = Tr("MISSION_GOAL_" + tmp);
+        StatusCompleted = Tr("MISSION_GOAL_COMPLETE_" + tmp);
     }
 
 
