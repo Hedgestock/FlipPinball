@@ -1,6 +1,11 @@
-<Project Sdk="Godot.NET.Sdk/4.5.0">
+﻿<Project Sdk="Godot.NET.Sdk/4.6.0">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="Notes.md" />
+    <None Include="README.md" />
+    <None Include="TODO.md" />
+  </ItemGroup>
 </Project>

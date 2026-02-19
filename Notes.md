@@ -5,9 +5,6 @@ Since I'm targetting a 1080px height screen, I'll actually use 5:9 ratio that av
 Defaut values instead of overloading in signals callback
 Extra call args + unbind signal args
 
-MRP process mode of instantiated stuff
-MRP windows scaling
-MRP convert to binary is bigger
 
 # Settings for perfs
 Tick rate
