@@ -14,6 +14,7 @@ public partial class BoardElementsGroup : Node2D
 
     public List<(Node node, OnOffLight light)> Nodes;
 
+    // Looks for all OnOffLights in the same group as itself and adds them to its control flow
     public override void _Ready()
     {
         base._Ready();

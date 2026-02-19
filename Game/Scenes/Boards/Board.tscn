@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dapki6c8w83ig"]
+
+[ext_resource type="Texture2D" uid="uid://b51chf5hdd2h4" path="res://Game/Scenes/Boards/Template.jpg" id="3_5oulv"]
+[ext_resource type="PackedScene" uid="uid://c0b1ipfsklfhf" path="res://Game/Assets/CompositionComponents/Pusher/Pusher.tscn" id="6_ovvhk"]
+[ext_resource type="PackedScene" uid="uid://dlc68ojsii7om" path="res://Game/Assets/BoardElements/TiltLight/TiltLight.tscn" id="60_g4hge"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvo3f"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7qmkm"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0uk8w"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tqedc"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ono0b"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qyk2q"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sobpo"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hjnel"]
+normal = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hhp4"]
+size = Vector2(160, 20)
+
+[node name="Board" type="Node2D" unique_id=1698176559]
+process_mode = 3
+
+[node name="Missions" type="Node" parent="." unique_id=1196548122]
+
+[node name="Goals" type="Node" parent="Missions" unique_id=731894257]
+
+[node name="Background" type="TextureRect" parent="." unique_id=74447209]
+offset_right = 600.0
+offset_bottom = 1080.0
+texture = ExtResource("3_5oulv")
+expand_mode = 1
+
+[node name="TiltPusher" parent="." unique_id=461019102 instance=ExtResource("6_ovvhk")]
+Strength = 70
+
+[node name="TiltLight" parent="TiltPusher" unique_id=993883058 instance=ExtResource("60_g4hge")]
+position = Vector2(180, 741)
+
+[node name="Boundaries" type="Area2D" parent="." unique_id=111419432]
+collision_layer = 0
+collision_mask = 255
+
+[node name="Floor" type="CollisionShape2D" parent="Boundaries" unique_id=1293695870]
+position = Vector2(0, 1085)
+shape = SubResource("WorldBoundaryShape2D_jvo3f")
+
+[node name="WallLeft" type="CollisionShape2D" parent="Boundaries" unique_id=1686384907]
+position = Vector2(-5, 0)
+shape = SubResource("WorldBoundaryShape2D_7qmkm")
+
+[node name="WallRight" type="CollisionShape2D" parent="Boundaries" unique_id=210416932]
+position = Vector2(605, 0)
+shape = SubResource("WorldBoundaryShape2D_0uk8w")
+
+[node name="Ceiling" type="CollisionShape2D" parent="Boundaries" unique_id=335083460]
+position = Vector2(0, -5)
+shape = SubResource("WorldBoundaryShape2D_tqedc")
+
+[node name="BoundariesWall" type="StaticBody2D" parent="." unique_id=1450349199 groups=["Walls"]]
+collision_layer = 255
+collision_mask = 0
+
+[node name="Floor" type="CollisionShape2D" parent="BoundariesWall" unique_id=1745841452]
+position = Vector2(0, 1080)
+shape = SubResource("WorldBoundaryShape2D_ono0b")
+
+[node name="WallLeft" type="CollisionShape2D" parent="BoundariesWall" unique_id=1218193461]
+shape = SubResource("WorldBoundaryShape2D_qyk2q")
+
+[node name="WallRight" type="CollisionShape2D" parent="BoundariesWall" unique_id=630325357]
+position = Vector2(600, 0)
+shape = SubResource("WorldBoundaryShape2D_sobpo")
+
+[node name="Ceiling" type="CollisionShape2D" parent="BoundariesWall" unique_id=1686733389]
+shape = SubResource("WorldBoundaryShape2D_hjnel")
+
+[node name="Drain" type="Area2D" parent="." unique_id=1910152034]
+z_index = 10
+position = Vector2(308, 1070)
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drain" unique_id=807120165]
+shape = SubResource("RectangleShape2D_0hhp4")
+
+[node name="Tutorial" type="CanvasLayer" parent="." unique_id=1944541161]
+visible = false
+
+[editable path="TiltPusher/TiltLight"]

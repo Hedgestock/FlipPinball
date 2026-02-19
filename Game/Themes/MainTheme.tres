@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cw3uspn2sthsy"]
+[gd_resource type="Theme" format=3 uid="uid://cw3uspn2sthsy"]
 
 [ext_resource type="Texture2D" uid="uid://b3yvuvme4b57v" path="res://Game/Assets/BoardElements/TiltLight/TiltLightOn.png" id="1_qo6mh"]
 [ext_resource type="Texture2D" uid="uid://cbmku5pqhdm4s" path="res://Game/Assets/BoardElements/TiltLight/TiltLightOff.png" id="2_a6qho"]

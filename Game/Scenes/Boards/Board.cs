@@ -42,8 +42,11 @@ public partial class Board : Node2D
         SaveBallLight = (OnOffLight)FindChild(nameof(SaveBallLight));
         ReplayBallLight = (OnOffLight)FindChild(nameof(ReplayBallLight));
         SkillShot = (SkillShot)FindChild(nameof(SkillShot));
-
         TiltPusher = (Pusher)FindChild(nameof(TiltPusher));
+        TiltLight = TiltPusher.GetNode<OnOffLight>("TiltLight/OnOffLight");
+        Drain = (Area2D)FindChild(nameof(Drain));
+
+        Drain.Connect(Area2D.SignalName.BodyEntered, Callable.From((Node2D body) => DespawnBall(body, DespawnType.Drain)));
 
         InitMissions();
 
@@ -239,6 +242,8 @@ public partial class Board : Node2D
         }
     }
 
+    Area2D Drain;
+
     void DespawnBall(Node2D body, DespawnType type)
     {
         if (body is Ball ball)
@@ -263,6 +268,7 @@ public partial class Board : Node2D
     }
 
     Pusher TiltPusher;
+    OnOffLight TiltLight;
 
     void Tilt()
     {
@@ -279,6 +285,7 @@ public partial class Board : Node2D
 
         LiveBalls.ForEach(b => TiltPusher.Push(b, tiltDirection.Rotated(tiltAngle)));
 
+        TiltLight.TurnBlinking();
         EmitSignalBoardTilted();
     }
 

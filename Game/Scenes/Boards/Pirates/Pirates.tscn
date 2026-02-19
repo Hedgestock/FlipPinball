@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d0tjo0826pxr"]
+
+[ext_resource type="PackedScene" uid="uid://dapki6c8w83ig" path="res://Game/Scenes/Boards/Board.tscn" id="1_y5ayg"]
+[ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="2_fqntx"]
+
+[node name="Pirates" unique_id=1698176559 instance=ExtResource("1_y5ayg")]
+
+[node name="Layer1" type="Node2D" parent="." index="6" unique_id=132078583]
+
+[node name="PaddleLeftMain" parent="Layer1" index="0" unique_id=837279676 instance=ExtResource("2_fqntx")]
+position = Vector2(195, 946)
+rotation = 0.6457718
+scale = Vector2(-1, 1)
+
+[node name="PaddleRightMain" parent="Layer1" index="1" unique_id=762462671 instance=ExtResource("2_fqntx")]
+position = Vector2(365, 948)
+rotation = -0.6457718
