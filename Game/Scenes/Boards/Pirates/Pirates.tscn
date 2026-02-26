@@ -3,8 +3,12 @@
 [ext_resource type="PackedScene" path="res://Game/Scenes/Boards/Board.tscn" id="1_y5ayg"]
 [ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="2_5syx8"]
 [ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="2_fqntx"]
+[ext_resource type="Script" uid="uid://bp243rd4svfcy" path="res://Game/Scenes/Boards/Pirates/Pirates.cs" id="2_y8kjo"]
 
-[node name="Pirates" unique_id=1698176559 instance=ExtResource("1_y5ayg")]
+[node name="Pirates" unique_id=1698176559 node_paths=PackedStringArray("PaddlesLeft", "PaddlesRight") instance=ExtResource("1_y5ayg")]
+script = ExtResource("2_y8kjo")
+PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
+PaddlesRight = [NodePath("Layer1/PaddleRightMain")]
 
 [node name="Drain" parent="." index="5" unique_id=1910152034]
 position = Vector2(280, 1070)

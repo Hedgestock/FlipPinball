@@ -11,11 +11,13 @@
 [sub_resource type="Resource" id="Resource_d6nr8"]
 script = ExtResource("3_sbmws")
 Item = ExtResource("2_d6nr8")
+Weight = 1
 metadata/_custom_type_script = "uid://58mimgs1t8y4"
 
 [sub_resource type="Resource" id="Resource_sbmws"]
 script = ExtResource("3_sbmws")
 Item = ExtResource("4_aoxvl")
+Weight = 0
 metadata/_custom_type_script = "uid://58mimgs1t8y4"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7y7i"]
