@@ -1,30 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://y7yca16spn04"]
+[gd_scene format=3 uid="uid://y7yca16spn04"]
 
 [ext_resource type="PackedScene" uid="uid://cvq3tam8wcwug" path="res://Game/UI/BackButton/BackButton.tscn" id="1_s0rnh"]
-[ext_resource type="PackedScene" uid="uid://ck4c7k26wfpv6" path="res://Game/UI/VolumeControl/VolumeControl.tscn" id="2_s0rnh"]
+[ext_resource type="Script" uid="uid://bexbntpjwpx0k" path="res://addons/VolumeControlCSharp/VolumeControl.cs" id="2_s0rnh"]
 
-[node name="Settings" type="CanvasLayer"]
+[node name="Settings" type="CanvasLayer" unique_id=1744977053]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=309341276]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1528219220]
 layout_mode = 2
 
-[node name="BackButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_s0rnh")]
+[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=270141619 instance=ExtResource("1_s0rnh")]
 layout_mode = 2
 
-[node name="MasterVolumeControl" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_s0rnh")]
+[node name="VolumeControl" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1991982894]
 layout_mode = 2
+script = ExtResource("2_s0rnh")
+metadata/_custom_type_script = "uid://bexbntpjwpx0k"
 
-[node name="MusicVolumeControl" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_s0rnh")]
+[node name="VolumeControl2" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=163794848]
 layout_mode = 2
+script = ExtResource("2_s0rnh")
 Bus = 1
+metadata/_custom_type_script = "uid://bexbntpjwpx0k"
 
-[node name="SFXVolumeControl" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_s0rnh")]
+[node name="VolumeControl3" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1473413189]
 layout_mode = 2
+script = ExtResource("2_s0rnh")
 Bus = 2
+metadata/_custom_type_script = "uid://bexbntpjwpx0k"

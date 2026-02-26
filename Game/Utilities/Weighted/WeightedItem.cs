@@ -18,7 +18,7 @@ namespace WaffleStock
 
         public static WeightedItem<ItemType> GetFrom(IEnumerable<WeightedItem<ItemType>> list)
         {
-            if (list.Count() == 0) throw new ArgumentException("Weighted list cannot be empty", nameof(list));
+            if (!list.Any()) throw new ArgumentException("Weighted list cannot be empty", nameof(list));
 
             uint index = GD.Randi() % GetTotalWeight(list);
 
