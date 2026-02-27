@@ -30,7 +30,7 @@ public partial class AudioManager : Node
         if (_paused != GetTree().Paused)
         {
             _paused = GetTree().Paused;
-            SetMusicVolume(_paused ? .5f : 1);
+            SetPlayerVolume(_instance.Music, _paused ? .5f : 1);
         }
     }
 
@@ -61,11 +61,9 @@ public partial class AudioManager : Node
             }));
     }
 
-    private Tween _musicVolumeTween;
-
-    public static void SetMusicVolume(float volume)
+    public static void SetPlayerVolume(AudioStreamPlayer player, float volume)
     {
         Tween tween = _instance.CreateTween();
-        tween.TweenProperty(_instance.Music, "volume_linear", volume, .5f);
+        tween.TweenProperty(player, "volume_linear", volume, .5f);
     }
 }
