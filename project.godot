@@ -20,7 +20,7 @@ run/main_scene="uid://b8iu65a2xswru"
 config/custom_user_dir_name="Wafflestock/FlipPinball"
 config/features=PackedStringArray("4.6", "C#", "Mobile")
 boot_splash/bg_color=Color(0.0980392, 0.27451, 0.407843, 1)
-boot_splash/image="uid://ds2atggfh18jt"
+boot_splash/image="uid://bmg835jwf4615"
 
 [audio]
 
