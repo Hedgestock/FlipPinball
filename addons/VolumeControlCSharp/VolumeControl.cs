@@ -12,7 +12,6 @@ namespace Hedgestock
         enum AudioBus { }
 
         int _bus;
-
         [Export]
         AudioBus Bus
         {
@@ -50,27 +49,31 @@ namespace Hedgestock
         public override void _Ready()
         {
             base._Ready();
-
-            MuteCheckBox = new()
+            if (MuteCheckBox == null)
             {
-                ButtonPressed = !AudioServer.IsBusMute(_bus),
-                Text = AudioServer.GetBusName(_bus) + " Volume",
-                Flat = true,
-                Name = "MuteCheckBox",
-            };
-            MuteCheckBox.Connect(CheckBox.SignalName.Toggled, Callable.From<bool>(MuteVolume));
-            AddChild(MuteCheckBox, false, InternalMode.Front);
+                MuteCheckBox = new()
+                {
+                    ButtonPressed = !AudioServer.IsBusMute(_bus),
+                    Text = AudioServer.GetBusName(_bus) + " Volume",
+                    Flat = true,
+                    Name = "MuteCheckBox",
+                };
+                MuteCheckBox.Connect(CheckBox.SignalName.Toggled, Callable.From<bool>(MuteVolume));
+                AddChild(MuteCheckBox, false, InternalMode.Front);
+            }
 
-            VolumeSlider = new()
+            if (VolumeSlider == null)
             {
-                MaxValue = 1,
-                Step = 0.01f,
-                Value = AudioServer.GetBusVolumeLinear(_bus),
-                Name = "VolumeSlider",
-            };
-            VolumeSlider.Connect(HSlider.SignalName.ValueChanged, Callable.From<float>(VolumeChanged));
-            AddChild(VolumeSlider, false, InternalMode.Front);
-
+                VolumeSlider = new()
+                {
+                    MaxValue = 1,
+                    Step = 0.01f,
+                    Value = AudioServer.GetBusVolumeLinear(_bus),
+                    Name = "VolumeSlider",
+                };
+                VolumeSlider.Connect(HSlider.SignalName.ValueChanged, Callable.From<float>(VolumeChanged));
+                AddChild(VolumeSlider, false, InternalMode.Front);
+            }
         }
 
         private void MuteVolume(bool on)
