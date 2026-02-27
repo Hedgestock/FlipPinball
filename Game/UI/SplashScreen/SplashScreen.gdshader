@@ -14,5 +14,5 @@ float compare_rbg_values(vec3 orig_c, vec3 transparent_c) {
 void fragment() {
 	vec4 orig_color = texture(TEXTURE,UV);
 	float comparison = compare_rbg_values(orig_color.rgb, transparent_color.rgb);
-	COLOR = vec4(orig_color.rgb,comparison);
+	COLOR = vec4(orig_color.rgb,comparison * orig_color.a);
 }
