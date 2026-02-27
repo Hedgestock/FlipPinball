@@ -12,7 +12,7 @@ public partial class SplashScreen : ColorRect
 
     public override void _Ready()
     {
-        Visible = SceneManager.PrevScene == "";
+        Visible = string.IsNullOrWhiteSpace(SceneManager.PrevScene);
 
         if (!Visible) return;
 
