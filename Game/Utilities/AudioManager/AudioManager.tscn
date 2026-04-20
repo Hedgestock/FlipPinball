@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://dj5b8yamc1dfe" path="res://Game/Utilities/AudioManager/AudioManager.cs" id="1_6lyha"]
 
 [node name="AudioManager" type="Node" unique_id=1587495702 node_paths=PackedStringArray("Music")]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_6lyha")
 Music = NodePath("Music")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=217354329]
+process_mode = 3
 bus = &"Music"

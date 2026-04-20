@@ -16,28 +16,18 @@ public partial class AudioManager : Node
         _instance = this;
     }
 
-    public override void _Ready()
+    public override void _Notification(int what)
     {
-        base._Ready();
-        _paused = false;
-    }
-
-    private bool _paused;
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        if (_paused != GetTree().Paused)
-        {
-            _paused = GetTree().Paused;
-            SetPlayerVolume(_instance.Music, _paused ? .5f : 1);
-        }
+        if (what == NotificationPaused)
+            SetPlayerVolume(_instance.Music, .5f);
+        else if (what == NotificationUnpaused)
+            SetPlayerVolume(_instance.Music, 1f);
     }
 
     public static void PlayMusic(AudioStream music)
     {
         if (music == _instance.Music.Stream) return;
-        Tween tween = _instance.CreateTween();
+        Tween tween = _instance.CreateTween().SetPauseMode(Tween.TweenPauseMode.Process);
         if (_instance.Music.Stream != null)
             tween.TweenProperty(_instance.Music, "volume_linear", 0, .5f);
         tween.TweenCallback(
@@ -51,7 +41,7 @@ public partial class AudioManager : Node
 
     public static void StopMusic()
     {
-        Tween tween = _instance.CreateTween();
+        Tween tween = _instance.CreateTween().SetPauseMode(Tween.TweenPauseMode.Process);
         tween.TweenProperty(_instance.Music, "volume_linear", 0, .5f);
         tween.TweenCallback(
             Callable.From(() =>
@@ -63,7 +53,7 @@ public partial class AudioManager : Node
 
     public static void SetPlayerVolume(AudioStreamPlayer player, float volume)
     {
-        Tween tween = _instance.CreateTween();
+        Tween tween = _instance.CreateTween().SetPauseMode(Tween.TweenPauseMode.Process);
         tween.TweenProperty(player, "volume_linear", volume, .5f);
     }
 }
