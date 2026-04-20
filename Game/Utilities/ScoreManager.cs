@@ -19,8 +19,6 @@ public partial class ScoreManager : Node
     public static long ScoreValue { get; set; }
     public static long TotalScoreValue { get; set; }
 
-    public static Func<int, int> BoardScore = Score;
-
     public static int Score(int score)
     {
         ScoreValue += score;

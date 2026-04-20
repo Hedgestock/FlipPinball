@@ -66,7 +66,7 @@ public partial class Scorer : Node2D
     {
         if (score == 0) return;
 
-        int actualScore = ScoreManager.BoardScore(score);
+        int actualScore = GameManager.CurrentBoard.Score(score);
 
         if (actualScore == 0) return;
 

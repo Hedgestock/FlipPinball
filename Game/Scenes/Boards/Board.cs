@@ -35,8 +35,6 @@ public partial class Board : Node2D
     {
         base._Ready();
 
-        ScoreManager.BoardScore = Score;
-
         Tutorial = (CanvasLayer)FindChild(nameof(Tutorial));
         Plunger = (Plunger)FindChild(nameof(Plunger));
         SaveBallLight = (OnOffLight)FindChild(nameof(SaveBallLight));
@@ -145,7 +143,7 @@ public partial class Board : Node2D
             }
         }
     }
-    protected virtual int Score(int score)
+    public virtual int Score(int score)
     {
         return ScoreManager.Score(score);
     }

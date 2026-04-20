@@ -17,7 +17,7 @@ public partial class TestLab : Board
         Lab.RotateStatus(left ? 1 : -1);
     }
 
-    protected override int Score(int score)
+    public override int Score(int score)
     {
         return ScoreManager.Score(score * BoardMult);
     }

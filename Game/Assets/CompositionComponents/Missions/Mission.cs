@@ -84,7 +84,7 @@ public partial class Mission : Node
             if (CurrentStep + 1 >= Goals.Count)
             {
                 StatusManager.Instance.EmitSignal(StatusManager.SignalName.MissionStatusChanged, StatusCompleted);
-                ScoreManager.BoardScore(CompletionValue);
+                GameManager.CurrentBoard.Score(CompletionValue);
                 EmitSignalCompleted();
             }
             else
