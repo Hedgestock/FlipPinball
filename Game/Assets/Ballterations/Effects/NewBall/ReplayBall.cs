@@ -15,7 +15,8 @@ public partial class ReplayBall : MetaEffect
 
     public override void Activate()
     {
-        GameManager.AddExtraBall(GameManager.CurrentBoard.LoadedBall);
+        var ball = GameManager.CurrentBoard.LoadedBall ?? Ball.GetFreshBall();
+        GameManager.AddExtraBall(ball);
     }
 
     public override Effect Refine(Effect minimum, Effect maximum)

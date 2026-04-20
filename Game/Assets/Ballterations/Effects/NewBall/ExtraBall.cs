@@ -15,7 +15,8 @@ public partial class ExtraBall : MetaEffect
 
     public override void Activate()
     {
-        GameManager.AddExtraBall(GameManager.CurrentBoard.LoadedBall, true);
+        var ball = GameManager.CurrentBoard.LoadedBall ?? Ball.GetFreshBall();
+        GameManager.AddExtraBall(ball, true);
     }
 
     public override Effect Refine(Effect minimum, Effect maximum)
