@@ -36,7 +36,7 @@ public partial class ScoreModifier : Effect
             if (IsSuper)
                 rarity += 0.3f;
 
-            if (GetGroups().Contains("Global"))
+            if (GetGroups().Contains(Groups.Global))
                 rarity++;
             else if (Restrictive)
                 rarity -= Math.Max(GetGroups().Count / (ScoringGroups.Length / 2), 1f);
@@ -62,7 +62,7 @@ public partial class ScoreModifier : Effect
     public float Value = 1;
 
 
-    static StringName[] ScoringGroups = ["Bumpers", "Global", "Rollovers", "Slingshots", "Spinners", "Spitters", "Targets", "Shape Round", "Shape Square"];
+    static readonly StringName[] ScoringGroups = [Groups.Bumpers, Groups.Global, Groups.Rollovers, Groups.Slingshots, Groups.Spinners, Groups.Spitters, Groups.Targets, Groups.ShapeRound, Groups.ShapeSquare];
 
     protected const int minAdderValue = 100;
     protected const int maxAdderValue = 2000;
@@ -91,13 +91,11 @@ public partial class ScoreModifier : Effect
             sm.AddToGroup(ScoringGroups[GD.RandRange(0, ScoringGroups.Length - 1)]);
 
         // Maybe optimise that at some point, not critical though
-        if (sm.GetGroups().Contains("Global"))
+        if (sm.GetGroups().Contains(Groups.Global))
         {
             foreach (var group in sm.GetGroups())
-            {
                 sm.RemoveFromGroup(group);
-            }
-            sm.AddToGroup("Global");
+            sm.AddToGroup(Groups.Global);
         }
 
         //if (sm.GetGroups().Count > 1)

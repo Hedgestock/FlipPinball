@@ -26,7 +26,7 @@ public partial class Scorer : Node2D
     {
         var groups = modifier.GetGroups();
 
-        if (groups.Contains("Global")) return true;
+        if (groups.Contains(Groups.Global)) return true;
 
         var intersection = groups.Intersect(GetGroups());
         if (modifier.Restrictive)
