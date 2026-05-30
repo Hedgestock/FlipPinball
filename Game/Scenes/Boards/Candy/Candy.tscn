@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://bev0vseifse7t"]
+
+[ext_resource type="PackedScene" path="res://Game/Scenes/Boards/Board.tscn" id="1_b3ukn"]
+[ext_resource type="Script" uid="uid://dvtbb8grmrcue" path="res://Game/Scenes/Boards/Candy/Candy.cs" id="2_qgaiv"]
+[ext_resource type="Texture2D" uid="uid://dgw6p1xftx67n" path="res://Game/Scenes/Boards/Candy/Skin/Candy.jpg" id="3_e15pq"]
+[ext_resource type="PackedScene" uid="uid://c7wrp1hb3227q" path="res://Game/Assets/BoardElements/Plunger/Plunger.tscn" id="4_uentc"]
+[ext_resource type="PackedScene" uid="uid://cmtif368xe830" path="res://Game/Assets/BoardElements/Paddle/Paddle.tscn" id="5_y5mqj"]
+[ext_resource type="PackedScene" uid="uid://ckk4x5dhl1c0w" path="res://Game/Assets/BoardElements/Scorers/Collidables/Bumper/Bumper.tscn" id="6_qgaiv"]
+[ext_resource type="PackedScene" uid="uid://bxgbd1q0e6fpk" path="res://Game/Assets/BoardElements/KickBack/KickBack.tscn" id="7_e15pq"]
+[ext_resource type="PackedScene" uid="uid://cl5k1huk7mxl1" path="res://Game/Assets/BoardElements/Scorers/RolloverSwitch/RolloverSwitch.tscn" id="7_swb22"]
+[ext_resource type="PackedScene" uid="uid://clvc7nom5cigw" path="res://Game/Assets/BoardElements/Scorers/Spinner/Spinner.tscn" id="8_y5mqj"]
+[ext_resource type="PackedScene" uid="uid://ccj786gqjcjn0" path="res://Game/Assets/BoardElements/LayerChange/LayerChange.tscn" id="9_swb22"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e15pq"]
+b = Vector2(0, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr3kt"]
+size = Vector2(90, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpbqv"]
+size = Vector2(100, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llnw3"]
+size = Vector2(50, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akumc"]
+size = Vector2(55, 20)
+
+[node name="Candy" unique_id=1698176559 node_paths=PackedStringArray("PaddlesLeft", "PaddlesRight") instance=ExtResource("1_b3ukn")]
+script = ExtResource("2_qgaiv")
+PaddlesLeft = [NodePath("Layer1/PaddleLeftMain")]
+PaddlesRight = [NodePath("Layer1/PaddleRightMain"), NodePath("Layer1/PaddleRightSecondary")]
+
+[node name="Background" parent="." index="1" unique_id=74447209]
+texture = ExtResource("3_e15pq")
+
+[node name="Drain" parent="." index="5" unique_id=1910152034]
+position = Vector2(280, 1070)
+
+[node name="Layer1" type="Node2D" parent="." index="6" unique_id=132078583]
+
+[node name="Walls" type="StaticBody2D" parent="Layer1" index="0" unique_id=560860065]
+collision_layer = 2
+collision_mask = 0
+
+[node name="DownLeftCorner" type="CollisionPolygon2D" parent="Layer1/Walls" index="0" unique_id=1895765263]
+polygon = PackedVector2Array(204, 1080, 0, 1080, 0, 850, 20, 850, 20, 950, 55, 950, 55, 900, 204, 1010)
+
+[node name="DownRightCorner" type="CollisionPolygon2D" parent="Layer1/Walls" index="1" unique_id=246419549]
+polygon = PackedVector2Array(357, 1010, 490, 900, 490, 950, 525, 950, 525, 713, 520, 691, 510, 678, 497, 668, 475, 663, 468, 663, 468, 600, 482.97412, 574.29785, 515, 513, 524, 483, 531, 444, 534, 416, 534, 360, 523, 283, 506, 227, 526, 265, 535, 289, 540, 314, 545, 345, 548, 386, 548, 998, 600, 998, 600, 1080, 357, 1080)
+
+[node name="TopRightCorner" type="CollisionPolygon2D" parent="Layer1/Walls" index="2" unique_id=855764331]
+polygon = PackedVector2Array(582, 375, 582, 1004, 600, 1004, 600, 0, 313, 0, 313, 81, 348, 85, 392, 96, 421, 108, 455, 128, 486, 151, 509, 174, 534, 205, 549, 231, 565, 266, 575, 297, 580, 328)
+
+[node name="TopLeftCorner" type="CollisionPolygon2D" parent="Layer1/Walls" index="3" unique_id=1972919513]
+polygon = PackedVector2Array(0, 0, 313, 0, 313, 81, 272, 81, 221, 92, 180, 107, 144, 127, 117, 149, 87, 179, 58, 218, 38, 258, 25, 294, 17, 341, 16, 381, 19, 428, 29, 466, 45, 524, 63, 562, 82, 599, 82, 663, 70, 663, 48, 668, 35, 678, 25, 691, 20, 713, 20, 866, 0, 866)
+
+[node name="UnderLeftRamp" type="CollisionPolygon2D" parent="Layer1/Walls" index="4" unique_id=1293569897]
+polygon = PackedVector2Array(139, 178, 124, 214, 115, 252, 113, 289, 116, 326, 129, 375, 90, 330, 85, 410, 98, 422, 125, 445, 144, 472, 176, 529, 188, 546, 152, 575, 133, 548, 111, 515, 97, 487, 83, 438, 74, 388, 72, 342, 77, 294, 87, 249, 103, 215)
+
+[node name="TopLeftTeleport" type="CollisionPolygon2D" parent="Layer1/Walls" index="5" unique_id=1441770037]
+polygon = PackedVector2Array(257, 125, 220, 140, 199, 156, 184, 176, 174, 199, 168, 224, 164, 262, 164, 295, 168, 323, 178, 379, 190, 376, 179, 321, 175, 282, 183, 243, 190, 236, 230, 237, 239, 248, 242, 266, 241, 319, 238, 345, 249, 355, 277, 355, 279, 338, 263, 304, 254, 269, 249, 219, 250, 186, 257, 176)
+
+[node name="UnderRightRamp" type="CollisionPolygon2D" parent="Layer1/Walls" index="6" unique_id=864928531]
+polygon = PackedVector2Array(389, 136, 389, 189, 418, 204, 426, 215, 430, 232, 429, 252, 426, 279, 417, 307, 396, 351, 362, 416, 374, 429, 412, 359, 433, 306, 469, 337, 446, 380, 401, 468, 410, 474, 456, 382, 473.88916, 392.88904, 479, 396, 476, 423, 469, 451, 450, 500, 447, 513, 449, 528, 476, 467, 491, 403, 491, 351, 486, 304, 470, 242, 449, 193, 422, 160)
+
+[node name="AboveLeftPaddle" type="CollisionPolygon2D" parent="Layer1/Walls" index="7" unique_id=918631978]
+polygon = PackedVector2Array(200, 940, 75, 852, 75, 725, 65, 720, 55, 725, 55, 860, 194, 955)
+
+[node name="AboveRightPaddle" type="CollisionPolygon2D" parent="Layer1/Walls" index="8" unique_id=145738927]
+polygon = PackedVector2Array(360, 940, 361, 958, 490, 860, 490, 725, 480, 720, 470, 725, 470, 854)
+
+[node name="LeftSplitterEntryLane" type="CollisionShape2D" parent="Layer1/Walls" index="9" unique_id=2102230205]
+position = Vector2(301, 123)
+shape = SubResource("SegmentShape2D_e15pq")
+
+[node name="Line2D" type="Line2D" parent="Layer1/Walls/LeftSplitterEntryLane" index="0" unique_id=1009049394]
+points = PackedVector2Array(0, 0, 0, 50)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RightSplitterEntryLane" type="CollisionShape2D" parent="Layer1/Walls" index="10" unique_id=564558212]
+position = Vector2(345, 131)
+shape = SubResource("SegmentShape2D_e15pq")
+
+[node name="Line2D" type="Line2D" parent="Layer1/Walls/RightSplitterEntryLane" index="0" unique_id=1221013870]
+points = PackedVector2Array(0, 0, 0, 50)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Layer1/Walls" index="11" unique_id=224113940]
+position = Vector2(516, 214)
+rotation = -1.7859181
+polygon = PackedVector2Array(-10.565674, -12.544556, -68.90381, -7.890503, -77.32712, 2.552063, 4.9501953, 19.506317, 40.572296, 1.7000122, 67.95187, -15.860107, 97.0392, -41.23587, 70.72693, -28.560486, 24.02182, -16.246613)
+one_way_collision = true
+
+[node name="Plunger" parent="Layer1" index="1" unique_id=1583892218 instance=ExtResource("4_uentc")]
+position = Vector2(565, 965)
+
+[node name="PaddleLeftMain" parent="Layer1" index="2" unique_id=837279676 instance=ExtResource("5_y5mqj")]
+position = Vector2(195, 946)
+rotation = 0.6457718
+scale = Vector2(-1, 1)
+
+[node name="PaddleRightMain" parent="Layer1" index="3" unique_id=762462671 instance=ExtResource("5_y5mqj")]
+position = Vector2(365, 946)
+rotation = -0.6457718
+
+[node name="PaddleRightSecondary" parent="Layer1" index="4" unique_id=462474668 instance=ExtResource("5_y5mqj")]
+position = Vector2(472.99997, 603)
+rotation = -1.0471976
+scale = Vector2(0.7, 0.7)
+RotationSpeed = 40
+
+[node name="Bumper" parent="Layer1" index="5" unique_id=2016702213 instance=ExtResource("6_qgaiv")]
+position = Vector2(301, 285)
+
+[node name="Bumper2" parent="Layer1" index="6" unique_id=1662605582 instance=ExtResource("6_qgaiv")]
+position = Vector2(367, 305)
+
+[node name="Bumper3" parent="Layer1" index="7" unique_id=1002814263 instance=ExtResource("6_qgaiv")]
+position = Vector2(351, 237)
+
+[node name="RolloverSwitch" parent="Layer1" index="8" unique_id=297201780 instance=ExtResource("7_swb22")]
+position = Vector2(279, 152)
+
+[node name="RolloverSwitch2" parent="Layer1" index="9" unique_id=342501768 instance=ExtResource("7_swb22")]
+position = Vector2(323, 153)
+
+[node name="RolloverSwitch3" parent="Layer1" index="10" unique_id=1856573238 instance=ExtResource("7_swb22")]
+position = Vector2(367, 160)
+
+[node name="LeftKickBack" parent="Layer1" index="11" unique_id=1370989528 instance=ExtResource("7_e15pq")]
+position = Vector2(36, 918)
+
+[node name="OneWayGateBlocking" parent="Layer1/LeftKickBack" index="0" unique_id=1852091641]
+position = Vector2(-32.000004, -54)
+rotation = 0.6370452
+
+[node name="OneWayGateSaving" parent="Layer1/LeftKickBack" index="1" unique_id=1055444600]
+position = Vector2(20.5, -13)
+rotation = -1.5707964
+
+[node name="RightKickBack" parent="Layer1" index="12" unique_id=128695900 instance=ExtResource("7_e15pq")]
+position = Vector2(508, 918)
+
+[node name="OneWayGateBlocking" parent="Layer1/RightKickBack" index="0" unique_id=1852091641]
+position = Vector2(-29, -7)
+rotation = -0.6894051
+
+[node name="OneWayGateSaving" parent="Layer1/RightKickBack" index="1" unique_id=1055444600]
+position = Vector2(-19.5, -74)
+rotation = 1.5707964
+
+[node name="Spinner" parent="Layer1" index="13" unique_id=1952937375 instance=ExtResource("8_y5mqj")]
+position = Vector2(513, 352)
+scale = Vector2(0.815, 0.815)
+
+[node name="LayerChangeLeft" parent="." index="7" unique_id=1706213845 instance=ExtResource("9_swb22")]
+z_index = 11
+position = Vector2(121, 415)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" parent="LayerChangeLeft/Gate2" index="0"]
+shape = SubResource("RectangleShape2D_sr3kt")
+
+[node name="CollisionShape2D" parent="LayerChangeLeft/Gate1" index="0"]
+shape = SubResource("RectangleShape2D_fpbqv")
+
+[node name="LayerChangeRight" parent="." index="8" unique_id=177954239 instance=ExtResource("9_swb22")]
+position = Vector2(412.99997, 395)
+rotation = 0.52776515
+
+[node name="CollisionShape2D" parent="LayerChangeRight/Gate2" index="0"]
+shape = SubResource("RectangleShape2D_llnw3")
+
+[node name="CollisionShape2D" parent="LayerChangeRight/Gate1" index="0"]
+shape = SubResource("RectangleShape2D_akumc")
+
+[node name="Layer2" type="Node2D" parent="." index="9" unique_id=934739564]
+
+[node name="Walls" type="StaticBody2D" parent="Layer2" index="0" unique_id=484837212]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Outside" type="CollisionPolygon2D" parent="Layer2/Walls" index="0" unique_id=1207294108]
+polygon = PackedVector2Array(125, 445, 125, 467, 0, 467, 0, 0, 600, 0, 600, 381, 456, 382, 410, 474, 401, 468, 446, 380, 476, 324, 505, 258, 521, 220, 532, 185, 540, 146, 496, 138, 489, 174, 471, 228, 466, 192, 452, 147, 438, 117, 417, 88, 387, 60, 348, 43, 310, 34, 262, 32, 210, 38, 166, 49, 123, 66, 93, 84, 66, 107, 48, 133, 34, 168, 25, 198, 24, 224, 25, 251, 28, 272, 32, 299, 36, 319, 47, 349, 68, 387, 83, 408, 98, 422)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer2/Walls" index="1" unique_id=445233936]
+polygon = PackedVector2Array(129, 375, 90, 330, 81, 311, 73, 279, 70, 246, 71, 211, 80, 175, 97, 146, 115, 127, 138, 110, 167, 94, 193, 83, 230, 72, 258, 68, 281, 69, 302, 73, 326, 81, 346, 90, 367, 104, 387, 123, 405, 147, 417, 176, 425, 205, 429, 234, 432, 267, 431, 304, 424, 328, 412, 359, 374, 429, 362, 416, 116, 326)
+
+[editable path="TiltPusher/TiltLight"]
+[editable path="Layer1/LeftKickBack"]
+[editable path="Layer1/RightKickBack"]
+[editable path="LayerChangeLeft"]
+[editable path="LayerChangeRight"]

@@ -295,7 +295,8 @@ public partial class Board : Node2D
 
     void InitMissions()
     {
-        Missions = FindChild(nameof(Missions)).GetChildren().OfType<Mission>().ToArray();
+        Missions = FindChild(nameof(Missions))?.GetChildren().OfType<Mission>().ToArray();
+        if (Missions.Length == 0) return;
 
         string tmp = Regex.Replace(GameManager.CurrentBoard.Name, "(?<!^)([A-Z])", "_$1").ToUpperInvariant();
         MissionSelectMessage = $"[color=yellow]{Tr("MISSION_SELECT_" + tmp)}[/color]";

@@ -27,6 +27,7 @@ public partial class BallViewer : TextureRect
             value.GlobalPosition = Vector2.One * 12;
             SubViewport.AddChild(value);
 
+            Tooltip?.QueueFree();
             Tooltip = GD.Load<PackedScene>("res://Game/UI/BallViewer/BallTooltip.tscn").Instantiate<BallTooltip>();
 
             ViewportTexture ballMirror = new();

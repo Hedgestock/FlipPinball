@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxgbd1q0e6fpk"]
+[gd_scene format=3 uid="uid://bxgbd1q0e6fpk"]
 
 [ext_resource type="Script" uid="uid://sm032pmauw0c" path="res://Game/Assets/BoardElements/KickBack/KickBack.cs" id="1_2hlfo"]
 [ext_resource type="AudioStream" uid="uid://cj07vcni84f8p" path="res://Game/Assets/BoardElements/KickBack/Collision.wav" id="2_ji2d3"]
@@ -14,63 +14,63 @@ b = Vector2(67, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahhcf"]
 size = Vector2(40, 3)
 
-[node name="KickBack" type="Node2D" node_paths=PackedStringArray("DetectionZone", "Delay") groups=["KickBacks"]]
+[node name="KickBack" type="Node2D" unique_id=959487768 node_paths=PackedStringArray("DetectionZone", "Delay") groups=["KickBacks"]]
 script = ExtResource("1_2hlfo")
 DetectionZone = NodePath("Area2D")
 Delay = NodePath("Timer")
 
-[node name="OneWayGateBlocking" type="StaticBody2D" parent="."]
+[node name="OneWayGateBlocking" type="StaticBody2D" parent="." unique_id=1852091641]
 z_index = 5
 position = Vector2(-26, 0)
 collision_layer = 2
 collision_mask = 0
 
-[node name="Line2D" type="Line2D" parent="OneWayGateBlocking"]
+[node name="Line2D" type="Line2D" parent="OneWayGateBlocking" unique_id=15252426]
 visible = false
 points = PackedVector2Array(0, 0, 67, 0)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayGateBlocking"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayGateBlocking" unique_id=390020170]
 shape = SubResource("SegmentShape2D_sr13j")
 disabled = true
 one_way_collision = true
 
-[node name="OneWayGateSaving" type="StaticBody2D" parent="."]
+[node name="OneWayGateSaving" type="StaticBody2D" parent="." unique_id=1055444600]
 z_index = 5
 position = Vector2(-26, -13)
 collision_layer = 2
 collision_mask = 0
 
-[node name="Line2D" type="Line2D" parent="OneWayGateSaving"]
+[node name="Line2D" type="Line2D" parent="OneWayGateSaving" unique_id=101473243]
 points = PackedVector2Array(0, 0, 67, 0)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayGateSaving"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayGateSaving" unique_id=426806700]
 shape = SubResource("SegmentShape2D_qrx0i")
 one_way_collision = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1094169737]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1645307694]
 position = Vector2(0, 31.5)
 shape = SubResource("RectangleShape2D_ahhcf")
 
-[node name="OnOffLight" parent="." instance=ExtResource("4_rpygy")]
+[node name="OnOffLight" parent="." unique_id=1869869253 instance=ExtResource("4_rpygy")]
 animation = &"on"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2106502249]
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1547151734]
 stream = ExtResource("2_ji2d3")
 attenuation = 1e-05
 bus = &"SFX"
 
-[node name="Pusher" parent="." instance=ExtResource("3_54quy")]
+[node name="Pusher" parent="." unique_id=1450837262 instance=ExtResource("3_54quy")]
 Strength = 2000
 
 [connection signal="KickingBall" from="." to="Pusher" method="Push"]
